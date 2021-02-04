@@ -1,0 +1,9 @@
+# Stop on errors
+set -e
+
+cd "$(dirname "$0")/.."
+
+rm -rf dist
+cp -r public dist
+yarn rollup -c
+yarn gulp gen-entrypoint-prod
