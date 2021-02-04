@@ -1,6 +1,6 @@
 {
     "name": "My Home Assistant",
-    "image": "node",
+    "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:14",
     "postCreateCommand": "yarn install",
     "context": "..",
     "appPort": 5000,
