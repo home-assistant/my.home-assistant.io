@@ -4,3 +4,5 @@ dist
 .DS_Store
 manifest.json
 build
+yarn-error.log
+.vscode/settings.json
