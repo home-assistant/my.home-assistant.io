@@ -5,9 +5,11 @@ const redirects = require("../../redirect.json");
 
 const { srcDir, buildDir, getManifest } = require("../paths");
 
+const entrypointSrcDir = path.join(srcDir, "html");
+
 const writeFile = (template, replaces, overrideName) => {
   let content = fs.readFileSync(
-    path.join(srcDir, `html/${template}.html.template`),
+    path.join(entrypointSrcDir, `${template}.html.template`),
     "utf-8"
   );
   Object.entries(replaces).forEach(([search, replace]) => {
@@ -26,7 +28,7 @@ const writeRedirect = (redirect, entrypoint) => {
   writeFile("redirect", { entrypoint }, `redirect/${redirect}/index`);
 };
 
-gulp.task("gen-entrypoint-dev", (done) => {
+gulp.task("gen-entrypoint-dev-write", (done) => {
   writeIndex("app.js");
   writeFaq("app.js");
   writeDontRedirect("app.js");
@@ -35,6 +37,14 @@ gulp.task("gen-entrypoint-dev", (done) => {
   }
   done();
 });
+
+gulp.task("gen-entrypoint-dev", () =>
+  gulp.watch(
+    entrypointSrcDir,
+    { ignoreInitial: false },
+    gulp.series("gen-entrypoint-dev-write")
+  )
+);
 
 gulp.task("gen-entrypoint-prod", (done) => {
   const manifest = getManifest();

@@ -4,4 +4,7 @@
     "postCreateCommand": "yarn install",
     "context": "..",
     "appPort": 5000,
+    "extensions": [
+        "esbenp.prettier-vscode",
+      ],
 }

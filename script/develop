@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 
 rm -rf dist
 cp -r public dist
-yarn gulp gen-entrypoint-dev
+yarn gulp gen-entrypoint-dev &
 yarn serve dist &
 yarn rollup -c --watch
 wait
