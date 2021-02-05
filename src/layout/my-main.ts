@@ -110,11 +110,9 @@ export class MyMain extends LitElement {
       .error a {
         color: darkred;
       }
-
       .spacer {
         flex: 1;
       }
-
       button.link {
         background: none;
         color: var(--primary-color);

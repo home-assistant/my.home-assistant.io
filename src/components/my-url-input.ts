@@ -24,16 +24,22 @@ export class MyUrlInputMain extends LitElement {
 
   protected render(): TemplateResult {
     return html`
-      <mwc-textfield
-        label="Home Assistant URL"
-        .validationMessage=${this._error}
-        .value=${this.value || ""}
-        placeholder="http://homeassistant.local:8123"
-        @keydown=${this._handleInputKeyDown}
-      ></mwc-textfield>
-      <mwc-button @click=${this._handleSave}
-        >${this.button || "Save"}
-      </mwc-button>
+      ${this._error
+        ? html`
+            <p class="error">${this._error}</p>
+          `
+        : ""}
+      <div>
+        <mwc-textfield
+          label="Home Assistant URL"
+          .value=${this.value || ""}
+          placeholder="http://homeassistant.local:8123"
+          @keydown=${this._handleInputKeyDown}
+        ></mwc-textfield>
+        <mwc-button @click=${this._handleSave}
+          >${this.button || "Save"}
+        </mwc-button>
+      </div>
     `;
   }
 
@@ -78,10 +84,16 @@ export class MyUrlInputMain extends LitElement {
   static get styles(): CSSResult {
     return css`
       :host {
+        display: block;
+      }
+      div {
         display: flex;
-        width: 100%;
         justify-content: space-between;
         align-items: center;
+      }
+      .error {
+        color: red;
+        font-weight: bold;
       }
       mwc-textfield {
         flex-grow: 1;

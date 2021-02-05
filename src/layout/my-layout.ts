@@ -18,7 +18,7 @@ class MyLayout extends LitElement {
         </div>
       </ha-card>
       <div class="footer">
-        <a href="./faq.html">Frequently Asked Questions</a> – Found a bug?
+        <a href="/faq.html">Frequently Asked Questions</a> – Found a bug?
         <a
           href="https://github.com/home-assistant/my.home-assistant.io/issues"
           target="_blank"
