@@ -49,19 +49,27 @@ export class MyMain extends LitElement {
       <my-layout>
         <div class="card-content">
           <p>
-            My Home Assistant allows you to connect to your Home Assistant
-            installation.
+            My Home Assistant is a portal to your Home Assistant instance. It
+            allows the documentation to link to your instance. For a list of
+            current supported links, see the
+            <a href="faq.html">FAQ</a>.
+          </p>
+          <p>
+            It works by entering the URL of your Home Assistant instance. By
+            default this is <code>http://homeassistant.local:8123</code>. You do
+            not have to provide us access to your instance and this information
+            will only be stored in your browser.
           </p>
           ${this._url
             ? html`
                 <p>
-                  We currently link to the following Home Assistant instance:
-                </p>
-                <p class="stored-instance">
+                  You have currently set as your Home Assistant url:<br />
                   <a href=${this._url} rel="noreferrer noopener">
-                    ${this._url}
-                  </a>
-                  <mwc-button @click=${this._handleRemove}>❌</mwc-button>
+                    ${this._url}</a
+                  >
+                  &nbsp; (<button class="link" @click=${this._handleRemove}>
+                    clear</button
+                  >)
                 </p>
               `
             : html`
@@ -235,13 +243,15 @@ export class MyMain extends LitElement {
         flex: 1;
       }
 
-      .stored-instance {
-        display: flex;
-        align-items: center;
-      }
-
-      .stored-instance mwc-button {
-        margin-left: 18px;
+      button.link {
+        background: none;
+        color: var(--primary-color);
+        border: none;
+        padding: 0;
+        font: inherit;
+        text-align: left;
+        text-decoration: underline;
+        cursor: pointer;
       }
     `;
   }
