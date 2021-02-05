@@ -57,7 +57,7 @@ export class MyMain extends LitElement {
                 <p>
                   We currently link to the following Home Assistant instance:
                 </p>
-                <p class='stored-instance'>
+                <p class="stored-instance">
                   <a href=${this._url} rel="noreferrer noopener">
                     ${this._url}
                   </a>
@@ -96,23 +96,25 @@ export class MyMain extends LitElement {
               `
             : ""}
         </div>
-        ${this._redirect || !this._url ? html`
-        <div class="card-actions">
-          ${!this._redirect && this._url
-            ? html`
-
-              `
-            : !this._url
-            ? html`
-                <mwc-button @click=${this._handleSave}
-                  >${this._redirect ? "Go!" : "Save"}</mwc-button
-                >
-              `
-            : html`
-                <mwc-button @click=${this._handleRedirect}>Yes</mwc-button>
-              `}
-        </div>
-        `:html``}
+        ${this._redirect || !this._url
+          ? html`
+              <div class="card-actions">
+                ${!this._redirect && this._url
+                  ? html``
+                  : !this._url
+                  ? html`
+                      <mwc-button @click=${this._handleSave}
+                        >${this._redirect ? "Go!" : "Save"}</mwc-button
+                      >
+                    `
+                  : html`
+                      <mwc-button @click=${this._handleRedirect}
+                        >Yes</mwc-button
+                      >
+                    `}
+              </div>
+            `
+          : html``}
       </my-layout>
     `;
   }
