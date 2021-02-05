@@ -31,7 +31,6 @@
         margin: 0;
         padding: 0;
         background-color: #e5e5e5;
-        --primary-color: #03a9f4;
         --mdc-theme-primary: #03a9f4;
         --mdc-theme-secondary: #03a9f4;
       }

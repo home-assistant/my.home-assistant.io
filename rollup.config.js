@@ -5,7 +5,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 import manifest from "./build-scripts/rollup-plugins/manifest";
 
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.NODE_ENV === "production";
 
 const terserOptions = (latestBuild) => ({
   safari10: !latestBuild,
@@ -25,7 +25,10 @@ const plugins = (latestBuild) =>
 
 export default [
   {
-    input: "./src/entrypoints/app.ts",
+    input: {
+      app: "./src/entrypoints/app.ts",
+      redirect: "./src/entrypoints/redirect.ts",
+    },
     output: {
       dir: "dist/",
       format: "es",

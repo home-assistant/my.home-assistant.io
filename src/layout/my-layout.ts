@@ -4,23 +4,16 @@ import {
   customElement,
   html,
   LitElement,
-  property,
   TemplateResult,
 } from "lit-element";
 import "../components/ha-card";
 
 @customElement("my-layout")
 class MyLayout extends LitElement {
-  @property() public subtitle?: string | undefined;
-
   protected render(): TemplateResult {
     return html`
       <ha-card>
         <div class="layout">
-          <img class="hero" src="/images/header.jpg" />
-          <h1 class="card-header">
-            My Home Assistant${this.subtitle ? ` – ${this.subtitle}` : ""}
-          </h1>
           <slot></slot>
         </div>
       </ha-card>
@@ -51,7 +44,7 @@ class MyLayout extends LitElement {
         max-width: 500px;
       }
 
-      .hero {
+      :host ::slotted(.hero) {
         border-radius: 4px 4px 0 0;
       }
 
@@ -60,7 +53,7 @@ class MyLayout extends LitElement {
         flex-direction: column;
       }
 
-      .card-header {
+      :host ::slotted(.card-header) {
         color: var(--ha-card-header-color, --primary-text-color);
         font-family: var(--ha-card-header-font-family, inherit);
         font-size: var(--ha-card-header-font-size, 24px);
