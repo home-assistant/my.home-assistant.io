@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
+import manifest from "./build-scripts/rollup-plugins/manifest";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -19,6 +20,7 @@ const plugins = (latestBuild) =>
     json(),
     typescript(),
     production && terser(terserOptions(latestBuild)),
+    manifest(),
   ].filter(Boolean);
 
 export default [
