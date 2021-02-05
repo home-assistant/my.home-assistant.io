@@ -56,11 +56,12 @@ export class MyMain extends LitElement {
             ? html`
                 <p>
                   We currently link to the following Home Assistant instance:
-                  <br />
-                  <br />
+                </p>
+                <p class='stored-instance'>
                   <a href=${this._url} rel="noreferrer noopener">
                     ${this._url}
                   </a>
+                  <mwc-button @click=${this._handleRemove}>❌</mwc-button>
                 </p>
               `
             : html`
@@ -95,12 +96,11 @@ export class MyMain extends LitElement {
               `
             : ""}
         </div>
+        ${this._redirect || !this._url ? html`
         <div class="card-actions">
           ${!this._redirect && this._url
             ? html`
-                <mwc-button @click=${this._handleRemove}>
-                  Remove current instance
-                </mwc-button>
+
               `
             : !this._url
             ? html`
@@ -112,6 +112,7 @@ export class MyMain extends LitElement {
                 <mwc-button @click=${this._handleRedirect}>Yes</mwc-button>
               `}
         </div>
+        `:html``}
       </my-layout>
     `;
   }
@@ -213,6 +214,9 @@ export class MyMain extends LitElement {
       .card-content a {
         color: var(--primary-color);
       }
+      .card-content p:last-child {
+        margin-bottom: 0;
+      }
       .card-actions a {
         text-decoration: none;
       }
@@ -227,6 +231,15 @@ export class MyMain extends LitElement {
 
       .spacer {
         flex: 1;
+      }
+
+      .stored-instance {
+        display: flex;
+        align-items: center;
+      }
+
+      .stored-instance mwc-button {
+        margin-left: 18px;
       }
     `;
   }
