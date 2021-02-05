@@ -1,0 +1,35 @@
+[
+  {
+    "redirect": "info",
+    "description": "Show your Home Assistant version information.",
+    "params": {}
+  },
+
+  {
+    "redirect": "logs",
+    "description": "Show your Home Assistant logs.",
+    "params": {}
+  },
+
+  {
+    "redirect": "profile",
+    "description": "Show your Home Assistant user's profile.",
+    "params": {}
+  },
+
+  {
+    "redirect": "blueprint_import",
+    "description": "Open the blueprint import dialog.",
+    "params": {
+      "blueprint_url": "url"
+    }
+  },
+
+  {
+    "redirect": "config_flow_start",
+    "description": "Start a config flow.",
+    "params": {
+      "domain": "string"
+    }
+  }
+]
