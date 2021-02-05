@@ -81,8 +81,12 @@ export class MyRedirect extends LitElement {
                 <p>
                 We don't know the URL of you Home Assistant instance yet, please enter it below so we can forward you.
               </p>
-                <my-url-input .value=${this._url} button="Redirect" @value-changed=${this._handleUrlChanged}></my-url-input>
+                <my-url-input .value=${this._url} button="Forward" @value-changed=${this._handleUrlChanged}></my-url-input>
               ` :  html`
+                You will be forwarded to your Home Assistant url: 
+                  <a href=${this._url} rel="noreferrer noopener">
+                    ${this._url}</a
+                  >
                 <mwc-formfield
                   label="Don't ask again"
                   @change=${this._handleAlwaysRedirectChange}
@@ -99,12 +103,15 @@ export class MyRedirect extends LitElement {
         ${this._url
           ? html`
               <div class="card-actions">
-              <mwc-button @click=${this._handleNo}>
-                        No
-                      </mwc-button>
-              <mwc-button @click=${this._handleRedirect}>
+                <a class="no_underline" href="/dont-redirect.html"
+                >
+                  <mwc-button>
+                          No
+                  </mwc-button>
+                </a>
+                <mwc-button @click=${this._handleRedirect}>
                         Yes
-                      </mwc-button>
+                </mwc-button>
               </div>
             `
           : html``}
@@ -115,10 +122,6 @@ export class MyRedirect extends LitElement {
   private _handleUrlChanged(ev: CustomEvent) {
     this._url = ev.detail.value;
     this._handleRedirect();
-  }
-
-  private _handleNo() {
-
   }
 
   private _handleRedirect() {
@@ -209,20 +212,8 @@ export class MyRedirect extends LitElement {
       .error a {
         color: darkred;
       }
-
-      .spacer {
-        flex: 1;
-      }
-
-      button.link {
-        background: none;
-        color: var(--primary-color);
-        border: none;
-        padding: 0;
-        font: inherit;
-        text-align: left;
-        text-decoration: underline;
-        cursor: pointer;
+      a.no_underline {
+        text-decoration: none;
       }
     `;
   }

@@ -37,7 +37,26 @@
     </style>
   </head>
   <body>
-    <my-main></my-main>
+    <my-layout>
+      <style>
+        a {
+          color: var(--primary-color);
+        }
+      </style>
+        <img class="hero" src="/images/header.jpg" />
+        <h1 class="card-header">
+          OK, we will not redirect you.
+        </h1>
+      <div class="card-content">
+        <p><a href="/">&laquo; Back to My Home Assistant</a></p>
+      </div>
+
+      <div class="card-content">
+        <p>
+          If this page came up unexpected, please let us know
+        </p>
+      </div>
+    </my-layout>
     <script type="module" crossorigin="use-credentials">
       import "/{{ entrypoint }}";
     </script>

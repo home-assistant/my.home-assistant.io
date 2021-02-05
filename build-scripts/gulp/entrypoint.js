@@ -17,6 +17,9 @@ const writeFile = (template, replaces, overrideName) => {
 };
 
 const writeIndex = (entrypoint) => writeFile("index", { entrypoint });
+const writeFaq = (entrypoint) => writeFile("faq", { entrypoint });
+const writeDontRedirect = (entrypoint) =>
+  writeFile("dont-redirect", { entrypoint });
 
 const writeRedirect = (redirect, entrypoint) => {
   fs.mkdirSync(`${buildDir}/redirect/${redirect}/`, { recursive: true });
@@ -25,6 +28,8 @@ const writeRedirect = (redirect, entrypoint) => {
 
 gulp.task("gen-entrypoint-dev", (done) => {
   writeIndex("app.js");
+  writeFaq("app.js");
+  writeDontRedirect("app.js");
   for (const redirect of Object.keys(redirects)) {
     writeRedirect(redirect, "redirect.js");
   }
@@ -34,6 +39,8 @@ gulp.task("gen-entrypoint-dev", (done) => {
 gulp.task("gen-entrypoint-prod", (done) => {
   const manifest = getManifest();
   writeIndex(manifest["app.js"]);
+  writeFaq(manifest["app.js"]);
+  writeDontRedirect(manifest["app.js"]);
   for (const redirect of Object.keys(redirects)) {
     writeRedirect(redirect, manifest["redirect.js"]);
   }

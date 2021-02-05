@@ -37,7 +37,27 @@
     </style>
   </head>
   <body>
-    <my-main></my-main>
+    <my-layout>
+      <style>
+        a {
+          color: var(--primary-color);
+        }
+      </style>
+        <img class="hero" src="/images/header.jpg" />
+        <h1 class="card-header">
+          Frequently Asked Questions
+        </h1>
+      <div class="card-content">
+        <p><a href="/">&laquo; Back to My Home Assistant</a></p>
+      </div>
+
+      <div class="section-header">What is My Home Assistant?</div>
+      <div class="card-content">
+        <p>
+          My Home Assistant Cast allows you to...
+        </p>
+      </div>
+    </my-layout>
     <script type="module" crossorigin="use-credentials">
       import "/{{ entrypoint }}";
     </script>
