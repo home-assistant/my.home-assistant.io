@@ -34,6 +34,9 @@
         --mdc-theme-primary: #03a9f4;
         --mdc-theme-secondary: #03a9f4;
       }
+      li {
+        margin: 4px;
+      }
     </style>
   </head>
   <body>
@@ -51,12 +54,44 @@
         <p><a href="/">&laquo; Back to My Home Assistant</a></p>
       </div>
 
-      <div class="section-header">What is My Home Assistant?</div>
+      <div class="section-header">What does My Home Assistant solve?</div>
+      <div class="card-content">
+        <p>
+          When explaining fuctionality or helping users, we often want to link them to a specific place in their instance. However, each Home Assistant instance lives somewhere else, and so we can't have a single place to link to. Until now.
+        </p>
+        <p>
+          My Home Assistant allows users to store the URL of their instance. This data is stored in your browser and never leaves your system.
+        </p>
+        <p>
+          When the Home Assistant docs link you to a place in your instance, they will link you to My Home Assistant. My Home Assistant will then forward the thing to be opened to the My integration in Home Assistant.
+        </p>
+        <p>
+          All this logic happens in your browser. At no point will any data leave your network. We make sure that none of the supported links take any action. They will either provide you with information about your instance or help you start an action.
+        </p>
+      </div>
+
+      <div class="section-header" id='supported-links'>Supported links</div>
+      <div class="card-content">
+        <p>
+          The following links are supported:
+        </p>
+        {{ redirectList }}
+      </div>
+
+      <div class="section-header">XXXXXXXXX?</div>
       <div class="card-content">
         <p>
           My Home Assistant allows you to...
         </p>
       </div>
+
+      <div class="section-header">XXXXXXXXX?</div>
+      <div class="card-content">
+        <p>
+          My Home Assistant allows you to...
+        </p>
+      </div>
+
     </my-layout>
     <script type="module" crossorigin="use-credentials">
       import "/{{ entrypoint }}";

@@ -35,7 +35,7 @@ export class MyMain extends LitElement {
             My Home Assistant is a portal to your Home Assistant instance. It
             allows the documentation to link to your instance. For a list of
             current supported links, see the
-            <a href="faq.html">FAQ</a>.
+            <a href="faq.html#supported-links">FAQ</a>.
           </p>
           <p>
             It works by entering the URL of your Home Assistant instance. By
@@ -46,7 +46,7 @@ export class MyMain extends LitElement {
           ${this._url
             ? html`
                 <p>
-                  Your currently set Home Assistant url is:
+                  Your configured Home Assistant url is:
                 </p>
                 <div class="current-instance">
                   <a href=${this._url} rel="noreferrer noopener">

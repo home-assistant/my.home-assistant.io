@@ -19,7 +19,35 @@ const writeFile = (template, replaces, overrideName) => {
 };
 
 const writeIndex = (entrypoint) => writeFile("index", { entrypoint });
-const writeFaq = (entrypoint) => writeFile("faq", { entrypoint });
+const writeFaq = (entrypoint) => {
+  const redirectList = ["<ul>"];
+  for (const [redirect, info] of Object.entries(redirects)) {
+    const example = [`/redirect/${redirect}`];
+
+    const params = Object.keys(info.example || []);
+
+    if (params.length > 0) {
+      example.push("?");
+      params.forEach((param, idx) => {
+        if (idx > 0) {
+          example.push("&");
+        }
+        example.push(`${param}=${encodeURIComponent(info.example[param])}`);
+      });
+    }
+
+    const examplePath = example.join("");
+    redirectList.push(`
+      <li>
+        <a href="${examplePath}">${info.description.charAt(0).toUpperCase() +
+      info.description.slice(1)}</a><br>
+        <i>Introduced in Home Assistant Core ${info.introduced}.</i>
+      </li>
+    `);
+  }
+  redirectList.push("</ul>");
+  writeFile("faq", { entrypoint, redirectList: redirectList.join("\n") });
+};
 const writeDontRedirect = (entrypoint) =>
   writeFile("dont-redirect", { entrypoint });
 
