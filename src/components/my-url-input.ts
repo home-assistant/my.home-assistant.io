@@ -92,7 +92,7 @@ export class MyUrlInputMain extends LitElement {
         align-items: center;
       }
       .error {
-        color: red;
+        color: #db4437;
         font-weight: bold;
       }
       mwc-textfield {

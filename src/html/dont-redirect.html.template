@@ -40,7 +40,7 @@
     <my-layout>
       <style>
         a {
-          color: var(--primary-color);
+          color: var(--mdc-theme-primary);
         }
       </style>
         <img class="hero" src="/images/header.jpg" />

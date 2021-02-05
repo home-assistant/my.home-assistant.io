@@ -194,7 +194,7 @@ export class MyRedirect extends LitElement {
   static get styles(): CSSResult {
     return css`
       .card-content a {
-        color: var(--primary-color);
+        color: var(--mdc-theme-primary);
       }
       .card-content p:last-child {
         margin-bottom: 0;
@@ -203,7 +203,7 @@ export class MyRedirect extends LitElement {
         justify-content: flex-end;
       }
       .error {
-        color: red;
+        color: #db4437;
         font-weight: bold;
       }
       mwc-formfield {

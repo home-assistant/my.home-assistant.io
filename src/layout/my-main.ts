@@ -46,14 +46,16 @@ export class MyMain extends LitElement {
           ${this._url
             ? html`
                 <p>
-                  You have currently set as your Home Assistant url:<br />
+                  Your currently set Home Assistant url is:
+                </p>
+                <div class="current-instance">
                   <a href=${this._url} rel="noreferrer noopener">
                     ${this._url}</a
                   >
-                  &nbsp; (<button class="link" @click=${this._handleRemove}>
-                    clear</button
-                  >)
-                </p>
+                  <mwc-button @click=${this._handleRemove}>
+                    clear
+                  </mwc-button>
+                </div>
               `
             : html`
                 <p>
@@ -92,16 +94,10 @@ export class MyMain extends LitElement {
   static get styles(): CSSResult {
     return css`
       .card-content a {
-        color: var(--primary-color);
-      }
-      .card-content p:last-child {
-        margin-bottom: 0;
-      }
-      .card-actions {
-        justify-content: flex-end;
+        color: var(--mdc-theme-primary);
       }
       .error {
-        color: red;
+        color: #db4437;
         font-weight: bold;
       }
       mwc-formfield {
@@ -110,18 +106,16 @@ export class MyMain extends LitElement {
       .error a {
         color: darkred;
       }
-      .spacer {
-        flex: 1;
+      .current-instance {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
-      button.link {
-        background: none;
-        color: var(--primary-color);
-        border: none;
-        padding: 0;
-        font: inherit;
-        text-align: left;
-        text-decoration: underline;
-        cursor: pointer;
+      .current-instance mwc-button {
+        --mdc-theme-primary: #db4437;
+      }
+      .current-instance a {
+        word-break: break-all;
       }
     `;
   }
