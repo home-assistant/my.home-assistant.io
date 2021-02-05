@@ -1,19 +1,25 @@
-import typescript from "rollup-plugin-typescript2";
-import commonjs from "rollup-plugin-commonjs";
+import typescript from "@rollup/plugin-typescript";
+import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
-import nodeResolve from "rollup-plugin-node-resolve";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
-import entrypointHashmanifest from "rollup-plugin-entrypoint-hashmanifest";
 
 const production = !process.env.ROLLUP_WATCH;
 
-const plugins = [
-  nodeResolve({}),
-  commonjs(),
-  json(),
-  typescript(),
-  production && terser(),
-];
+const terserOptions = (latestBuild) => ({
+  safari10: !latestBuild,
+  ecma: latestBuild ? undefined : 5,
+  output: { comments: false },
+});
+
+const plugins = (latestBuild) =>
+  [
+    nodeResolve({}),
+    commonjs(),
+    json(),
+    typescript(),
+    production && terser(terserOptions(latestBuild)),
+  ].filter(Boolean);
 
 export default [
   {
@@ -24,9 +30,6 @@ export default [
       entryFileNames: production ? "[name]-[hash].js" : "[name].js",
       chunkFileNames: "[name]-[hash].js",
     },
-    plugins: [
-      ...plugins,
-      production && entrypointHashmanifest({ manifestName: "manifest.json" }),
-    ],
+    plugins: plugins(true),
   },
 ];
