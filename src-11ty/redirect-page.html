@@ -1,0 +1,21 @@
+---
+layout: base.html.njk
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+permalink: "redirect/{{ redirect.redirect }}/"
+---
+
+<h1 class="card-header">
+  You're being redirected to your Home Assistant instance
+</h1>
+<div class="card-content">
+  <p>
+    Do you want to continue to your Home Assistant instance?<br />
+    You will be redirected to {{ redirect.description }}.
+  </p>
+</div>
+<my-handle-redirect redirect="{{ redirect.redirect }}"></my-handle-redirect>
+
+<script type="module" src="/{{ manifest['my-handle-redirect.js'] }}"></script>

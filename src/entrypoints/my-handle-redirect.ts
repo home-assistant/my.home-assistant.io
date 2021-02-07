@@ -2,19 +2,17 @@ import "@material/mwc-button";
 import "@material/mwc-checkbox";
 import "@material/mwc-formfield";
 import {
-  css,
-  CSSResult,
   customElement,
   html,
   LitElement,
   TemplateResult,
   internalProperty,
+  property,
 } from "lit-element";
 import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import "./my-layout";
 import "../components/my-url-input";
 import redirects from "../../redirect.json";
 import { sanitizeUrl } from "@braintree/sanitize-url";
@@ -29,10 +27,23 @@ interface Redirect {
   };
 }
 
+const css = html`
+  <style>
+    my-handle-redirect mwc-formfield {
+      display: block;
+    }
+    my-handle-redirect a.no_underline {
+      text-decoration: none;
+    }
+  </style>
+`;
+
 const HASS_URL = "hassUrl";
 const ALWAYS_REDIRECT = "alwaysRedirect";
-@customElement("my-redirect")
-export class MyRedirect extends LitElement {
+@customElement("my-handle-redirect")
+export class MyHandleRedirect extends LitElement {
+  @property() public redirect?: string;
+
   @internalProperty() private _error?: string | TemplateResult;
 
   @internalProperty() private _url?: string | null = localStorage.getItem(
@@ -45,18 +56,20 @@ export class MyRedirect extends LitElement {
 
   @internalProperty() private _redirect?: Redirect;
 
+  createRenderRoot() {
+    return this;
+  }
+
   public connectedCallback() {
     super.connectedCallback();
-    const path = window.location.pathname;
-    if (!path.startsWith("/redirect")) {
+    if (!this.redirect) {
       return;
     }
-    const key = path.split("/")[2];
-    this._redirect = redirects[key];
+    this._redirect = redirects[this.redirect];
     if (!this._redirect) {
       return;
     }
-    this._redirect.key = key;
+    this._redirect.key = this.redirect;
     if (this._url && this._alwaysRedirect) {
       this._handleRedirect();
     }
@@ -66,56 +79,58 @@ export class MyRedirect extends LitElement {
     if (!this._redirect) {
       return html``;
     }
-    return html`
-      <my-layout>
-        <h1 class="card-header">
-          You're being redirected to your Home Assistant instance
-        </h1>
+
+    if (!this._url) {
+      return html`
         <div class="card-content">
-        <p>
-                Do you want to continue to your Home Assistant instance?<br/>
-                You will be redirected to ${this._redirect?.description}.
-              </p>
-          ${!this._url
-            ?  html`
-                <p>
-                We don't know the URL of you Home Assistant instance yet, please enter it below so we can forward you.
-              </p>
-                <my-url-input .value=${this._url} button="Forward" @value-changed=${this._handleUrlChanged}></my-url-input>
-              ` :  html`
-                You will be forwarded to your Home Assistant url: 
-                  <a href=${this._url} rel="noreferrer noopener">
-                    ${this._url}</a
-                  >
-                <mwc-formfield
-                  label="Don't ask again"
-                  @change=${this._handleAlwaysRedirectChange}
-                >
-                  <mwc-checkbox .checked=${this._alwaysRedirect}></mwc-checkbox>
-                </mwc-formfield>
-              `}
+          <p>
+            We don't know the URL of you Home Assistant instance yet, please
+            enter it below so we can forward you.
+          </p>
+          <my-url-input
+            .value=${this._url}
+            button="Forward"
+            @value-changed=${this._handleUrlChanged}
+          ></my-url-input>
           ${this._error
             ? html`
                 <p class="error">${this._error}</p>
               `
             : ""}
         </div>
-        ${this._url
+      `;
+    }
+
+    return html`
+      ${css}
+      <div class="card-content">
+        You will be forwarded to your Home Assistant url:
+        <a href=${this._url} rel="noreferrer noopener"> ${this._url}</a>
+
+        ${this._error
           ? html`
-              <div class="card-actions">
-                <a class="no_underline" href="/dont-redirect.html"
-                >
-                  <mwc-button>
-                          No
-                  </mwc-button>
-                </a>
-                <mwc-button @click=${this._handleRedirect}>
-                        Yes
-                </mwc-button>
-              </div>
+              <p class="error">${this._error}</p>
             `
-          : html``}
-      </my-layout>
+          : ""}
+      </div>
+      <div class="card-actions">
+        <mwc-formfield
+          label="Don't ask again"
+          @change=${this._handleAlwaysRedirectChange}
+        >
+          <mwc-checkbox .checked=${this._alwaysRedirect}></mwc-checkbox>
+        </mwc-formfield>
+        <div>
+          <a class="no_underline" href="/dont-redirect.html">
+            <mwc-button>
+              No
+            </mwc-button>
+          </a>
+          <mwc-button @click=${this._handleRedirect}>
+            Yes
+          </mwc-button>
+        </div>
+      </div>
     `;
   }
 
@@ -142,8 +157,8 @@ export class MyRedirect extends LitElement {
     if (!this._redirect) {
       return "";
     }
-      const params = this._createRedirectParams();
-      return `${this._redirect.key}${params}`;
+    const params = this._createRedirectParams();
+    return `${this._redirect.key}${params}`;
   }
 
   private _createRedirectParams(): string {
@@ -154,7 +169,9 @@ export class MyRedirect extends LitElement {
     if (!this._redirect.params && !Object.keys(params).length) {
       return "";
     }
-    if (Object.keys(this._redirect.params).length !== Object.keys(params).length) {
+    if (
+      Object.keys(this._redirect.params).length !== Object.keys(params).length
+    ) {
       throw Error("Wrong parameters");
     }
     Object.entries(this._redirect.params).forEach(([key, type]) => {
@@ -162,7 +179,7 @@ export class MyRedirect extends LitElement {
         throw Error("Wrong parameters");
       }
     });
-    return `?${createSearchParam(params)}`
+    return `?${createSearchParam(params)}`;
   }
 
   private _checkParamType(type: ParamType, value: string) {
@@ -190,37 +207,10 @@ export class MyRedirect extends LitElement {
       ev.target.checked = !checked;
     }
   }
-
-  static get styles(): CSSResult {
-    return css`
-      .card-content a {
-        color: var(--mdc-theme-primary);
-      }
-      .card-content p:last-child {
-        margin-bottom: 0;
-      }
-      .card-actions {
-        justify-content: flex-end;
-      }
-      .error {
-        color: #db4437;
-        font-weight: bold;
-      }
-      mwc-formfield {
-        display: block;
-      }
-      .error a {
-        color: darkred;
-      }
-      a.no_underline {
-        text-decoration: none;
-      }
-    `;
-  }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "my-redirect": MyRedirect;
+    "my-handle-redirect": MyHandleRedirect;
   }
 }

@@ -1,0 +1,84 @@
+---
+layout: base_with_hero.html.njk
+---
+
+<style>
+  .back {
+    padding: 8px 16px 0;
+  }
+  .section-header {
+    font-weight: 500;
+    padding: 4px 16px;
+    text-transform: uppercase;
+  }
+  ul {
+    padding-left: 1.5em;
+    margin-bottom: 0;
+  }
+  li {
+    margin: 4px 0;
+  }
+</style>
+
+<div class="back">
+  <a href="/">&laquo; Back to My Home Assistant</a>
+</div>
+
+<h1 class="card-header">
+  Frequently Asked Questions
+</h1>
+
+<div class="section-header">What does My Home Assistant solve?</div>
+<div class="card-content">
+  <p>
+    When explaining fuctionality or helping users, we often want to link them to
+    a specific place in their instance. However, each Home Assistant instance
+    lives somewhere else, and so we can't have a single place to link to. Until
+    now.
+  </p>
+  <p>
+    My Home Assistant allows users to store the URL of their instance so that
+    the documentation can link the user directly to their instance. This data is
+    stored in your browser and never leaves your computer.
+  </p>
+  <p>
+    When the Home Assistant documentatino links you to a place in your instance,
+    they will link you to My Home Assistant. My Home Assistant will then forward
+    this to Home Assistant, which will open the right page.
+  </p>
+  <p>
+    All this logic happens in your browser. At no point will any data leave your
+    network. None of the supported redirects take any action. They either end up
+    on a page that will provide you with information about your instance or help
+    you start an action.
+  </p>
+</div>
+
+<div class="section-header" id="supported-links">Supported links</div>
+<div class="card-content">
+  <p>
+    The following links are supported:
+  </p>
+  <ul>
+    {% for redirect in redirects %}
+    <li>
+      <a href="{{ redirect | redirectExamplePath }}">{{ redirect.description | title }}</a><br />
+      <i>Introduced in Home Assistant Core {{redirect.introduced}}.</i>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="section-header">XXXXXXXXX?</div>
+<div class="card-content">
+  <p>
+    My Home Assistant allows you to...
+  </p>
+</div>
+
+<div class="section-header">XXXXXXXXX?</div>
+<div class="card-content">
+  <p>
+    My Home Assistant allows you to...
+  </p>
+</div>

@@ -5,7 +5,14 @@ cd "$(dirname "$0")/.."
 
 rm -rf dist
 cp -r public dist
-yarn gulp gen-entrypoint-dev &
+
+# Compile once before serving so eleventy has
+# valid JS to render.
+# We can't watch dist/manifest.json because .gitignore
+# is ignored by default and don't want to maintain own ignore.
+yarn rollup -c
+
 yarn serve dist &
+yarn eleventy --watch &
 yarn rollup -c --watch
 wait
