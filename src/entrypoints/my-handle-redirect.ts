@@ -41,7 +41,7 @@ const HASS_URL = "hassUrl";
 const ALWAYS_REDIRECT = "alwaysRedirect";
 @customElement("my-handle-redirect")
 export class MyHandleRedirect extends LitElement {
-  @property({ type: Object }) public redirect?: Redirect;
+  @property({ type: Object }) public redirect!: Redirect;
 
   @internalProperty() private _error?: string | TemplateResult;
 
@@ -147,17 +147,11 @@ export class MyHandleRedirect extends LitElement {
   }
 
   private _createRedirectUrl(): string {
-    if (!this.redirect) {
-      return "";
-    }
     const params = this._createRedirectParams();
     return `${this.redirect.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {
-    if (!this.redirect) {
-      return "";
-    }
     const params = extractSearchParamsObject();
     if (!this.redirect.params && !Object.keys(params).length) {
       return "";
