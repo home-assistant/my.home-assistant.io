@@ -45,6 +45,7 @@ class MyLayout extends LitElement {
       }
 
       :host ::slotted(.hero) {
+        width: 100%;
         border-radius: 4px 4px 0 0;
       }
 
@@ -94,10 +95,6 @@ class MyLayout extends LitElement {
         border-top: 1px solid #e8e8e8;
         padding: 5px 16px;
         display: flex;
-      }
-
-      img {
-        width: 100%;
       }
 
       .footer {
