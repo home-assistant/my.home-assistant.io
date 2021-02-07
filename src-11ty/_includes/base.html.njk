@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Home Assistant</title>
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta property="fb:app_id" content="338291289691179">
+    <meta property="og:title" content="Home Assistant">
+    <meta property="og:site_name" content="My Home Assistant">
+    <meta property="og:url" content="https://my.home-assistant.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="The portal to your home.">
+    <meta property="og:image" content="https://my.home-assistant.io/images/favicon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@home_assistant">
+    <meta name="twitter:title" content="My Home Assistant">
+    <meta name="twitter:description" content="The portal to your home.">
+    <meta name="twitter:image" content="https://my.home-assistant.io/images/favicon.png">
+    <style>
+      html {
+        font-size: 14px;
+        height: 100vh;
+      }
+      body {
+        font-family: Roboto, sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-weight: 400;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #e5e5e5;
+        --mdc-theme-primary: #03a9f4;
+        --mdc-theme-secondary: #03a9f4;
+
+        display: flex;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      a {
+        color: var(--mdc-theme-primary);
+      }
+
+      .layout {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 12px;
+        padding: 8px 0 24px;
+        color: var(--secondary-text-color);
+      }
+      .footer a {
+        color: var(--secondary-text-color);
+      }
+
+      @media all and (max-width: 500px) {
+        body {
+          justify-content: flex-start;
+          min-height: 90%;
+          margin-bottom: 30px;
+        }
+      }
+
+      .ha-card {
+        background: var(
+          --ha-card-background,
+          var(--paper-card-background-color, white)
+        );
+        border-radius: var(--ha-card-border-radius, 4px);
+        box-shadow: var(
+          --ha-card-box-shadow,
+          0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 1px 5px 0 rgba(0, 0, 0, 0.12),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2)
+        );
+        color: var(--primary-text-color);
+        display: block;
+        transition: all 0.3s ease-out;
+        position: relative;
+
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .ha-card h1.card-header {
+        margin: 0;
+        color: var(--ha-card-header-color, --primary-text-color);
+        font-family: var(--ha-card-header-font-family, inherit);
+        font-size: var(--ha-card-header-font-size, 24px);
+        letter-spacing: -0.012em;
+        line-height: 32px;
+        padding: 24px 16px 16px;
+        display: block;
+      }
+
+      .ha-card .card-content:not(:first-child) {
+        padding-top: 0px;
+        margin-top: -8px;
+      }
+
+      .ha-card .card-content {
+        padding: 16px;
+      }
+
+      .ha-card .card-content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .ha-card .card-actions {
+        border-top: 1px solid #e8e8e8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='ha-card'>
+      {{ content | safe }}
+    </div>
+    <div class="footer">
+      <a href="/">My Home Assistant</a> –
+      <a href="/faq.html">FAQ</a> –
+      <a
+        href="https://github.com/home-assistant/my.home-assistant.io/issues"
+        target="_blank"
+        >Found a bug?</a
+      >
+    </div>
+  </body>
+</html>

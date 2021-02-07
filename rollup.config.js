@@ -26,11 +26,11 @@ const plugins = (latestBuild) =>
 export default [
   {
     input: {
-      app: "./src/entrypoints/app.ts",
-      redirect: "./src/entrypoints/redirect.ts",
+      "my-configure-instance": "./src/entrypoints/my-configure-instance.ts",
+      "my-handle-redirect": "./src/entrypoints/my-handle-redirect.ts",
     },
     output: {
-      dir: "dist/",
+      dir: "dist",
       format: "es",
       entryFileNames: production ? "[name]-[hash].js" : "[name].js",
       chunkFileNames: "[name]-[hash].js",

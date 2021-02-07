@@ -1,0 +1,24 @@
+---
+layout: base.html.njk
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+permalink: "redirect/{{ redirect.redirect }}/"
+---
+
+<h1 class="card-header">
+  Open link in your Home Assistant?
+</h1>
+<div class="card-content">
+  <p>
+    You've been linked to a url in your Home Assistant instance. You will be
+    redirected to {{ redirect.description }}.
+  </p>
+</div>
+<!-- prettier-ignore-attribute -->
+<my-handle-redirect
+  redirect='{{ redirect | json | urlencode }}'
+></my-handle-redirect>
+
+<script type="module" src="/{{ manifest['my-handle-redirect.js'] }}"></script>

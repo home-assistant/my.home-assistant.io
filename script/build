@@ -6,4 +6,4 @@ cd "$(dirname "$0")/.."
 rm -rf dist
 cp -r public dist
 NODE_ENV=production yarn rollup -c
-yarn gulp gen-entrypoint-prod
+NODE_ENV=production yarn eleventy
