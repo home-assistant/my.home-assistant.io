@@ -60,13 +60,13 @@
           When explaining fuctionality or helping users, we often want to link them to a specific place in their instance. However, each Home Assistant instance lives somewhere else, and so we can't have a single place to link to. Until now.
         </p>
         <p>
-          My Home Assistant allows users to store the URL of their instance. This data is stored in your browser and never leaves your system.
+          My Home Assistant allows users to store the URL of their instance so that the documentation can link the user directly to their instance. This data is stored in your browser and never leaves your computer.
         </p>
         <p>
-          When the Home Assistant docs link you to a place in your instance, they will link you to My Home Assistant. My Home Assistant will then forward the thing to be opened to the My integration in Home Assistant.
+          When the Home Assistant documentatino links you to a place in your instance, they will link you to My Home Assistant. My Home Assistant will then forward this to Home Assistant, which will open the right page.
         </p>
         <p>
-          All this logic happens in your browser. At no point will any data leave your network. We make sure that none of the supported links take any action. They will either provide you with information about your instance or help you start an action.
+          All this logic happens in your browser. At no point will any data leave your network. None of the supported redirects take any action. They either end up on a page that will provide you with information about your instance or help you start an action.
         </p>
       </div>
 
