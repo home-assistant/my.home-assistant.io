@@ -15,6 +15,7 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import { ALWAYS_REDIRECT, DEFAULT_HASS_URL, HASS_URL } from "../const";
+import { svgPencil } from "../components/svg-pencil";
 
 type ParamType = "url" | "string";
 
@@ -31,10 +32,6 @@ class MyHandleRedirect extends LitElement {
   @property({ type: Object }) public redirect!: Redirect;
 
   @internalProperty() private _error?: string | TemplateResult;
-
-  @internalProperty() private _url?: string | null = localStorage.getItem(
-    HASS_URL
-  );
 
   @internalProperty() private _alwaysRedirect?: boolean = Boolean(
     localStorage.getItem(ALWAYS_REDIRECT)
@@ -59,19 +56,17 @@ class MyHandleRedirect extends LitElement {
       return html``;
     }
 
-    const url = this._url || DEFAULT_HASS_URL;
+    const url = this._url;
 
     return html`
       <div class="card-content current-instance">
         <div>
           Configured Home Assistant url:<br />
           <a href=${url} rel="noreferrer noopener">${url}</a>
+          <a href="/?change=1" class="change">
+            ${svgPencil}
+          </a>
         </div>
-        <a href="/?change=1" class="change">
-          <mwc-button>
-            change
-          </mwc-button>
-        </a>
 
         ${this._error
           ? html`
@@ -102,6 +97,10 @@ class MyHandleRedirect extends LitElement {
     `;
   }
 
+  private get _url() {
+    return localStorage.getItem(HASS_URL) || DEFAULT_HASS_URL;
+  }
+
   private _handleRedirect() {
     if (!this.redirect) {
       return;
@@ -111,9 +110,7 @@ class MyHandleRedirect extends LitElement {
 
   private _createRedirectUrl(): string {
     const params = this._createRedirectParams();
-    return `${this._url || DEFAULT_HASS_URL}/_my_redirect/${
-      this.redirect.redirect
-    }${params}`;
+    return `${this._url}/_my_redirect/${this.redirect.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {

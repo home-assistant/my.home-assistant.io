@@ -9,6 +9,7 @@ import {
   internalProperty,
 } from "lit-element";
 import "../components/my-url-input";
+import { svgPencil } from "../components/svg-pencil";
 import { DEFAULT_HASS_URL, HASS_URL } from "../const";
 import { extractSearchParamsObject } from "../util/search-params";
 
@@ -31,15 +32,9 @@ class MyIndex extends LitElement {
     if (!this._updatingUrl) {
       return html`
         <div class="card-content current-instance">
-          <div>
-            Configured Home Assistant url:<br />
-            <a href=${url} rel="noreferrer noopener">
-              ${url}
-            </a>
-          </div>
-          <mwc-button @click=${this._handleEdit}>
-            change
-          </mwc-button>
+          Configured Home Assistant url:<br />
+          <a href=${url} rel="noreferrer noopener">${url}</a>
+          <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
         </div>
       `;
     }
@@ -66,7 +61,9 @@ class MyIndex extends LitElement {
 
   private _handleUrlChanged(ev: CustomEvent) {
     this._url = ev.detail.value;
-    if (extractSearchParamsObject().change === "1") {
+    const params = extractSearchParamsObject();
+    if (params.change === "1") {
+      console.log("CALLING HISTORY.back");
       history.back();
     } else {
       this._updatingUrl = false;

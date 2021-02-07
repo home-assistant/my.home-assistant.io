@@ -37,10 +37,11 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        color: #212121;
         background-color: #e5e5e5;
         --mdc-theme-primary: #03a9f4;
         --mdc-theme-secondary: #03a9f4;
+        --primary-text-color: #212121;
+        color: var(--primary-text-color);
       }
 
       .layout {
@@ -126,14 +127,25 @@
         align-items: center;
       }
 
-      .current-instance {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        min-height: 36px;
-      }
       .current-instance a {
         word-break: break-all;
+      }
+
+      .current-instance svg {
+        fill: var(--primary-text-color);
+        height: 16px;
+        width: 16px;
+        vertical-align: top;
+      }
+
+      button.empty {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
       }
     </style>
   </head>

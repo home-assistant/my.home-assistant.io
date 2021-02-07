@@ -1,5 +1,5 @@
 ---
-layout: base.html.njk
+layout: base
 pagination:
   data: redirects
   size: 1
@@ -14,8 +14,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
   my-redirect mwc-formfield {
     display: block;
   }
-  .card-actions a,
-  .current-instance .change {
+  .card-actions a {
     text-decoration: none;
   }
 </style>
@@ -30,7 +29,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
   </p>
 </div>
 <!-- prettier-ignore-attribute -->
-<my-redirect redirect='{{ redirect | json | urlencode }}'>
+<my-redirect redirect='{{ redirect | json }}'>
   <div class="card-content current-instance">
     Configured Home Assistant url:<br />
     …
