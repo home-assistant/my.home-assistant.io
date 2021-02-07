@@ -31,4 +31,4 @@ permalink: "redirect/{{ redirect.redirect }}/"
 <!-- prettier-ignore-attribute -->
 <my-redirect redirect='{{ redirect | json | urlencode }}'></my-redirect>
 
-<script type="module" src="/{{ manifest['my-redirect.js'] }}"></script>
+<script src="/js/{{ manifest['my-redirect.js'] }}"></script>

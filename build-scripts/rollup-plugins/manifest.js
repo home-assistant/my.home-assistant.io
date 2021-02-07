@@ -4,14 +4,15 @@ const defaultOptions = {
   publicPath: "",
 };
 
+// Reuse the file across each build.
+const manifest = {};
+
 export default function(userOptions = {}) {
   const options = { ...defaultOptions, ...userOptions };
 
   return {
     name: "manifest",
     generateBundle(outputOptions, bundle) {
-      const manifest = {};
-
       for (const chunk of Object.values(bundle)) {
         if (!chunk.isEntry) {
           continue;

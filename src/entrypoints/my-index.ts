@@ -12,7 +12,7 @@ import "../components/my-url-input";
 import { DEFAULT_HASS_URL, HASS_URL } from "../const";
 
 @customElement("my-index")
-export class MyIndex extends LitElement {
+class MyIndex extends LitElement {
   @internalProperty() private _url?: string | null = localStorage.getItem(
     HASS_URL
   );

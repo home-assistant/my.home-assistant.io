@@ -1,1 +1,1 @@
-module.exports = require("../../dist/manifest.json");
+module.exports = require("../../dist/js/manifest.json");

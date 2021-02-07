@@ -28,7 +28,7 @@ interface Redirect {
 }
 
 @customElement("my-redirect")
-export class MyHandleRedirect extends LitElement {
+class MyHandleRedirect extends LitElement {
   @property({ type: Object }) public redirect!: Redirect;
 
   @internalProperty() private _error?: string | TemplateResult;

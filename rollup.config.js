@@ -1,3 +1,4 @@
+const path = require("path");
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
@@ -23,18 +24,18 @@ const plugins = (latestBuild) =>
     manifest(),
   ].filter(Boolean);
 
+// Each entrypoint a different build to avoid code reuse across builds
 export default [
-  {
-    input: {
-      "my-index": "./src/entrypoints/my-index.ts",
-      "my-redirect": "./src/entrypoints/my-redirect.ts",
-    },
-    output: {
-      dir: "dist",
-      format: "es",
-      entryFileNames: production ? "[name]-[hash].js" : "[name].js",
-      chunkFileNames: "[name]-[hash].js",
-    },
-    plugins: plugins(true),
+  "./src/entrypoints/my-index.ts",
+  "./src/entrypoints/my-redirect.ts",
+].map((entrypoint) => ({
+  input: {
+    [path.parse(entrypoint).name]: entrypoint,
   },
-];
+  output: {
+    dir: "dist/js",
+    format: "es",
+    entryFileNames: production ? "[name]-[hash].js" : "[name].js",
+  },
+  plugins: plugins(true),
+}));
