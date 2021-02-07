@@ -82,6 +82,7 @@ export class MyHandleRedirect extends LitElement {
 
     if (!this._url) {
       return html`
+        ${css}
         <div class="card-content">
           <p>
             We don't know the URL of you Home Assistant instance yet, please
