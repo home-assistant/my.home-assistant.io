@@ -9,7 +9,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
 
 <style>
   .ha-card {
-    min-height: 215px;
+    min-height: 219px;
   }
   my-redirect mwc-formfield {
     display: block;
@@ -32,4 +32,4 @@ permalink: "redirect/{{ redirect.redirect }}/"
 <!-- prettier-ignore-attribute -->
 <my-redirect redirect='{{ redirect | json | urlencode }}'></my-redirect>
 
-<script src="/js/{{ manifest['my-redirect.js'] }}"></script>
+<script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
