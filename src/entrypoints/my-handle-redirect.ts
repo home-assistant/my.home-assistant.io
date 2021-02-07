@@ -14,13 +14,12 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import "../components/my-url-input";
-import redirects from "../../redirect.json";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 
 type ParamType = "url" | "string";
 
 interface Redirect {
-  key: string;
+  redirect: string;
   description: string;
   params: {
     [key: string]: ParamType;
@@ -42,7 +41,7 @@ const HASS_URL = "hassUrl";
 const ALWAYS_REDIRECT = "alwaysRedirect";
 @customElement("my-handle-redirect")
 export class MyHandleRedirect extends LitElement {
-  @property() public redirect?: string;
+  @property({ type: Object }) public redirect?: Redirect;
 
   @internalProperty() private _error?: string | TemplateResult;
 
@@ -54,8 +53,6 @@ export class MyHandleRedirect extends LitElement {
     localStorage.getItem(ALWAYS_REDIRECT)
   );
 
-  @internalProperty() private _redirect?: Redirect;
-
   createRenderRoot() {
     return this;
   }
@@ -65,18 +62,13 @@ export class MyHandleRedirect extends LitElement {
     if (!this.redirect) {
       return;
     }
-    this._redirect = redirects[this.redirect];
-    if (!this._redirect) {
-      return;
-    }
-    this._redirect.key = this.redirect;
     if (this._url && this._alwaysRedirect) {
       this._handleRedirect();
     }
   }
 
   protected render(): TemplateResult {
-    if (!this._redirect) {
+    if (!this.redirect) {
       return html``;
     }
 
@@ -141,7 +133,7 @@ export class MyHandleRedirect extends LitElement {
   }
 
   private _handleRedirect() {
-    if (!this._redirect) {
+    if (!this.redirect) {
       return;
     }
     try {
@@ -155,27 +147,27 @@ export class MyHandleRedirect extends LitElement {
   }
 
   private _createRedirectUrl(): string {
-    if (!this._redirect) {
+    if (!this.redirect) {
       return "";
     }
     const params = this._createRedirectParams();
-    return `${this._redirect.key}${params}`;
+    return `${this.redirect.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {
-    if (!this._redirect) {
+    if (!this.redirect) {
       return "";
     }
     const params = extractSearchParamsObject();
-    if (!this._redirect.params && !Object.keys(params).length) {
+    if (!this.redirect.params && !Object.keys(params).length) {
       return "";
     }
     if (
-      Object.keys(this._redirect.params).length !== Object.keys(params).length
+      Object.keys(this.redirect.params).length !== Object.keys(params).length
     ) {
       throw Error("Wrong parameters");
     }
-    Object.entries(this._redirect.params).forEach(([key, type]) => {
+    Object.entries(this.redirect.params).forEach(([key, type]) => {
       if (!params[key] || !this._checkParamType(type, params[key])) {
         throw Error("Wrong parameters");
       }

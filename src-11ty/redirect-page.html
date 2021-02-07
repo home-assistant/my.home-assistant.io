@@ -16,6 +16,9 @@ permalink: "redirect/{{ redirect.redirect }}/"
     You will be redirected to {{ redirect.description }}.
   </p>
 </div>
-<my-handle-redirect redirect="{{ redirect.redirect }}"></my-handle-redirect>
+<!-- prettier-ignore-attribute -->
+<my-handle-redirect
+  redirect='{{ redirect | json | urlencode }}'
+></my-handle-redirect>
 
 <script type="module" src="/{{ manifest['my-handle-redirect.js'] }}"></script>
