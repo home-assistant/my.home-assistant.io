@@ -31,10 +31,10 @@ layout: base_with_hero.html.njk
 <div class="section-header">What does My Home Assistant solve?</div>
 <div class="card-content">
   <p>
-    When explaining fuctionality or helping users, we often want to link them to
-    a specific place in their instance. However, each Home Assistant instance
-    lives somewhere else, and so we can't have a single place to link to. Until
-    now.
+    In the documentation and when the community is helping users, we often want
+    to link them to a specific page in their instance. However, each Home
+    Assistant instance is hosted at a different url. This website works around
+    that issue by allowing users to specify their Home Assistant url.
   </p>
   <p>
     My Home Assistant allows users to store the URL of their instance so that
@@ -54,31 +54,51 @@ layout: base_with_hero.html.njk
   </p>
 </div>
 
-<div class="section-header" id="supported-links">Supported links</div>
+<div class="section-header" id="supported-pages">Supported pages</div>
 <div class="card-content">
   <p>
-    The following links are supported:
+    The following pages are supported:
   </p>
   <ul>
     {% for redirect in redirects %}
     <li>
-      <a href="{{ redirect | redirectExamplePath }}">{{ redirect.description | title }}</a><br />
-      <i>Introduced in Home Assistant Core {{redirect.introduced}}.</i>
+      <a href="{{ redirect | redirectExamplePath }}">
+        {{ redirect.description | title }}
+      </a>
+      <br />
+      <i>Introduced in Home Assistant Core {{ redirect.introduced }}.</i>
     </li>
     {% endfor %}
   </ul>
 </div>
 
-<div class="section-header">XXXXXXXXX?</div>
+<div class="section-header">
+  Why do I get a 404 Not Found when I open a link?
+</div>
 <div class="card-content">
   <p>
-    My Home Assistant allows you to...
+    This website requires an instance to run at least Home Assistant 2021.3.
   </p>
 </div>
 
-<div class="section-header">XXXXXXXXX?</div>
+<div class="section-header">
+  Will this allow anyone to link me to any url on my instance?
+</div>
 <div class="card-content">
   <p>
-    My Home Assistant allows you to...
+    No, this is not possible. All pages in Home Assistant that are linkable and
+    their supported parameters are defined in this website and in the `my`
+    integration in Home Assistant.
+  </p>
+</div>
+
+<div class="section-header">
+  How can I disable this website from working for my instance
+</div>
+<div class="card-content">
+  <p>
+    This website requires Home Assistant to have the `my` integration enabled.
+    If you don't have this integration set up, links from this website won't
+    work.
   </p>
 </div>

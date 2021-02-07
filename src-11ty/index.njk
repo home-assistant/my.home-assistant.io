@@ -2,24 +2,41 @@
 layout: base_with_hero.html.njk
 ---
 
+<style>
+  .current-instance {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    min-height: 36px;
+  }
+  .current-instance a {
+    word-break: break-all;
+  }
+  .note {
+    display: flex;
+  }
+  .note b {
+    margin-right: 8px;
+  }
+</style>
+
 <h1 class="card-header">
   My Home Assistant
 </h1>
 <div class="card-content">
   <p>
     You've arrived at the portal to your Home Assistant instance. It allows the
-    documentation to link to your instance. For a list of current supported
-    links, see the
-    <a href="faq.html#supported-links">FAQ</a>.
-  </p>
-  <p>
-    It works by entering the URL of your Home Assistant instance. By default
-    this is <code>http://homeassistant.local:8123</code>. You do not have to
-    provide us access to your instance and this information will only be stored
-    in your browser.
+    documentation and community help you get to specific pages in your Home
+    Assistant instance. See the FAQ for a list of
+    <a href="faq.html#supported-pages">supported pages</a>.
   </p>
 </div>
 
-<my-configure-instance></my-configure-instance>
+<my-index>
+  <div class="card-content current-instance">
+    Configured Home Assistant url:<br />
+    …
+  </div>
+</my-index>
 
-<script type="module" src="/{{ manifest['my-configure-instance.js'] }}"></script>
+<script type="module" src="/{{ manifest['my-index.js'] }}"></script>

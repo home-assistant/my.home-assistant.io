@@ -1,18 +1,22 @@
-{
-  "info": {
+[
+  {
+    "redirect": "info",
     "description": "show your Home Assistant version information",
     "introduced": "2021.3"
   },
-  "logs": {
+  {
+    "redirect": "logs",
     "description": "show your Home Assistant logs",
     "introduced": "2021.3"
   },
-  "profile": {
+  {
+    "redirect": "profile",
     "description": "show your Home Assistant user's profile",
     "introduced": "2021.3"
   },
-  "blueprint_import": {
-    "description": "open the blueprint import dialog",
+  {
+    "redirect": "blueprint_import",
+    "description": "allow importing a blueprint",
     "introduced": "2021.3",
     "params": {
       "blueprint_url": "url"
@@ -21,8 +25,9 @@
       "blueprint_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml"
     }
   },
-  "config_flow_start": {
-    "description": "start a config flow",
+  {
+    "redirect": "config_flow_start",
+    "description": "allow starting a config flow",
     "introduced": "2021.3",
     "params": {
       "domain": "string"
@@ -31,4 +36,4 @@
       "domain": "hue"
     }
   }
-}
+]

@@ -4,13 +4,21 @@ layout: base.html.njk
 
 <style>
 .hero {
-  display: block;
+  padding-top: 63%;
+  position: relative;
+}
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   border-top-right-radius: var(--ha-card-border-radius, 4px);
   border-top-left-radius: var(--ha-card-border-radius, 4px);
 }
 </style>
 
-<img class="hero" src="/images/header.jpg" />
+<div class='hero'>
+  <img src="/images/header.jpg" alt='Decorative header' />
+</div>
 
 {{ content | safe }}

@@ -15,6 +15,7 @@ import {
 } from "../util/search-params";
 import "../components/my-url-input";
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import { ALWAYS_REDIRECT, HASS_URL } from "../const";
 
 type ParamType = "url" | "string";
 
@@ -26,20 +27,7 @@ interface Redirect {
   };
 }
 
-const css = html`
-  <style>
-    my-handle-redirect mwc-formfield {
-      display: block;
-    }
-    my-handle-redirect a.no_underline {
-      text-decoration: none;
-    }
-  </style>
-`;
-
-const HASS_URL = "hassUrl";
-const ALWAYS_REDIRECT = "alwaysRedirect";
-@customElement("my-handle-redirect")
+@customElement("my-redirect")
 export class MyHandleRedirect extends LitElement {
   @property({ type: Object }) public redirect!: Redirect;
 
@@ -74,7 +62,6 @@ export class MyHandleRedirect extends LitElement {
 
     if (!this._url) {
       return html`
-        ${css}
         <div class="card-content">
           <p>
             We don't know the URL of you Home Assistant instance yet, please
@@ -95,7 +82,6 @@ export class MyHandleRedirect extends LitElement {
     }
 
     return html`
-      ${css}
       <div class="card-content">
         You will be forwarded to your Home Assistant url:
         <a href=${this._url} rel="noreferrer noopener"> ${this._url}</a>
@@ -114,14 +100,16 @@ export class MyHandleRedirect extends LitElement {
           <mwc-checkbox .checked=${this._alwaysRedirect}></mwc-checkbox>
         </mwc-formfield>
         <div>
-          <a class="no_underline" href="/dont-redirect.html">
+          <a href="/dont-redirect.html">
             <mwc-button>
               No
             </mwc-button>
           </a>
-          <mwc-button @click=${this._handleRedirect}>
-            Yes
-          </mwc-button>
+          <a href=${this._createRedirectUrl()}>
+            <mwc-button>
+              Yes
+            </mwc-button>
+          </a>
         </div>
       </div>
     `;
@@ -136,19 +124,12 @@ export class MyHandleRedirect extends LitElement {
     if (!this.redirect) {
       return;
     }
-    try {
-      window.location.replace(
-        `${this._url}/_my_redirect/${this._createRedirectUrl()}`
-      );
-    } catch (e) {
-      console.error(e);
-      this._error = "Something went wrong.";
-    }
+    window.location.assign(this._createRedirectUrl());
   }
 
   private _createRedirectUrl(): string {
     const params = this._createRedirectParams();
-    return `${this.redirect.redirect}${params}`;
+    return `${this._url}/_my_redirect/${this.redirect.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {
@@ -198,6 +179,6 @@ export class MyHandleRedirect extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "my-handle-redirect": MyHandleRedirect;
+    "my-redirect": MyHandleRedirect;
   }
 }

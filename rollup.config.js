@@ -26,8 +26,8 @@ const plugins = (latestBuild) =>
 export default [
   {
     input: {
-      "my-configure-instance": "./src/entrypoints/my-configure-instance.ts",
-      "my-handle-redirect": "./src/entrypoints/my-handle-redirect.ts",
+      "my-index": "./src/entrypoints/my-index.ts",
+      "my-redirect": "./src/entrypoints/my-redirect.ts",
     },
     output: {
       dir: "dist",
