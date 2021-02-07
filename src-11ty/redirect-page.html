@@ -30,6 +30,11 @@ permalink: "redirect/{{ redirect.redirect }}/"
   </p>
 </div>
 <!-- prettier-ignore-attribute -->
-<my-redirect redirect='{{ redirect | json | urlencode }}'></my-redirect>
+<my-redirect redirect='{{ redirect | json | urlencode }}'>
+  <div class="card-content current-instance">
+    Configured Home Assistant url:<br />
+    …
+  </div>
+</my-redirect>
 
 <script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
