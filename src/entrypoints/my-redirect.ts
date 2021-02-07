@@ -7,6 +7,7 @@ import {
 import { getInstanceUrl } from "../data/instance_info";
 import { Redirect, ParamType } from "../const";
 import { svgPencil } from "../components/svg-pencil";
+import { isMobile } from "../data/is_mobile";
 
 declare global {
   interface Window {
@@ -27,6 +28,8 @@ const checkParamType = (type: ParamType, value: string) => {
 const createRedirectParams = (): string => {
   const redirectParams = window.redirect.params;
   const userParams = extractSearchParamsObject();
+  delete userParams.mobile;
+
   if (!redirectParams && !Object.keys(userParams).length) {
     return "";
   }
@@ -68,6 +71,10 @@ const render = () => {
       <mwc-button>Open Link</mwc-button>
     </a>
   `;
+
+  if (isMobile) {
+    return;
+  }
 
   const layout = document.querySelector(".layout")!;
 

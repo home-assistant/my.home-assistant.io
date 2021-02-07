@@ -1,0 +1,25 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "QMQYCKL255.io.robbie.HomeAssistant.dev",
+        "paths": [
+          "/redirect/*"
+        ]
+      },
+      {
+        "appID": "QMQYCKL255.io.robbie.HomeAssistant.beta",
+        "paths": [
+          "/redirect/*"
+        ]
+      },
+      {
+        "appID": "QMQYCKL255.io.robbie.HomeAssistant",
+        "paths": [
+          "/redirect/*"
+        ]
+      }
+    ]
+  }
+}
