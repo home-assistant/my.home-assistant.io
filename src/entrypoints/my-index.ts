@@ -47,9 +47,9 @@ class MyIndex extends LitElement {
             @value-changed=${this._handleUrlChanged}
           ></my-url-input>
         </p>
-        <p class="note">
+        <p>
           <b>Note:</b>
-          This information is only stored in your browser.
+          This is only stored in your browser.
         </p>
       </div>
     `;
