@@ -14,6 +14,9 @@ permalink: "redirect/{{ redirect.redirect }}/"
   my-redirect mwc-formfield {
     display: block;
   }
+  .card-actions {
+    padding-right: 8px;
+  }
   .card-actions a {
     text-decoration: none;
   }
@@ -24,8 +27,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
 </h1>
 <div class="card-content">
   <p>
-    You've been linked to the page in your Home Assistant instance that will {{
-    redirect.description }}.
+    You've been linked to the page that will {{ redirect.description }}.
   </p>
 </div>
 <!-- prettier-ignore-attribute -->

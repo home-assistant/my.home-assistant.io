@@ -47,7 +47,7 @@ class MyHandleRedirect extends LitElement {
       return;
     }
     if (this._alwaysRedirect) {
-      this._handleRedirect();
+      window.location.assign(this._createRedirectUrl());
     }
   }
 
@@ -81,31 +81,17 @@ class MyHandleRedirect extends LitElement {
         >
           <mwc-checkbox .checked=${this._alwaysRedirect}></mwc-checkbox>
         </mwc-formfield>
-        <div>
-          <a href="/dont-redirect.html">
-            <mwc-button>
-              No
-            </mwc-button>
-          </a>
-          <a href=${this._createRedirectUrl()}>
-            <mwc-button>
-              Yes
-            </mwc-button>
-          </a>
-        </div>
+        <a href=${this._createRedirectUrl()}>
+          <mwc-button>
+            Open Link
+          </mwc-button>
+        </a>
       </div>
     `;
   }
 
   private get _url() {
     return localStorage.getItem(HASS_URL) || DEFAULT_HASS_URL;
-  }
-
-  private _handleRedirect() {
-    if (!this.redirect) {
-      return;
-    }
-    window.location.assign(this._createRedirectUrl());
   }
 
   private _createRedirectUrl(): string {
