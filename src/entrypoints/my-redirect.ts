@@ -1,3 +1,4 @@
+import { sanitizeUrl } from "@braintree/sanitize-url";
 import "@material/mwc-button";
 import "@material/mwc-checkbox";
 import "@material/mwc-formfield";
@@ -13,9 +14,7 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import "../components/my-url-input";
-import { sanitizeUrl } from "@braintree/sanitize-url";
-import { ALWAYS_REDIRECT, HASS_URL } from "../const";
+import { ALWAYS_REDIRECT, DEFAULT_HASS_URL, HASS_URL } from "../const";
 
 type ParamType = "url" | "string";
 
@@ -50,7 +49,7 @@ class MyHandleRedirect extends LitElement {
     if (!this.redirect) {
       return;
     }
-    if (this._url && this._alwaysRedirect) {
+    if (this._alwaysRedirect) {
       this._handleRedirect();
     }
   }
@@ -60,31 +59,19 @@ class MyHandleRedirect extends LitElement {
       return html``;
     }
 
-    if (!this._url) {
-      return html`
-        <div class="card-content">
-          <p>
-            We don't know the URL of you Home Assistant instance yet, please
-            enter it below so we can forward you.
-          </p>
-          <my-url-input
-            .value=${this._url}
-            button="Forward"
-            @value-changed=${this._handleUrlChanged}
-          ></my-url-input>
-          ${this._error
-            ? html`
-                <p class="error">${this._error}</p>
-              `
-            : ""}
-        </div>
-      `;
-    }
+    const url = this._url || DEFAULT_HASS_URL;
 
     return html`
-      <div class="card-content">
-        You will be forwarded to your Home Assistant url:
-        <a href=${this._url} rel="noreferrer noopener"> ${this._url}</a>
+      <div class="card-content current-instance">
+        <div>
+          Configured Home Assistant url:<br />
+          <a href=${url} rel="noreferrer noopener">${url}</a>
+        </div>
+        <a href="/?change=1" class="change">
+          <mwc-button>
+            change
+          </mwc-button>
+        </a>
 
         ${this._error
           ? html`
@@ -115,11 +102,6 @@ class MyHandleRedirect extends LitElement {
     `;
   }
 
-  private _handleUrlChanged(ev: CustomEvent) {
-    this._url = ev.detail.value;
-    this._handleRedirect();
-  }
-
   private _handleRedirect() {
     if (!this.redirect) {
       return;
@@ -129,7 +111,9 @@ class MyHandleRedirect extends LitElement {
 
   private _createRedirectUrl(): string {
     const params = this._createRedirectParams();
-    return `${this._url}/_my_redirect/${this.redirect.redirect}${params}`;
+    return `${this._url || DEFAULT_HASS_URL}/_my_redirect/${
+      this.redirect.redirect
+    }${params}`;
   }
 
   private _createRedirectParams(): string {
@@ -162,6 +146,7 @@ class MyHandleRedirect extends LitElement {
 
   private _handleAlwaysRedirectChange(ev) {
     const checked = ev.target.checked;
+    this._error = undefined;
     try {
       if (checked) {
         window.localStorage.setItem(ALWAYS_REDIRECT, "true");

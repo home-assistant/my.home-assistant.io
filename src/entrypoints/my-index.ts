@@ -10,6 +10,7 @@ import {
 } from "lit-element";
 import "../components/my-url-input";
 import { DEFAULT_HASS_URL, HASS_URL } from "../const";
+import { extractSearchParamsObject } from "../util/search-params";
 
 @customElement("my-index")
 class MyIndex extends LitElement {
@@ -17,7 +18,8 @@ class MyIndex extends LitElement {
     HASS_URL
   );
 
-  @internalProperty() private _updatingUrl = false;
+  @internalProperty() private _updatingUrl =
+    extractSearchParamsObject().change === "1";
 
   createRenderRoot() {
     return this;
@@ -64,7 +66,11 @@ class MyIndex extends LitElement {
 
   private _handleUrlChanged(ev: CustomEvent) {
     this._url = ev.detail.value;
-    this._updatingUrl = false;
+    if (extractSearchParamsObject().change === "1") {
+      history.back();
+    } else {
+      this._updatingUrl = false;
+    }
   }
 }
 
