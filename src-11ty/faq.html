@@ -7,11 +7,12 @@ layout: base_with_hero
     padding: 8px 16px 0;
   }
   .section-header {
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     padding: 4px 16px;
     text-transform: uppercase;
   }
-  ul {
+  ul, ol {
     padding-left: 1.5em;
     margin-bottom: 0;
   }
@@ -67,6 +68,20 @@ layout: base_with_hero
     </li>
     {% endfor %}
   </ul>
+</div>
+
+<div class="section-header" id='cannot-connect'>
+  Why can't this site fetch information about my instance?
+</div>
+<div class="card-content">
+  <p>
+    There can be various reasons for My Home Assistant not to be able to connect.
+  </p>
+  <ol>
+    <li>You have not configured the correct Home Assistant instance URL. <a href='/?change=1'>Update instance URL</a></li>
+    <li>Home Assistant Core should be version 2021.3 or higher. Upgrade your instance to use My Home Assistant.</li>
+    <li>You have overridden the default CORS settings for the HTTP integration and have not included <code>https://my.home-assistant.io</code>.
+  </ol>
 </div>
 
 <div class="section-header">
