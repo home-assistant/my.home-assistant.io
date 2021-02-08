@@ -1,7 +1,5 @@
 import { sanitizeUrl } from "@braintree/sanitize-url";
 import "@material/mwc-button";
-import "@material/mwc-checkbox";
-import "@material/mwc-formfield";
 import {
   customElement,
   html,
@@ -14,7 +12,7 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import { ALWAYS_REDIRECT, DEFAULT_HASS_URL, HASS_URL } from "../const";
+import { DEFAULT_HASS_URL, HASS_URL } from "../const";
 import { svgPencil } from "../components/svg-pencil";
 
 type ParamType = "url" | "string";
@@ -33,10 +31,6 @@ class MyHandleRedirect extends LitElement {
 
   @internalProperty() private _error?: string | TemplateResult;
 
-  @internalProperty() private _alwaysRedirect?: boolean = Boolean(
-    localStorage.getItem(ALWAYS_REDIRECT)
-  );
-
   createRenderRoot() {
     return this;
   }
@@ -45,9 +39,6 @@ class MyHandleRedirect extends LitElement {
     super.connectedCallback();
     if (!this.redirect) {
       return;
-    }
-    if (this._alwaysRedirect) {
-      window.location.assign(this._createRedirectUrl());
     }
   }
 
@@ -75,12 +66,7 @@ class MyHandleRedirect extends LitElement {
           : ""}
       </div>
       <div class="card-actions">
-        <mwc-formfield
-          label="Don't ask again"
-          @change=${this._handleAlwaysRedirectChange}
-        >
-          <mwc-checkbox .checked=${this._alwaysRedirect}></mwc-checkbox>
-        </mwc-formfield>
+        <div></div>
         <a href=${this._createRedirectUrl()}>
           <mwc-button>
             Open Link
@@ -125,23 +111,6 @@ class MyHandleRedirect extends LitElement {
       return value && value === sanitizeUrl(value);
     }
     return false;
-  }
-
-  private _handleAlwaysRedirectChange(ev) {
-    const checked = ev.target.checked;
-    this._error = undefined;
-    try {
-      if (checked) {
-        window.localStorage.setItem(ALWAYS_REDIRECT, "true");
-        this._alwaysRedirect = true;
-      } else {
-        window.localStorage.removeItem(ALWAYS_REDIRECT);
-        this._alwaysRedirect = false;
-      }
-    } catch (err) {
-      this._error = "Could not save your settings";
-      ev.target.checked = !checked;
-    }
   }
 }
 
