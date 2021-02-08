@@ -1,6 +1,4 @@
 import "@material/mwc-button";
-import "@material/mwc-checkbox";
-import "@material/mwc-formfield";
 import {
   customElement,
   html,
