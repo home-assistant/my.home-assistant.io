@@ -9,6 +9,7 @@ import {
 import "../components/my-url-input";
 import { svgPencil } from "../components/svg-pencil";
 import { DEFAULT_HASS_URL, HASS_URL } from "../const";
+import { DiscoveryInfo, getHassInfo } from "../util/get_hass_info";
 import { extractSearchParamsObject } from "../util/search-params";
 
 @customElement("my-index")
@@ -20,6 +21,8 @@ class MyIndex extends LitElement {
   @internalProperty() private _updatingUrl =
     extractSearchParamsObject().change === "1";
 
+  @internalProperty() private _instanceInfo?: DiscoveryInfo | false;
+
   createRenderRoot() {
     return this;
   }
@@ -29,9 +32,21 @@ class MyIndex extends LitElement {
 
     if (!this._updatingUrl) {
       return html`
-        <div class="card-content current-instance">
-          Configured Home Assistant url:<br />
-          <a href=${url} rel="noreferrer noopener">${url}</a>
+        <div class="instance-header">HOME ASSISTANT INSTANCE</div>
+        <div class="instance">
+          <div>
+            <div>
+              <a href=${url} rel="noreferrer noopener">${url}</a>
+            </div>
+            <div>
+              ${this._instanceInfo === undefined
+                ? html`&nbsp;`
+                : this._instanceInfo === false
+                ? html`<span class='error'>Failed to fetch info (<a href="faq.html#cannot-connect">troubleshoot</a>)</span>`
+                : `Version core-${this._instanceInfo.version}`
+              }
+            </div>
+          </div>
           <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
         </div>
       `;
@@ -57,6 +72,23 @@ class MyIndex extends LitElement {
     this._updatingUrl = true;
   }
 
+  protected firstUpdated(props) {
+    super.firstUpdated(props);
+    this._updateInstanceInfo();
+  }
+
+  private async _updateInstanceInfo() {
+    this._instanceInfo = undefined;
+    if (!this._url) {
+      return;
+    }
+    try {
+      this._instanceInfo = await getHassInfo(this._url);
+    } catch (err) {
+      this._instanceInfo = false;
+    }
+  }
+
   private _handleUrlChanged(ev: CustomEvent) {
     this._url = ev.detail.value;
     const params = extractSearchParamsObject();
@@ -65,6 +97,7 @@ class MyIndex extends LitElement {
       history.back();
     } else {
       this._updatingUrl = false;
+      this._updateInstanceInfo();
     }
   }
 }
