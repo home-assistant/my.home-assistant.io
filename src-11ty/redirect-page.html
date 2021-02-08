@@ -33,21 +33,14 @@ permalink: "redirect/{{ redirect.redirect }}/"
     You've been linked to the page that will {{ redirect.description }}.
   </p>
 </div>
-
+<!-- prettier-ignore -->
 <my-redirect
   redirect="{{ redirect.redirect }}"
-  {%
-  if
-  redirect.params
-  %}
-  params="{{ redirect.params | stringify | escape }}"
-  {%
-  endif
-  %}
+  {% if redirect.params %} params="{{ redirect.params | stringify | escape }}" {% endif %}
 >
-  <div class="card-content current-instance">
-    Configured Home Assistant url:<br />
-    …
-  </div>
+<div class="card-content current-instance">
+  Configured Home Assistant url:<br />
+  …
+</div>
 </my-redirect>
 <script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
