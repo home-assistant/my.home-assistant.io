@@ -40,7 +40,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
   if
   redirect.params
   %}
-  params="{{ redirect.params | escapedJson }}"
+  params="{{ redirect.params | stringify | escape }}"
   {%
   endif
   %}

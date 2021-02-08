@@ -5,8 +5,8 @@ module.exports = function(eleventyConfig) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   });
 
-  eleventyConfig.addLiquidFilter("escapedJson", function(value) {
-    return he.encode(JSON.stringify(value));
+  eleventyConfig.addLiquidFilter("stringify", function(value) {
+    return JSON.stringify(value);
   });
 
   eleventyConfig.addLiquidFilter("redirectExamplePath", function(redirect) {
