@@ -25,6 +25,7 @@
     "@braintree/sanitize-url": "^5.0.0",
     "@material/mwc-button": "^0.20.0",
     "@material/mwc-textfield": "^0.20.0",
+    "he": "^1.2.0",
     "lit-element": "^2.4.0"
   }
 }
