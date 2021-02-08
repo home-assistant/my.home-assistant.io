@@ -46,6 +46,12 @@ class MyIndex extends LitElement {
                 : `Version core-${this._instanceInfo.version}`
               }
             </div>
+            <div>
+              ${this._instanceInfo === undefined || this._instanceInfo === false
+                ? html`&nbsp;`
+                : `Installation type ${this._instanceInfo.installation_type}`
+              }
+            </div>
           </div>
           <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
         </div>
