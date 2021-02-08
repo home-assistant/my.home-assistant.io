@@ -10,12 +10,16 @@ permalink: "redirect/{{ redirect.redirect }}/"
 <style>
   .ha-card {
     min-height: 203px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   my-redirect mwc-formfield {
     display: block;
   }
   .card-actions {
     padding-right: 8px;
+    height: 37px;
   }
   .card-actions a {
     text-decoration: none;
@@ -30,12 +34,15 @@ permalink: "redirect/{{ redirect.redirect }}/"
     You've been linked to the page that will {{ redirect.description }}.
   </p>
 </div>
-<!-- prettier-ignore-attribute -->
-<my-redirect redirect='{{ redirect | json }}'>
+<!-- prettier-ignore -->
+<my-redirect
+  redirect="{{ redirect.redirect }}"
+  {% if redirect.params %} params="{{ redirect.params | stringify | escape }}" {% endif %}
+>
   <div class="card-content current-instance">
     Configured Home Assistant url:<br />
     …
   </div>
+  <div class="card-actions"></div>
 </my-redirect>
-
 <script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
