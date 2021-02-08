@@ -10,6 +10,9 @@ permalink: "redirect/{{ redirect.redirect }}/"
 <style>
   .ha-card {
     min-height: 203px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   my-redirect mwc-formfield {
     display: block;
@@ -31,7 +34,17 @@ permalink: "redirect/{{ redirect.redirect }}/"
   </p>
 </div>
 <!-- prettier-ignore-attribute -->
-<my-redirect redirect='{{ redirect | json }}'>
+<my-redirect
+  redirect="{{ redirect.redirect }}"
+  {%
+  if
+  redirect.params
+  %}
+  params='{{ redirect.params | json }}'
+  {%
+  endif
+  %}
+>
   <div class="card-content current-instance">
     Configured Home Assistant url:<br />
     …

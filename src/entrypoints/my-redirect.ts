@@ -17,17 +17,15 @@ import { svgPencil } from "../components/svg-pencil";
 
 type ParamType = "url" | "string";
 
-interface Redirect {
-  redirect: string;
-  description: string;
-  params: {
-    [key: string]: ParamType;
-  };
+interface RedirectParams {
+  [key: string]: ParamType;
 }
 
 @customElement("my-redirect")
 class MyHandleRedirect extends LitElement {
-  @property({ type: Object }) public redirect!: Redirect;
+  @property() public redirect!: string;
+
+  @property({ type: Object }) public params?: RedirectParams;
 
   @internalProperty() private _error?: string | TemplateResult;
 
@@ -82,20 +80,18 @@ class MyHandleRedirect extends LitElement {
 
   private _createRedirectUrl(): string {
     const params = this._createRedirectParams();
-    return `${this._url}/_my_redirect/${this.redirect.redirect}${params}`;
+    return `${this._url}/_my_redirect/${this.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {
     const params = extractSearchParamsObject();
-    if (!this.redirect.params && !Object.keys(params).length) {
+    if (!this.params && !Object.keys(params).length) {
       return "";
     }
-    if (
-      Object.keys(this.redirect.params).length !== Object.keys(params).length
-    ) {
+    if (Object.keys(this.params || {}).length !== Object.keys(params).length) {
       throw Error("Wrong parameters");
     }
-    Object.entries(this.redirect.params).forEach(([key, type]) => {
+    Object.entries(this.params || {}).forEach(([key, type]) => {
       if (!params[key] || !this._checkParamType(type, params[key])) {
         throw Error("Wrong parameters");
       }
