@@ -10,7 +10,7 @@ import {
   internalProperty,
   property,
 } from "lit-element";
-import { ALWAYS_REDIRECT, DEFAULT_HASS_URL } from "../const";
+import { DEFAULT_HASS_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
 
 const HASS_URL = "hassUrl";
@@ -72,7 +72,6 @@ export class MyUrlInputMain extends LitElement {
     const url = `${urlObj.protocol}//${urlObj.host}`;
     try {
       window.localStorage.setItem(HASS_URL, url);
-      window.localStorage.removeItem(ALWAYS_REDIRECT);
     } catch (err) {
       if (value !== DEFAULT_HASS_URL) {
         this._error = "Failed to store your url!";
