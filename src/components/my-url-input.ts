@@ -23,11 +23,7 @@ export class MyUrlInputMain extends LitElement {
 
   protected render(): TemplateResult {
     return html`
-      ${this._error
-        ? html`
-            <p class="error">${this._error}</p>
-          `
-        : ""}
+      ${this._error ? html` <p class="error">${this._error}</p> ` : ""}
       <div>
         <mwc-textfield
           label="Home Assistant URL"

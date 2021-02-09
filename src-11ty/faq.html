@@ -12,7 +12,8 @@ layout: base_with_hero
     padding: 4px 16px;
     text-transform: uppercase;
   }
-  ul, ol {
+  ul,
+  ol {
     padding-left: 1.5em;
     margin-bottom: 0;
   }
@@ -25,9 +26,7 @@ layout: base_with_hero
   <a href="/">&laquo; Back to My Home Assistant</a>
 </div>
 
-<h1 class="card-header">
-  Frequently Asked Questions
-</h1>
+<h1 class="card-header">Frequently Asked Questions</h1>
 
 <div class="section-header">What does My Home Assistant solve?</div>
 <div class="card-content">
@@ -54,9 +53,7 @@ layout: base_with_hero
 
 <div class="section-header" id="supported-pages">What pages are supported?</div>
 <div class="card-content">
-  <p>
-    The following pages are supported:
-  </p>
+  <p>The following pages are supported:</p>
   <ul>
     {% for redirect in redirects %}
     <li>
@@ -70,17 +67,27 @@ layout: base_with_hero
   </ul>
 </div>
 
-<div class="section-header" id='cannot-connect'>
-  Why can't this site fetch information about my instance?
+<div class="section-header" id="cannot-connect">
+  Why can't this site connect to my instance?
 </div>
 <div class="card-content">
   <p>
-    There can be various reasons for My Home Assistant not to be able to connect.
+    There can be various reasons for My Home Assistant not to be able to connect
+    to your configured Home Assistant instance.
   </p>
   <ol>
-    <li>You have not configured the correct Home Assistant instance URL. <a href='/?change=1'>Update instance URL</a></li>
-    <li>Home Assistant Core should be version 2021.3 or higher. Upgrade your instance to use My Home Assistant.</li>
-    <li>You have overridden the default CORS settings for the HTTP integration and have not included <code>https://my.home-assistant.io</code>.
+    <li>
+      You have not configured the correct Home Assistant instance URL.
+      <a href="/?change=1">Update instance URL</a>
+    </li>
+    <li>
+      Home Assistant Core should be version 2021.3 or higher. Upgrade your Home
+      Assistant instance.
+    </li>
+    <li>
+      You have overridden the default CORS settings for the HTTP integration and
+      have not included <code>https://my.home-assistant.io</code>.
+    </li>
   </ol>
 </div>
 

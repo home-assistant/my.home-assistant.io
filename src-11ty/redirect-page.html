@@ -9,13 +9,10 @@ permalink: "redirect/{{ redirect.redirect }}/"
 
 <style>
   .ha-card {
-    min-height: 203px;
+    min-height: 226px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  my-redirect mwc-formfield {
-    display: block;
   }
   .card-actions {
     padding-right: 8px;
@@ -24,25 +21,34 @@ permalink: "redirect/{{ redirect.redirect }}/"
   .card-actions a {
     text-decoration: none;
   }
+  .fake-button {
+    padding: 0 8px;
+    line-height: 36px;
+    color: rgba(0, 0, 0, 0.38);
+    letter-spacing: 0.0892857em;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
 </style>
 
-<h1 class="card-header">
-  Open page in your Home Assistant?
-</h1>
+<h1 class="card-header">Open page in your Home Assistant?</h1>
 <div class="card-content">
-  <p>
-    You've been linked to the page that will {{ redirect.description }}.
-  </p>
+  <p>You've been linked to the page that will {{ redirect.description }}.</p>
 </div>
 <!-- prettier-ignore -->
 <my-redirect
   redirect="{{ redirect.redirect }}"
   {% if redirect.params %} params="{{ redirect.params | stringify | escape }}" {% endif %}
 >
-  <div class="card-content current-instance">
-    Configured Home Assistant url:<br />
-    …
+  <div class="instance-header">HOME ASSISTANT INSTANCE</div>
+  <div class="instance">
+    <div>
+      <div>Finding instance…</div>
+      <div>&nbsp;</div>
+    </div>
   </div>
-  <div class="card-actions"></div>
+  <div class='card-actions'>
+    <div></div><div class='fake-button'>OPEN LINK</div>
+  </div>
 </my-redirect>
 <script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
