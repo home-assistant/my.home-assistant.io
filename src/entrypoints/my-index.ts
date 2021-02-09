@@ -37,7 +37,7 @@ class MyIndex extends LitElement {
         <div class="card-content">
           <p>
             <my-url-input
-              .value=${this._instanceInfo!.url}
+              .value=${this._instanceInfo.url}
               @value-changed=${this._handleUrlChanged}
             ></my-url-input>
           </p>
