@@ -1,5 +1,6 @@
 import { sanitizeUrl } from "@braintree/sanitize-url";
 import "@material/mwc-button";
+import { ifDefined } from "lit-html/directives/if-defined";
 import {
   customElement,
   html,
@@ -13,7 +14,8 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import { DEFAULT_HASS_URL, HASS_URL } from "../const";
-import { svgPencil } from "../components/svg-pencil";
+import "../components/my-instance-info";
+import { LoadingState, subscribeHassInfo } from "../util/get_hass_info";
 
 type ParamType = "url" | "string";
 
@@ -27,7 +29,7 @@ class MyHandleRedirect extends LitElement {
 
   @property({ type: Object }) public params?: RedirectParams;
 
-  @internalProperty() private _error?: string | TemplateResult;
+  @internalProperty() private _instanceInfo!: LoadingState;
 
   createRenderRoot() {
     return this;
@@ -35,9 +37,13 @@ class MyHandleRedirect extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    if (!this.redirect) {
-      return;
-    }
+    subscribeHassInfo((state) => {
+      this._instanceInfo = state;
+    });
+  }
+
+  protected shouldUpdate() {
+    return this._instanceInfo !== undefined;
   }
 
   protected render(): TemplateResult {
@@ -45,40 +51,37 @@ class MyHandleRedirect extends LitElement {
       return html``;
     }
 
-    const url = this._url;
-
     return html`
-      <div class="card-content current-instance">
-        <div>
-          Configured Home Assistant url:<br />
-          <a href=${url} rel="noreferrer noopener">${url}</a>
-          <a href="/?change=1" class="change">
-            ${svgPencil}
-          </a>
-        </div>
+      <my-instance-info
+        .instanceInfo=${this._instanceInfo}
+        @edit=${this._handleEdit}
+      ></my-instance-info>
 
-        ${this._error
-          ? html`
-              <p class="error">${this._error}</p>
-            `
-          : ""}
-      </div>
       <div class="card-actions">
         <div></div>
-        <a href=${this._createRedirectUrl()}>
-          <mwc-button>
-            Open Link
-          </mwc-button>
+        <a href=${ifDefined(this._createRedirectUrl())}>
+          <mwc-button .disabled=${!this._instanceQueried}>Open Link</mwc-button>
         </a>
       </div>
     `;
+  }
+
+  private get _instanceQueried() {
+    return "discoveryInfo" in this._instanceInfo;
+  }
+
+  private _handleEdit() {
+    document.location.assign("/?change=1");
   }
 
   private get _url() {
     return localStorage.getItem(HASS_URL) || DEFAULT_HASS_URL;
   }
 
-  private _createRedirectUrl(): string {
+  private _createRedirectUrl(): string | undefined {
+    if (!this._instanceQueried) {
+      return undefined;
+    }
     const params = this._createRedirectParams();
     return `${this._url}/_my_redirect/${this.redirect}${params}`;
   }

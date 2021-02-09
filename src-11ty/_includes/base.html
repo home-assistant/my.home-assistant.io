@@ -127,15 +127,22 @@
         align-items: center;
       }
 
-      .current-instance a {
-        word-break: break-all;
+      .instance-header {
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        font-size: 12px;
+        padding-left: 16px;
       }
-
-      .current-instance svg {
-        fill: var(--primary-text-color);
-        height: 16px;
-        width: 16px;
-        vertical-align: top;
+      .instance {
+        padding: 0 16px 16px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .instance div.secondary {
+        color: #727272;
+      }
+      .error {
+        color: darkred;
       }
 
       button.empty {
@@ -151,9 +158,7 @@
   </head>
   <body>
     <div class="layout">
-      <div class="ha-card">
-        {{ content | safe }}
-      </div>
+      <div class="ha-card">{{ content | safe }}</div>
       <div class="footer">
         <a href="/">My Home Assistant</a> – <a href="/faq.html">FAQ</a> –
         <a
