@@ -29,7 +29,7 @@ export const getHassInfoWithTimeout = async (host: string, timeout: number) => {
     "AbortController" in window ? new AbortController() : undefined;
 
   const result = await Promise.race([
-    // getHassInfo(host, controller?.signal),
+    getHassInfo(host, controller?.signal),
     new Promise<null>((resolve) =>
       setTimeout(() => {
         if (controller) {
