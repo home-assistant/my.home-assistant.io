@@ -13,9 +13,8 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import { DEFAULT_HASS_URL, HASS_URL } from "../const";
 import "../components/my-instance-info";
-import { LoadingState, subscribeHassInfo } from "../util/get_hass_info";
+import { getInstanceInfo, InstanceInfo } from "../data/instance_info";
 
 type ParamType = "url" | "string";
 
@@ -29,7 +28,7 @@ class MyHandleRedirect extends LitElement {
 
   @property({ type: Object }) public params?: RedirectParams;
 
-  @internalProperty() private _instanceInfo!: LoadingState;
+  @internalProperty() private _instanceInfo!: InstanceInfo;
 
   createRenderRoot() {
     return this;
@@ -37,9 +36,7 @@ class MyHandleRedirect extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    subscribeHassInfo((state) => {
-      this._instanceInfo = state;
-    });
+    this._instanceInfo = getInstanceInfo();
   }
 
   protected shouldUpdate() {
@@ -60,30 +57,19 @@ class MyHandleRedirect extends LitElement {
       <div class="card-actions">
         <div></div>
         <a href=${ifDefined(this._createRedirectUrl())}>
-          <mwc-button .disabled=${!this._instanceQueried}>Open Link</mwc-button>
+          <mwc-button>Open Link</mwc-button>
         </a>
       </div>
     `;
-  }
-
-  private get _instanceQueried() {
-    return "discoveryInfo" in this._instanceInfo;
   }
 
   private _handleEdit() {
     document.location.assign("/?change=1");
   }
 
-  private get _url() {
-    return localStorage.getItem(HASS_URL) || DEFAULT_HASS_URL;
-  }
-
   private _createRedirectUrl(): string | undefined {
-    if (!this._instanceQueried) {
-      return undefined;
-    }
     const params = this._createRedirectParams();
-    return `${this._url}/_my_redirect/${this.redirect}${params}`;
+    return `${this._instanceInfo.url}/_my_redirect/${this.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {

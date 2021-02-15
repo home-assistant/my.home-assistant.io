@@ -8,7 +8,7 @@ import {
 } from "lit-element";
 import "../components/my-url-input";
 import "../components/my-instance-info";
-import { LoadingState, subscribeHassInfo } from "../util/get_hass_info";
+import { getInstanceInfo, InstanceInfo } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 
 @customElement("my-index")
@@ -16,7 +16,7 @@ class MyIndex extends LitElement {
   @internalProperty() private _updatingUrl =
     extractSearchParamsObject().change === "1";
 
-  @internalProperty() private _instanceInfo!: LoadingState;
+  @internalProperty() private _instanceInfo!: InstanceInfo;
 
   createRenderRoot() {
     return this;
@@ -24,7 +24,7 @@ class MyIndex extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this._updateInstanceInfo();
+    this._instanceInfo = getInstanceInfo();
   }
 
   protected shouldUpdate() {
@@ -61,19 +61,13 @@ class MyIndex extends LitElement {
     this._updatingUrl = true;
   }
 
-  private async _updateInstanceInfo() {
-    subscribeHassInfo((state) => {
-      this._instanceInfo = state;
-    });
-  }
-
   private _handleUrlChanged() {
     const params = extractSearchParamsObject();
     if (params.change === "1") {
       history.back();
     } else {
       this._updatingUrl = false;
-      this._updateInstanceInfo();
+      this._instanceInfo = getInstanceInfo();
     }
   }
 }
