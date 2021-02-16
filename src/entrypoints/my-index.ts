@@ -8,7 +8,7 @@ import {
 } from "lit-element";
 import "../components/my-url-input";
 import "../components/my-instance-info";
-import { getInstanceInfo, InstanceInfo } from "../data/instance_info";
+import { getInstanceUrl } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 
 @customElement("my-index")
@@ -16,7 +16,7 @@ class MyIndex extends LitElement {
   @internalProperty() private _updatingUrl =
     extractSearchParamsObject().change === "1";
 
-  @internalProperty() private _instanceInfo!: InstanceInfo;
+  @internalProperty() private _instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
@@ -24,20 +24,28 @@ class MyIndex extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this._instanceInfo = getInstanceInfo();
+    this._instanceUrl = getInstanceUrl();
   }
 
   protected shouldUpdate() {
-    return this._instanceInfo !== undefined;
+    return this._instanceUrl !== undefined;
   }
 
   protected render(): TemplateResult {
-    if (this._updatingUrl) {
+    if (!this._instanceUrl || this._updatingUrl) {
       return html`
         <div class="card-content">
+          ${!this._instanceUrl
+            ? html` <h1>Setup My Home Assistant</h1>
+                <p>
+                  You have not setup My Home Assistant yet, to get started, copy
+                  the URL of your Home Assistant instance in the input below and
+                  press update.
+                </p>`
+            : ""}
           <p>
             <my-url-input
-              .value=${this._instanceInfo.url}
+              .value=${this._instanceUrl}
               @value-changed=${this._handleUrlChanged}
             ></my-url-input>
           </p>
@@ -51,7 +59,7 @@ class MyIndex extends LitElement {
 
     return html`
       <my-instance-info
-        .instanceInfo=${this._instanceInfo}
+        .instanceUrl=${this._instanceUrl}
         @edit=${this._handleEdit}
       ></my-instance-info>
     `;
@@ -67,7 +75,7 @@ class MyIndex extends LitElement {
       history.back();
     } else {
       this._updatingUrl = false;
-      this._instanceInfo = getInstanceInfo();
+      this._instanceUrl = getInstanceUrl();
     }
   }
 }

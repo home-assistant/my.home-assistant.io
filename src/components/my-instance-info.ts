@@ -7,34 +7,25 @@ import {
   property,
 } from "lit-element";
 import { svgPencil } from "./svg-pencil";
-import { InstanceInfo } from "../data/instance_info";
 
 @customElement("my-instance-info")
 class MyInstanceInfo extends LitElement {
-  @property({ attribute: false }) public instanceInfo!: InstanceInfo;
+  @property({ attribute: false }) public instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
   }
 
   protected render(): TemplateResult {
+    if (!this.instanceUrl) {
+      return html``;
+    }
     return html`
       <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-      ${!this.instanceInfo.configuredUrl
-        ? html`<div class="warning">
-            You have not configured your Home Assistant URL yet, do you get to
-            your Home Assistant instance when clicking the link below?
-            <br /><br />
-            If not, click the pencil and enter the URL of your instance.
-          </div>`
-        : ""}
       <div class="instance">
         <div class="info">
-          <a
-            href=${this.instanceInfo.url}
-            rel="noreferrer noopener"
-            target="_blank"
-            >${this.instanceInfo.url}</a
+          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank"
+            >${this.instanceUrl}</a
           >
         </div>
         <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>

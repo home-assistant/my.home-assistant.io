@@ -53,10 +53,8 @@
       }
 
       @media all and (max-width: 500px) {
-        .layout {
-          justify-content: flex-start;
-          min-height: 90%;
-          margin-bottom: 30px;
+        .ha-card {
+          --ha-card-border-radius: 0;
         }
       }
 
@@ -100,13 +98,16 @@
         max-width: 500px;
       }
 
-      .ha-card h1.card-header {
-        margin: 0;
+      h1 {
         color: var(--ha-card-header-color, --primary-text-color);
         font-family: var(--ha-card-header-font-family, inherit);
         font-size: var(--ha-card-header-font-size, 24px);
         letter-spacing: -0.012em;
         line-height: 32px;
+      }
+
+      .ha-card h1.card-header {
+        margin: 0;
         padding: 24px 16px 16px;
         display: block;
       }

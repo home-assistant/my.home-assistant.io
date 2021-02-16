@@ -12,7 +12,7 @@ cp -r public dist
 # is ignored by default and don't want to maintain own ignore.
 yarn rollup -c
 
-# Quit all background tasks when scrip exits
+# Quit all background tasks when script exits
 trap "kill 0" EXIT
 
 yarn serve dist &

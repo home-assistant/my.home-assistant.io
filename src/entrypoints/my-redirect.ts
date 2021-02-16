@@ -14,7 +14,7 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import "../components/my-instance-info";
-import { getInstanceInfo, InstanceInfo } from "../data/instance_info";
+import { getInstanceUrl } from "../data/instance_info";
 
 type ParamType = "url" | "string";
 
@@ -28,7 +28,7 @@ class MyHandleRedirect extends LitElement {
 
   @property({ type: Object }) public params?: RedirectParams;
 
-  @internalProperty() private _instanceInfo!: InstanceInfo;
+  @internalProperty() private _instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
@@ -36,11 +36,14 @@ class MyHandleRedirect extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this._instanceInfo = getInstanceInfo();
+    this._instanceUrl = getInstanceUrl();
+    if (this._instanceUrl === null) {
+      setTimeout(() => this._handleEdit(), 100);
+    }
   }
 
   protected shouldUpdate() {
-    return this._instanceInfo !== undefined;
+    return this._instanceUrl !== undefined;
   }
 
   protected render(): TemplateResult {
@@ -50,14 +53,14 @@ class MyHandleRedirect extends LitElement {
 
     return html`
       <my-instance-info
-        .instanceInfo=${this._instanceInfo}
+        .instanceUrl=${this._instanceUrl}
         @edit=${this._handleEdit}
       ></my-instance-info>
 
       <div class="card-actions">
         <div></div>
         <a href=${ifDefined(this._createRedirectUrl())}>
-          <mwc-button>Open Link</mwc-button>
+          <mwc-button .disabled=${!this._instanceUrl}>Open Link</mwc-button>
         </a>
       </div>
     `;
@@ -68,8 +71,11 @@ class MyHandleRedirect extends LitElement {
   }
 
   private _createRedirectUrl(): string | undefined {
+    if (!this._instanceUrl) {
+      return undefined;
+    }
     const params = this._createRedirectParams();
-    return `${this._instanceInfo.url}/_my_redirect/${this.redirect}${params}`;
+    return `${this._instanceUrl}/_my_redirect/${this.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {
