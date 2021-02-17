@@ -38,9 +38,8 @@ class MyIndex extends LitElement {
           ${!this._instanceUrl
             ? html` <h1>Setup My Home Assistant</h1>
                 <p>
-                  You have not setup My Home Assistant yet, to get started, copy
-                  the URL of your Home Assistant instance in the input below and
-                  press update.
+                  My Home Assistant is not configured yet. Copy the URL of your
+                  Home Assistant instance below and press update.
                 </p>`
             : ""}
           <p>
