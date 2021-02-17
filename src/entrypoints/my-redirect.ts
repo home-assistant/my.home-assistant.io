@@ -13,9 +13,8 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import { DEFAULT_HASS_URL, HASS_URL } from "../const";
 import "../components/my-instance-info";
-import { LoadingState, subscribeHassInfo } from "../util/get_hass_info";
+import { getInstanceUrl } from "../data/instance_info";
 
 type ParamType = "url" | "string";
 
@@ -29,7 +28,7 @@ class MyHandleRedirect extends LitElement {
 
   @property({ type: Object }) public params?: RedirectParams;
 
-  @internalProperty() private _instanceInfo!: LoadingState;
+  @internalProperty() private _instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
@@ -37,13 +36,14 @@ class MyHandleRedirect extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    subscribeHassInfo((state) => {
-      this._instanceInfo = state;
-    });
+    this._instanceUrl = getInstanceUrl();
+    if (this._instanceUrl === null) {
+      setTimeout(() => this._handleEdit(), 100);
+    }
   }
 
   protected shouldUpdate() {
-    return this._instanceInfo !== undefined;
+    return this._instanceUrl !== undefined;
   }
 
   protected render(): TemplateResult {
@@ -53,37 +53,29 @@ class MyHandleRedirect extends LitElement {
 
     return html`
       <my-instance-info
-        .instanceInfo=${this._instanceInfo}
+        .instanceUrl=${this._instanceUrl}
         @edit=${this._handleEdit}
       ></my-instance-info>
 
       <div class="card-actions">
         <div></div>
         <a href=${ifDefined(this._createRedirectUrl())}>
-          <mwc-button .disabled=${!this._instanceQueried}>Open Link</mwc-button>
+          <mwc-button .disabled=${!this._instanceUrl}>Open Link</mwc-button>
         </a>
       </div>
     `;
-  }
-
-  private get _instanceQueried() {
-    return "discoveryInfo" in this._instanceInfo;
   }
 
   private _handleEdit() {
     document.location.assign("/?change=1");
   }
 
-  private get _url() {
-    return localStorage.getItem(HASS_URL) || DEFAULT_HASS_URL;
-  }
-
   private _createRedirectUrl(): string | undefined {
-    if (!this._instanceQueried) {
+    if (!this._instanceUrl) {
       return undefined;
     }
     const params = this._createRedirectParams();
-    return `${this._url}/_my_redirect/${this.redirect}${params}`;
+    return `${this._instanceUrl}/_my_redirect/${this.redirect}${params}`;
   }
 
   private _createRedirectParams(): string {

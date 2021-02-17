@@ -8,7 +8,7 @@ import {
 } from "lit-element";
 import "../components/my-url-input";
 import "../components/my-instance-info";
-import { LoadingState, subscribeHassInfo } from "../util/get_hass_info";
+import { getInstanceUrl } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 
 @customElement("my-index")
@@ -16,7 +16,7 @@ class MyIndex extends LitElement {
   @internalProperty() private _updatingUrl =
     extractSearchParamsObject().change === "1";
 
-  @internalProperty() private _instanceInfo!: LoadingState;
+  @internalProperty() private _instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
@@ -24,20 +24,27 @@ class MyIndex extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this._updateInstanceInfo();
+    this._instanceUrl = getInstanceUrl();
   }
 
   protected shouldUpdate() {
-    return this._instanceInfo !== undefined;
+    return this._instanceUrl !== undefined;
   }
 
   protected render(): TemplateResult {
-    if (this._updatingUrl) {
+    if (!this._instanceUrl || this._updatingUrl) {
       return html`
         <div class="card-content">
+          ${!this._instanceUrl
+            ? html` <h1>Setup My Home Assistant</h1>
+                <p>
+                  My Home Assistant is not configured yet. Copy the URL of your
+                  Home Assistant instance below and press update.
+                </p>`
+            : ""}
           <p>
             <my-url-input
-              .value=${this._instanceInfo.url}
+              .value=${this._instanceUrl}
               @value-changed=${this._handleUrlChanged}
             ></my-url-input>
           </p>
@@ -51,7 +58,7 @@ class MyIndex extends LitElement {
 
     return html`
       <my-instance-info
-        .instanceInfo=${this._instanceInfo}
+        .instanceUrl=${this._instanceUrl}
         @edit=${this._handleEdit}
       ></my-instance-info>
     `;
@@ -61,19 +68,13 @@ class MyIndex extends LitElement {
     this._updatingUrl = true;
   }
 
-  private async _updateInstanceInfo() {
-    subscribeHassInfo((state) => {
-      this._instanceInfo = state;
-    });
-  }
-
   private _handleUrlChanged() {
     const params = extractSearchParamsObject();
     if (params.change === "1") {
       history.back();
     } else {
       this._updatingUrl = false;
-      this._updateInstanceInfo();
+      this._instanceUrl = getInstanceUrl();
     }
   }
 }

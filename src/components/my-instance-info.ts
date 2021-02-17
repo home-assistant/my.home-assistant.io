@@ -7,61 +7,28 @@ import {
   property,
 } from "lit-element";
 import { svgPencil } from "./svg-pencil";
-import { LoadingState } from "../util/get_hass_info";
 
 @customElement("my-instance-info")
 class MyInstanceInfo extends LitElement {
-  @property({ attribute: false }) private instanceInfo!: LoadingState;
+  @property({ attribute: false }) public instanceUrl!: string | null;
 
   createRenderRoot() {
     return this;
   }
 
   protected render(): TemplateResult {
+    if (!this.instanceUrl) {
+      return html``;
+    }
     return html`
       <div class="instance-header">HOME ASSISTANT INSTANCE</div>
       <div class="instance">
-        <div>
-          ${this.instanceInfo.isLoading
-            ? html`
-                <div>Finding instance…</div>
-                <div>&nbsp;</div>
-              `
-            : this.instanceInfo.loadingFailed && this.instanceInfo.configuredUrl
-            ? html`
-                <div>
-                  <a href=${this.instanceInfo.url} rel="noreferrer noopener"
-                    >${this.instanceInfo.url}</a
-                  >
-                </div>
-                <div class="error">
-                  Unable to connect to instance.
-                  <a href="faq.html#cannot-connect">Troubleshoot</a>
-                </div>
-              `
-            : this.instanceInfo.loadingFailed
-            ? html`
-                <div>No instance configured</div>
-                <div>&nbsp;</div>
-              `
-            : html`
-                <div>
-                  ${this.instanceInfo.discoveryInfo.location_name} @
-                  <a href=${this.instanceInfo.url} rel="noreferrer noopener"
-                    >${this.instanceInfo.url}</a
-                  >
-                </div>
-                <div class="secondary">
-                  core-${this.instanceInfo.discoveryInfo.version},
-                  ${this.instanceInfo.discoveryInfo.installation_type}
-                </div>
-              `}
+        <div class="info">
+          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank"
+            >${this.instanceUrl}</a
+          >
         </div>
-        ${this.instanceInfo.isLoading
-          ? html``
-          : html`<button class="empty" @click=${this._handleEdit}>
-              ${svgPencil}
-            </button>`}
+        <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
       </div>
     `;
   }
