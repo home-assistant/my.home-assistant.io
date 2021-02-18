@@ -158,9 +158,14 @@
     "introduced": "supervisor-2021.02.10"
   },
   {
-    "redirect": "supervisor_system",
-    "description": "show your Supervisor system information and logs",
-    "introduced": "supervisor-2021.02.10"
+    "redirect": "supervisor_info",
+    "description": "show your Supervisor system information",
+    "introduced": "supervisor-2021.02.12"
+  },
+  {
+    "redirect": "supervisor_logs",
+    "description": "show your Supervisor system logs",
+    "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_snapshots",
