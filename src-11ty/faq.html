@@ -61,7 +61,7 @@ layout: base_with_hero
         {{ redirect.description | title }}
       </a>
       <br />
-      <i>Introduced in Home Assistant Core {{ redirect.introduced }}.</i>
+      <i>Introduced in {{ redirect.introduced | version }}.</i>
     </li>
     {% endfor %}
   </ul>
