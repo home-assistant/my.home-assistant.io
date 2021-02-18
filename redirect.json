@@ -12,7 +12,7 @@
   },
   {
     "redirect": "config_flow_start",
-    "description": "allow starting a config flow",
+    "description": "start setting up a new integration",
     "introduced": "2021.3",
     "params": {
       "domain": "string"
@@ -139,17 +139,17 @@
   },
   {
     "redirect": "developer_services",
-    "description": "allow to call services",
+    "description": "show the call services in developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_template",
-    "description": "allow to develop templates",
+    "description": "show template editor in developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_events",
-    "description": "allow to listen and fire events",
+    "description": "show debug tools for events",
     "introduced": "2021.3"
   },
   {
