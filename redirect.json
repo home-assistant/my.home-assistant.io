@@ -109,7 +109,7 @@
   },
   {
     "redirect": "server_controls",
-    "description": "allow to control your server",
+    "description": "show your server controls",
     "introduced": "2021.3"
   },
   {
