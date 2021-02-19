@@ -1,13 +1,13 @@
-module.exports = function(eleventyConfig) {
-  eleventyConfig.addLiquidFilter("title", function(value) {
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addLiquidFilter("title", function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   });
 
-  eleventyConfig.addLiquidFilter("stringify", function(value) {
+  eleventyConfig.addLiquidFilter("stringify", function (value) {
     return JSON.stringify(value);
   });
 
-  eleventyConfig.addLiquidFilter("redirectExamplePath", function(redirect) {
+  eleventyConfig.addLiquidFilter("redirectExamplePath", function (redirect) {
     const example = [`/redirect/${redirect.redirect}`];
 
     const params = Object.keys(redirect.example || []);
@@ -23,6 +23,16 @@ module.exports = function(eleventyConfig) {
     }
 
     return example.join("");
+  });
+
+  eleventyConfig.addLiquidFilter("version", function (value) {
+    if (value.startsWith("supervisor-")) {
+      return `Home Assistant Supervisor ${value.replace("supervisor-", "")}`;
+    }
+    if (value.startsWith("core-")) {
+      return `Home Assistant Core ${value.replace("core-", "")}`;
+    }
+    return `Home Assistant Core ${value}`;
   });
 
   return {
