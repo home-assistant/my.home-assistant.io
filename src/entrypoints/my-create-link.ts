@@ -33,6 +33,12 @@ const validateUrl = (value: string) => {
   return undefined;
 };
 
+const createBadge = (redirect: string) =>
+  `https://img.shields.io/badge/${redirect}-my?style=for-the-badge&label=MY&logo=home-assistant&color=41BDF5&logoColor=white`;
+
+const createMarkdown = (redirect: string, url: string) =>
+  `[![My Home Assistant](${createBadge(redirect)})](${url})`;
+
 redirects.sort((a, b) => {
   const aDescription = a.description.toLowerCase();
   const bDescription = b.description.toLowerCase();
@@ -93,10 +99,18 @@ class MyCreateLink extends LitElement {
         ${this._url
           ? html`
               <div class="your-url">
-                Your My Home Assistant URL:
+                <h2>Your My Home Assistant URL:</h2>
                 <pre>${this._url}</pre>
+                <mwc-button outlined @click=${this._copyURL}>
+                  Copy URL
+                </mwc-button>
+                <h2>Markdown</h2>
+                <img src=${createBadge(this._redirect.redirect)} />
+                <pre>${createMarkdown(this._redirect.redirect, this._url)}</pre>
+                <mwc-button outlined @click=${this._copyMarkdown}>
+                  Copy Markdown
+                </mwc-button>
               </div>
-              <mwc-button @click=${this._copy}>Copy</mwc-button>
               <mwc-button @click=${this._reload}>Start over</mwc-button>
             `
           : html`<mwc-select
@@ -181,11 +195,19 @@ class MyCreateLink extends LitElement {
   private _reload() {
     document.location.reload();
   }
-  private _copy() {
+
+  private _copyURL() {
     if (!this._url) {
       return;
     }
     copy(this._url);
+  }
+
+  private _copyMarkdown() {
+    if (!this._url) {
+      return;
+    }
+    copy(createMarkdown(this._redirect.redirect, this._url));
   }
 }
 
