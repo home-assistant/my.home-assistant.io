@@ -1,3 +1,11 @@
+const createSearchParam = (params) => {
+  const urlParams = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    urlParams.append(key, value);
+  });
+  return urlParams.toString();
+};
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("title", function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1);

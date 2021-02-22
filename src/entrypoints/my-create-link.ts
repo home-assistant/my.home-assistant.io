@@ -32,8 +32,22 @@ const validateUrl = (value: string) => {
   return undefined;
 };
 
-@customElement("my-create-redirect")
-class MyCreateRedirect extends LitElement {
+redirects.sort((a, b) => {
+  const aDescription = a.description.toLowerCase();
+  const bDescription = b.description.toLowerCase();
+
+  if (aDescription < bDescription) {
+    return -1;
+  }
+  if (aDescription > bDescription) {
+    return 1;
+  }
+
+  return 0;
+});
+
+@customElement("my-create-link")
+class MyCreateLink extends LitElement {
   @internalProperty() _redirect?;
 
   @internalProperty() _paramsValues = {};
@@ -160,6 +174,6 @@ class MyCreateRedirect extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "my-create-redirect": MyCreateRedirect;
+    "my-create-link": MyCreateLink;
   }
 }
