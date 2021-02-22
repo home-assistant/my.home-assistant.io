@@ -2,7 +2,7 @@ import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
 import { sanitizeUrl } from "@braintree/sanitize-url";
-import copy from "copy-to-clipboard";
+import copy from "clipboard-copy";
 import {
   customElement,
   html,
