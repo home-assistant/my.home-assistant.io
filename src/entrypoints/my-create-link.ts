@@ -2,6 +2,7 @@ import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import copy from "copy-to-clipboard";
 import {
   customElement,
   html,
@@ -83,14 +84,19 @@ class MyCreateLink extends LitElement {
         .your-url {
           padding-bottom: 8px;
         }
+        pre {
+          white-space: break-spaces;
+        }
       </style>
 
       <div class="container">
         ${this._url
           ? html`
               <div class="your-url">
-                Your My Home Assistant URL:<br />${this._url}
+                Your My Home Assistant URL:
+                <pre>${this._url}</pre>
               </div>
+              <mwc-button @click=${this._copy}>Copy</mwc-button>
               <mwc-button @click=${this._reload}>Start over</mwc-button>
             `
           : html`<mwc-select
@@ -174,6 +180,12 @@ class MyCreateLink extends LitElement {
 
   private _reload() {
     document.location.reload();
+  }
+  private _copy() {
+    if (!this._url) {
+      return;
+    }
+    copy(this._url);
   }
 }
 
