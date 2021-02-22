@@ -78,16 +78,21 @@ class MyCreateLink extends LitElement {
         .container {
           display: flex;
           flex-direction: column;
-          padding: 16px;
+          padding: 0 16px 16px;
+        }
+        .your-url {
+          padding-bottom: 8px;
         }
       </style>
 
       <div class="container">
         ${this._url
-          ? html`Your My Home Assistant URL:<br />${this._url}<mwc-button
-                @click=${this._reload}
-                >Start over</mwc-button
-              >`
+          ? html`
+              <div class="your-url">
+                Your My Home Assistant URL:<br />${this._url}
+              </div>
+              <mwc-button @click=${this._reload}>Start over</mwc-button>
+            `
           : html`<mwc-select
                 label="Redirect to"
                 required
