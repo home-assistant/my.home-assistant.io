@@ -94,8 +94,8 @@ class MyCreateRedirect extends LitElement {
               </mwc-select>
 
               ${this._redirect?.params
-                ? html`${Object.entries(this._redirect.params).map(
-                    ([key, _type]) =>
+                ? html`${Object.keys(this._redirect.params).map(
+                    (key) =>
                       html`<mwc-textfield
                         required
                         validationMessage="This Field is Required"
