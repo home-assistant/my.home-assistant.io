@@ -49,14 +49,7 @@
         display: flex;
         min-height: 100%;
         align-items: center;
-        justify-content: center;
         flex-direction: column;
-      }
-
-      @media all and (max-width: 500px) {
-        .ha-card {
-          --ha-card-border-radius: 0;
-        }
       }
 
       a {
@@ -95,8 +88,16 @@
         transition: all 0.3s ease-out;
         position: relative;
 
+        margin-top: 50px;
         width: 100%;
         max-width: 500px;
+      }
+
+      @media all and (max-width: 500px) {
+        .ha-card {
+          --ha-card-border-radius: 0;
+          margin-top: 0;
+        }
       }
 
       h1 {
