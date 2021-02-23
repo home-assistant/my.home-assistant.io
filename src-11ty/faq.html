@@ -12,13 +12,20 @@ layout: base_with_hero
     padding: 4px 16px;
     text-transform: uppercase;
   }
-  ul,
-  ol {
-    padding-left: 1.5em;
-    margin-bottom: 0;
+  .redirects {
+    margin-top: 1em;
   }
-  li {
-    margin: 4px 0;
+  .redirects a {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    line-height: 48px;
+    color: black;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23212121"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding: 0 16px;
+    border-top: 1px solid #e8e8e8;
   }
 </style>
 
@@ -51,29 +58,11 @@ layout: base_with_hero
   </p>
 </div>
 
-<div class="section-header" id="supported-pages">What pages are supported?</div>
-<div class="card-content">
-  <p>The following pages are supported:</p>
-  <ul>
-    {% for redirect in redirects %}
-    <li>
-      <a href="{{ redirect | redirectExamplePath }}">
-        {{ redirect.description | title }}
-      </a>
-      <br />
-      <i>Introduced in {{ redirect.introduced | version }}.</i>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-
 <div class="section-header">
-  Why do I get a 404 Not Found when I open a link?
+  Why do I get a "404 Not Found" when I open a link?
 </div>
 <div class="card-content">
-  <p>
-    This website requires an instance to run at least Home Assistant 2021.3.
-  </p>
+  <p>This website requires you to run at least Home Assistant 2021.3.</p>
 </div>
 
 <div class="section-header">
@@ -81,9 +70,8 @@ layout: base_with_hero
 </div>
 <div class="card-content">
   <p>
-    No, this is not possible. All pages in Home Assistant that are linkable and
-    their supported parameters are pre-defined in this website and in the "my"
-    integration in Home Assistant.
+    No, this is not possible. All links and their parameters are pre-defined in
+    this website and in the "my" integration in Home Assistant.
   </p>
 </div>
 
@@ -92,8 +80,19 @@ layout: base_with_hero
 </div>
 <div class="card-content">
   <p>
-    This website requires Home Assistant to have the "my" integration enabled.
-    If you don't have this integration set up, links from this website won't
-    work.
+    This website does not work unless you configure the URL of your Home
+    Assistant instance.
   </p>
+</div>
+
+<div class="section-header" id="supported-pages">What pages are supported?</div>
+<div class="redirects">
+  {% for redirect in redirects %}
+  <a
+    href="{{ redirect | redirectExamplePath }}"
+    title="Introduced in {{ redirect.introduced | version }}."
+  >
+    {{ redirect.description | title }}
+  </a>
+  {% endfor %}
 </div>
