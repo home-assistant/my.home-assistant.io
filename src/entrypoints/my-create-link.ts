@@ -100,19 +100,17 @@ class MyCreateLink extends LitElement {
           )}
         </mwc-select>
 
-        ${this._redirect?.params
-          ? repeat(
-              Object.keys(this._redirect.params),
-              (key) => `${this._redirect.redirect}-${key}`,
-              (key) => html`<mwc-textfield
-                required
-                validationMessage="This Field is Required"
-                .label=${prettify(key)}
-                .key=${key}
-                @input=${this._paramChanged}
-              ></mwc-textfield>`
-            )
-          : ""}
+        ${repeat(
+          Object.keys(this._redirect?.params || []),
+          (key) => `${this._redirect.redirect}-${key}`,
+          (key) => html`<mwc-textfield
+            required
+            validationMessage="This Field is Required"
+            .label=${prettify(key)}
+            .key=${key}
+            @input=${this._paramChanged}
+          ></mwc-textfield>`
+        )}
         ${this.isValid
           ? html`
               <h1>Your URL</h1>
