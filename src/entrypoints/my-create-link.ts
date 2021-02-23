@@ -59,8 +59,6 @@ class MyCreateLink extends LitElement {
 
   @internalProperty() _paramsValues = {};
 
-  @internalProperty() _url?: string;
-
   protected createRenderRoot() {
     return this;
   }
@@ -68,97 +66,84 @@ class MyCreateLink extends LitElement {
   protected firstUpdated(params) {
     super.firstUpdated(params);
     const redirect = extractSearchParam("redirect");
-    if (!redirect) {
-      return;
+    let redirectIndex = 0;
+    if (redirect) {
+      const foundIndex = redirects.findIndex(
+        (rdrct) => rdrct.redirect === redirect
+      );
+      if (foundIndex !== -1) {
+        redirectIndex = foundIndex;
+      }
     }
-    this._redirect = redirects.find((rdrct) => rdrct.redirect === redirect);
+    const select = this.querySelector("mwc-select")!;
+    select.updateComplete.then(() => select.select(redirectIndex));
   }
 
   protected render(): TemplateResult {
-    const valid =
+    return html`
+      <div class="card-content">
+        <mwc-select
+          label="Redirect to"
+          required
+          validationMessage="This Field is Required"
+          naturalMenuWidth
+          @selected=${this._itemSelected}
+        >
+          ${redirects.map(
+            (redirect) =>
+              html`<mwc-list-item
+                .selected=${this._redirect?.redirect === redirect.redirect}
+                value=${redirect.redirect}
+                >${capitalizeFirst(redirect.description)}</mwc-list-item
+              >`
+          )}
+        </mwc-select>
+
+        ${this._redirect?.params
+          ? html`${Object.keys(this._redirect.params).map(
+              (key) =>
+                html`<mwc-textfield
+                  required
+                  validationMessage="This Field is Required"
+                  .label=${prettify(key)}
+                  .key=${key}
+                  @input=${this._paramChanged}
+                ></mwc-textfield>`
+            )}`
+          : ""}
+        ${this.isValid
+          ? html`
+              <h1>Your URL</h1>
+              <input value=${this._url} @focus=${this._select} />
+              <mwc-button outlined @click=${this._copyURL}>
+                Copy URL
+              </mwc-button>
+              <h1>Markdown</h1>
+              <img src=${createBadge(this._redirect.redirect)} />
+              <textarea rows="3" @focus=${this._select}>
+${createMarkdown(this._redirect.redirect, this._url)}</textarea
+              >
+              <mwc-button outlined @click=${this._copyMarkdown}>
+                Copy Markdown
+              </mwc-button>
+            `
+          : ""}
+      </div>
+    `;
+  }
+
+  private get isValid() {
+    return (
       this._redirect &&
       (!this._redirect.params ||
         Object.keys(this._redirect.params).length ===
-          Object.keys(this._paramsValues).length);
-
-    return html` <style>
-        .container {
-          display: flex;
-          flex-direction: column;
-          padding: 0 16px 16px;
-        }
-        .your-url {
-          padding-bottom: 8px;
-        }
-        pre {
-          white-space: break-spaces;
-        }
-      </style>
-
-      <div class="container">
-        ${this._url
-          ? html`
-              <div class="your-url">
-                <h2>Your My Home Assistant URL:</h2>
-                <pre>${this._url}</pre>
-                <mwc-button outlined @click=${this._copyURL}>
-                  Copy URL
-                </mwc-button>
-                <h2>Markdown</h2>
-                <img src=${createBadge(this._redirect.redirect)} />
-                <pre>${createMarkdown(this._redirect.redirect, this._url)}</pre>
-                <mwc-button outlined @click=${this._copyMarkdown}>
-                  Copy Markdown
-                </mwc-button>
-              </div>
-              <mwc-button @click=${this._reload}>Start over</mwc-button>
-            `
-          : html`<mwc-select
-                label="Redirect to"
-                required
-                validationMessage="This Field is Required"
-                naturalMenuWidth
-                @selected=${this._itemSelected}
-              >
-                <mwc-list-item></mwc-list-item>
-                ${redirects.map(
-                  (redirect) =>
-                    html`<mwc-list-item
-                      .selected=${this._redirect?.redirect ===
-                      redirect.redirect}
-                      value=${redirect.redirect}
-                      >${capitalizeFirst(redirect.description)}</mwc-list-item
-                    >`
-                )}
-              </mwc-select>
-
-              ${this._redirect?.params
-                ? html`${Object.keys(this._redirect.params).map(
-                    (key) =>
-                      html`<mwc-textfield
-                        required
-                        validationMessage="This Field is Required"
-                        .label=${prettify(key)}
-                        .key=${key}
-                        @input=${this._paramChanged}
-                      ></mwc-textfield>`
-                  )}`
-                : ""}
-
-              <mwc-button .disabled=${!valid} @click=${this._createURL}
-                >Create redirect link</mwc-button
-              >`}
-      </div>`;
+          Object.keys(this._paramsValues).length)
+    );
   }
 
   private _itemSelected(ev) {
-    const index = ev.detail.index - 1;
+    this._redirect = redirects[ev.detail.index];
     this._paramsValues = {};
-    if (index < 0) {
-      this._redirect = undefined;
-      return;
-    }
-    this._redirect = redirects[index];
   }
 
   private _paramChanged(ev) {
@@ -184,30 +169,22 @@ class MyCreateLink extends LitElement {
     }
   }
 
-  private _createURL() {
-    this._url = `https://my.home-assistant.io/redirect/${
-      this._redirect.redirect
-    }${
+  private get _url() {
+    return `https://my.home-assistant.io/redirect/${this._redirect.redirect}${
       this._redirect.params ? `?${createSearchParam(this._paramsValues)}` : ""
     }`;
   }
 
-  private _reload() {
-    document.location.reload();
-  }
-
   private _copyURL() {
-    if (!this._url) {
-      return;
-    }
     copy(this._url);
   }
 
   private _copyMarkdown() {
-    if (!this._url) {
-      return;
-    }
     copy(createMarkdown(this._redirect.redirect, this._url));
+  }
+
+  private _select(ev) {
+    ev.target.select();
   }
 }
 

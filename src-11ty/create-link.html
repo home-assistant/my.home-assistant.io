@@ -6,6 +6,15 @@ layout: base_with_hero
   .back {
     padding: 8px 16px 0;
   }
+  mwc-select,
+  mwc-textfield {
+    display: block;
+  }
+  textarea,
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
 </style>
 
 <div class="back">
@@ -13,12 +22,6 @@ layout: base_with_hero
 </div>
 
 <h1 class="card-header">Create a redirect link</h1>
-<div class="card-content">
-  <p>
-    Create a redirect link to help people get to the right place in their Home
-    Assistant instance.
-  </p>
-</div>
 <my-create-link></my-create-link>
 
 <script defer src="/js/{{ manifest['my-create-link.js'] }}"></script>
