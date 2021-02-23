@@ -167,10 +167,7 @@
     <script>
       function check() {
         "use strict";
-        if (typeof Symbol == "undefined") return false;
         try {
-          eval("class Foo {}");
-          eval("const bar = (x) => x+1");
           eval("async () => {}");
           eval("function f(e) { for (let e in {}) e }");
         } catch (e) {
