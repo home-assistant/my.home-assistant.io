@@ -1,1 +1,1 @@
-module.exports = require("../../redirect.json");
+module.exports = require("../../redirect.js");
