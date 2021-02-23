@@ -6,19 +6,22 @@ layout: base_with_hero
   .back {
     padding: 8px 16px 0;
   }
+  mwc-select,
+  mwc-textfield {
+    display: block;
+  }
+  textarea,
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
 </style>
 
 <div class="back">
   <a href="/">&laquo; Back to My Home Assistant</a>
 </div>
 
-<h1 class="card-header">Create a My Home Assistant redirect link</h1>
-<div class="card-content">
-  <p>
-    Create a redirect link to help people get to the right place in their Home
-    Assistant instance.
-  </p>
-</div>
+<h1 class="card-header">Create a redirect link</h1>
 <my-create-link></my-create-link>
 
 <script defer src="/js/{{ manifest['my-create-link.js'] }}"></script>
