@@ -14,7 +14,7 @@ import {
 import redirects from "../../redirect.js";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
 
-const prettify = (key: string) => capitalizeFirst(key.replace("_", " "));
+const prettify = (key: string) => capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
 
 const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
@@ -72,7 +72,7 @@ class MyCreateLink extends LitElement {
         <mwc-select
           label="Redirect to"
           required
-          validationMessage="This Field is Required"
+          validationMessage="This field is required"
           naturalMenuWidth
           @selected=${this._itemSelected}
         >
@@ -91,7 +91,7 @@ class MyCreateLink extends LitElement {
           (key) => `${this._redirect.redirect}-${key}`,
           (key) => html`<mwc-textfield
             required
-            validationMessage="This Field is Required"
+            validationMessage="This field is required"
             .label=${prettify(key)}
             .key=${key}
             @input=${this._paramChanged}
@@ -107,8 +107,8 @@ class MyCreateLink extends LitElement {
               <h1>Markdown</h1>
               <img src=${createBadge(this._redirect.redirect)} />
               <textarea rows="3" readonly @focus=${this._select}>
-${createMarkdown(this._redirect.redirect, this._url)}</textarea
-              >
+                ${createMarkdown(this._redirect.redirect, this._url)}
+              </textarea>
               <mwc-button outlined @click=${this._copyMarkdown}>
                 Copy Markdown
               </mwc-button>
