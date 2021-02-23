@@ -1,5 +1,6 @@
 import "@material/mwc-button";
 import "@material/mwc-textfield";
+import { TextField } from "@material/mwc-textfield";
 import {
   css,
   CSSResult,
@@ -9,6 +10,7 @@ import {
   TemplateResult,
   internalProperty,
   property,
+  query,
 } from "lit-element";
 import { DEFAULT_HASS_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
@@ -20,6 +22,8 @@ export class MyUrlInputMain extends LitElement {
   @property() public value?: string;
 
   @internalProperty() private _error?: string | TemplateResult;
+
+  @query("mwc-textfield", true) private _textfield!: TextField;
 
   protected render(): TemplateResult {
     return html`
@@ -38,7 +42,7 @@ export class MyUrlInputMain extends LitElement {
 
   private _handleInputKeyDown(ev: KeyboardEvent) {
     // Handle pressing enter.
-    if (ev.keyCode === 13) {
+    if (ev.key === "Enter") {
       this._handleSave();
     }
   }
@@ -49,14 +53,22 @@ export class MyUrlInputMain extends LitElement {
     this._error = undefined;
 
     if (value === "") {
-      window.localStorage.setItem(HASS_URL, value);
+      value = DEFAULT_HASS_URL;
+      try {
+        window.localStorage.setItem(HASS_URL, value);
+      } catch (err) {
+        this._error = "Failed to store your URL!";
+        return;
+      }
       fireEvent(this, "value-changed", { value });
       return;
     }
 
     if (value.indexOf("://") === -1) {
-      this._error =
-        "Please enter your full URL, including the protocol part (https://).";
+      this._textfield.setCustomValidity(
+        "Please enter your full URL, including the protocol part (https://)."
+      );
+      this._textfield.reportValidity();
       return;
     }
 
@@ -64,7 +76,8 @@ export class MyUrlInputMain extends LitElement {
     try {
       urlObj = new URL(value);
     } catch (err) {
-      this._error = "Invalid URL";
+      this._textfield.setCustomValidity("Invalid URL");
+      this._textfield.reportValidity();
       return;
     }
     const url = `${urlObj.protocol}//${urlObj.host}`;
