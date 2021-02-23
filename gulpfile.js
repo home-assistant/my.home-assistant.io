@@ -238,7 +238,7 @@ function renderBadges(cb) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
   redirects.forEach((redirect) => {
-    const badge = myBadge({ message: redirect.redirect.replace("_", "") });
+    const badge = myBadge({ message: redirect.redirect.replace("_", " ") });
     fs.writeFileSync(
       path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`),
       badge

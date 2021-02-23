@@ -1,15 +1,15 @@
 
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="248.5" height="28" style="border-radius: 4px;" role="img" aria-label="MY: SUPERVISORSNAPSHOTS">
-      <title>MY: SUPERVISORSNAPSHOTS</title>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="252" height="28" style="border-radius: 4px;" role="img" aria-label="MY: SUPERVISOR SNAPSHOTS">
+      <title>MY: SUPERVISOR SNAPSHOTS</title>
       
       <g shape-rendering="crispEdges">
         <rect width="57" height="28" fill="#555"/>
-        <rect x="57" width="191.5" height="28" fill="#41BDF5"/>
+        <rect x="57" width="195" height="28" fill="#41BDF5"/>
       </g>
       <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="100">
         <image x="9" y="7" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHRpdGxlPkhvbWUgQXNzaXN0YW50IGljb248L3RpdGxlPjxwYXRoIGQ9Ik0xMS45OTIyIDEuMzk0NWEuNzA0MS43MDQxIDAgMDAtLjQ5OC4yMTFMLjE2MjEgMTMuMDk3N0EuNTYzNC41NjM0IDAgMDAwIDEzLjQ5NGEuNTY3LjU2NyAwIDAwLjU2NjQuNTY2NEgyLjY3djguMDc0M2MwIC4yNjAzLjIxMDQuNDcwNy40NzA3LjQ3MDdoNy45NDczdi0zLjY4MzZMOC4wMzcgMTUuODY3MmEyLjQyIDIuNDIgMCAwMS0uOTQ3My4xOTMzYy0xLjMzNzkgMC0yLjQyMTgtMS4wODY4LTIuNDIxOC0yLjQyNTcgMC0xLjMzOSAxLjA4NC0yLjQyMzkgMi40MjE4LTIuNDIzOSAxLjMzOCAwIDIuNDIyIDEuMDg1IDIuNDIyIDIuNDIzOSAwIC4zMzU5LS4wNjguNjU2My0uMTkxNS45NDcybDEuNzY3NiAxLjc2NzZ2LTUuMzc1QzEwLjIgMTAuNjE1IDkuNTcyMyA5Ljc0NCA5LjU3MjMgOC43MjY2YzAtMS4zMzkgMS4wODU5LTIuNDI1OCAyLjQyMzgtMi40MjU4IDEuMzM4IDAgMi40MjE5IDEuMDg2OCAyLjQyMTkgMi40MjU4IDAgMS4wMTc0LS42MjU5IDEuODg4NC0xLjUxMzcgMi4yNDh2NS4zNzVsMS43NjU2LTEuNzY3NmEyLjQyMDUgMi40MjA1IDAgMDEtLjE5MTQtLjk0NzJjMC0xLjMzOSAxLjA4Ni0yLjQyMzkgMi40MjM4LTIuNDIzOSAxLjMzOCAwIDIuNDIyIDEuMDg1IDIuNDIyIDIuNDIzOSAwIDEuMzM4OS0xLjA4NCAyLjQyNTctMi40MjIgMi40MjU3YTIuNDIgMi40MiAwIDAxLS45NDcyLS4xOTMzbC0zLjA1MDggMy4wNTQ3djMuNjgzNmg3Ljk0NzNhLjQ3MDIuNDcwMiAwIDAwLjQ3MDctLjQ3MDd2LTguMDc0M2gyLjExMTNhLjU2ODYuNTY4NiAwIDAwLjM5NjUtLjE2MmMuMjIzMy0uMjE4NS4yMjYyLS41Nzc1LjAwNzgtLjgwMDhsLTIuNTE1Ni0yLjU3MjNWNi40NzA3YzAtLjI2MDMtLjIxMDQtLjQ3MjctLjQ3MDctLjQ3MjdoLTEuOTY0OWMtLjI2MDMgMC0uNDcwNy4yMTI0LS40NzA3LjQ3Mjd2MS4xMDM1TDEyLjUgMS42MDM1YS43MDU2LjcwNTYgMCAwMC0uNTA3OC0uMjA5em0uMDAzOSA2LjM2MTRjLS41MzUyIDAtLjk2ODguNDM1MS0uOTY4OC45NzA3IDAgLjUzNTUuNDMzNi45Njg3Ljk2ODguOTY4N2EuOTY4My45NjgzIDAgMDAuOTY4Ny0uOTY4N2MwLS41MzU2LS40MzM1LS45NzA3LS45Njg3LS45NzA3ek03LjA4OTggMTIuNjY2YS45NjgzLjk2ODMgMCAwMC0uOTY4Ny45Njg4YzAgLjUzNTUuNDMzNi45NzA3Ljk2ODcuOTcwNy41MzUyIDAgLjk2ODgtLjQzNTIuOTY4OC0uOTcwN2EuOTY4My45NjgzIDAgMDAtLjk2ODgtLjk2ODh6bTkuODEyNSAwYy0uNTM1MSAwLS45NzA3LjQzMzItLjk3MDcuOTY4OCAwIC41MzU1LjQzNTYuOTcwNy45NzA3Ljk3MDcuNTM1MiAwIC45Njg4LS40MzUyLjk2ODgtLjk3MDdhLjk2ODMuOTY4MyAwIDAwLS45Njg4LS45Njg4WiIvPjwvc3ZnPg=="/>
         <text fill="#fff" x="375" y="175" transform="scale(.1)" textLength="150">MY</text>
-        <text fill="#fff" x="1527.5" y="175" font-weight="bold" transform="scale(.1)" textLength="1675">
-        SUPERVISORSNAPSHOTS</text>
+        <text fill="#fff" x="1545" y="175" font-weight="bold" transform="scale(.1)" textLength="1710">
+        SUPERVISOR SNAPSHOTS</text>
       </g>
       </svg>
