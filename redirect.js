@@ -147,7 +147,7 @@ module.exports = [
   },
   {
     redirect: "profile",
-    name: "Profile",
+    name: "User profile",
     description: "show your Home Assistant user's profile",
     introduced: "2021.3",
   },
