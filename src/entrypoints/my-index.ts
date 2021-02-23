@@ -11,12 +11,15 @@ import "../components/my-instance-info";
 import { getInstanceUrl } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 
+const changeRequestedFromRedirect = extractSearchParamsObject().change === "1";
+
 @customElement("my-index")
 class MyIndex extends LitElement {
-  @internalProperty() private _updatingUrl =
-    extractSearchParamsObject().change === "1";
+  @internalProperty() private _updatingUrl = changeRequestedFromRedirect;
 
   @internalProperty() private _instanceUrl!: string | null;
+
+  @internalProperty() private _error?: string;
 
   createRenderRoot() {
     return this;
@@ -25,6 +28,9 @@ class MyIndex extends LitElement {
   public connectedCallback() {
     super.connectedCallback();
     this._instanceUrl = getInstanceUrl();
+    if (!this._updatingUrl && !this._instanceUrl) {
+      this._updatingUrl = true;
+    }
   }
 
   protected shouldUpdate() {
@@ -32,26 +38,35 @@ class MyIndex extends LitElement {
   }
 
   protected render(): TemplateResult {
-    if (!this._instanceUrl || this._updatingUrl) {
+    if (this._updatingUrl) {
       return html`
         <div class="card-content">
-          ${!this._instanceUrl
-            ? html` <h1>Setup My Home Assistant</h1>
+          ${changeRequestedFromRedirect && !this._instanceUrl
+            ? html`
                 <p>
-                  My Home Assistant is not configured yet. Copy the URL of your
-                  Home Assistant instance below and press update.
-                </p>`
+                  You are seeing this page because you have been linked to a
+                  page in your Home&nbsp;Assistant instance but have not
+                  configured My&nbsp;Home&nbsp;Assistant. Enter the URL of your
+                  Home&nbsp;Assistant instance to continue.
+                </p>
+              `
+            : !this._instanceUrl
+            ? html`
+                <p>
+                  Configure My&nbsp;Home&nbsp;Assistant by entering the URL of
+                  your Home&nbsp;Assistant instance.
+                </p>
+              `
             : ""}
-          <p>
-            <my-url-input
-              .value=${this._instanceUrl}
-              @value-changed=${this._handleUrlChanged}
-            ></my-url-input>
-          </p>
-          <p>
-            <b>Note:</b>
-            This is only stored in your browser.
-          </p>
+
+          <my-url-input
+            .value=${this._instanceUrl}
+            @value-changed=${this._handleUrlChanged}
+          ></my-url-input>
+
+          ${this._error ? html`<div class="error">${this._error}</div>` : ""}
+
+          <p>Note: This URL is only stored in your browser.</p>
         </div>
       `;
     }
@@ -69,12 +84,18 @@ class MyIndex extends LitElement {
   }
 
   private _handleUrlChanged() {
-    const params = extractSearchParamsObject();
-    if (params.change === "1") {
+    const instanceUrl = getInstanceUrl();
+
+    if (!instanceUrl) {
+      this._error = "You need to configure a URL to use My Home Assistant.";
+      return;
+    }
+
+    if (changeRequestedFromRedirect) {
       history.back();
     } else {
-      this._updatingUrl = false;
-      this._instanceUrl = getInstanceUrl();
+      this._updatingUrl = !instanceUrl;
+      this._instanceUrl = instanceUrl;
     }
   }
 }
