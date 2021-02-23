@@ -52,12 +52,6 @@
         flex-direction: column;
       }
 
-      @media all and (max-width: 500px) {
-        .ha-card {
-          --ha-card-border-radius: 0;
-        }
-      }
-
       a {
         color: var(--mdc-theme-primary);
       }
@@ -97,6 +91,13 @@
         margin-top: 50px;
         width: 100%;
         max-width: 500px;
+      }
+
+      @media all and (max-width: 500px) {
+        .ha-card {
+          --ha-card-border-radius: 0;
+          margin-top: 0;
+        }
       }
 
       h1 {
