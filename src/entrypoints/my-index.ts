@@ -41,7 +41,7 @@ class MyIndex extends LitElement {
     if (this._updatingUrl) {
       return html`
         <div class="card-content">
-          ${changeRequestedFromRedirect
+          ${changeRequestedFromRedirect && !this._instanceUrl
             ? html`
                 <p>
                   You are seeing this page because you have been linked to a
