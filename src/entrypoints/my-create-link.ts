@@ -2,6 +2,7 @@ import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
 import { sanitizeUrl } from "@braintree/sanitize-url";
+import { repeat } from "lit-html/directives/repeat.js";
 import copy from "clipboard-copy";
 import {
   customElement,
@@ -100,16 +101,17 @@ class MyCreateLink extends LitElement {
         </mwc-select>
 
         ${this._redirect?.params
-          ? html`${Object.keys(this._redirect.params).map(
-              (key) =>
-                html`<mwc-textfield
-                  required
-                  validationMessage="This Field is Required"
-                  .label=${prettify(key)}
-                  .key=${key}
-                  @input=${this._paramChanged}
-                ></mwc-textfield>`
-            )}`
+          ? repeat(
+              Object.keys(this._redirect.params),
+              (key) => `${this._redirect.redirect}-${key}`,
+              (key) => html`<mwc-textfield
+                required
+                validationMessage="This Field is Required"
+                .label=${prettify(key)}
+                .key=${key}
+                @input=${this._paramChanged}
+              ></mwc-textfield>`
+            )
           : ""}
         ${this.isValid
           ? html`
