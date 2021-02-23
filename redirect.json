@@ -123,11 +123,6 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "customize",
-    "description": "allow to customize your entities",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "profile",
     "description": "show your Home Assistant user's profile",
     "introduced": "2021.3"

@@ -1,3 +1,11 @@
+const createSearchParam = (params) => {
+  const urlParams = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    urlParams.append(key, value);
+  });
+  return urlParams.toString();
+};
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("title", function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -8,21 +16,9 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addLiquidFilter("redirectExamplePath", function (redirect) {
-    const example = [`/redirect/${redirect.redirect}`];
-
-    const params = Object.keys(redirect.example || []);
-
-    if (params.length > 0) {
-      example.push("?");
-      params.forEach((param, idx) => {
-        if (idx > 0) {
-          example.push("&");
-        }
-        example.push(`${param}=${encodeURIComponent(redirect.example[param])}`);
-      });
-    }
-
-    return example.join("");
+    return `/redirect/${
+      redirect.redirect
+    }${redirect.example ? `?${createSearchParam(redirect.example)}` : ""}`;
   });
 
   eleventyConfig.addLiquidFilter("version", function (value) {

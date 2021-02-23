@@ -24,7 +24,9 @@
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.0",
     "@material/mwc-button": "^0.20.0",
+    "@material/mwc-select": "^0.20.0",
     "@material/mwc-textfield": "^0.20.0",
+    "clipboard-copy": "^4.0.1",
     "lit-element": "^2.4.0"
   }
 }

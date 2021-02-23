@@ -28,6 +28,7 @@ const plugins = (latestBuild) =>
 export default [
   "./src/entrypoints/my-index.ts",
   "./src/entrypoints/my-redirect.ts",
+  "./src/entrypoints/my-create-link.ts",
 ].map((entrypoint) => ({
   input: {
     [path.parse(entrypoint).name]: entrypoint,

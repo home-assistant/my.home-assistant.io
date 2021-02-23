@@ -49,7 +49,9 @@ export class MyUrlInputMain extends LitElement {
     this._error = undefined;
 
     if (value === "") {
-      value = DEFAULT_HASS_URL;
+      window.localStorage.setItem(HASS_URL, value);
+      fireEvent(this, "value-changed", { value });
+      return;
     }
 
     if (value.indexOf("://") === -1) {
@@ -69,10 +71,8 @@ export class MyUrlInputMain extends LitElement {
     try {
       window.localStorage.setItem(HASS_URL, url);
     } catch (err) {
-      if (value !== DEFAULT_HASS_URL) {
-        this._error = "Failed to store your url!";
-        return;
-      }
+      this._error = "Failed to store your URL!";
+      return;
     }
     fireEvent(this, "value-changed", { value: url });
   }
