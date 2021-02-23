@@ -176,12 +176,6 @@ module.exports = [
     introduced: "2021.3",
   },
   {
-    redirect: "developer_mqtt",
-    name: "Developer Tools: MQTT",
-    description: "show your MQTT developer tools",
-    introduced: "2021.3",
-  },
-  {
     redirect: "supervisor",
     name: "Supervisor: Dashboard",
     description: "show your Supervisor dashboard",
