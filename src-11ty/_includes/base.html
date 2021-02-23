@@ -164,6 +164,27 @@
         outline: none;
       }
     </style>
+    <script>
+      function check() {
+        "use strict";
+        if (typeof Symbol == "undefined") return false;
+        try {
+          eval("class Foo {}");
+          eval("const bar = (x) => x+1");
+          eval("async () => {}");
+          eval("function f(e) { for (let e in {}) e }");
+        } catch (e) {
+          return false;
+        }
+        return true;
+      }
+      supported = check();
+      if (!supported) {
+        alert(
+          "We are sorry, but this browser is not supported. We advise you to upgrade your browser."
+        );
+      }
+    </script>
   </head>
   <body>
     <div class="layout">
