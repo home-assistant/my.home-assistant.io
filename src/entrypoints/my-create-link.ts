@@ -10,7 +10,7 @@ import {
   LitElement,
   TemplateResult,
 } from "lit-element";
-import redirects from "../../redirect.json";
+import redirects from "../../redirect.js";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
 
 const prettify = (key: string) => capitalizeFirst(key.replace("_", " "));
@@ -38,20 +38,6 @@ const createBadge = (redirect: string) =>
 
 const createMarkdown = (redirect: string, url: string) =>
   `[![My Home Assistant](${createBadge(redirect)})](${url})`;
-
-redirects.sort((a, b) => {
-  const aDescription = a.description.toLowerCase();
-  const bDescription = b.description.toLowerCase();
-
-  if (aDescription < bDescription) {
-    return -1;
-  }
-  if (aDescription > bDescription) {
-    return 1;
-  }
-
-  return 0;
-});
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
