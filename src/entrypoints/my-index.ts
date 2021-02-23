@@ -83,18 +83,20 @@ class MyIndex extends LitElement {
     this._updatingUrl = true;
   }
 
-  private _handleUrlChanged() {
-    const instanceUrl = getInstanceUrl();
+  private _handleUrlChanged(ev: CustomEvent) {
+    const instanceUrl = ev.detail.value;
 
     if (!instanceUrl) {
       this._error = "You need to configure a URL to use My Home Assistant.";
       return;
     }
 
+    this._error = undefined;
+
     if (changeRequestedFromRedirect) {
       history.back();
     } else {
-      this._updatingUrl = !instanceUrl;
+      this._updatingUrl = false;
       this._instanceUrl = instanceUrl;
     }
   }
