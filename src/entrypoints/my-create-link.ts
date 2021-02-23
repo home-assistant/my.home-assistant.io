@@ -81,7 +81,7 @@ class MyCreateLink extends LitElement {
               html`<mwc-list-item
                 .selected=${this._redirect?.redirect === redirect.redirect}
                 value=${redirect.redirect}
-                >${capitalizeFirst(redirect.description)}</mwc-list-item
+                >${redirect.name}</mwc-list-item
               >`
           )}
         </mwc-select>
