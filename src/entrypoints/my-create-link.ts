@@ -100,13 +100,13 @@ class MyCreateLink extends LitElement {
         ${this.isValid
           ? html`
               <h1>Your URL</h1>
-              <input value=${this._url} @focus=${this._select} />
+              <input value=${this._url} readonly @focus=${this._select} />
               <mwc-button outlined @click=${this._copyURL}>
                 Copy URL
               </mwc-button>
               <h1>Markdown</h1>
               <img src=${createBadge(this._redirect.redirect)} />
-              <textarea rows="3" @focus=${this._select}>
+              <textarea rows="3" readonly @focus=${this._select}>
 ${createMarkdown(this._redirect.redirect, this._url)}</textarea
               >
               <mwc-button outlined @click=${this._copyMarkdown}>
