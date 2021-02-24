@@ -5,11 +5,14 @@ import {
   LitElement,
   TemplateResult,
   internalProperty,
+  query,
+  PropertyValues,
 } from "lit-element";
 import "../components/my-url-input";
 import "../components/my-instance-info";
 import { getInstanceUrl } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
+import { MyUrlInputMain } from "../components/my-url-input";
 
 const changeRequestedFromRedirect = extractSearchParamsObject().change === "1";
 
@@ -21,6 +24,8 @@ class MyIndex extends LitElement {
 
   @internalProperty() private _error?: string;
 
+  @query("my-url-input") private _urlInput?: MyUrlInputMain;
+
   createRenderRoot() {
     return this;
   }
@@ -30,6 +35,12 @@ class MyIndex extends LitElement {
     this._instanceUrl = getInstanceUrl();
     if (!this._updatingUrl && !this._instanceUrl) {
       this._updatingUrl = true;
+    }
+  }
+
+  protected updated(changedProps: PropertyValues) {
+    if (changedProps.has("_updatingUrl") && this._updatingUrl) {
+      this.updateComplete.then(() => this._urlInput?.focus());
     }
   }
 
