@@ -41,7 +41,7 @@
     "redirect": "developer_call_service",
     "name": "Developer Tools: Call a service",
     "badge": "Call Service",
-    "description": "show your service developer tools with a specific service",
+    "description": "show your service developer tools with a specific service selected",
     "introduced": "2021.3",
     "params": {
       "service": "string"
