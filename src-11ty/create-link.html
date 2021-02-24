@@ -12,6 +12,7 @@ layout: base_with_hero
   }
   textarea,
   input {
+    display: block;
     width: 100%;
     box-sizing: border-box;
     margin: 8px 0;
@@ -34,6 +35,8 @@ layout: base_with_hero
 </div>
 
 <h1 class="card-header">Create a link</h1>
-<my-create-link></my-create-link>
+<my-create-link>
+  <div class="card-content">Loading...</div>
+</my-create-link>
 
 <script defer src="/js/{{ manifest['my-create-link.js'] }}"></script>
