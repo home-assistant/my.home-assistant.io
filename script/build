@@ -5,5 +5,6 @@ cd "$(dirname "$0")/.."
 
 rm -rf dist
 cp -r public dist
+cp redirect.json dist
 NODE_ENV=production yarn rollup -c
 NODE_ENV=production yarn eleventy

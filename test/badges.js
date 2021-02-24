@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
-const redirects = require("../redirect.js");
+const redirects = require("../redirect.json");
 
 const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
 
