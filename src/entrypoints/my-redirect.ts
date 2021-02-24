@@ -43,7 +43,7 @@ const createRedirectParams = (): string => {
   return `?${createSearchParam(userParams)}`;
 };
 
-(async function () {
+(function () {
   const instanceUrl = getInstanceUrl();
 
   if (instanceUrl === null) {
@@ -79,4 +79,8 @@ const createRedirectParams = (): string => {
     </a>
   `;
   layout.insertBefore(changeInstance, layout.querySelector(".spacer"));
+
+  // For firefox to re-run the JS after history.back() after updating instance URL
+  // https://stackoverflow.com/questions/2638292/after-travelling-back-in-firefox-history-javascript-wont-run
+  window.onunload = () => {};
 })();
