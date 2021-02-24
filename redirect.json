@@ -31,6 +31,26 @@
     }
   },
   {
+    "redirect": "config",
+    "name": "Configuration",
+    "badge": "Configuration",
+    "description": "show your configuration panel",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "developer_call_service",
+    "name": "Developer Tools: Call a service",
+    "badge": "Call Service",
+    "description": "show your service developer tools with a specific service",
+    "introduced": "2021.3",
+    "params": {
+      "service": "string"
+    },
+    "example": {
+      "service": "homeassistant.turn_on"
+    }
+  },
+  {
     "redirect": "developer_events",
     "name": "Developer Tools: Events",
     "description": "show your event developer tools",
@@ -79,6 +99,12 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "history",
+    "name": "History",
+    "description": "show your history panel",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "cloud",
     "name": "Home Assistant Cloud",
     "description": "show your Home Assistant Cloud configuration",
@@ -110,6 +136,12 @@
     }
   },
   {
+    "redirect": "logbook",
+    "name": "Logbook",
+    "description": "show your logbook panel",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "logs",
     "name": "Logs",
     "description": "show your Home Assistant logs",
@@ -125,6 +157,13 @@
     "redirect": "lovelace_resources",
     "name": "Lovelace: Resources",
     "description": "show your Lovelace resources",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "config_mqtt",
+    "name": "MQTT Configuration",
+    "badge": "MQTT Configuration",
+    "description": "show your MQTT configuration panel",
     "introduced": "2021.3"
   },
   {
@@ -203,6 +242,20 @@
     "redirect": "users",
     "name": "Users",
     "description": "show your users",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "config_zwave_js",
+    "name": "Z-Wave JS Configuration",
+    "badge": "Z-Wave JS Configuration",
+    "description": "show your Z-Wave JS configuration panel",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "config_zha",
+    "name": "ZHA Configuration",
+    "badge": "ZHA Configuration",
+    "description": "show your ZHA configuration panel",
     "introduced": "2021.3"
   },
   {
