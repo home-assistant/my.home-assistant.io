@@ -42,30 +42,25 @@ const createMarkdown = (redirect: string, url: string) =>
     redirect
   )})](${url})`;
 
+let initialRedirect;
+{
+  const redirect = extractSearchParam("redirect");
+  if (redirect) {
+    initialRedirect = redirects.find((info) => info.redirect === redirect);
+  }
+  if (!initialRedirect) {
+    initialRedirect = redirects[0];
+  }
+}
+
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
-  @internalProperty() _redirect?;
+  @internalProperty() _redirect = initialRedirect;
 
   @internalProperty() _paramsValues = {};
 
   protected createRenderRoot() {
     return this;
-  }
-
-  protected firstUpdated(params) {
-    super.firstUpdated(params);
-    const redirect = extractSearchParam("redirect");
-    let redirectIndex = 0;
-    if (redirect) {
-      const foundIndex = redirects.findIndex(
-        (rdrct) => rdrct.redirect === redirect
-      );
-      if (foundIndex !== -1) {
-        redirectIndex = foundIndex;
-      }
-    }
-    const select = this.querySelector("mwc-select")!;
-    select.updateComplete.then(() => select.select(redirectIndex));
   }
 
   protected render(): TemplateResult {
@@ -82,7 +77,7 @@ class MyCreateLink extends LitElement {
             (redirect) =>
               html`<mwc-list-item
                 .selected=${this._redirect?.redirect === redirect.redirect}
-                value=${redirect.redirect}
+                .value=${redirect.redirect}
                 >${redirect.name}</mwc-list-item
               >`
           )}
@@ -172,7 +167,11 @@ ${createMarkdown(this._redirect.redirect, this._url)}</textarea
   }
 
   private _select(ev) {
-    ev.target.select();
+    const input = ev.target;
+    // Safari fires focus too soon
+    setTimeout(() => {
+      input.select();
+    }, 1);
   }
 }
 
