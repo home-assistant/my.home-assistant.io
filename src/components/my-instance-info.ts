@@ -21,12 +21,12 @@ class MyInstanceInfo extends LitElement {
       return html``;
     }
     return html`
-      <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-      <div class="instance">
-        <div class="info">
-          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank"
-            >${this.instanceUrl}</a
-          >
+      <div class="instance-info">
+        <div>
+          <div class="instance-header">HOME ASSISTANT INSTANCE</div>
+          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank">
+            ${this.instanceUrl}
+          </a>
         </div>
         <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
       </div>

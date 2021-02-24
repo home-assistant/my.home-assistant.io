@@ -9,7 +9,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
 
 <style>
   .ha-card {
-    min-height: 241px;
+    min-height: 210px;
     display: flex;
     flex-direction: column;
   }
@@ -42,9 +42,11 @@ permalink: "redirect/{{ redirect.redirect }}/"
   redirect="{{ redirect.redirect }}"
   {% if redirect.params %} params="{{ redirect.params | stringify | escape }}" {% endif %}
 >
-  <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-  <div class="instance">
-      <div>Loading...</div>
+  <div class="instance-info">
+    <div>
+      <div class="instance-header">HOME ASSISTANT INSTANCE</div>
+      Loading...
+    </div>
   </div>
   <div class='card-actions'>
     <div></div><div class='fake-button'>OPEN LINK</div>
