@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/entrypoint.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/badges.js"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -14,6 +14,8 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
     "@rollup/plugin-typescript": "^8.1.1",
+    "anafanafo": "^2.0.0",
+    "gulp": "^4.0.2",
     "prettier": "^2.2.1",
     "require-dir": "^1.2.0",
     "rollup": "^2.38.5",

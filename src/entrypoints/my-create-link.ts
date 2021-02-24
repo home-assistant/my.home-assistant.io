@@ -14,7 +14,8 @@ import {
 import redirects from "../../redirect.js";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
 
-const prettify = (key: string) => capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
+const prettify = (key: string) =>
+  capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
 
 const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
@@ -34,11 +35,12 @@ const validateUrl = (value: string) => {
   return undefined;
 };
 
-const createBadge = (redirect: string) =>
-  `https://img.shields.io/badge/${redirect}-my?style=for-the-badge&label=MY&logo=home-assistant&color=41BDF5&logoColor=white`;
+const createBadge = (redirect: string) => `/badges/${redirect}.svg`;
 
 const createMarkdown = (redirect: string, url: string) =>
-  `[![My Home Assistant](${createBadge(redirect)})](${url})`;
+  `[![My Home Assistant](https://my.home-assistant.io${createBadge(
+    redirect
+  )})](${url})`;
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
@@ -107,8 +109,8 @@ class MyCreateLink extends LitElement {
               <h1>Markdown</h1>
               <img src=${createBadge(this._redirect.redirect)} />
               <textarea rows="3" readonly @focus=${this._select}>
-                ${createMarkdown(this._redirect.redirect, this._url)}
-              </textarea>
+${createMarkdown(this._redirect.redirect, this._url)}</textarea
+              >
               <mwc-button outlined @click=${this._copyMarkdown}>
                 Copy Markdown
               </mwc-button>
