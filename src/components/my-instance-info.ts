@@ -1,3 +1,4 @@
+import { unsafeSVG } from "lit-html/directives/unsafe-svg";
 import "@material/mwc-button";
 import {
   customElement,
@@ -28,7 +29,9 @@ class MyInstanceInfo extends LitElement {
             ${this.instanceUrl}
           </a>
         </div>
-        <button class="empty" @click=${this._handleEdit}>${svgPencil}</button>
+        <button class="empty" @click=${this._handleEdit}>
+          ${unsafeSVG(svgPencil)}
+        </button>
       </div>
     `;
   }
