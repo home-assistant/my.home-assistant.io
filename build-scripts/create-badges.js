@@ -185,6 +185,8 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 }
 
 redirects.forEach((redirect) => {
-  const badge = myBadge({ message: redirect.redirect.replace(/\_/g, " ") });
+  const badge = myBadge({
+    message: redirect.badge || redirect.redirect.replace(/\_/g, " "),
+  });
   fs.writeFileSync(path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`), badge);
 });

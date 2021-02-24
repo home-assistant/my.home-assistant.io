@@ -51,6 +51,7 @@ module.exports = [
   {
     redirect: "blueprint_import",
     name: "Blueprints: Start import",
+    badge: "Import Blueprint",
     description: "allow importing a blueprint",
     introduced: "2021.3",
     params: {
