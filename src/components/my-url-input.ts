@@ -25,6 +25,10 @@ export class MyUrlInputMain extends LitElement {
 
   @query("mwc-textfield", true) private _textfield!: TextField;
 
+  public focus(): void {
+    this.updateComplete.then(() => this._textfield.focus());
+  }
+
   protected render(): TemplateResult {
     return html`
       ${this._error ? html` <p class="error">${this._error}</p> ` : ""}
