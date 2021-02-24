@@ -9,10 +9,12 @@ permalink: "redirect/{{ redirect.redirect }}/"
 
 <style>
   .ha-card {
-    min-height: 226px;
+    min-height: 158px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+  }
+  .card-content {
+    flex: 1;
   }
   .card-actions {
     padding-right: 8px;
@@ -29,23 +31,30 @@ permalink: "redirect/{{ redirect.redirect }}/"
     font-size: 0.875rem;
     font-weight: 500;
   }
+  .instance-footer {
+    font-size: 14px;
+    padding-top: 16px;
+  }
+  .instance-footer svg {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    bottom: -3px;
+  }
 </style>
 
 <h1 class="card-header">Open page in your Home Assistant?</h1>
 <div class="card-content">
   <p>You've been linked to the page that will {{ redirect.description }}.</p>
 </div>
-<!-- prettier-ignore -->
-<my-redirect
-  redirect="{{ redirect.redirect }}"
-  {% if redirect.params %} params="{{ redirect.params | stringify | escape }}" {% endif %}
->
-  <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-  <div class="instance">
-      <div>Loading...</div>
-  </div>
-  <div class='card-actions'>
-    <div></div><div class='fake-button'>OPEN LINK</div>
-  </div>
-</my-redirect>
+
+<div class="card-actions">
+  <div></div>
+  <div class="fake-button open-link">OPEN LINK</div>
+</div>
+
+<script>
+  window.redirect = {{ redirect | stringify }};
+</script>
+
 <script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>
