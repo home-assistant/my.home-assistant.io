@@ -68,13 +68,9 @@ function renderTitle({ accessibleText }) {
 function renderBadge({ leftWidth, rightWidth, height, accessibleText }, main) {
   const width = leftWidth + rightWidth;
 
-  return `
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" style="border-radius: 4px;" ${renderAriaAttributes(
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" style="border-radius: 4px;" ${renderAriaAttributes(
     { accessibleText }
-  )}>
-      ${renderTitle({ accessibleText })}
-      ${main}
-      </svg>`;
+  )}>${renderTitle({ accessibleText })}${main}</svg>`;
 }
 
 function myBadge({
@@ -126,7 +122,7 @@ function myBadge({
   // Add 20 px of padding, plus approximately 1.5 px of letter spacing per
   // character.
   messageWidth += 20 + 1.5 * message.length;
-  const leftWidth = hasLogo && !hasLabel ? 0 : labelWidth;
+  const leftWidth = hasLogo && !hasLabel ? 0 : labelWidth - 1.5;
   const rightWidth =
     hasLogo && !hasLabel ? messageWidth + labelWidth : messageWidth;
 
@@ -151,11 +147,10 @@ function myBadge({
     const textColor = "#fff";
 
     const text = `<text fill="${textColor}" x="${
-      (labelWidth + messageWidth / 2) * 10
+      (leftWidth + messageWidth / 2) * 10
     }" y="175" font-weight="bold" transform="scale(.1)" textLength="${
       (messageWidth - 24) * 10
-    }">
-        ${escapeXml(message)}</text>`;
+    }">${escapeXml(message)}</text>`;
 
     return text;
   }
@@ -167,8 +162,7 @@ function myBadge({
       accessibleText,
       height,
     },
-    `
-      <g shape-rendering="crispEdges">
+    `<g shape-rendering="crispEdges">
         <rect width="${leftWidth}" height="${height}" fill="${labelColor}"/>
         <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${color}"/>
       </g>
