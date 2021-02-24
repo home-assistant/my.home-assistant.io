@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/entrypoint.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/badges.js"
   },
   "author": "",
   "license": "Apache-2.0",

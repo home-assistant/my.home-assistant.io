@@ -1,9 +1,9 @@
 const anafanafo = require("anafanafo");
 const path = require("path");
 const fs = require("fs");
-const redirects = require("./redirect.js");
+const redirects = require("../redirect.js");
 
-const OUTPUT_DIR = path.resolve(__dirname, "public/badges");
+const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
 
 const fontFamily = 'font-family="Verdana,Geneva,DejaVu Sans,sans-serif"';
 
@@ -180,18 +180,11 @@ function myBadge({
   );
 }
 
-function renderBadges(cb) {
-  if (!fs.existsSync(OUTPUT_DIR)) {
-    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  }
-  redirects.forEach((redirect) => {
-    const badge = myBadge({ message: redirect.redirect.replace(/\_/g, " ") });
-    fs.writeFileSync(
-      path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`),
-      badge
-    );
-  });
-  cb();
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-exports.default = renderBadges;
+redirects.forEach((redirect) => {
+  const badge = myBadge({ message: redirect.redirect.replace(/\_/g, " ") });
+  fs.writeFileSync(path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`), badge);
+});

@@ -35,11 +35,12 @@ const validateUrl = (value: string) => {
   return undefined;
 };
 
-const createBadge = (redirect: string) =>
-  `https://my.home-assistant.io/badges/${redirect}.svg`;
+const createBadge = (redirect: string) => `/badges/${redirect}.svg`;
 
 const createMarkdown = (redirect: string, url: string) =>
-  `[![My Home Assistant](${createBadge(redirect)})](${url})`;
+  `[![My Home Assistant](https://my.home-assistant.io${createBadge(
+    redirect
+  )})](${url})`;
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
