@@ -43,7 +43,7 @@ const createRedirectParams = (): string => {
   return `?${createSearchParam(userParams)}`;
 };
 
-(function () {
+const render = () => {
   const instanceUrl = getInstanceUrl();
 
   if (instanceUrl === null) {
@@ -63,24 +63,33 @@ const createRedirectParams = (): string => {
   }
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
-  document.querySelector(".fake-button")!.outerHTML = `
-    <a href="${redirectUrl}">
+  document.querySelector(".open-link")!.outerHTML = `
+    <a href="${redirectUrl}" class='open-link'>
       <mwc-button>Open Link</mwc-button>
     </a>
   `;
 
   const layout = document.querySelector(".layout")!;
-  const changeInstance = document.createElement("div");
-  changeInstance.classList.add("instance-footer");
-  changeInstance.innerHTML = `
+
+  let changeInstanceEl = document.querySelector(".instance-footer");
+  if (!changeInstanceEl) {
+    changeInstanceEl = document.createElement("div");
+    changeInstanceEl.classList.add("instance-footer");
+  }
+  changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
     <a href="/?change=1">
       ${svgPencil}
     </a>
   `;
-  layout.insertBefore(changeInstance, layout.querySelector(".spacer"));
+  layout.insertBefore(changeInstanceEl, layout.querySelector(".spacer"));
+};
 
-  // For firefox to re-run the JS after history.back() after updating instance URL
-  // https://stackoverflow.com/questions/2638292/after-travelling-back-in-firefox-history-javascript-wont-run
-  window.onunload = () => {};
-})();
+render();
+
+// For Safari/FF to handle history.back() after update instance URL
+window.onpageshow = (event) => {
+  if (event.persisted) {
+    render();
+  }
+};
