@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/entrypoint.ts",
   "scripts": {
-    "test": "node test/badges.js"
+    "test": "node test/badges.js && node test/redirects.js"
   },
   "author": "",
   "license": "Apache-2.0",

@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 
 rm -rf dist
 cp -r public dist
+cp redirect.json dist
 
 # Compile once before serving so eleventy has
 # valid JS to render.

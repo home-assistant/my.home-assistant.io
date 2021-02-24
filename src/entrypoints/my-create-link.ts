@@ -11,7 +11,7 @@ import {
   LitElement,
   TemplateResult,
 } from "lit-element";
-import redirects from "../../redirect.js";
+import redirects from "../../redirect.json";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
 
 const prettify = (key: string) =>
