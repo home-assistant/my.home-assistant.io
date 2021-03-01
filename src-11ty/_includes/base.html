@@ -21,11 +21,14 @@ My Home Assistant
     <meta charset="utf-8" />
     <title>{{ full_title }}</title>
     <link rel="icon" href="/images/favicon.png" type="image/png" />
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="viewport" content="width=device-width" />
     <meta property="fb:app_id" content="338291289691179" />
-    <meta property="og:title" content="Home Assistant" />
+    <meta property="og:title" content="{{ full_title }}" />
     <meta property="og:site_name" content="My Home Assistant" />
-    <meta property="og:url" content="https://my.home-assistant.io/" />
+    <meta
+      property="og:url"
+      content="https://my.home-assistant.io{{ page.url }}"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ description }}" />
     <meta
@@ -143,6 +146,10 @@ My Home Assistant
         margin-bottom: 0;
       }
 
+      .ha-card .card-content p:first-child {
+        margin-top: 0;
+      }
+
       .ha-card .card-actions {
         border-top: 1px solid #e8e8e8;
         display: flex;
@@ -182,8 +189,7 @@ My Home Assistant
       <div class="spacer"></div>
       <div class="footer">
         <a href="/">My Home Assistant</a> –
-        <a href="/create-link.html">Share link</a> –
-        <a href="/faq.html">FAQ</a> –
+        <a href="/create-link/">Share link</a> – <a href="/faq/">FAQ</a> –
         <a
           href="https://github.com/home-assistant/my.home-assistant.io/issues"
           target="_blank"
@@ -191,5 +197,13 @@ My Home Assistant
         >
       </div>
     </div>
+    {% if javascript_source %}
+    <script>
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+      {{ source[javascript_source] }}
+    </script>
+    {% endif %}
   </body>
 </html>

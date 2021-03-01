@@ -1,12 +1,10 @@
 ---
 layout: base_card_with_hero
+javascript_source: my-index.js
 description: Link you to specific pages in your Home Assistant instance.
 ---
 
 <style>
-  my-url-input {
-    margin-top: 16px;
-  }
   .instance-info {
     display: flex;
     justify-content: space-between;
@@ -41,11 +39,9 @@ description: Link you to specific pages in your Home Assistant instance.
 
 <h1 class="card-header">My Home Assistant</h1>
 <div class="card-content">
-  <p>
-    My Home Assistant allows the documentation to link you to specific pages in
-    your Home Assistant instance. See <a href="faq.html">the FAQ</a> for more
-    information.
-  </p>
+  My Home Assistant allows the documentation to link you to specific pages in
+  your Home Assistant instance. See <a href="faq.html">the FAQ</a> for more
+  information.
 </div>
 
 <my-index>
@@ -56,5 +52,3 @@ description: Link you to specific pages in your Home Assistant instance.
     </div>
   </div>
 </my-index>
-
-<script defer src="/js/{{ manifest['my-index.js'] }}"></script>
