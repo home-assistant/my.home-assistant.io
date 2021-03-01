@@ -51,17 +51,18 @@ class MyIndex extends LitElement {
   protected render(): TemplateResult {
     if (this._updatingUrl) {
       return html`
+        ${changeRequestedFromRedirect && !this._instanceUrl
+          ? html`
+              <div class="highlight">
+                You are seeing this page because you have been linked to a page
+                in your Home&nbsp;Assistant instance but have not configured
+                My&nbsp;Home&nbsp;Assistant. Enter the URL of your
+                Home&nbsp;Assistant instance to continue.
+              </div>
+            `
+          : ""}
         <div class="card-content">
-          ${changeRequestedFromRedirect && !this._instanceUrl
-            ? html`
-                <p>
-                  You are seeing this page because you have been linked to a
-                  page in your Home&nbsp;Assistant instance but have not
-                  configured My&nbsp;Home&nbsp;Assistant. Enter the URL of your
-                  Home&nbsp;Assistant instance to continue.
-                </p>
-              `
-            : !this._instanceUrl
+          ${!this._instanceUrl && !changeRequestedFromRedirect
             ? html`
                 <p>
                   Configure My&nbsp;Home&nbsp;Assistant by entering the URL of

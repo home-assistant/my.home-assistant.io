@@ -52,6 +52,7 @@ const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
   if (instanceUrl === null) {
+    changingInstance = true;
     setTimeout(() => document.location.assign("/?change=1"), 100);
     return;
   }
@@ -96,7 +97,7 @@ const render = (showTroubleshooting: boolean) => {
   }
 
   (document.querySelector(
-    ".troubleshooting"
+    ".highlight"
   ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
 };
 
