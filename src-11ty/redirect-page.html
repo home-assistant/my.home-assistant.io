@@ -41,12 +41,23 @@ permalink: "redirect/{{ redirect.redirect }}/"
     position: relative;
     bottom: -3px;
   }
+  .troubleshooting {
+    display: none;
+    padding: 8px 16px;
+    background-color: #fff59d;
+  }
 </style>
 
 <div class="ha-card open-link-card">
   <h1 class="card-header">Open page in your Home Assistant?</h1>
   <div class="card-content">
     <p>You've been linked to the page that will {{ redirect.description }}.</p>
+  </div>
+
+  <div class="troubleshooting">
+    It looks like you came back to this page after you clicked the link. If the
+    link didn't work, make sure your instance URL below is correct and check
+    <a href="/faq#404">our troubleshooting steps</a>.
   </div>
 
   <div class="card-actions">

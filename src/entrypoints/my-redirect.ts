@@ -46,7 +46,9 @@ const createRedirectParams = (): string => {
   return `?${createSearchParam(userParams)}`;
 };
 
-const render = () => {
+let changingInstance = false;
+
+const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
   if (instanceUrl === null) {
@@ -83,13 +85,26 @@ const render = () => {
       ${svgPencil}
     </a>
   `;
+  changeInstanceEl.querySelector("a")!.addEventListener("click", () => {
+    changingInstance = true;
+  });
+
+  // When we were changing the instance, we're not going to mess with troubleshooting.
+  if (changingInstance) {
+    changingInstance = false;
+    return;
+  }
+
+  (document.querySelector(
+    ".troubleshooting"
+  ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
 };
 
-render();
+render(false);
 
 // For Safari/FF to handle history.back() after update instance URL
 window.onpageshow = (event) => {
   if (event.persisted) {
-    render();
+    render(true);
   }
 };
