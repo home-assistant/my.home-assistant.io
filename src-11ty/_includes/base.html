@@ -131,14 +131,12 @@ My Home Assistant
       }
 
       .ha-card h1.card-header {
-        margin: 0;
-        padding: 24px 16px 16px;
+        margin: 24px 16px 16px;
         display: block;
       }
 
       .ha-card .card-content {
         padding: 0 16px 16px;
-        margin-top: -8px;
       }
 
       .ha-card .card-content p:last-child {
@@ -150,6 +148,13 @@ My Home Assistant
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+      .highlight {
+        padding: 8px 16px;
+        background-color: #fff59d;
+      }
+      .highlight + .card-content {
+        margin-top: 16px;
       }
     </style>
     <script>
@@ -173,7 +178,7 @@ My Home Assistant
   </head>
   <body>
     <div class="layout">
-      <div class="ha-card">{{ content | safe }}</div>
+      {{ content | safe }}
       <div class="spacer"></div>
       <div class="footer">
         <a href="/">My Home Assistant</a> –

@@ -46,10 +46,13 @@ const createRedirectParams = (): string => {
   return `?${createSearchParam(userParams)}`;
 };
 
-const render = () => {
+let changingInstance = false;
+
+const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
   if (instanceUrl === null) {
+    changingInstance = true;
     setTimeout(() => document.location.assign("/?change=1"), 100);
     return;
   }
@@ -76,27 +79,33 @@ const render = () => {
     return;
   }
 
-  const layout = document.querySelector(".layout")!;
-
-  let changeInstanceEl = document.querySelector(".instance-footer");
-  if (!changeInstanceEl) {
-    changeInstanceEl = document.createElement("div");
-    changeInstanceEl.classList.add("instance-footer");
-  }
+  let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
     <a href="/?change=1">
       ${svgPencil}
     </a>
   `;
-  layout.insertBefore(changeInstanceEl, layout.querySelector(".spacer"));
+  changeInstanceEl.querySelector("a")!.addEventListener("click", () => {
+    changingInstance = true;
+  });
+
+  // When we were changing the instance, we're not going to mess with troubleshooting.
+  if (changingInstance) {
+    changingInstance = false;
+    return;
+  }
+
+  (document.querySelector(
+    ".highlight"
+  ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
 };
 
-render();
+render(false);
 
 // For Safari/FF to handle history.back() after update instance URL
 window.onpageshow = (event) => {
   if (event.persisted) {
-    render();
+    render(true);
   }
 };
