@@ -1,8 +1,25 @@
+{% comment %}
+<!-- prettier-ignore -->
+{% endcomment %}
+{%- if redirect -%}
+{% capture title %}Link to {{redirect.name}}{% endcapture %}
+{% capture description %}{{redirect.description | title }} in Home Assistant.{% endcapture %}
+{%- endif -%}
+{% capture full_title -%}
+{%- if title -%}
+{{ title }} – My Home Assistant
+{%- else -%}
+My Home Assistant
+{%- endif -%}
+{%- endcapture %}
+{% comment %}
+<!-- prettier-unignore -->
+{% endcomment %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>My Home Assistant</title>
+    <title>{{ full_title }}</title>
     <link rel="icon" href="/images/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <meta property="fb:app_id" content="338291289691179" />
@@ -10,15 +27,15 @@
     <meta property="og:site_name" content="My Home Assistant" />
     <meta property="og:url" content="https://my.home-assistant.io/" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="The portal to your home." />
+    <meta property="og:description" content="{{ description }}" />
     <meta
       property="og:image"
       content="https://my.home-assistant.io/images/favicon.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@home_assistant" />
-    <meta name="twitter:title" content="My Home Assistant" />
-    <meta name="twitter:description" content="The portal to your home." />
+    <meta name="twitter:title" content="{{ full_title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
     <meta
       name="twitter:image"
       content="https://my.home-assistant.io/images/favicon.png"
