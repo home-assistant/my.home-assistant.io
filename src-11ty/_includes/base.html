@@ -143,6 +143,10 @@ My Home Assistant
         margin-bottom: 0;
       }
 
+      .ha-card .card-content p:first-child {
+        margin-top: 0;
+      }
+
       .ha-card .card-actions {
         border-top: 1px solid #e8e8e8;
         display: flex;
@@ -191,5 +195,13 @@ My Home Assistant
         >
       </div>
     </div>
+    {% if javascript_source %}
+    <script>
+      {% comment %}
+      <!-- prettier-ignore -->
+      {% endcomment %}
+      {{ source[javascript_source] }}
+    </script>
+    {% endif %}
   </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 layout: base
+javascript_source: my-redirect.js
 pagination:
   data: redirects
   size: 1
@@ -69,5 +70,3 @@ permalink: "redirect/{{ redirect.redirect }}/"
 <script>
   window.redirect = {{ redirect | stringify }};
 </script>
-
-<script defer src="/js/{{ manifest['my-redirect.js'] }}"></script>

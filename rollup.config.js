@@ -35,7 +35,7 @@ export default [
   },
   output: {
     dir: "dist/js",
-    format: "es",
+    format: "iife",
     entryFileNames: production ? "[name]-[hash].js" : "[name].js",
   },
   plugins: plugins(true),

@@ -64,8 +64,10 @@ class MyIndex extends LitElement {
         <div class="card-content">
           ${!this._instanceUrl && !changeRequestedFromRedirect
             ? html`
-                Configure My&nbsp;Home&nbsp;Assistant by entering the URL of
-                your Home&nbsp;Assistant instance.
+                <p>
+                  Configure My&nbsp;Home&nbsp;Assistant by entering the URL of
+                  your Home&nbsp;Assistant instance.
+                </p>
               `
             : ""}
 
