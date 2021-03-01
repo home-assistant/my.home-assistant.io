@@ -76,20 +76,13 @@ const render = () => {
     return;
   }
 
-  const layout = document.querySelector(".layout")!;
-
-  let changeInstanceEl = document.querySelector(".instance-footer");
-  if (!changeInstanceEl) {
-    changeInstanceEl = document.createElement("div");
-    changeInstanceEl.classList.add("instance-footer");
-  }
+  let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
     <a href="/?change=1">
       ${svgPencil}
     </a>
   `;
-  layout.insertBefore(changeInstanceEl, layout.querySelector(".spacer"));
 };
 
 render();

@@ -8,7 +8,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
 ---
 
 <style>
-  .ha-card {
+  .open-link-card {
     min-height: 158px;
     display: flex;
     flex-direction: column;
@@ -43,15 +43,19 @@ permalink: "redirect/{{ redirect.redirect }}/"
   }
 </style>
 
-<h1 class="card-header">Open page in your Home Assistant?</h1>
-<div class="card-content">
-  <p>You've been linked to the page that will {{ redirect.description }}.</p>
+<div class="ha-card open-link-card">
+  <h1 class="card-header">Open page in your Home Assistant?</h1>
+  <div class="card-content">
+    <p>You've been linked to the page that will {{ redirect.description }}.</p>
+  </div>
+
+  <div class="card-actions">
+    <div></div>
+    <div class="fake-button open-link">OPEN LINK</div>
+  </div>
 </div>
 
-<div class="card-actions">
-  <div></div>
-  <div class="fake-button open-link">OPEN LINK</div>
-</div>
+<div class="instance-footer"></div>
 
 <script>
   window.redirect = {{ redirect | stringify }};
