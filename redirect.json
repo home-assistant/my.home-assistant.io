@@ -118,14 +118,9 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "integrations",
-    "name": "Integrations: Dashboard",
-    "description": "show your integrations",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "config_flow_start",
-    "name": "Integrations: Start a config flow",
+    "name": "Integrations: Add integration",
+    "badge": "Add Integration",
     "description": "start setting up a new integration",
     "introduced": "2021.3",
     "params": {
@@ -134,6 +129,12 @@
     "example": {
       "domain": "hue"
     }
+  },
+  {
+    "redirect": "integrations",
+    "name": "Integrations: Dashboard",
+    "description": "show your integrations",
+    "introduced": "2021.3"
   },
   {
     "redirect": "logbook",
