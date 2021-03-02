@@ -158,7 +158,7 @@
     "redirect": "lovelace_dashboards",
     "name": "Lovelace: Dashboards",
     "badge": "Lovelace Config",
-    "description": "show your Lovelace dashboards",
+    "description": "show your Lovelace dashboard config",
     "introduced": "2021.3"
   },
   {
