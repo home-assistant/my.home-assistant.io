@@ -3,6 +3,7 @@ import "@material/mwc-select";
 import "@material/mwc-textfield";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 import { repeat } from "lit-html/directives/repeat.js";
+import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 import copy from "clipboard-copy";
 import {
   customElement,
@@ -13,7 +14,8 @@ import {
 } from "lit-element";
 import redirects from "../../redirect.json";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
-import { Button } from "@material/mwc-button";
+import type { Button } from "@material/mwc-button";
+import { Redirect } from "../const";
 
 const prettify = (key: string) =>
   capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
@@ -36,18 +38,6 @@ const validateUrl = (value: string) => {
   return undefined;
 };
 
-const createBadge = (redirect: string) => `/badges/${redirect}.svg`;
-
-const createHTML = (redirect: string, url: string) =>
-  `<a href="${url}" target="_blank"><img src="https://my.home-assistant.io${createBadge(
-    redirect
-  )}" alt="My Home Assistant" /></a>`;
-
-const createMarkdown = (redirect: string, url: string) =>
-  `[![My Home Assistant](https://my.home-assistant.io${createBadge(
-    redirect
-  )})](${url})`;
-
 let initialRedirect;
 {
   const redirect = extractSearchParam("redirect");
@@ -61,7 +51,7 @@ let initialRedirect;
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
-  @internalProperty() _redirect = initialRedirect;
+  @internalProperty() _redirect: Redirect = initialRedirect;
 
   @internalProperty() _paramsValues = {};
 
@@ -70,6 +60,9 @@ class MyCreateLink extends LitElement {
   }
 
   protected render(): TemplateResult {
+    const badgeHTML = this._createHTML();
+    const badgeTemplate = unsafeHTML(badgeHTML);
+
     return html`
       <div class="card-content">
         <mwc-select
@@ -110,27 +103,29 @@ class MyCreateLink extends LitElement {
                 <mwc-button outlined @click=${this._copyURL}>
                   Copy URL
                 </mwc-button>
+
                 <h1>Markdown</h1>
                 <p>A beautiful linked badge in Markdown, for example, when
                 posting on our <a href="https://community.home-assistant.io"
                 target="_blank">Community Forum</a>.</p>
-                <a href=${this._url} target="_blank">
-                  <img src=${createBadge(this._redirect.redirect)}
-                /></a>
+
+                ${badgeTemplate}
+
                 <textarea rows="3" readonly @focus=${this._select}>
-${createMarkdown(this._redirect.redirect, this._url)}</textarea
+${this._createMarkdown()}</textarea
                 >
                 <mwc-button outlined @click=${this._copyMarkdown}>
                   Copy Markdown
                 </mwc-button>
+
                 <h1>HTML</h1>
-                <p>Our beautiful badge in HTML format, which can be used on,
+                <p>A beautiful badge in HTML format, which can be used on,
                 for example, your website or blog.</p>
-                <a href=${this._url} target="_blank">
-                  <img src=${createBadge(this._redirect.redirect)}
-                /></a>
+
+                ${badgeTemplate}
+
                 <textarea rows="3" readonly @focus=${this._select}>
-${createHTML(this._redirect.redirect, this._url)}</textarea
+${badgeHTML}</textarea
                 >
                 <mwc-button outlined @click=${this._copyHTML}>
                   Copy HTML
@@ -152,6 +147,8 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
   }
 
   private _itemSelected(ev) {
+    // Not sure why TS is complaining here
+    // @ts-expect-error
     this._redirect = redirects[ev.detail.index];
     this._paramsValues = {};
   }
@@ -160,7 +157,7 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
     const key = ev.currentTarget.key;
     let value = ev.target.value;
 
-    if (this._redirect.params[key] === "url") {
+    if (this._redirect.params![key] === "url") {
       const validationMessage = validateUrl(value);
       if (validationMessage) {
         ev.currentTarget.setCustomValidity(validationMessage);
@@ -190,17 +187,11 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
   }
 
   private _copyHTML(ev: Event) {
-    this._copy(
-      createHTML(this._redirect.redirect, this._url),
-      ev.currentTarget as Button
-    );
+    this._copy(this._createHTML(), ev.currentTarget as Button);
   }
 
   private _copyMarkdown(ev: Event) {
-    this._copy(
-      createMarkdown(this._redirect.redirect, this._url),
-      ev.currentTarget as Button
-    );
+    this._copy(this._createMarkdown(), ev.currentTarget as Button);
   }
 
   private async _copy(text: string, button: Button) {
@@ -224,6 +215,28 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
 
   private _copyFailure(err: Error) {
     alert(`Copying failed! Error: ${err.message}`);
+  }
+
+  private get _altText() {
+    return `Open your Home Assistant instance and ${this._redirect.description}.`;
+  }
+
+  private _createBadge() {
+    return `/badges/${this._redirect.redirect}.svg`;
+  }
+
+  private _createHTML() {
+    return `<a href="${
+      this._url
+    }" target="_blank"><img src="https://my.home-assistant.io${this._createBadge()}" alt="${
+      this._altText
+    }" /></a>`;
+  }
+
+  private _createMarkdown() {
+    return `[![${
+      this._altText
+    }](https://my.home-assistant.io${this._createBadge()})](${this._url})`;
   }
 
   private _select(ev) {
