@@ -102,9 +102,7 @@ class MyCreateLink extends LitElement {
                 Copy URL
               </mwc-button>
               <h1>Markdown</h1>
-              <a href=${this._url} target="_blank">
-                <img src=${createBadge(this._redirect.redirect)} />
-              </a>
+              <img src=${createBadge(this._redirect.redirect)} />
               <textarea rows="3" readonly @focus=${this._select}>
 ${createMarkdown(this._redirect.redirect, this._url)}</textarea
               >
