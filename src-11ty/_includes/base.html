@@ -197,13 +197,15 @@ My Home Assistant
         >
       </div>
     </div>
-    {% if javascript_source %}
+    {% if javascript_source %}{% if production %}
     <script>
       {% comment %}
       <!-- prettier-ignore -->
       {% endcomment %}
       {{ source[javascript_source] }}
     </script>
-    {% endif %}
+    {% else %}
+    <script src="/js/{{ javascript_source }}"></script>
+    {% endif %}{% endif %}
   </body>
 </html>
