@@ -72,11 +72,11 @@ function renderBadge({ leftWidth, rightWidth, height, accessibleText }, main) {
   const width = leftWidth + rightWidth;
 
   return `
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    width="${width}" 
-    height="${height}" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="${width}"
+    height="${height}"
     style="border-radius: 4px;"
     ${renderAriaAttributes({ accessibleText })}
   >
@@ -195,7 +195,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 redirects.forEach((redirect) => {
   const badge = myBadge({
-    message: redirect.badge || redirect.redirect.replace(/\_/g, " "),
+    message: redirect.badge || redirect.name,
   });
   fs.writeFileSync(
     path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`),

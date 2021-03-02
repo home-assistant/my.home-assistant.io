@@ -14,6 +14,7 @@
   {
     "redirect": "blueprints",
     "name": "Blueprints: Dashboard",
+    "badge": "Blueprints",
     "description": "show your blueprints",
     "introduced": "2021.3"
   },
@@ -33,7 +34,6 @@
   {
     "redirect": "config",
     "name": "Configuration",
-    "badge": "Configuration",
     "description": "show your configuration panel",
     "introduced": "2021.3"
   },
@@ -53,24 +53,28 @@
   {
     "redirect": "developer_events",
     "name": "Developer Tools: Events",
+    "badge": "Event Dev Tools",
     "description": "show your event developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_services",
     "name": "Developer Tools: Services",
+    "badge": "Service Dev Tools",
     "description": "show your service developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_states",
     "name": "Developer Tools: States",
+    "badge": "State Dev Tools",
     "description": "show your state developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_template",
     "name": "Developer Tools: Templates",
+    "badge": "Template Dev Tools",
     "description": "show your template developer tools",
     "introduced": "2021.3"
   },
@@ -107,6 +111,7 @@
   {
     "redirect": "cloud",
     "name": "Home Assistant Cloud",
+    "badge": "Cloud",
     "description": "show your Home Assistant Cloud configuration",
     "introduced": "2021.3",
     "component": "cloud"
@@ -133,6 +138,7 @@
   {
     "redirect": "integrations",
     "name": "Integrations: Dashboard",
+    "badge": "Integrations",
     "description": "show your integrations",
     "introduced": "2021.3"
   },
@@ -151,19 +157,21 @@
   {
     "redirect": "lovelace_dashboards",
     "name": "Lovelace: Dashboards",
+    "badge": "Lovelace",
     "description": "show your Lovelace dashboards",
     "introduced": "2021.3"
   },
   {
     "redirect": "lovelace_resources",
     "name": "Lovelace: Resources",
+    "badge": "Lovelace Resources",
     "description": "show your Lovelace resources",
     "introduced": "2021.3"
   },
   {
     "redirect": "config_mqtt",
     "name": "MQTT Configuration",
-    "badge": "MQTT Configuration",
+    "badge": "MQTT",
     "description": "show your MQTT configuration panel",
     "introduced": "2021.3"
   },
@@ -194,24 +202,28 @@
   {
     "redirect": "supervisor",
     "name": "Supervisor: Dashboard",
+    "badge": "Supervisor",
     "description": "show your Supervisor dashboard",
     "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "supervisor_info",
     "name": "Supervisor: Info",
+    "badge": "Supervisor Info",
     "description": "show your Supervisor system information",
     "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_logs",
     "name": "Supervisor: Logs",
+    "badge": "Supervisor Logs",
     "description": "show your Supervisor system logs",
     "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_addon",
     "name": "Supervisor: Show add-on",
+    "badge": "add-on",
     "description": "show the dashboard of a Supervisor add-on",
     "introduced": "supervisor-2021.02.10",
     "params": {
@@ -224,6 +236,7 @@
   {
     "redirect": "supervisor_snapshots",
     "name": "Supervisor: Snapshots",
+    "badge": "Snapshots",
     "description": "show your Supervisor snapshots",
     "introduced": "supervisor-2021.02.10"
   },
@@ -236,6 +249,7 @@
   {
     "redirect": "profile",
     "name": "User profile",
+    "badge": "Profile",
     "description": "show your Home Assistant user's profile",
     "introduced": "2021.3"
   },
@@ -248,14 +262,14 @@
   {
     "redirect": "config_zwave_js",
     "name": "Z-Wave JS Configuration",
-    "badge": "Z-Wave JS Configuration",
+    "badge": "Z-Wave JS",
     "description": "show your Z-Wave JS configuration panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "config_zha",
     "name": "ZHA Configuration",
-    "badge": "ZHA Configuration",
+    "badge": "ZHA",
     "description": "show your ZHA configuration panel",
     "introduced": "2021.3"
   },
