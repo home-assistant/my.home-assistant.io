@@ -186,41 +186,30 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
   }
 
   private async _copyURL(ev: Event) {
-    const target = ev.currentTarget as Button;
+    this._copy(this._url, ev.currentTarget as Button);
+  }
+
+  private _copyHTML(ev: Event) {
+    this._copy(
+      createHTML(this._redirect.redirect, this._url),
+      ev.currentTarget as Button
+    );
+  }
+
+  private _copyMarkdown(ev: Event) {
+    this._copy(
+      createMarkdown(this._redirect.redirect, this._url),
+      ev.currentTarget as Button
+    );
+  }
+
+  private async _copy(text: string, button: Button) {
     try {
-      await copy(this._url);
-      this._copySuccess(target);
+      await copy(text);
+      this._copySuccess(button);
     } catch (err) {
       this._copyFailure(err);
     }
-  }
-
-  private async _copyHTML(ev: Event) {
-    const target = ev.currentTarget as Button;
-    try {
-      await copy(createHTML(this._redirect.redirect, this._url));
-      this._copySuccess(target);
-    } catch (err) {
-      this._copyFailure(err);
-    }
-  }
-
-  private async _copyMarkdown(ev: Event) {
-    const target = ev.currentTarget as Button;
-    try {
-      await copy(createMarkdown(this._redirect.redirect, this._url));
-      this._copySuccess(target);
-    } catch (err) {
-      this._copyFailure(err);
-    }
-  }
-
-  private _select(ev) {
-    const input = ev.target;
-    // Safari fires focus too soon
-    setTimeout(() => {
-      input.select();
-    }, 1);
   }
 
   private _copySuccess(element: Button) {
@@ -239,6 +228,14 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
 
   private _copyFailure(err: Error) {
     alert(`Copying failed! Error: ${err.message}`);
+  }
+
+  private _select(ev) {
+    const input = ev.target;
+    // Safari fires focus too soon
+    setTimeout(() => {
+      input.select();
+    }, 1);
   }
 }
 
