@@ -18,7 +18,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("redirectExamplePath", function (redirect) {
     return `/redirect/${
       redirect.redirect
-    }${redirect.example ? `?${createSearchParam(redirect.example)}` : ""}`;
+    }/${redirect.example ? `?${createSearchParam(redirect.example)}` : ""}`;
   });
 
   eleventyConfig.addLiquidFilter("version", function (value) {
