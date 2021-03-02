@@ -163,6 +163,11 @@ My Home Assistant
       .highlight + .card-content {
         margin-top: 16px;
       }
+      _::-webkit-full-page-media,
+      _:future,
+      :root .footer {
+        padding-bottom: 120px;
+      }
     </style>
     <script>
       function check() {
@@ -197,13 +202,15 @@ My Home Assistant
         >
       </div>
     </div>
-    {% if javascript_source %}
+    {% if javascript_source %}{% if production %}
     <script>
       {% comment %}
       <!-- prettier-ignore -->
       {% endcomment %}
       {{ source[javascript_source] }}
     </script>
-    {% endif %}
+    {% else %}
+    <script src="/js/{{ javascript_source }}"></script>
+    {% endif %}{% endif %}
   </body>
 </html>
