@@ -215,12 +215,8 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
   private _copySuccess(element: Button) {
     const prevText = element.innerText;
     element.classList.add("success");
-    // @ts-ignore
-    element.rippleHandlers.startPress();
     element.innerText = "Copied!";
     setTimeout(() => {
-      // @ts-ignore
-      element.rippleHandlers.endPress();
       element.classList.remove("success");
       element.innerText = prevText;
     }, 1000);
