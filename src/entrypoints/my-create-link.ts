@@ -38,7 +38,7 @@ const validateUrl = (value: string) => {
 const createBadge = (redirect: string) => `/badges/${redirect}.svg`;
 
 const createHTML = (redirect: string, url: string) =>
-  `<a href="${url}" target="_blank"><img src="https://my.home-assistant.io${createBadge(
+  `<a href=${url} target="_blank"><img src="https://my.home-assistant.io${createBadge(
     redirect
   )}" alt="My Home Assistant" /></a>`;
 
