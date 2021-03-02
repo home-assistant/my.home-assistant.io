@@ -37,6 +37,11 @@ const validateUrl = (value: string) => {
 
 const createBadge = (redirect: string) => `/badges/${redirect}.svg`;
 
+const createHTML = (redirect: string, url: string) =>
+  `<a href="${url}" target="_blank"><img src="https://my.home-assistant.io${createBadge(
+    redirect
+  )}" alt="My Home Assistant" /></a>`;
+
 const createMarkdown = (redirect: string, url: string) =>
   `[![My Home Assistant](https://my.home-assistant.io${createBadge(
     redirect
@@ -97,18 +102,39 @@ class MyCreateLink extends LitElement {
         ${this.isValid
           ? html`
               <h1>Your URL</h1>
-              <input value=${this._url} readonly @focus=${this._select} />
-              <mwc-button outlined @click=${this._copyURL}>
-                Copy URL
-              </mwc-button>
-              <h1>Markdown</h1>
-              <img src=${createBadge(this._redirect.redirect)} />
-              <textarea rows="3" readonly @focus=${this._select}>
+                <p>A URL to share with others, for example, when chatting on
+                our <a href="https://www.home-assistant.io/join-chat"
+                target="_blank">Discord</a> chat server.</p>
+                <input value=${this._url} readonly @focus=${this._select} />
+                <mwc-button outlined @click=${this._copyURL}>
+                  Copy URL
+                </mwc-button>
+                <h1>Markdown</h1>
+                <p>A beautiful linked badge in Markdown, for example, when
+                posting on our <a href="https://community.home-assistant.io"
+                target="_blank">Community Forum</a>.</p>
+                <a href=${this._url} target="_blank">
+                  <img src=${createBadge(this._redirect.redirect)}
+                /></a>
+                <textarea rows="3" readonly @focus=${this._select}>
 ${createMarkdown(this._redirect.redirect, this._url)}</textarea
-              >
-              <mwc-button outlined @click=${this._copyMarkdown}>
-                Copy Markdown
-              </mwc-button>
+                >
+                <mwc-button outlined @click=${this._copyMarkdown}>
+                  Copy Markdown
+                </mwc-button>
+                <h1>HTML</h1>
+                <p>Our beautiful badge in HTML format, which can be used on,
+                for example, your website or blog.</p>
+                <a href=${this._url} target="_blank">
+                  <img src=${createBadge(this._redirect.redirect)}
+                /></a>
+                <textarea rows="3" readonly @focus=${this._select}>
+${createHTML(this._redirect.redirect, this._url)}</textarea
+                >
+                <mwc-button outlined @click=${this._copyHTML}>
+                  Copy HTML
+                </mwc-button>
+              </a>
             `
           : ""}
       </div>
@@ -160,6 +186,10 @@ ${createMarkdown(this._redirect.redirect, this._url)}</textarea
 
   private _copyURL() {
     copy(this._url);
+  }
+
+  private _copyHTML() {
+    copy(createHTML(this._redirect.redirect, this._url));
   }
 
   private _copyMarkdown() {
