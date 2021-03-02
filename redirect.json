@@ -157,7 +157,7 @@
   {
     "redirect": "lovelace_dashboards",
     "name": "Lovelace: Dashboards",
-    "badge": "Lovelace",
+    "badge": "Lovelace Config",
     "description": "show your Lovelace dashboards",
     "introduced": "2021.3"
   },
@@ -269,7 +269,7 @@
   {
     "redirect": "config_zha",
     "name": "ZHA Configuration",
-    "badge": "ZHA",
+    "badge": "Zigbee",
     "description": "show your ZHA configuration panel",
     "introduced": "2021.3"
   },
