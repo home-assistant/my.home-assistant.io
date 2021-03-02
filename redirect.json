@@ -27,7 +27,7 @@
       "blueprint_url": "url"
     },
     "example": {
-      "blueprint_url": "https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml"
+      "blueprint_url": "https://github.com/home-assistant/core/blob/master/homeassistant/components/automation/blueprints/motion_light.yaml"
     }
   },
   {
