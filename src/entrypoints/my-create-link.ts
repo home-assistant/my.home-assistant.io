@@ -13,6 +13,7 @@ import {
 } from "lit-element";
 import redirects from "../../redirect.json";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
+import { Button } from "@material/mwc-button";
 
 const prettify = (key: string) =>
   capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
@@ -184,16 +185,34 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
     }`;
   }
 
-  private _copyURL() {
-    copy(this._url);
+  private async _copyURL(ev: Event) {
+    const target = ev.currentTarget as Button;
+    try {
+      await copy(this._url);
+      this._copySuccess(target);
+    } catch (err) {
+      this._copyFailure(err);
+    }
   }
 
-  private _copyHTML() {
-    copy(createHTML(this._redirect.redirect, this._url));
+  private async _copyHTML(ev: Event) {
+    const target = ev.currentTarget as Button;
+    try {
+      await copy(createHTML(this._redirect.redirect, this._url));
+      this._copySuccess(target);
+    } catch (err) {
+      this._copyFailure(err);
+    }
   }
 
-  private _copyMarkdown() {
-    copy(createMarkdown(this._redirect.redirect, this._url));
+  private async _copyMarkdown(ev: Event) {
+    const target = ev.currentTarget as Button;
+    try {
+      await copy(createMarkdown(this._redirect.redirect, this._url));
+      this._copySuccess(target);
+    } catch (err) {
+      this._copyFailure(err);
+    }
   }
 
   private _select(ev) {
@@ -202,6 +221,24 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
     setTimeout(() => {
       input.select();
     }, 1);
+  }
+
+  private _copySuccess(element: Button) {
+    const prevText = element.innerText;
+    element.classList.add("success");
+    // @ts-ignore
+    element.rippleHandlers.startPress();
+    element.innerText = "Copied!";
+    setTimeout(() => {
+      // @ts-ignore
+      element.rippleHandlers.endPress();
+      element.classList.remove("success");
+      element.innerText = prevText;
+    }, 1000);
+  }
+
+  private _copyFailure(err: Error) {
+    alert(`Copying failed! Error: ${err.message}`);
   }
 }
 
