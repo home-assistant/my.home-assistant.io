@@ -185,7 +185,7 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
     }`;
   }
 
-  private async _copyURL(ev: Event) {
+  private _copyURL(ev: Event) {
     this._copy(this._url, ev.currentTarget as Button);
   }
 
