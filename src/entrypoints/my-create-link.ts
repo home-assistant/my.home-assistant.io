@@ -13,6 +13,7 @@ import {
 } from "lit-element";
 import redirects from "../../redirect.json";
 import { createSearchParam, extractSearchParam } from "../util/search-params";
+import { Button } from "@material/mwc-button";
 
 const prettify = (key: string) =>
   capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
@@ -184,16 +185,45 @@ ${createHTML(this._redirect.redirect, this._url)}</textarea
     }`;
   }
 
-  private _copyURL() {
-    copy(this._url);
+  private _copyURL(ev: Event) {
+    this._copy(this._url, ev.currentTarget as Button);
   }
 
-  private _copyHTML() {
-    copy(createHTML(this._redirect.redirect, this._url));
+  private _copyHTML(ev: Event) {
+    this._copy(
+      createHTML(this._redirect.redirect, this._url),
+      ev.currentTarget as Button
+    );
   }
 
-  private _copyMarkdown() {
-    copy(createMarkdown(this._redirect.redirect, this._url));
+  private _copyMarkdown(ev: Event) {
+    this._copy(
+      createMarkdown(this._redirect.redirect, this._url),
+      ev.currentTarget as Button
+    );
+  }
+
+  private async _copy(text: string, button: Button) {
+    try {
+      await copy(text);
+      this._copySuccess(button);
+    } catch (err) {
+      this._copyFailure(err);
+    }
+  }
+
+  private _copySuccess(element: Button) {
+    const prevText = element.innerText;
+    element.classList.add("success");
+    element.innerText = "Copied!";
+    setTimeout(() => {
+      element.classList.remove("success");
+      element.innerText = prevText;
+    }, 1000);
+  }
+
+  private _copyFailure(err: Error) {
+    alert(`Copying failed! Error: ${err.message}`);
   }
 
   private _select(ev) {
