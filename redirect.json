@@ -22,7 +22,7 @@
     "redirect": "blueprint_import",
     "name": "Blueprints: Start import",
     "badge": "Import Blueprint",
-    "description": "allow importing a blueprint",
+    "description": "show the blueprint import dialog with a specific blueprint pre-filled",
     "introduced": "2021.3",
     "params": {
       "blueprint_url": "url"
