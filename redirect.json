@@ -157,8 +157,8 @@
   {
     "redirect": "lovelace_dashboards",
     "name": "Lovelace UI: Dashboards",
-    "badge": "UI Config",
-    "description": "show your Lovelace UI dashboard config",
+    "badge": "UI Configuration",
+    "description": "show your Lovelace UI dashboard configuration",
     "introduced": "2021.3"
   },
   {
