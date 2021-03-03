@@ -156,16 +156,16 @@
   },
   {
     "redirect": "lovelace_dashboards",
-    "name": "Lovelace: Dashboards",
-    "badge": "Lovelace Config",
-    "description": "show your Lovelace dashboard config",
+    "name": "Lovelace UI: Dashboards",
+    "badge": "UI Config",
+    "description": "show your Lovelace UI dashboard config",
     "introduced": "2021.3"
   },
   {
     "redirect": "lovelace_resources",
-    "name": "Lovelace: Resources",
-    "badge": "Lovelace Resources",
-    "description": "show your Lovelace resources",
+    "name": "Lovelace UI: Resources",
+    "badge": "UI Resources",
+    "description": "show your Lovelace UI resources",
     "introduced": "2021.3"
   },
   {
