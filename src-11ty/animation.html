@@ -5,18 +5,20 @@ description: Promotional animation
 ---
 
 <style>
-  .ha-card {
+  .canvas {
+    margin-top: 30px;
+    background-color: white;
     width: 500px;
     max-width: initial;
     height: 315px;
     display: flex;
     align-items: center;
-    border-radius: 0;
+    border: 3px solid black;
   }
   .ensure-loaded {
     margin-top: 300px;
   }
-  .ha-card img {
+  .canvas img {
     height: 50px;
     margin-left: 28px;
     opacity: 0;
@@ -30,29 +32,20 @@ description: Promotional animation
     border-radius: 4px;
   }
 
-  .ha-card.active img {
-    opacity: 1;
+  .visible {
+    opacity: 1 !important;
   }
 </style>
 
-<div class="ha-card">
-  <img />
-</div>
+<div class="canvas"></div>
 
-<div class="ensure-loaded">
-  <p><button>Start</button></p>
-  {% for redirect in redirects %}
-  <img src="/badges/{{redirect.redirect}}.svg" />
-  {% endfor %}
-  <img src="/badges/homeassistant.svg" />
-</div>
+<div class="ensure-loaded"></div>
 
 <script>
   const badges = [
     {% for redirect in redirects -%}
     "{{redirect.redirect}}",
     {% endfor -%}
-    "homeassistant",
   ];
 
   // These will be promoted to the front.
@@ -66,36 +59,92 @@ description: Promotional animation
     "developer_call_service",
     "cloud",
     "history",
+    "supervisor_addon",
+    "blueprint_import",
+  ];
+
+  const exclude = [
+    "developer_events",
+    "developer_services",
+    "developer_states",
+    "developer_template",
+    "supervisor_info",
+    "supervisor_logs",
+    "supervisor_snapshots",
   ];
 
   const parsedBadges = promote.concat(
-    badges.filter(
-      item =>
-        !promote.includes(item) &&
-        // Filter out the dev tools as they take up a lot of
-        // badges at the beginning and they all look the same.
-        (!item.startsWith("developer_") ||
-        item === "developer_call_service")
-    )
+    badges.filter(item => !promote.includes(item) && !exclude.includes(item))
   );
 
   const sleep = time => new Promise(resolve => setTimeout(resolve, time));
   const badgeUrl = name => `/badges/${name}.svg`;
 
-  document.querySelector('button').addEventListener('click', async () => {
-    const card = document.querySelector('.ha-card');
-    const img = document.querySelector('img');
-    img.src = badgeUrl(parsedBadges[0])
+  // preload
+  const parts = [`<p>
+    <button class='each'>Start each</button>
+    <button class='fade'>Start fade</button>
+  </p>`];
+  for (const badge of parsedBadges) {
+    parts.push(`<img src="${badgeUrl(badge)}">`);
+  }
+  parts.push(`<img src="${badgeUrl("homeassistant")}">`)
+  document.querySelector('.ensure-loaded').innerHTML = parts.join('\n');
 
-    card.classList.add('active');
-    await sleep(1000);
+  const canvas = document.querySelector('.canvas');
 
-    for (let i = 1; i < parsedBadges.length; i++) {
+  document.querySelector('button.each').addEventListener('click', async () => {
+    const eachBadges = [...parsedBadges, "homeassistant"];
+
+    canvas.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = badgeUrl(eachBadges[0])
+    canvas.append(img);
+    await sleep(0);
+
+    // Make first badge visible
+    img.classList.add('visible');
+    await sleep(1300); // 1s fade in + some time
+
+    // Loop through badges
+    for (let i = 1; i < eachBadges.length; i++) {
+      img.src = badgeUrl(eachBadges[i]);
       const time = i < 10 ? 500 : 150;
       await sleep(time);
-      img.src = badgeUrl(parsedBadges[i]);
     }
+  });
 
+  document.querySelector('button.fade').addEventListener('click', async () => {
+    canvas.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = badgeUrl(parsedBadges[0])
+    canvas.append(img);
+    await sleep(0);
 
+    // Make first badge visible
+    img.classList.add('visible');
+    await sleep(1300); // 1s fade in + some time
+
+    const haBadge = document.createElement('img')
+    haBadge.src = badgeUrl("homeassistant");
+    haBadge.style.position = 'absolute';
+    haBadge.style.top = `${img.offsetTop}px`;
+    canvas.append(haBadge);
+    const fadeInHaBadgeIndex =  parsedBadges.length - 7;
+    const fadeOutBadgesIndex =  parsedBadges.length - 5;
+
+    // Loop through badges
+    for (let i = 1; i < parsedBadges.length; i++) {
+      img.src = badgeUrl(parsedBadges[i]);
+
+      if (i == fadeInHaBadgeIndex) {
+        haBadge.classList.add('visible');
+      } else if (i == fadeOutBadgesIndex) {
+        img.classList.remove('visible');
+      }
+
+      const time = i < 10 ? 500 : 150;
+      await sleep(time);
+    }
   });
 </script>
