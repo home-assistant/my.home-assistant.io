@@ -19,7 +19,16 @@ layout: base
 
 <div class="ha-card">
   <div class="hero">
-    <img src="/images/header.jpg" alt="Decorative header" />
+    <img
+      srcset="
+        /images/header-360.jpg   360w,
+        /images/header-720.jpg   720w,
+        /images/header-500.jpg   500w,
+        /images/header-1000.jpg 1000w
+      "
+      src="/images/header-500.jpg"
+      alt="Decorative header"
+    />
   </div>
 
   {{ content | safe }}
