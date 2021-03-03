@@ -1,0 +1,100 @@
+---
+layout: base
+title: Animation
+description: Promotional animation
+---
+
+<style>
+  .ha-card {
+    width: 600px;
+    height: 315px;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+  }
+  .ensure-loaded {
+    margin-top: 300px;
+  }
+  .ha-card img {
+    height: 50px;
+    margin-left: 28px;
+    opacity: 0;
+    transition: all 1s;
+    box-shadow: var(
+      --ha-card-box-shadow,
+      0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12),
+      0 3px 1px -2px rgba(0, 0, 0, 0.2)
+    );
+    border-radius: 4px;
+  }
+
+  .ha-card.active img {
+    opacity: 1;
+  }
+</style>
+
+<div class="ha-card">
+  <img />
+</div>
+
+<div class="ensure-loaded">
+  <p><button>Start</button></p>
+  {% for redirect in redirects %}
+  <img src="/badges/{{redirect.redirect}}.svg" />
+  {% endfor %}
+  <img src="/badges/homeassistant.svg" />
+</div>
+
+<script>
+  const badges = [
+    {% for redirect in redirects -%}
+    "{{redirect.redirect}}",
+    {% endfor -%}
+    "homeassistant",
+  ];
+
+  // These will be promoted to the front.
+  const promote = [
+    "automations",
+    "scripts",
+    "integrations",
+    "devices",
+    "entities",
+    "config_flow_start",
+    "developer_call_service",
+    "cloud",
+    "history",
+  ];
+
+  const parsedBadges = promote.concat(
+    badges.filter(
+      item =>
+        !promote.includes(item) &&
+        // Filter out the dev tools as they take up a lot of
+        // badges at the beginning and they all look the same.
+        (!item.startsWith("developer_") ||
+        item === "developer_call_service")
+    )
+  );
+
+  const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+  const badgeUrl = name => `/badges/${name}.svg`;
+
+  document.querySelector('button').addEventListener('click', async () => {
+    const card = document.querySelector('.ha-card');
+    const img = document.querySelector('img');
+    img.src = badgeUrl(parsedBadges[0])
+
+    card.classList.add('active');
+    await sleep(1000);
+
+    for (let i = 1; i < parsedBadges.length; i++) {
+      const time = i < 10 ? 500 : 150;
+      await sleep(time);
+      img.src = badgeUrl(parsedBadges[i]);
+    }
+
+
+  });
+</script>
