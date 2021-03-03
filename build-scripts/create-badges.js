@@ -193,12 +193,18 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-redirects.forEach((redirect) => {
+function writeBadge(filename, message) {
   const badge = myBadge({
-    message: redirect.badge || redirect.name,
+    message,
   });
   fs.writeFileSync(
-    path.resolve(OUTPUT_DIR, `${redirect.redirect}.svg`),
+    path.resolve(OUTPUT_DIR, `${filename}.svg`),
     optimize(badge).data
   );
-});
+}
+
+redirects.forEach((redirect) =>
+  writeBadge(redirect.redirect, redirect.badge || redirect.name)
+);
+
+writeBadge("homeassistant", "Home Assistant");
