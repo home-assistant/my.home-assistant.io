@@ -91,7 +91,7 @@ function myBadge({
   logo,
   logoWidth,
   logoPadding = 4,
-  color = "#41BDF5",
+  color = "#03a9f4",
   labelColor,
 }) {
   // For the Badge is styled in all caps. Convert to caps here so widths can
