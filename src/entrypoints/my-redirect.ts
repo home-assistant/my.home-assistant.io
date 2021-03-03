@@ -70,7 +70,7 @@ const render = (showTroubleshooting: boolean) => {
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
   document.querySelector(".open-link")!.outerHTML = `
-    <a href="${redirectUrl}" class='open-link'>
+    <a href="${redirectUrl}" class='open-link' rel="noopener">
       <mwc-button>Open Link</mwc-button>
     </a>
   `;
