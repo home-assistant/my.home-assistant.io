@@ -97,10 +97,12 @@ description: Promotional animation
     const eachBadges = [...parsedBadges, "homeassistant"];
 
     canvas.innerHTML = '';
+    await sleep(500);
+
     const img = document.createElement('img');
     img.src = badgeUrl(eachBadges[0])
     canvas.append(img);
-    await sleep(0);
+    await sleep(1);
 
     // Make first badge visible
     img.classList.add('visible');
@@ -116,10 +118,12 @@ description: Promotional animation
 
   document.querySelector('button.fade').addEventListener('click', async () => {
     canvas.innerHTML = '';
+    await sleep(500);
+
     const img = document.createElement('img');
     img.src = badgeUrl(parsedBadges[0])
     canvas.append(img);
-    await sleep(0);
+    await sleep(1);
 
     // Make first badge visible
     img.classList.add('visible');
