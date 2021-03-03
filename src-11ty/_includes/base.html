@@ -47,7 +47,6 @@ My Home Assistant
       html {
         font-size: 16px;
         line-height: 1.5em;
-        height: 100vh;
       }
 
       body {
@@ -55,7 +54,6 @@ My Home Assistant
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-weight: 400;
-        height: 100%;
         margin: 0;
         padding: 0;
         background-color: #e5e5e5;
@@ -67,9 +65,18 @@ My Home Assistant
 
       .layout {
         display: flex;
-        min-height: 100%;
         align-items: center;
         flex-direction: column;
+        min-height: 100vh;
+        min-height: var(--vh, 100vh);
+        min-height: stretch;
+      }
+
+      /* Only works in Safari */
+      @supports (-webkit-hyphens: none) {
+        .layout {
+          min-height: -webkit-fill-available;
+        }
       }
 
       .spacer {
@@ -80,15 +87,10 @@ My Home Assistant
         color: var(--mdc-theme-primary);
       }
 
-      .layout {
-        display: flex;
-        flex-direction: column;
-      }
-
       .footer {
         text-align: center;
         font-size: 14px;
-        padding: 8px 0 24px;
+        padding: 16px 16px 15px;
         color: var(--secondary-text-color);
       }
       .footer a {
@@ -163,11 +165,6 @@ My Home Assistant
       .highlight + .card-content {
         margin-top: 16px;
       }
-      _::-webkit-full-page-media,
-      _:future,
-      :root .footer {
-        padding-bottom: 120px;
-      }
       @font-face {
         font-family: "Roboto";
         src: local("Roboto Regular"), local("Roboto-Regular"),
@@ -192,6 +189,27 @@ My Home Assistant
         alert(
           "We are sorry, but this browser is not supported. We advise you to upgrade your browser."
         );
+      }
+      if (
+        !CSS.supports("min-height: stretch") &&
+        !CSS.supports("-webkit-hyphens")
+      ) {
+        let prevClientHeight;
+        const setViewportProperty = (doc) => {
+          const clientHeight = doc.clientHeight;
+          if (clientHeight === prevClientHeight) {
+            return;
+          }
+          requestAnimationFrame(() => {
+            // min 1 to prevent Firefox from removing the address bar
+            doc.style.setProperty("--vh", clientHeight - 1 + "px");
+            prevClientHeight = clientHeight;
+          });
+        };
+        window.addEventListener("resize", () =>
+          setViewportProperty(document.documentElement)
+        );
+        setViewportProperty(document.documentElement);
       }
     </script>
   </head>
