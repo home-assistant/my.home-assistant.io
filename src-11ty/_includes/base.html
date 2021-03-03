@@ -191,6 +191,7 @@ My Home Assistant
         );
       }
       if (
+        window.orientation !== undefined &&
         !CSS.supports("min-height: stretch") &&
         !CSS.supports("-webkit-hyphens")
       ) {
