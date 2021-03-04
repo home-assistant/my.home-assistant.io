@@ -143,6 +143,8 @@ ${badgeHTML}</textarea
         `mwc-textfield[data-key=${key}]`
       ) as TextField;
 
+      inputEl.value = passedInData[key];
+
       if (msg) {
         inputEl.updateComplete.then(() => {
           inputEl.setCustomValidity(msg);
@@ -150,7 +152,6 @@ ${badgeHTML}</textarea
         });
       } else {
         paramValues[key] = passedInData[key];
-        inputEl.value = passedInData[key];
       }
     }
 
