@@ -214,6 +214,13 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
+    "redirect": "supervisor_addon_store",
+    "name": "Supervisor: Add-on Store",
+    "badge": "Supervisor Add-on Store",
+    "description": "show the Supervisor add-on store",
+    "introduced": "supervisor-2021.02.12"
+  },
+  {
     "redirect": "supervisor_logs",
     "name": "Supervisor: Logs",
     "badge": "Supervisor Logs",
@@ -231,6 +238,19 @@
     },
     "example": {
       "addon": "core_samba"
+    }
+  },
+  {
+    "redirect": "supervisor_add_addon_repository",
+    "name": "Supervisor: Add-on Repository",
+    "badge": "Add-on Repository",
+    "description": "Add a add-on repository URL",
+    "introduced": "supervisor-2021.03.4",
+    "params": {
+      "repository_url": "url"
+    },
+    "example": {
+      "repository_url": "https://github.com/hassio-addons/repository"
     }
   },
   {
