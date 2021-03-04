@@ -200,6 +200,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "supervisor_addon_store",
+    "name": "Supervisor: Add-on Store",
+    "badge": "Add-on Store",
+    "description": "show the Supervisor add-on store",
+    "introduced": "supervisor-2021.02.12"
+  },
+  {
     "redirect": "supervisor",
     "name": "Supervisor: Dashboard",
     "badge": "Supervisor",
