@@ -201,8 +201,8 @@
   },
   {
     "redirect": "supervisor_add_addon_repository",
-    "name": "Supervisor: Add-on Repository",
-    "badge": "Add-on Repository",
+    "name": "Supervisor: Add add-on Repository",
+    "badge": "Add Add-on Repository",
     "description": "show the add add-on repository dialog with a specific repository URL pre-filled",
     "introduced": "supervisor-2021.03.4",
     "params": {
