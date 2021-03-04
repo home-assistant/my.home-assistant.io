@@ -1,29 +1,19 @@
-import { sanitizeUrl } from "@braintree/sanitize-url";
 import "@material/mwc-button";
 import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
 import { getInstanceUrl } from "../data/instance_info";
-import { Redirect, ParamType } from "../const";
+import { Redirect } from "../const";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
+import { validateParam } from "../util/validate";
 
 declare global {
   interface Window {
     redirect: Redirect;
   }
 }
-
-const checkParamType = (type: ParamType, value: string) => {
-  if (type === "string") {
-    return true;
-  }
-  if (type === "url") {
-    return value && value === sanitizeUrl(value);
-  }
-  return false;
-};
 
 const createRedirectParams = (): string => {
   const redirectParams = window.redirect.params;
@@ -39,7 +29,7 @@ const createRedirectParams = (): string => {
     throw Error("Wrong parameters");
   }
   Object.entries(redirectParams || {}).forEach(([key, type]) => {
-    if (!userParams[key] || !checkParamType(type, userParams[key])) {
+    if (!userParams[key] || validateParam(type, userParams[key])) {
       throw Error("Wrong parameters");
     }
   });
