@@ -13,12 +13,14 @@ import "../components/my-instance-info";
 import { getInstanceUrl } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 import { MyUrlInputMain } from "../components/my-url-input";
+import { isMobile } from "../data/is_mobile";
 
-const changeRequestedFromRedirect = extractSearchParamsObject().change === "1";
-
+const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 @customElement("my-index")
 class MyIndex extends LitElement {
-  @internalProperty() private _updatingUrl = changeRequestedFromRedirect;
+  @internalProperty() private _updatingUrl = Boolean(
+    changeRequestedFromRedirect
+  );
 
   @internalProperty() private _instanceUrl!: string | null;
 
@@ -32,6 +34,13 @@ class MyIndex extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
+    if (isMobile && changeRequestedFromRedirect) {
+      const parts = decodeURIComponent(changeRequestedFromRedirect).split("?");
+      const params = new URLSearchParams(parts[1]);
+      params.append("mobile", "1");
+      const url = `/redirect/${parts[0]}?${params.toString()}`;
+      setTimeout(() => document.location.assign(url), 100);
+    }
     this._instanceUrl = getInstanceUrl();
     if (!this._updatingUrl && !this._instanceUrl) {
       this._updatingUrl = true;
@@ -106,7 +115,9 @@ class MyIndex extends LitElement {
     this._error = undefined;
 
     if (changeRequestedFromRedirect) {
-      history.back();
+      window.location.replace(
+        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}`
+      );
     } else {
       this._updatingUrl = false;
       this._instanceUrl = instanceUrl;

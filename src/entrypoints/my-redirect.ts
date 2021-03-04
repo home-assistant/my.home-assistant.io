@@ -41,12 +41,6 @@ let changingInstance = false;
 const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
-  if (instanceUrl === null) {
-    changingInstance = true;
-    setTimeout(() => document.location.assign("/?change=1"), 100);
-    return;
-  }
-
   let params;
   try {
     params = createRedirectParams();
@@ -57,6 +51,19 @@ const render = (showTroubleshooting: boolean) => {
     );
     return;
   }
+
+  if (instanceUrl === null) {
+    changingInstance = true;
+    setTimeout(
+      () =>
+        document.location.assign(
+          `/?redirect=${encodeURIComponent(window.redirect.redirect + params)}`
+        ),
+      100
+    );
+    return;
+  }
+
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
   document.querySelector(".open-link")!.outerHTML = `
