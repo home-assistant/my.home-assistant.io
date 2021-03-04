@@ -200,13 +200,7 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "supervisor_addon_store",
-    "name": "Supervisor: Add-on Store",
-    "badge": "Add-on Store",
-    "description": "show the Supervisor add-on store",
-    "introduced": "supervisor-2021.02.12"
-  },
-  {    "redirect": "supervisor_add_addon_repository",
+    "redirect": "supervisor_add_addon_repository",
     "name": "Supervisor: Add Repository",
     "badge": "Add Repository",
     "description": "show the add add-on repository dialog with a specific repository URL pre-filled",
@@ -216,7 +210,15 @@
     },
     "example": {
       "repository_url": "https://github.com/hassio-addons/repository"
-    }},
+    }
+  },
+  {
+    "redirect": "supervisor_addon_store",
+    "name": "Supervisor: Add-on Store",
+    "badge": "Add-on Store",
+    "description": "show the Supervisor add-on store",
+    "introduced": "supervisor-2021.02.12"
+  },
   {
     "redirect": "supervisor",
     "name": "Supervisor: Dashboard",
