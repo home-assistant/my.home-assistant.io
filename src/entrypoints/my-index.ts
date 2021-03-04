@@ -58,6 +58,9 @@ class MyIndex extends LitElement {
   }
 
   protected render(): TemplateResult {
+    if (isMobile && !changeRequestedFromRedirect) {
+      return html`<div class="card-content">No valid redirect provided</div>`;
+    }
     if (this._updatingUrl) {
       return html`
         ${changeRequestedFromRedirect && !this._instanceUrl
