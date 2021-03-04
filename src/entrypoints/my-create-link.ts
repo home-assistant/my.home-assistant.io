@@ -1,6 +1,7 @@
 import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
+import type { TextField } from "@material/mwc-textfield";
 import { repeat } from "lit-html/directives/repeat.js";
 import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 import copy from "clipboard-copy";
@@ -134,14 +135,22 @@ ${badgeHTML}</textarea
     for (const [key, paramType] of Object.entries(
       this._redirect.params || {}
     )) {
-      if (
-        key in passedInData &&
-        passedInData[key] &&
-        validateParam(paramType as ParamType, passedInData[key]) === undefined
-      ) {
+      if (!(key in passedInData) || !passedInData[key]) {
+        continue;
+      }
+      const msg = validateParam(paramType as ParamType, passedInData[key]);
+      const inputEl = this.querySelector(
+        `mwc-textfield[data-key=${key}]`
+      ) as TextField;
+
+      if (msg) {
+        inputEl.updateComplete.then(() => {
+          inputEl.setCustomValidity(msg);
+          inputEl.reportValidity();
+        });
+      } else {
         paramValues[key] = passedInData[key];
-        (this.querySelector(`*[data-key=${key}]`) as any).value =
-          passedInData[key];
+        inputEl.value = passedInData[key];
       }
     }
 
