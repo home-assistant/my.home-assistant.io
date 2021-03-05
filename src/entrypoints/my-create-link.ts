@@ -1,7 +1,7 @@
 import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
-import { sanitizeUrl } from "@braintree/sanitize-url";
+import type { TextField } from "@material/mwc-textfield";
 import { repeat } from "lit-html/directives/repeat.js";
 import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 import copy from "clipboard-copy";
@@ -13,9 +13,13 @@ import {
   TemplateResult,
 } from "lit-element";
 import redirects from "../../redirect.json";
-import { createSearchParam, extractSearchParam } from "../util/search-params";
+import {
+  createSearchParam,
+  extractSearchParamsObject,
+} from "../util/search-params";
 import type { Button } from "@material/mwc-button";
-import { Redirect } from "../const";
+import { ParamType, Redirect } from "../const";
+import { validateParam } from "../util/validate";
 
 const prettify = (key: string) =>
   capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
@@ -23,26 +27,13 @@ const prettify = (key: string) =>
 const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-const validateUrl = (value: string) => {
-  if (value.indexOf("://") === -1) {
-    return "Please enter your full URL, including the protocol part (https://).";
-  }
-  try {
-    new URL(value);
-  } catch (err) {
-    return "Invalid URL.";
-  }
-  if (value !== sanitizeUrl(value)) {
-    return "Invalid URL.";
-  }
-  return undefined;
-};
-
 let initialRedirect;
+const passedInData = extractSearchParamsObject();
 {
-  const redirect = extractSearchParam("redirect");
-  if (redirect) {
-    initialRedirect = redirects.find((info) => info.redirect === redirect);
+  if (passedInData.redirect) {
+    initialRedirect = redirects.find(
+      (info) => info.redirect === passedInData.redirect
+    );
   }
   if (!initialRedirect) {
     initialRedirect = redirects[0];
@@ -52,7 +43,6 @@ let initialRedirect;
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
   @internalProperty() _redirect: Redirect = initialRedirect;
-
   @internalProperty() _paramsValues = {};
 
   protected createRenderRoot() {
@@ -89,7 +79,7 @@ class MyCreateLink extends LitElement {
             required
             validationMessage="This field is required"
             .label=${prettify(key)}
-            .key=${key}
+            data-key="${key}"
             @input=${this._paramChanged}
           ></mwc-textfield>`
         )}
@@ -137,6 +127,37 @@ ${badgeHTML}</textarea
     `;
   }
 
+  protected firstUpdated(props) {
+    super.firstUpdated(props);
+
+    const paramValues = {};
+
+    for (const [key, paramType] of Object.entries(
+      this._redirect.params || {}
+    )) {
+      if (!(key in passedInData) || !passedInData[key]) {
+        continue;
+      }
+      const msg = validateParam(paramType as ParamType, passedInData[key]);
+      const inputEl = this.querySelector(
+        `mwc-textfield[data-key=${key}]`
+      ) as TextField;
+
+      inputEl.value = passedInData[key];
+
+      if (msg) {
+        inputEl.updateComplete.then(() => {
+          inputEl.setCustomValidity(msg);
+          inputEl.reportValidity();
+        });
+      } else {
+        paramValues[key] = passedInData[key];
+      }
+    }
+
+    this._paramsValues = paramValues;
+  }
+
   private get isValid() {
     return (
       this._redirect &&
@@ -147,23 +168,26 @@ ${badgeHTML}</textarea
   }
 
   private _itemSelected(ev) {
-    // Not sure why TS is complaining here
+    const newRedirect = redirects[ev.detail.index];
+
+    if (newRedirect.redirect === this._redirect.redirect) {
+      return;
+    }
+
     // @ts-expect-error
-    this._redirect = redirects[ev.detail.index];
+    this._redirect = newRedirect;
     this._paramsValues = {};
   }
 
   private _paramChanged(ev) {
-    const key = ev.currentTarget.key;
+    const key = ev.currentTarget.dataset.key;
     let value = ev.target.value;
 
-    if (this._redirect.params![key] === "url") {
-      const validationMessage = validateUrl(value);
-      if (validationMessage) {
-        ev.currentTarget.setCustomValidity(validationMessage);
-        ev.currentTarget.reportValidity();
-        value = undefined;
-      }
+    const validationMessage = validateParam(this._redirect.params![key], value);
+    if (validationMessage) {
+      ev.currentTarget.setCustomValidity(validationMessage);
+      ev.currentTarget.reportValidity();
+      value = undefined;
     }
 
     if (value) {
