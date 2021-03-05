@@ -34,7 +34,7 @@ class MyChangeUrl extends LitElement {
       const parts = decodeURIComponent(changeRequestedFromRedirect).split("?");
       const params = new URLSearchParams(parts[1]);
       params.append("mobile", "1");
-      const url = `/redirect/${parts[0]}?${params.toString()}`;
+      const url = `/redirect/${parts[0]}/?${params.toString()}`;
       setTimeout(() => document.location.assign(url), 100);
     }
     this._instanceUrl = getInstanceUrl();
@@ -65,9 +65,9 @@ class MyChangeUrl extends LitElement {
         ? html`
             <div class="highlight">
               You are seeing this page because you have been linked to a page in
-              your Home&nbsp;Assistant instance but have not configured
-              My&nbsp;Home&nbsp;Assistant. Enter the URL of your
-              Home&nbsp;Assistant instance to continue.
+              your Home Assistant instance but have not configured My Home
+              Assistant. Enter the URL of your Home Assistant instance to
+              continue.
             </div>
           `
         : ""}
@@ -75,8 +75,8 @@ class MyChangeUrl extends LitElement {
         ${!this._instanceUrl && !changeRequestedFromRedirect
           ? html`
               <p>
-                Configure My&nbsp;Home&nbsp;Assistant by entering the URL of
-                your Home&nbsp;Assistant instance.
+                Configure My Home Assistant by entering the URL of your Home
+                Assistant instance.
               </p>
             `
           : ""}
@@ -105,7 +105,7 @@ class MyChangeUrl extends LitElement {
 
     if (changeRequestedFromRedirect) {
       window.location.assign(
-        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}`
+        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}/`
       );
     } else {
       history.back();
