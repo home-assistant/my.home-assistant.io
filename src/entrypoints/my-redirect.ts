@@ -52,20 +52,20 @@ const render = (showTroubleshooting: boolean) => {
     params = createRedirectParams();
   } catch (err) {
     alert("Invalid parameters given.");
-    document.location.assign(
-      `/create-link?redirect=${window.redirect.redirect}`
-    );
+    if (!isMobile) {
+      document.location.assign(
+        `/create-link?redirect=${window.redirect.redirect}`
+      );
+    }
     return;
   }
 
   if (instanceUrl === null) {
     changingInstance = true;
-    setTimeout(
-      () =>
-        document.location.assign(
-          `/?redirect=${encodeURIComponent(window.redirect.redirect + params)}`
-        ),
-      100
+    document.location.assign(
+      `/redirect/_change/?redirect=${encodeURIComponent(
+        window.redirect.redirect + params
+      )}`
     );
     return;
   }
@@ -87,7 +87,7 @@ const render = (showTroubleshooting: boolean) => {
   let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
-    <a href="/?change=1">
+    <a href="/redirect/_change">
       ${svgPencil}
     </a>
   `;

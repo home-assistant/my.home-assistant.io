@@ -1,0 +1,52 @@
+---
+layout: base_card_with_hero
+javascript_source: my-change-url.js
+permalink: "redirect/_change/"
+description: Change the URL of your Home Assistant instance.
+---
+
+<style>
+  .instance-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 16px;
+    align-items: center;
+    line-break: anywhere;
+  }
+  .instance-header {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    line-height: 1em;
+  }
+  .error {
+    color: #db4437;
+    font-weight: bold;
+  }
+  button.empty {
+    display: inline-flex;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  button.empty:active,
+  button.empty:focus {
+    outline: none;
+  }
+</style>
+
+<h1 class="card-header">My Home Assistant</h1>
+<div class="card-content">Change your URL</div>
+
+<my-change-url>
+  <div class="instance-info">
+    <div>
+      <div class="instance-header">HOME ASSISTANT INSTANCE</div>
+      Loading...
+    </div>
+  </div>
+</my-change-url>
