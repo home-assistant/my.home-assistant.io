@@ -6,47 +6,27 @@ description: Change the URL of your Home Assistant instance.
 ---
 
 <style>
-  .instance-info {
+  .card-content.placeholder {
+    min-height: 176px;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 0 16px 16px;
-    align-items: center;
-    line-break: anywhere;
-  }
-  .instance-header {
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    font-size: 12px;
-    line-height: 1em;
   }
   .error {
     color: #db4437;
     font-weight: bold;
   }
-  button.empty {
-    display: inline-flex;
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-  }
-  button.empty:active,
-  button.empty:focus {
-    outline: none;
-  }
 </style>
 
 <h1 class="card-header">My Home Assistant</h1>
-<div class="card-content">Change your URL</div>
 
 <my-change-url>
-  <div class="instance-info">
-    <div>
-      <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-      Loading...
-    </div>
+  <div class="card-content placeholder">
+    <p>
+      Configure My Home Assistant by entering the URL of your Home Assistant
+      instance.
+    </p>
+    <p>Note: This URL is only stored in your browser.</p>
   </div>
 </my-change-url>
