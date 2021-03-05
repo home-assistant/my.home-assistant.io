@@ -19,6 +19,12 @@ const createRedirectParams = (): string => {
   const redirectParams = window.redirect.params;
   const userParams = extractSearchParamsObject();
   delete userParams.mobile;
+  delete userParams.dclid;
+  delete userParams.fbclid;
+  delete userParams.gclid;
+  delete userParams.gclsrc;
+  delete userParams.msclkid;
+  delete userParams.zanpid;
 
   if (!redirectParams && !Object.keys(userParams).length) {
     return "";
