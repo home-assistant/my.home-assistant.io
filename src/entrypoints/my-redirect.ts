@@ -66,6 +66,8 @@ const render = (showTroubleshooting: boolean) => {
   `;
 
   if (isMobile) {
+    (document.querySelector(".footer") as HTMLDivElement).style.display =
+      "none";
     return;
   }
 
