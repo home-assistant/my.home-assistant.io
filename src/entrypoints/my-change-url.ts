@@ -16,6 +16,7 @@ import { MyUrlInputMain } from "../components/my-url-input";
 import { isMobile } from "../data/is_mobile";
 
 const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
+
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
   @internalProperty() private _instanceUrl!: string | null;
