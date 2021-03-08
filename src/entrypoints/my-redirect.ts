@@ -18,28 +18,17 @@ declare global {
 const createRedirectParams = (): string => {
   const redirectParams = window.redirect.params;
   const userParams = extractSearchParamsObject();
-  delete userParams.mobile;
-  delete userParams.dclid;
-  delete userParams.fbclid;
-  delete userParams.gclid;
-  delete userParams.gclsrc;
-  delete userParams.msclkid;
-  delete userParams.zanpid;
-
-  if (!redirectParams && !Object.keys(userParams).length) {
+  if (!redirectParams) {
     return "";
   }
-  if (
-    Object.keys(redirectParams || {}).length !== Object.keys(userParams).length
-  ) {
-    throw Error("Wrong parameters");
-  }
-  Object.entries(redirectParams || {}).forEach(([key, type]) => {
+  const params = {};
+  Object.entries(redirectParams).forEach(([key, type]) => {
     if (!userParams[key] || validateParam(type, userParams[key])) {
       throw Error("Wrong parameters");
     }
+    params[key] = userParams[key];
   });
-  return `?${createSearchParam(userParams)}`;
+  return `?${createSearchParam(params)}`;
 };
 
 let changingInstance = false;

@@ -19,7 +19,7 @@ const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
-  @internalProperty() private _instanceUrl!: string | null;
+  @internalProperty() private _instanceUrl = getInstanceUrl();
 
   @internalProperty() private _error?: string;
 
@@ -38,7 +38,6 @@ class MyChangeUrl extends LitElement {
       const url = `/redirect/${parts[0]}/?${params.toString()}`;
       setTimeout(() => document.location.assign(url), 100);
     }
-    this._instanceUrl = getInstanceUrl();
     if (isMobile) {
       (document.querySelector(".footer") as HTMLDivElement).style.display =
         "none";
