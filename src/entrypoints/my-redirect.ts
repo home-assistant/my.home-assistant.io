@@ -18,22 +18,17 @@ declare global {
 const createRedirectParams = (): string => {
   const redirectParams = window.redirect.params;
   const userParams = extractSearchParamsObject();
-  delete userParams.mobile;
-
-  if (!redirectParams && !Object.keys(userParams).length) {
+  if (!redirectParams) {
     return "";
   }
-  if (
-    Object.keys(redirectParams || {}).length !== Object.keys(userParams).length
-  ) {
-    throw Error("Wrong parameters");
-  }
-  Object.entries(redirectParams || {}).forEach(([key, type]) => {
+  const params = {};
+  Object.entries(redirectParams).forEach(([key, type]) => {
     if (!userParams[key] || validateParam(type, userParams[key])) {
       throw Error("Wrong parameters");
     }
+    params[key] = userParams[key];
   });
-  return `?${createSearchParam(userParams)}`;
+  return `?${createSearchParam(params)}`;
 };
 
 let changingInstance = false;
@@ -41,22 +36,29 @@ let changingInstance = false;
 const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
-  if (instanceUrl === null) {
-    changingInstance = true;
-    setTimeout(() => document.location.assign("/?change=1"), 100);
-    return;
-  }
-
   let params;
   try {
     params = createRedirectParams();
   } catch (err) {
     alert("Invalid parameters given.");
+    if (!isMobile) {
+      document.location.assign(
+        `/create-link?redirect=${window.redirect.redirect}`
+      );
+    }
+    return;
+  }
+
+  if (instanceUrl === null) {
+    changingInstance = true;
     document.location.assign(
-      `/create-link?redirect=${window.redirect.redirect}`
+      `/redirect/_change/?redirect=${encodeURIComponent(
+        window.redirect.redirect + params
+      )}`
     );
     return;
   }
+
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
   document.querySelector(".open-link")!.outerHTML = `
@@ -74,7 +76,7 @@ const render = (showTroubleshooting: boolean) => {
   let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
-    <a href="/?change=1">
+    <a href="/redirect/_change">
       ${svgPencil}
     </a>
   `;

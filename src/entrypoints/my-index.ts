@@ -11,14 +11,10 @@ import {
 import "../components/my-url-input";
 import "../components/my-instance-info";
 import { getInstanceUrl } from "../data/instance_info";
-import { extractSearchParamsObject } from "../util/search-params";
 import { MyUrlInputMain } from "../components/my-url-input";
-
-const changeRequestedFromRedirect = extractSearchParamsObject().change === "1";
-
 @customElement("my-index")
 class MyIndex extends LitElement {
-  @internalProperty() private _updatingUrl = changeRequestedFromRedirect;
+  @internalProperty() private _updatingUrl = false;
 
   @internalProperty() private _instanceUrl!: string | null;
 
@@ -51,22 +47,12 @@ class MyIndex extends LitElement {
   protected render(): TemplateResult {
     if (this._updatingUrl) {
       return html`
-        ${changeRequestedFromRedirect && !this._instanceUrl
-          ? html`
-              <div class="highlight">
-                You are seeing this page because you have been linked to a page
-                in your Home&nbsp;Assistant instance but have not configured
-                My&nbsp;Home&nbsp;Assistant. Enter the URL of your
-                Home&nbsp;Assistant instance to continue.
-              </div>
-            `
-          : ""}
         <div class="card-content">
-          ${!this._instanceUrl && !changeRequestedFromRedirect
+          ${!this._instanceUrl
             ? html`
                 <p>
-                  Configure My&nbsp;Home&nbsp;Assistant by entering the URL of
-                  your Home&nbsp;Assistant instance.
+                  Configure My Home Assistant by entering the URL of your Home
+                  Assistant instance.
                 </p>
               `
             : ""}
@@ -104,13 +90,8 @@ class MyIndex extends LitElement {
     }
 
     this._error = undefined;
-
-    if (changeRequestedFromRedirect) {
-      history.back();
-    } else {
-      this._updatingUrl = false;
-      this._instanceUrl = instanceUrl;
-    }
+    this._updatingUrl = false;
+    this._instanceUrl = instanceUrl;
   }
 }
 

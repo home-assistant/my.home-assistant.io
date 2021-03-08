@@ -1,0 +1,33 @@
+---
+layout: base_card_with_hero
+javascript_source: my-change-url.js
+permalink: "redirect/_change/"
+description: Change the URL of your Home Assistant instance.
+---
+
+<style>
+  .card-content.placeholder {
+    min-height: 176px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .error {
+    color: #db4437;
+    font-weight: bold;
+  }
+</style>
+
+<h1 class="card-header">My Home Assistant</h1>
+
+<my-change-url>
+  <div class="card-content placeholder">
+    <p>
+      Configure My Home Assistant by entering the URL of your Home Assistant
+      instance.
+    </p>
+    <p>Loading...</p>
+    <p>Note: This URL is only stored in your browser.</p>
+  </div>
+</my-change-url>
