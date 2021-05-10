@@ -8,25 +8,28 @@
     "precommit-redirect": "node build-scripts/sort-redirects.js && git add redirect.json",
     "precommit-badges": "node build-scripts/create-badges.js && git add public/badges"
   },
-  "pre-commit": ["precommit-redirect", "precommit-badges"],
+  "pre-commit": [
+    "precommit-redirect",
+    "precommit-badges"
+  ],
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy": "^0.12.1",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
     "@rollup/plugin-typescript": "^8.1.1",
     "anafanafo": "^2.0.0",
     "gulp": "^4.0.2",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "require-dir": "^1.2.0",
     "rollup": "^2.38.5",
     "rollup-plugin-terser": "^7.0.2",
     "serve": "^11.3.2",
     "svgo": "^2.2.0",
-    "typescript": "^4.1.3",
-    "pre-commit": "^1.2.2"
+    "typescript": "^4.1.3"
   },
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.0",
