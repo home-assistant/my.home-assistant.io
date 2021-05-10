@@ -1,5 +1,18 @@
 [
   {
+    "redirect": "supervisor_ingress",
+    "name": "Add-on: Ingress",
+    "badge": "Ingress",
+    "description": "Open the ingress URL of a Supervisor add-on",
+    "introduced": "supervisor-2021.05.0",
+    "params": {
+      "addon": "string"
+    },
+    "example": {
+      "addon": "core_ssh"
+    }
+  },
+  {
     "redirect": "areas",
     "name": "Areas",
     "description": "show your areas",
@@ -232,19 +245,6 @@
     "badge": "Supervisor Info",
     "description": "show your Supervisor system information",
     "introduced": "supervisor-2021.02.12"
-  },
-  {
-    "redirect": "supervisor_ingress",
-    "name": "Supervisor: Ingress",
-    "badge": "Ingress",
-    "description": "Open the ingress URL of a Supervisor add-on",
-    "introduced": "supervisor-2021.05.0",
-    "params": {
-      "addon": "string"
-    },
-    "example": {
-      "addon": "core_ssh"
-    }
   },
   {
     "redirect": "supervisor_logs",
