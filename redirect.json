@@ -2,7 +2,7 @@
   {
     "redirect": "supervisor_ingress",
     "name": "Add-on: Ingress",
-    "badge": "Ingress",
+    "badge": "Add-on: Ingress",
     "description": "Open the ingress URL of a Supervisor add-on",
     "introduced": "supervisor-2021.05.0",
     "params": {
