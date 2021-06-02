@@ -8,7 +8,7 @@ import {
   html,
   LitElement,
   TemplateResult,
-  internalProperty,
+  state,
   property,
   query,
 } from "lit-element";
@@ -21,7 +21,7 @@ const HASS_URL = "hassUrl";
 export class MyUrlInputMain extends LitElement {
   @property() public value?: string;
 
-  @internalProperty() private _error?: string | TemplateResult;
+  @state() private _error?: string | TemplateResult;
 
   @query("mwc-textfield", true) private _textfield!: TextField;
 

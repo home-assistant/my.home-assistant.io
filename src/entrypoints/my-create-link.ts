@@ -8,7 +8,7 @@ import copy from "clipboard-copy";
 import {
   customElement,
   html,
-  internalProperty,
+  state,
   LitElement,
   TemplateResult,
 } from "lit-element";
@@ -42,8 +42,8 @@ const passedInData = extractSearchParamsObject();
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
-  @internalProperty() _redirect: Redirect = initialRedirect;
-  @internalProperty() _paramsValues = {};
+  @state() _redirect: Redirect = initialRedirect;
+  @state() _paramsValues = {};
 
   protected createRenderRoot() {
     return this;
