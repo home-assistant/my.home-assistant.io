@@ -1,5 +1,18 @@
 [
   {
+    "redirect": "supervisor_addon",
+    "name": "Add-on: Dashboard",
+    "badge": "add-on",
+    "description": "show the dashboard of a Supervisor add-on",
+    "introduced": "supervisor-2021.02.10",
+    "params": {
+      "addon": "string"
+    },
+    "example": {
+      "addon": "core_samba"
+    }
+  },
+  {
     "redirect": "supervisor_ingress",
     "name": "Add-on: Ingress",
     "badge": "Add-on: Ingress",
@@ -252,19 +265,6 @@
     "badge": "Supervisor Logs",
     "description": "show your Supervisor system logs",
     "introduced": "supervisor-2021.02.12"
-  },
-  {
-    "redirect": "supervisor_addon",
-    "name": "Supervisor: Show add-on",
-    "badge": "add-on",
-    "description": "show the dashboard of a Supervisor add-on",
-    "introduced": "supervisor-2021.02.10",
-    "params": {
-      "addon": "string"
-    },
-    "example": {
-      "addon": "core_samba"
-    }
   },
   {
     "redirect": "supervisor_snapshots",

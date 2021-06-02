@@ -36,7 +36,8 @@ const passedInData = extractSearchParamsObject();
     );
   }
   if (!initialRedirect) {
-    initialRedirect = redirects[0];
+    // Select first one without params so we show the output
+    initialRedirect = redirects.find((info) => info.params === undefined);
   }
 }
 
