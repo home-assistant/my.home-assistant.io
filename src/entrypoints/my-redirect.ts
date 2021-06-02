@@ -49,13 +49,13 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
+  const changeUrl = `/redirect/_change/?redirect=${encodeURIComponent(
+    window.redirect.redirect + "/" + params
+  )}`;
+
   if (instanceUrl === null) {
     changingInstance = true;
-    document.location.assign(
-      `/redirect/_change/?redirect=${encodeURIComponent(
-        window.redirect.redirect + params
-      )}`
-    );
+    document.location.assign(changeUrl);
     return;
   }
 
@@ -76,7 +76,7 @@ const render = (showTroubleshooting: boolean) => {
   let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
     <b>Your instance URL:</b> ${instanceUrl}
-    <a href="/redirect/_change">
+    <a href="${changeUrl}">
       ${svgPencil}
     </a>
   `;
