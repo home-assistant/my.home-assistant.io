@@ -103,9 +103,10 @@ class MyChangeUrl extends LitElement {
 
     if (changeRequestedFromRedirect) {
       window.location.assign(
-        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}/`
+        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}`
       );
     } else {
+      // Shouldn't happen, but keep it as fallback
       history.back();
     }
   }
