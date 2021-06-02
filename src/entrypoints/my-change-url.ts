@@ -4,7 +4,7 @@ import {
   html,
   LitElement,
   TemplateResult,
-  internalProperty,
+  state,
   query,
   PropertyValues,
 } from "lit-element";
@@ -19,9 +19,9 @@ const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
-  @internalProperty() private _instanceUrl = getInstanceUrl();
+  @state() private _instanceUrl = getInstanceUrl();
 
-  @internalProperty() private _error?: string;
+  @state() private _error?: string;
 
   @query("my-url-input") private _urlInput?: MyUrlInputMain;
 

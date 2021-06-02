@@ -4,7 +4,7 @@ import {
   html,
   LitElement,
   TemplateResult,
-  internalProperty,
+  state,
   query,
   PropertyValues,
 } from "lit-element";
@@ -14,11 +14,11 @@ import { getInstanceUrl } from "../data/instance_info";
 import { MyUrlInputMain } from "../components/my-url-input";
 @customElement("my-index")
 class MyIndex extends LitElement {
-  @internalProperty() private _updatingUrl = false;
+  @state() private _updatingUrl = false;
 
-  @internalProperty() private _instanceUrl!: string | null;
+  @state() private _instanceUrl!: string | null;
 
-  @internalProperty() private _error?: string;
+  @state() private _error?: string;
 
   @query("my-url-input") private _urlInput?: MyUrlInputMain;
 
