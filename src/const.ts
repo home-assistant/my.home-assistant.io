@@ -6,6 +6,7 @@ export type ParamType = "url" | "string";
 
 export interface Redirect {
   redirect: string;
+  deprecated?: boolean;
   name: string;
   badge?: string;
   description: string;
