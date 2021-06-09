@@ -41,6 +41,8 @@ const passedInData = extractSearchParamsObject();
   }
 }
 
+const filteredRedirects = redirects.filter(redirect => !redirect.deprecated)
+
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
   @state() _redirect: Redirect = initialRedirect;
@@ -63,7 +65,7 @@ class MyCreateLink extends LitElement {
           naturalMenuWidth
           @selected=${this._itemSelected}
         >
-          ${redirects.map(
+          ${filteredRedirects.map(
             (redirect) =>
               html`<mwc-list-item
                 .selected=${this._redirect?.redirect === redirect.redirect}
@@ -169,7 +171,7 @@ ${badgeHTML}</textarea
   }
 
   private _itemSelected(ev) {
-    const newRedirect = redirects[ev.detail.index];
+    const newRedirect = filteredRedirects[ev.detail.index];
 
     if (newRedirect.redirect === this._redirect.redirect) {
       return;
@@ -253,7 +255,7 @@ ${badgeHTML}</textarea
   private _createHTML() {
     return `<a href="${
       this._url
-    }" target="_blank"><img src="https://my.home-assistant.io${this._createBadge()}" alt="${
+    }" target="_blank"><img src="${window.location.origin}${this._createBadge()}" alt="${
       this._altText
     }" /></a>`;
   }
