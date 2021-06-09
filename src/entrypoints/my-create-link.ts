@@ -41,11 +41,12 @@ const passedInData = extractSearchParamsObject();
   }
 }
 
+const filteredRedirects = redirects.filter(redirect => !redirect.deprecated)
+
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
   @state() _redirect: Redirect = initialRedirect;
   @state() _paramsValues = {};
-  @state() _filteredRedirects = redirects
 
   protected createRenderRoot() {
     return this;
@@ -64,7 +65,7 @@ class MyCreateLink extends LitElement {
           naturalMenuWidth
           @selected=${this._itemSelected}
         >
-          ${this._filteredRedirects.map(
+          ${filteredRedirects.map(
             (redirect) =>
               html`<mwc-list-item
                 .selected=${this._redirect?.redirect === redirect.redirect}
@@ -158,7 +159,6 @@ ${badgeHTML}</textarea
     }
 
     this._paramsValues = paramValues;
-    this._filteredRedirects = redirects.filter(redirect => !redirect.deprecated)
   }
 
   private get isValid() {
@@ -171,7 +171,7 @@ ${badgeHTML}</textarea
   }
 
   private _itemSelected(ev) {
-    const newRedirect = this._filteredRedirects[ev.detail.index];
+    const newRedirect = filteredRedirects[ev.detail.index];
 
     if (newRedirect.redirect === this._redirect.redirect) {
       return;
