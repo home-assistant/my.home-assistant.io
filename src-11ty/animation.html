@@ -1,0 +1,152 @@
+---
+layout: base
+title: Animation
+description: Promotional animation
+---
+
+<style>
+  .canvas {
+    margin-top: 30px;
+    background-color: #fafafa;
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+    border: 3px solid black;
+  }
+  .ensure-loaded {
+    margin-top: 30px;
+  }
+  .canvas img {
+    height: 180px;
+    margin-left: 325px;
+    opacity: 0;
+    transition: all 1s;
+    box-shadow: 0 20px 20px 0 rgb(0 0 0 / 14%), 0 10px 50px 0 rgb(0 0 0 / 12%),
+      0 3px 10px -20px rgb(0 0 0 / 20%);
+    border-radius: 20px;
+  }
+  .layout {
+    min-width: 1930px;
+  }
+
+  .visible {
+    opacity: 1 !important;
+  }
+</style>
+
+<div class="canvas"></div>
+
+<div class="ensure-loaded"></div>
+
+<script>
+  const badges = [
+    {% for redirect in redirects -%}
+    "{{redirect.redirect}}",
+    {% endfor -%}
+  ];
+
+  // These will be promoted to the front.
+  const promote = [
+    "automations",
+    "scripts",
+    "integrations",
+    "devices",
+    "entities",
+    "config_flow_start",
+    "developer_call_service",
+    "cloud",
+    "history",
+    "supervisor_addon",
+    "blueprint_import",
+  ];
+
+  const exclude = [
+    "developer_events",
+    "developer_services",
+    "developer_states",
+    "developer_template",
+    "supervisor_info",
+    "supervisor_logs",
+    "supervisor_snapshots",
+  ];
+
+  const parsedBadges = promote.concat(
+    badges.filter(item => !promote.includes(item) && !exclude.includes(item))
+  );
+
+  const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+  const badgeUrl = name => `/badges/${name}.svg`;
+
+  // preload
+  const parts = [`<p>
+    <button class='each'>Start each</button>
+    <button class='fade'>Start fade</button>
+  </p>`];
+  for (const badge of parsedBadges) {
+    parts.push(`<img src="${badgeUrl(badge)}">`);
+  }
+  parts.push(`<img src="${badgeUrl("homeassistant")}">`)
+  document.querySelector('.ensure-loaded').innerHTML = parts.join('\n');
+
+  const canvas = document.querySelector('.canvas');
+
+  document.querySelector('button.each').addEventListener('click', async () => {
+    const eachBadges = [...parsedBadges, "homeassistant"];
+
+    canvas.innerHTML = '';
+    await sleep(500);
+
+    const img = document.createElement('img');
+    img.src = badgeUrl(eachBadges[0])
+    canvas.append(img);
+    await sleep(1);
+
+    // Make first badge visible
+    img.classList.add('visible');
+    await sleep(1300); // 1s fade in + some time
+
+    // Loop through badges
+    for (let i = 1; i < eachBadges.length; i++) {
+      img.src = badgeUrl(eachBadges[i]);
+      const time = i < 10 ? 500 : 150;
+      await sleep(time);
+    }
+  });
+
+  document.querySelector('button.fade').addEventListener('click', async () => {
+    canvas.innerHTML = '';
+    await sleep(500);
+
+    const img = document.createElement('img');
+    img.src = badgeUrl(parsedBadges[0])
+    canvas.append(img);
+    await sleep(1);
+
+    // Make first badge visible
+    img.classList.add('visible');
+    await sleep(1300); // 1s fade in + some time
+
+    const haBadge = document.createElement('img')
+    haBadge.src = badgeUrl("homeassistant");
+    haBadge.style.position = 'absolute';
+    haBadge.style.top = `${img.offsetTop}px`;
+    canvas.append(haBadge);
+    const fadeInHaBadgeIndex =  parsedBadges.length - 7;
+    const fadeOutBadgesIndex =  parsedBadges.length - 3;
+
+    // Loop through badges
+    for (let i = 1; i < parsedBadges.length; i++) {
+      img.src = badgeUrl(parsedBadges[i]);
+
+      if (i == fadeInHaBadgeIndex) {
+        haBadge.classList.add('visible');
+      } else if (i == fadeOutBadgesIndex) {
+        img.classList.remove('visible');
+      }
+
+      const time = i < 10 ? 500 : 150;
+      await sleep(time);
+    }
+  });
+</script>
