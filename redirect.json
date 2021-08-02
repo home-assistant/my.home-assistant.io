@@ -113,7 +113,7 @@
   {
     "redirect": "config_energy",
     "name": "Energy Configuration",
-    "badge": "Energy ConfigurationConfiguration",
+    "badge": "Energy Configuration",
     "description": "show your Energy configuration panel",
     "introduced": "2021.8"
   },
