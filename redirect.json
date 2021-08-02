@@ -113,14 +113,14 @@
   {
     "redirect": "config_energy",
     "name": "Energy Configuration",
-    "badge": "Energy",
+    "badge": "Energy ConfigurationConfiguration",
     "description": "show your Energy configuration panel",
     "introduced": "2021.8"
   },
   {
     "redirect": "energy",
     "name": "Energy Panel",
-    "badge": "Energy",
+    "badge": "Energy Panel",
     "description": "show your Energy panel",
     "introduced": "2021.8"
   },
