@@ -111,17 +111,17 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "energy",
+    "name": "Energy",
+    "badge": "Energy",
+    "description": "show your Energy panel",
+    "introduced": "2021.8"
+  },
+  {
     "redirect": "config_energy",
     "name": "Energy Configuration",
     "badge": "Energy Configuration",
     "description": "show your Energy configuration panel",
-    "introduced": "2021.8"
-  },
-  {
-    "redirect": "energy",
-    "name": "Energy Panel",
-    "badge": "Energy Panel",
-    "description": "show your Energy panel",
     "introduced": "2021.8"
   },
   {
