@@ -260,6 +260,21 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
+    "redirect": "supervisor_snapshots",
+    "deprecated": true,
+    "name": "Supervisor: Backups",
+    "badge": "Backups",
+    "description": "Deprecated, use 'supervisor_backups' instead",
+    "introduced": "supervisor-2021.02.10"
+  },
+  {
+    "redirect": "supervisor_backups",
+    "name": "Supervisor: Backups",
+    "badge": "Backups",
+    "description": "show your Supervisor backups",
+    "introduced": "supervisor-2021.08.1"
+  },
+  {
     "redirect": "supervisor",
     "name": "Supervisor: Dashboard",
     "badge": "Supervisor",
@@ -279,13 +294,6 @@
     "badge": "Supervisor Logs",
     "description": "show your Supervisor system logs",
     "introduced": "supervisor-2021.02.12"
-  },
-  {
-    "redirect": "supervisor_snapshots",
-    "name": "Supervisor: Snapshots",
-    "badge": "Snapshots",
-    "description": "show your Supervisor snapshots",
-    "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "tags",
