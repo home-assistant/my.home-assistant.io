@@ -272,7 +272,7 @@
     "name": "Supervisor: Backups",
     "badge": "Backups",
     "description": "show your Supervisor backups",
-    "introduced": "supervisor-2021.06.3"
+    "introduced": "supervisor-2021.08.1"
   },
   {
     "redirect": "supervisor",
