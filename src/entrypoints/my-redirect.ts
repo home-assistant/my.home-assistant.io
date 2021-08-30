@@ -90,9 +90,8 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  (document.querySelector(
-    ".highlight"
-  ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
+  (document.querySelector(".highlight") as HTMLDivElement).style.display =
+    showTroubleshooting ? "block" : "none";
 };
 
 render(false);
