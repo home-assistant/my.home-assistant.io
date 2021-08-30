@@ -41,7 +41,7 @@ const passedInData = extractSearchParamsObject();
   }
 }
 
-const filteredRedirects = redirects.filter(redirect => !redirect.deprecated)
+const filteredRedirects = redirects.filter((redirect) => !redirect.deprecated);
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
@@ -226,7 +226,7 @@ ${badgeHTML}</textarea
       await copy(text);
       this._copySuccess(button);
     } catch (err) {
-      this._copyFailure(err);
+      this._copyFailure(err as Error);
     }
   }
 
@@ -253,11 +253,9 @@ ${badgeHTML}</textarea
   }
 
   private _createHTML() {
-    return `<a href="${
-      this._url
-    }" target="_blank"><img src="${window.location.origin}${this._createBadge()}" alt="${
-      this._altText
-    }" /></a>`;
+    return `<a href="${this._url}" target="_blank"><img src="${
+      window.location.origin
+    }${this._createBadge()}" alt="${this._altText}" /></a>`;
   }
 
   private _createMarkdown() {
