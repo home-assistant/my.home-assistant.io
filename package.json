@@ -35,7 +35,7 @@
     "@braintree/sanitize-url": "^5.0.2",
     "@material/mwc-button": "^0.21.0",
     "@material/mwc-select": "^0.21.0",
-    "@material/mwc-textfield": "^0.21.0",
+    "@material/mwc-textfield": "^0.25.1",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^6.0.2",
     "lit-element": "^2.5.1"
