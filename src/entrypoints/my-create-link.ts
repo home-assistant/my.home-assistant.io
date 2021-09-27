@@ -2,16 +2,11 @@ import "@material/mwc-button";
 import "@material/mwc-select";
 import "@material/mwc-textfield";
 import type { TextField } from "@material/mwc-textfield";
-import { repeat } from "lit-html/directives/repeat.js";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
+import { repeat } from "lit/directives/repeat.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import copy from "clipboard-copy";
-import {
-  customElement,
-  html,
-  state,
-  LitElement,
-  TemplateResult,
-} from "lit-element";
+import { html, LitElement, TemplateResult } from "lit";
+import { customElement, state } from "lit/decorators.js";
 import redirects from "../../redirect.json";
 import {
   createSearchParam,
@@ -41,7 +36,7 @@ const passedInData = extractSearchParamsObject();
   }
 }
 
-const filteredRedirects = redirects.filter(redirect => !redirect.deprecated)
+const filteredRedirects = redirects.filter((redirect) => !redirect.deprecated);
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
@@ -49,6 +44,9 @@ class MyCreateLink extends LitElement {
   @state() _paramsValues = {};
 
   protected createRenderRoot() {
+    while (this.lastChild) {
+      this.removeChild(this.lastChild);
+    }
     return this;
   }
 
@@ -226,7 +224,7 @@ ${badgeHTML}</textarea
       await copy(text);
       this._copySuccess(button);
     } catch (err) {
-      this._copyFailure(err);
+      this._copyFailure(err as Error);
     }
   }
 
@@ -253,11 +251,9 @@ ${badgeHTML}</textarea
   }
 
   private _createHTML() {
-    return `<a href="${
-      this._url
-    }" target="_blank"><img src="${window.location.origin}${this._createBadge()}" alt="${
-      this._altText
-    }" /></a>`;
+    return `<a href="${this._url}" target="_blank"><img src="${
+      window.location.origin
+    }${this._createBadge()}" alt="${this._altText}" /></a>`;
   }
 
   private _createMarkdown() {

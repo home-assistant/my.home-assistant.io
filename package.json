@@ -33,11 +33,14 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.2",
-    "@material/mwc-button": "^0.21.0",
-    "@material/mwc-select": "^0.21.0",
-    "@material/mwc-textfield": "^0.21.0",
+    "@material/mwc-button": "^0.25.1",
+    "@material/mwc-select": "^0.25.1",
+    "@material/mwc-textfield": "^0.25.1",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^6.0.2",
-    "lit-element": "^2.5.1"
+    "lit": "^2.0.0"
+  },
+  "resolutions": {
+    "@lit/reactive-element": "1.0.0"
   }
 }

@@ -1,17 +1,8 @@
 import "@material/mwc-button";
 import "@material/mwc-textfield";
 import { TextField } from "@material/mwc-textfield";
-import {
-  css,
-  CSSResult,
-  customElement,
-  html,
-  LitElement,
-  TemplateResult,
-  state,
-  property,
-  query,
-} from "lit-element";
+import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
+import { customElement, state, query } from "lit/decorators.js";
 import { DEFAULT_HASS_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
 
@@ -19,7 +10,7 @@ const HASS_URL = "hassUrl";
 
 @customElement("my-url-input")
 export class MyUrlInputMain extends LitElement {
-  @property() public value?: string;
+  @state() public value?: string;
 
   @state() private _error?: string | TemplateResult;
 
