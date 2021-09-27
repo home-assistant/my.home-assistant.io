@@ -1,13 +1,6 @@
 import "@material/mwc-button";
-import {
-  customElement,
-  html,
-  LitElement,
-  TemplateResult,
-  state,
-  query,
-  PropertyValues,
-} from "lit-element";
+import { html, LitElement, TemplateResult, PropertyValues } from "lit";
+import { state, query, customElement } from "lit/decorators.js";
 import "../components/my-url-input";
 import "../components/my-instance-info";
 import { getInstanceUrl } from "../data/instance_info";
@@ -26,6 +19,9 @@ class MyChangeUrl extends LitElement {
   @query("my-url-input") private _urlInput?: MyUrlInputMain;
 
   createRenderRoot() {
+    while (this.lastChild) {
+      this.removeChild(this.lastChild);
+    }
     return this;
   }
 

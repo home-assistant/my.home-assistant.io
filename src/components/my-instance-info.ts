@@ -1,12 +1,7 @@
-import { unsafeSVG } from "lit-html/directives/unsafe-svg";
+import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import "@material/mwc-button";
-import {
-  customElement,
-  html,
-  LitElement,
-  TemplateResult,
-  property,
-} from "lit-element";
+import { html, LitElement, TemplateResult } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import { svgPencil } from "./svg-pencil";
 
 @customElement("my-instance-info")
