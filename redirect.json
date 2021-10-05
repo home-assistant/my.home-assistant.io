@@ -98,6 +98,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "developer_statistics",
+    "name": "Developer Tools: Statistics",
+    "badge": "Statistics Dev Tools",
+    "description": "show your statistics developer tools",
+    "introduced": "2021.10"
+  },
+  {
     "redirect": "developer_template",
     "name": "Developer Tools: Templates",
     "badge": "Template Dev Tools",
