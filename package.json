@@ -29,7 +29,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "serve": "^13.0.2",
     "svgo": "^2.8.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.2",
@@ -37,7 +37,7 @@
     "@material/mwc-select": "^0.25.1",
     "@material/mwc-textfield": "^0.25.1",
     "clipboard-copy": "^4.0.1",
-    "html-minifier-terser": "^6.0.2",
+    "html-minifier-terser": "^6.1.0",
     "lit": "^2.0.2"
   },
   "resolutions": {
