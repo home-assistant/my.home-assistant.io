@@ -216,7 +216,7 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "media_source",
+    "redirect": "media_browser",
     "name": "Media",
     "description": "browse available media",
     "introduced": "2022.3"
