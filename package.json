@@ -29,7 +29,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "serve": "^13.0.2",
     "svgo": "^2.8.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   },
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.0",
