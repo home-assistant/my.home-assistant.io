@@ -38,6 +38,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "backup",
+    "name": "Backup",
+    "badge": "Backup",
+    "description": "Backup your Home Assistant installation",
+    "introduced": "2022.4"
+  },
+  {
     "redirect": "blueprints",
     "name": "Blueprints: Dashboard",
     "badge": "Blueprints",
@@ -283,6 +290,7 @@
   {
     "redirect": "supervisor_backups",
     "name": "Supervisor: Backups",
+    "deprecated": true,
     "badge": "Backups",
     "description": "show your Supervisor backups",
     "introduced": "supervisor-2021.08.1"
