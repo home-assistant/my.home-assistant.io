@@ -38,6 +38,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "backup",
+    "name": "Backup",
+    "badge": "Backup",
+    "description": "Backup your Home Assistant installation",
+    "introduced": "2022.4"
+  },
+  {
     "redirect": "blueprints",
     "name": "Blueprints: Dashboard",
     "badge": "Blueprints",
