@@ -2,7 +2,7 @@ import "@material/mwc-button";
 import "@material/mwc-textfield";
 import { TextField } from "@material/mwc-textfield";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
-import { customElement, state, query } from "lit/decorators.js";
+import { customElement, state, query, property } from "lit/decorators.js";
 import { DEFAULT_HASS_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
 
@@ -10,7 +10,7 @@ const HASS_URL = "hassUrl";
 
 @customElement("my-url-input")
 export class MyUrlInputMain extends LitElement {
-  @state() public value?: string;
+  @property() public value?: string;
 
   @state() private _error?: string | TemplateResult;
 
@@ -22,15 +22,17 @@ export class MyUrlInputMain extends LitElement {
 
   protected render(): TemplateResult {
     return html`
-      ${this._error ? html` <p class="error">${this._error}</p> ` : ""}
+      ${this._error ? html`<p class="error">${this._error}</p>` : ""}
       <div>
         <mwc-textfield
           label="Home Assistant URL"
-          .value=${this.value || ""}
-          placeholder=${DEFAULT_HASS_URL}
+          .value=${this.value || DEFAULT_HASS_URL}
           @keydown=${this._handleInputKeyDown}
         ></mwc-textfield>
-        <mwc-button @click=${this._handleSave}>Update</mwc-button>
+        <mwc-button
+          .label=${this.value ? "Update" : "Save"}
+          @click=${this._handleSave}
+        ></mwc-button>
       </div>
     `;
   }
@@ -49,14 +51,6 @@ export class MyUrlInputMain extends LitElement {
 
     if (value === "") {
       value = DEFAULT_HASS_URL;
-      try {
-        window.localStorage.setItem(HASS_URL, value);
-      } catch (err) {
-        this._error = "Failed to store your URL!";
-        return;
-      }
-      fireEvent(this, "value-changed", { value });
-      return;
     }
 
     if (value.indexOf("://") === -1) {
