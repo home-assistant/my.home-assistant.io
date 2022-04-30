@@ -84,6 +84,15 @@ class MyCreateLink extends LitElement {
             @input=${this._paramChanged}
           ></mwc-textfield>`
         )}
+        ${repeat(
+          Object.keys(this._redirect?.optional_params || []),
+          (key) => `${this._redirect.redirect}-${key}`,
+          (key) => html`<mwc-textfield
+            .label=${prettify(key)}
+            data-key="${key}"
+            @input=${this._paramChanged}
+          ></mwc-textfield>`
+        )}
         ${this.isValid
           ? html`
               <h1>Your URL</h1>
@@ -134,7 +143,7 @@ ${badgeHTML}</textarea
     const paramValues = {};
 
     for (const [key, paramType] of Object.entries(
-      this._redirect.params || {}
+      this._allParams
     )) {
       if (!(key in passedInData) || !passedInData[key]) {
         continue;
@@ -159,11 +168,15 @@ ${badgeHTML}</textarea
     this._paramsValues = paramValues;
   }
 
+  private get _allParams() {
+    return {...this._redirect.params, ...this._redirect.optional_params}
+  }
+
   private get isValid() {
     return (
       this._redirect &&
       (!this._redirect.params ||
-        Object.keys(this._redirect.params).length ===
+        Object.keys(this._redirect.params).length <=
           Object.keys(this._paramsValues).length)
     );
   }
@@ -184,7 +197,7 @@ ${badgeHTML}</textarea
     const key = ev.currentTarget.dataset.key;
     let value = ev.target.value;
 
-    const validationMessage = validateParam(this._redirect.params![key], value);
+    const validationMessage = validateParam(this._allParams[key], value);
     if (validationMessage) {
       ev.currentTarget.setCustomValidity(validationMessage);
       ev.currentTarget.reportValidity();

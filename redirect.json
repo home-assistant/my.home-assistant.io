@@ -8,6 +8,9 @@
     "params": {
       "addon": "string"
     },
+    "optional_params": {
+      "repository_url": "url"
+    },
     "example": {
       "addon": "core_samba"
     }
