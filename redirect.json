@@ -72,12 +72,6 @@
     }
   },
   {
-    "redirect": "config",
-    "name": "Configuration",
-    "description": "show your configuration panel",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "developer_call_service",
     "name": "Developer Tools: Call a service",
     "badge": "Call Service",
@@ -278,6 +272,12 @@
     "redirect": "server_controls",
     "name": "Server Controls",
     "description": "show your server controls",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "config",
+    "name": "Settings",
+    "description": "show your settings menu",
     "introduced": "2021.3"
   },
   {
