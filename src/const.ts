@@ -15,4 +15,7 @@ export interface Redirect {
   params?: {
     [key: string]: ParamType;
   };
+  optional_params?: {
+    [key: string]: ParamType;
+  };
 }
