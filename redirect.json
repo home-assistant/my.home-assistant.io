@@ -29,6 +29,13 @@
     }
   },
   {
+    "redirect": "analytics",
+    "name": "Analytics",
+    "badge": "Analytics",
+    "description": "manage your analytics prefrences",
+    "introduced": "2022.5"
+  },
+  {
     "redirect": "areas",
     "name": "Areas",
     "description": "show your areas",
@@ -66,12 +73,6 @@
     "example": {
       "blueprint_url": "https://github.com/home-assistant/core/blob/master/homeassistant/components/automation/blueprints/motion_light.yaml"
     }
-  },
-  {
-    "redirect": "config",
-    "name": "Configuration",
-    "description": "show your configuration panel",
-    "introduced": "2021.3"
   },
   {
     "redirect": "developer_call_service",
@@ -152,6 +153,13 @@
     "name": "General Settings",
     "description": "show your general Home Assistant settings",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "hardware",
+    "name": "Hardware",
+    "badge": "Hardware",
+    "description": "show hardware information",
+    "introduced": "2022.5"
   },
   {
     "redirect": "helpers",
@@ -239,6 +247,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "network",
+    "name": "Network",
+    "badge": "Network",
+    "description": "manage your systems network configuration",
+    "introduced": "2022.5"
+  },
+  {
     "redirect": "people",
     "name": "People",
     "description": "show your people",
@@ -261,6 +276,19 @@
     "name": "Server Controls",
     "description": "show your server controls",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "config",
+    "name": "Settings",
+    "description": "show your settings menu",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "storage",
+    "name": "Storage",
+    "badge": "Storage",
+    "description": "show storage information",
+    "introduced": "2022.5"
   },
   {
     "redirect": "supervisor_add_addon_repository",
@@ -320,10 +348,31 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
+    "redirect": "system_dashboard",
+    "name": "System Dashboard",
+    "badge": "System Dashboard",
+    "description": "show the system dashboard",
+    "introduced": "2022.5"
+  },
+  {
+    "redirect": "system_health",
+    "name": "System Health",
+    "badge": "System Health",
+    "description": "show health information about your system",
+    "introduced": "2022.5"
+  },
+  {
     "redirect": "tags",
     "name": "Tags",
     "description": "show your tags",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "updates",
+    "name": "Updates",
+    "badge": "Updates",
+    "description": "manage your pending updates",
+    "introduced": "2022.5"
   },
   {
     "redirect": "profile",
