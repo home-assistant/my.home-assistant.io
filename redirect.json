@@ -328,9 +328,9 @@
   },
   {
     "redirect": "supervisor",
-    "name": "Supervisor: Dashboard",
-    "badge": "Supervisor",
-    "description": "show your Supervisor dashboard",
+    "name": "Add-ons",
+    "badge": "Add-ons",
+    "description": "show your installed Add-ons",
     "introduced": "supervisor-2021.02.10"
   },
   {
