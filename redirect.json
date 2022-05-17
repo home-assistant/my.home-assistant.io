@@ -36,6 +36,13 @@
     "introduced": "2022.5"
   },
   {
+    "redirect": "application_credentials",
+    "name": "Application Credentials",
+    "badge": "Application Credentials",
+    "description": "Manage your application credentials",
+    "introduced": "2022.6"
+  },
+  {
     "redirect": "areas",
     "name": "Areas",
     "description": "show your areas",
