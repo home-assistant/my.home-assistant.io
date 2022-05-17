@@ -22,12 +22,15 @@ const createRedirectParams = (): string => {
     return "";
   }
   const params = {};
-  Object.entries(redirectParams).forEach(([key, type]) => {
+  for (const [key, type] of Object.entries(redirectParams)) {
+    if (!userParams[key] && type.endsWith("?")) {
+      continue;
+    }
     if (!userParams[key] || validateParam(type, userParams[key])) {
       throw Error("Wrong parameters");
     }
     params[key] = userParams[key];
-  });
+  }
   return `?${createSearchParam(params)}`;
 };
 
@@ -68,18 +71,30 @@ const render = (showTroubleshooting: boolean) => {
     </a>
   `;
 
-  // OAuth2 only.
-  const declineLink = document.querySelector(".decline-link");
-  if (declineLink) {
-    const params = createSearchParam({
-      error: "access_denied",
+  if (window.redirect.redirect === "oauth2_authorize_callback") {
+    const params = extractSearchParamsObject();
+
+    let buttonCaption = "DECLINE";
+
+    // User already rejected, hide link button
+    if ("error" in params) {
+      document.querySelector(".card-header")!.innerHTML =
+        "Account linking rejected";
+      buttonCaption = "NOTIFY HOME ASSISTANT OF REJECTION";
+      (document.querySelector(".open-link") as HTMLElement).style.visibility =
+        "hidden";
+    }
+
+    const declineLink = document.querySelector(".decline-link")!;
+    const declineParams = createSearchParam({
+      error: params.error || "access_denied",
       state: extractSearchParamsObject().state,
     });
     declineLink.outerHTML = `
-      <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${params}" class='decline-link' rel="noopener">
-        <mwc-button>DECLINE</mwc-button>
-      </a>
-    `;
+        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+          <mwc-button>${buttonCaption}</mwc-button>
+        </a>
+      `;
   }
 
   if (isMobile) {

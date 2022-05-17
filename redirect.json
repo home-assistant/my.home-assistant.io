@@ -261,7 +261,8 @@
     "description": "(replaced in UI)",
     "introduced": "2022.6",
     "params": {
-      "code": "string",
+      "code": "string?",
+      "error": "string?",
       "state": "string"
     }
   },
