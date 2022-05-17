@@ -61,11 +61,26 @@ const render = (showTroubleshooting: boolean) => {
 
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
-  document.querySelector(".open-link")!.outerHTML = `
+  const openLink = document.querySelector(".open-link") as HTMLElement;
+  openLink.outerHTML = `
     <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <mwc-button>Open Link</mwc-button>
+      <mwc-button>${openLink.innerText}</mwc-button>
     </a>
   `;
+
+  // OAuth2 only.
+  const declineLink = document.querySelector(".decline-link");
+  if (declineLink) {
+    const params = createSearchParam({
+      error: "access_denied",
+      state: extractSearchParamsObject().state,
+    });
+    declineLink.outerHTML = `
+      <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${params}" class='decline-link' rel="noopener">
+        <mwc-button>DECLINE</mwc-button>
+      </a>
+    `;
+  }
 
   if (isMobile) {
     (document.querySelector(".footer") as HTMLDivElement).style.display =
@@ -90,9 +105,8 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  (document.querySelector(
-    ".highlight"
-  ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
+  (document.querySelector(".highlight") as HTMLDivElement).style.display =
+    showTroubleshooting ? "block" : "none";
 };
 
 render(false);
