@@ -22,12 +22,15 @@ const createRedirectParams = (): string => {
     return "";
   }
   const params = {};
-  Object.entries(redirectParams).forEach(([key, type]) => {
+  for (const [key, type] of Object.entries(redirectParams)) {
+    if (!userParams[key] && type.endsWith("?")) {
+      continue;
+    }
     if (!userParams[key] || validateParam(type, userParams[key])) {
       throw Error("Wrong parameters");
     }
     params[key] = userParams[key];
-  });
+  }
   return `?${createSearchParam(params)}`;
 };
 
@@ -61,11 +64,38 @@ const render = (showTroubleshooting: boolean) => {
 
   const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
-  document.querySelector(".open-link")!.outerHTML = `
+  const openLink = document.querySelector(".open-link") as HTMLElement;
+  openLink.outerHTML = `
     <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <mwc-button>Open Link</mwc-button>
+      <mwc-button>${openLink.innerText}</mwc-button>
     </a>
   `;
+
+  if (window.redirect.redirect === "oauth2_authorize_callback") {
+    const params = extractSearchParamsObject();
+
+    let buttonCaption = "DECLINE";
+
+    // User already rejected, hide link button
+    if ("error" in params) {
+      document.querySelector(".card-header")!.innerHTML =
+        "Account linking rejected";
+      buttonCaption = "NOTIFY HOME ASSISTANT OF REJECTION";
+      (document.querySelector(".open-link") as HTMLElement).style.visibility =
+        "hidden";
+    }
+
+    const declineLink = document.querySelector(".decline-link")!;
+    const declineParams = createSearchParam({
+      error: params.error || "access_denied",
+      state: params.state,
+    });
+    declineLink.outerHTML = `
+        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+          <mwc-button>${buttonCaption}</mwc-button>
+        </a>
+      `;
+  }
 
   if (isMobile) {
     (document.querySelector(".footer") as HTMLDivElement).style.display =
@@ -90,9 +120,8 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  (document.querySelector(
-    ".highlight"
-  ) as HTMLDivElement).style.display = showTroubleshooting ? "block" : "none";
+  (document.querySelector(".highlight") as HTMLDivElement).style.display =
+    showTroubleshooting ? "block" : "none";
 };
 
 render(false);

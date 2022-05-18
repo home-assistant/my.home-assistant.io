@@ -19,7 +19,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
     flex: 1;
   }
   .card-actions {
-    padding-right: 8px;
+    padding: 0 8px;
     height: 37px;
   }
   .card-actions a {
@@ -53,10 +53,18 @@ permalink: "redirect/{{ redirect.redirect }}/"
 </style>
 
 <div class="ha-card">
+  {% if redirect.redirect == "oauth2_authorize_callback" %}
+  <h1 class="card-header">Link account to Home Assistant?</h1>
+  <div class="card-content">
+    Linking your account will grant your Home Assistant instance access to your
+    account. All credentials are stored locally.
+  </div>
+  {% else %}
   <h1 class="card-header">Open page in your Home Assistant?</h1>
   <div class="card-content">
     You've been linked to the page that will {{ redirect.description }}.
   </div>
+  {% endif %}
 
   <div class="highlight">
     It looks like you came back to this page after you clicked the link. If the
@@ -64,10 +72,17 @@ permalink: "redirect/{{ redirect.redirect }}/"
     <a href="/faq#404">our troubleshooting steps</a>.
   </div>
 
+  {% if redirect.redirect == "oauth2_authorize_callback" %}
+  <div class="card-actions">
+    <div class="fake-button decline-link">DECLINE</div>
+    <div class="fake-button open-link">LINK ACCOUNT</div>
+  </div>
+  {% else %}
   <div class="card-actions">
     <div></div>
     <div class="fake-button open-link">OPEN LINK</div>
   </div>
+  {% endif %}
 </div>
 
 <div class="instance-footer"></div>

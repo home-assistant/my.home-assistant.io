@@ -24,7 +24,7 @@ export const validateParam = (
   paramType: ParamType,
   value: string
 ): string | undefined => {
-  if (paramType === "string") {
+  if (paramType === "string" || paramType === "string?") {
     return undefined;
   }
 

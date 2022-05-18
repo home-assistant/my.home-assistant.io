@@ -254,6 +254,19 @@
     "introduced": "2022.5"
   },
   {
+    "redirect": "oauth2_authorize_callback",
+    "deprecated": true,
+    "name": "OAuth2 Authorize Callback",
+    "badge": "OAuth2 Callback",
+    "description": "(replaced in UI)",
+    "introduced": "2022.6",
+    "params": {
+      "code": "string?",
+      "error": "string?",
+      "state": "string"
+    }
+  },
+  {
     "redirect": "people",
     "name": "People",
     "description": "show your people",
