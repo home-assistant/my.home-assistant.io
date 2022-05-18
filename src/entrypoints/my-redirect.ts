@@ -88,7 +88,7 @@ const render = (showTroubleshooting: boolean) => {
     const declineLink = document.querySelector(".decline-link")!;
     const declineParams = createSearchParam({
       error: params.error || "access_denied",
-      state: extractSearchParamsObject().state,
+      state: params.state,
     });
     declineLink.outerHTML = `
         <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
