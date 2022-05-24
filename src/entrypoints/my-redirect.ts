@@ -23,7 +23,7 @@ const createRedirectParams = (): string => {
   }
   const params = {};
   for (const [key, type] of Object.entries(redirectParams)) {
-    if (!userParams[key] && type.endsWith("?")) {
+    if (!userParams[key] && (type.endsWith("?") || window.redirect.optional_params?.[key])) {
       continue;
     }
     if (!userParams[key] || validateParam(type, userParams[key])) {
