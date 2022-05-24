@@ -28,7 +28,7 @@ export const validateParam = (
     return undefined;
   }
 
-  if (paramType === "url") {
+  if (paramType === "url" || paramType === "url?") {
     return validateUrl(value);
   }
 

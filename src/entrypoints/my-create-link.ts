@@ -74,20 +74,13 @@ class MyCreateLink extends LitElement {
         </mwc-select>
 
         ${repeat(
-          Object.keys(this._redirect?.params || []),
-          (key) => `${this._redirect.redirect}-${key}`,
-          (key) => html`<mwc-textfield
-            required
-            validationMessage="This field is required"
-            .label=${prettify(key)}
-            data-key="${key}"
-            @input=${this._paramChanged}
-          ></mwc-textfield>`
-        )}
-        ${repeat(
-          Object.keys(this._redirect?.optional_params || []),
-          (key) => `${this._redirect.redirect}-${key}`,
-          (key) => html`<mwc-textfield
+          Object.entries(this._redirect?.params || []),
+          ([key, _]) => `${this._redirect.redirect}-${key}`,
+          ([key, type]) => html`<mwc-textfield
+            ?required=${!type.endsWith("?")}
+            .validationMessage=${!type.endsWith("?")
+              ? "This field is required"
+              : ""}
             .label=${prettify(key)}
             data-key="${key}"
             @input=${this._paramChanged}
@@ -143,7 +136,7 @@ ${badgeHTML}</textarea
     const paramValues = {};
 
     for (const [key, paramType] of Object.entries(
-      this._allParams
+      this._redirect.params || {}
     )) {
       if (!(key in passedInData) || !passedInData[key]) {
         continue;
@@ -168,16 +161,13 @@ ${badgeHTML}</textarea
     this._paramsValues = paramValues;
   }
 
-  private get _allParams() {
-    return {...this._redirect.params, ...this._redirect.optional_params}
-  }
-
   private get isValid() {
     return (
       this._redirect &&
       (!this._redirect.params ||
-        Object.keys(this._redirect.params).length <=
-          Object.keys(this._paramsValues).length)
+        !Object.entries(this._redirect.params).find(
+          ([key, type]) => !type.endsWith("?") && !this._paramsValues[key]
+        ))
     );
   }
 
@@ -197,7 +187,7 @@ ${badgeHTML}</textarea
     const key = ev.currentTarget.dataset.key;
     let value = ev.target.value;
 
-    const validationMessage = validateParam(this._allParams[key], value);
+    const validationMessage = validateParam(this._redirect.params![key], value);
     if (validationMessage) {
       ev.currentTarget.setCustomValidity(validationMessage);
       ev.currentTarget.reportValidity();

@@ -16,14 +16,14 @@ declare global {
 }
 
 const createRedirectParams = (): string => {
-  const redirectParams = {...window.redirect.params, ...window.redirect.optional_params};
+  const redirectParams = window.redirect.params;
   const userParams = extractSearchParamsObject();
   if (!redirectParams) {
     return "";
   }
   const params = {};
   for (const [key, type] of Object.entries(redirectParams)) {
-    if (!userParams[key] && (type.endsWith("?") || window.redirect.optional_params?.[key])) {
+    if (!userParams[key] && type.endsWith("?")) {
       continue;
     }
     if (!userParams[key] || validateParam(type, userParams[key])) {
