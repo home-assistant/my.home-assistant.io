@@ -252,7 +252,7 @@
     "introduced": "2022.5"
   },
   {
-    "redirect": "oauth2_authorize_callback",
+    "redirect": "oauth",
     "deprecated": true,
     "name": "OAuth2 Authorize Callback",
     "badge": "OAuth2 Callback",
