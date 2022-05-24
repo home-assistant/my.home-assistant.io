@@ -6,10 +6,8 @@
     "description": "show the dashboard of a Supervisor add-on",
     "introduced": "supervisor-2021.02.10",
     "params": {
-      "addon": "string"
-    },
-    "optional_params": {
-      "repository_url": "url"
+      "addon": "string",
+      "repository_url": "url?"
     },
     "example": {
       "addon": "core_samba"
