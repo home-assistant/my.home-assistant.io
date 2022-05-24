@@ -53,7 +53,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
 </style>
 
 <div class="ha-card">
-  {% if redirect.redirect == "oauth2_authorize_callback" %}
+  {% if redirect.redirect == "oauth" %}
   <h1 class="card-header">Link account to Home Assistant?</h1>
   <div class="card-content">
     Linking your account will grant your Home Assistant instance access to your
@@ -72,7 +72,7 @@ permalink: "redirect/{{ redirect.redirect }}/"
     <a href="/faq#404">our troubleshooting steps</a>.
   </div>
 
-  {% if redirect.redirect == "oauth2_authorize_callback" %}
+  {% if redirect.redirect == "oauth" %}
   <div class="card-actions">
     <div class="fake-button decline-link">DECLINE</div>
     <div class="fake-button open-link">LINK ACCOUNT</div>

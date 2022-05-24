@@ -71,7 +71,7 @@ const render = (showTroubleshooting: boolean) => {
     </a>
   `;
 
-  if (window.redirect.redirect === "oauth2_authorize_callback") {
+  if (window.redirect.redirect === "oauth") {
     const params = extractSearchParamsObject();
 
     let buttonCaption = "DECLINE";
