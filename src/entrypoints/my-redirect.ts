@@ -16,7 +16,7 @@ declare global {
 }
 
 const createRedirectParams = (): string => {
-  const redirectParams = window.redirect.params;
+  const redirectParams = {...window.redirect.params, ...window.redirect.optional_params};
   const userParams = extractSearchParamsObject();
   if (!redirectParams) {
     return "";
