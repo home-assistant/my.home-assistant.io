@@ -339,7 +339,6 @@
   {
     "redirect": "supervisor_backups",
     "name": "Supervisor: Backups",
-    "deprecated": true,
     "badge": "Backups",
     "description": "show your Supervisor backups",
     "introduced": "supervisor-2021.08.1"
