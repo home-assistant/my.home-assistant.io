@@ -62,7 +62,10 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  const redirectUrl = `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+  const redirectUrl =
+    window.redirect.redirect === "oauth"
+      ? `${instanceUrl}/auth/external/callback${params}`
+      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
