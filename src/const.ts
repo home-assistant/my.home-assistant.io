@@ -11,7 +11,7 @@ export interface Redirect {
   name: string;
   badge?: string;
   description: string;
-  introduced: string;
+  introduced?: string;
   component?: string;
   params?: {
     [key: string]: ParamType;
