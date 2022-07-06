@@ -50,6 +50,11 @@ permalink: "redirect/{{ redirect.redirect }}/"
   .highlight {
     display: none;
   }
+  .warning {
+    margin-top: 4px;
+    padding: 8px;
+    background-color: #ffce52;
+  }
 </style>
 
 <div class="ha-card">
@@ -63,6 +68,11 @@ permalink: "redirect/{{ redirect.redirect }}/"
   <h1 class="card-header">Open page in your Home Assistant?</h1>
   <div class="card-content">
     You've been linked to the page that will {{ redirect.description }}.
+    {% if redirect.custom %}
+    <div class="warning">
+      Warning!: This link redirects to a custom integration.
+    </div>
+    {% endif %}
   </div>
   {% endif %}
 
