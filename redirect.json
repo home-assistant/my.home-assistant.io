@@ -178,7 +178,7 @@
     "component": "hacs",
     "name": "HACS: Repository",
     "badge": "HACS: Repository",
-    "description": "Show the repository inside HACS",
+    "description": "show the repository inside HACS",
     "custom": true,
     "params": {
       "owner": "string",
