@@ -180,6 +180,7 @@
     "badge": "HACS: Repository",
     "description": "show the repository inside HACS",
     "custom": true,
+    "introduced": "2022.7",
     "params": {
       "owner": "string",
       "repository": "string",

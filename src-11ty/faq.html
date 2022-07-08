@@ -109,7 +109,7 @@ description: Answers to all your questions about My Home Assistant.
   {% for redirect in redirects %}
   <a
     href="{{ redirect | redirectExamplePath }}"
-    title="{% if redirect.introduced %}Introduced in {{ redirect.introduced | version }}.{% endif %}"
+    title="Introduced in {{ redirect.introduced | version }}."
   >
     {{ redirect.name }}
     <div class="badge">

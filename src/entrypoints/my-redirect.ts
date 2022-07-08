@@ -65,8 +65,6 @@ const render = (showTroubleshooting: boolean) => {
   const redirectUrl =
     window.redirect.redirect === "oauth"
       ? `${instanceUrl}/auth/external/callback${params}`
-      : window.redirect.custom
-      ? `${instanceUrl}/${window.redirect.component}/_my_redirect/${window.redirect.redirect}${params}`
       : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
