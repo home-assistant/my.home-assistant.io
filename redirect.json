@@ -178,9 +178,9 @@
     "component": "hacs",
     "name": "HACS: Repository",
     "badge": "HACS: Repository",
-    "description": "show the repository inside HACS",
+    "description": "open a repository inside the Home Assistant Community Store",
     "custom": true,
-    "introduced": "2022.7",
+    "introduced": "2022.8",
     "params": {
       "owner": "string",
       "repository": "string",

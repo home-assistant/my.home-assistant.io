@@ -50,11 +50,32 @@ permalink: "redirect/{{ redirect.redirect }}/"
   .highlight {
     display: none;
   }
+
   .warning {
-    margin-top: 4px;
-    padding: 8px;
-    background-color: #ffce52;
-  }
+      position: relative;
+      padding: 8px;
+      display: flex;
+      margin: 4px 0;
+      display: flex;
+    }
+  .warning::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.12;
+      pointer-events: none;
+      content: "";
+      border-radius: 4px;
+      background-color: #ffa600;
+    }
+    svg {
+      z-index: 1;
+      color: #ffa600;
+      height: 24px;
+      margin-left: 8px;
+    }
 </style>
 
 <div class="ha-card">
@@ -70,7 +91,10 @@ permalink: "redirect/{{ redirect.redirect }}/"
     You've been linked to the page that will {{ redirect.description }}.
     {% if redirect.custom %}
     <div class="warning">
-      Warning!: This link redirects to a custom integration.
+      <svg fill="#ffa600" viewBox="0 0 24 24">
+        <g><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"></path></g>
+      </svg>
+      This link redirects to a custom integration.
     </div>
     {% endif %}
   </div>
