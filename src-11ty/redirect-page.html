@@ -55,8 +55,6 @@ permalink: "redirect/{{ redirect.redirect }}/"
       position: relative;
       padding: 8px;
       display: flex;
-      margin: 4px 0;
-      display: flex;
     }
   .warning::after {
       position: absolute;
@@ -74,11 +72,19 @@ permalink: "redirect/{{ redirect.redirect }}/"
       z-index: 1;
       color: #ffa600;
       height: 24px;
-      margin-left: 8px;
+      margin-right: 8px;
     }
 </style>
 
 <div class="ha-card">
+  {% if redirect.custom %}
+  <div class="warning">
+    <svg fill="#ffa600" viewBox="0 0 24 24">
+      <g><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"></path></g>
+    </svg>
+    This link redirects to a custom integration.
+  </div>
+  {% endif %}
   {% if redirect.redirect == "oauth" %}
   <h1 class="card-header">Link account to Home Assistant?</h1>
   <div class="card-content">
@@ -89,14 +95,6 @@ permalink: "redirect/{{ redirect.redirect }}/"
   <h1 class="card-header">Open page in your Home Assistant?</h1>
   <div class="card-content">
     You've been linked to the page that will {{ redirect.description }}.
-    {% if redirect.custom %}
-    <div class="warning">
-      <svg fill="#ffa600" viewBox="0 0 24 24">
-        <g><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"></path></g>
-      </svg>
-      This link redirects to a custom integration.
-    </div>
-    {% endif %}
   </div>
   {% endif %}
 
