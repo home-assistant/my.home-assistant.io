@@ -7,10 +7,11 @@ export type ParamType = "url" | "string" | "string?" | "url?";
 export interface Redirect {
   redirect: string;
   deprecated?: boolean;
+  custom?: boolean;
   name: string;
   badge?: string;
   description: string;
-  introduced: string;
+  introduced?: string;
   component?: string;
   params?: {
     [key: string]: ParamType;
