@@ -297,6 +297,12 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "repairs",
+    "name": "Repairs",
+    "description": "show your Home Assistant Repairs",
+    "introduced": "2022.8"
+  },
+  {
     "redirect": "scenes",
     "name": "Scenes",
     "description": "show your scenes",
