@@ -299,7 +299,7 @@
   {
     "redirect": "repairs",
     "name": "Repairs",
-    "description": "show your Home Assistant Repairs",
+    "description": "show your repairs",
     "introduced": "2022.8"
   },
   {
