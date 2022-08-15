@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.0",
-    "@material/mwc-button": "^0.26.1",
+    "@material/mwc-button": "^0.27.0",
     "@material/mwc-select": "^0.26.1",
     "@material/mwc-textfield": "^0.26.1",
     "clipboard-copy": "^4.0.1",

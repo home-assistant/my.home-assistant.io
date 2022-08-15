@@ -286,13 +286,23 @@
     lit "^2.0.0"
     tslib "^2.0.1"
 
-"@material/mwc-button@^0.26.1":
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/@material/mwc-button/-/mwc-button-0.26.1.tgz#751bc8296a22add632bcba1c5b5dbb3dda7054c5"
-  integrity sha512-ptgAmg50k+71M6ynfv6QeNaBnX7X/EAnhOjxZqhDHrKwZcFuuQyFJJ6r4ypjc21eCSPS7o6xRqJyI4PPpf3xkA==
+"@material/mwc-base@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-base/-/mwc-base-0.27.0.tgz#9bb282510b39168dcaa2d2c23aecdf91f6733c6e"
+  integrity sha512-oCWWtjbyQ52AaUbzINLGBKScIPyqhps2Y7c8t6Gu6fcFeDxhKXMV1Cqvtj/OMhtAt53XjHfD2XruWwYv3cYYUA==
   dependencies:
-    "@material/mwc-icon" "^0.26.1"
-    "@material/mwc-ripple" "^0.26.1"
+    "@material/base" "=14.0.0-canary.53b3cad2f.0"
+    "@material/dom" "=14.0.0-canary.53b3cad2f.0"
+    lit "^2.0.0"
+    tslib "^2.0.1"
+
+"@material/mwc-button@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-button/-/mwc-button-0.27.0.tgz#192ab82eab8f7f4dcbf987d0af7bb808408d77d2"
+  integrity sha512-t5m2zfE93RNKHMjdsU67X6csFzuSG08VJKKvXVQ+BriGE3xBgzY5nZdmZXomFpaWjDENPAlyS4ppCFm6o+DILw==
+  dependencies:
+    "@material/mwc-icon" "^0.27.0"
+    "@material/mwc-ripple" "^0.27.0"
     lit "^2.0.0"
     tslib "^2.0.1"
 
@@ -319,6 +329,14 @@
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/@material/mwc-icon/-/mwc-icon-0.26.1.tgz#056b29b588d0e2ae5ccf857780c46b0012d9554e"
   integrity sha512-RPcVPn+5p6hA2HjX/0wkeHQuxkJKgXMg47ffw+vhIw28qM8mprSv13hpUgrghb0f7xBvuPhf/kLb37V4xkRfwg==
+  dependencies:
+    lit "^2.0.0"
+    tslib "^2.0.1"
+
+"@material/mwc-icon@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-icon/-/mwc-icon-0.27.0.tgz#f25ecdd7fe54d810d7d655ba05251169f78b84fd"
+  integrity sha512-Sul44I37M9Ewynn0A9DjkEBrmll2VtNbth6Pxj7I1A/EAwEfaCrPvryyGqfIu1T2hTsRcaojzQx6QjF+B5QW9A==
   dependencies:
     lit "^2.0.0"
     tslib "^2.0.1"
@@ -389,6 +407,17 @@
   dependencies:
     "@material/dom" "=14.0.0-canary.53b3cad2f.0"
     "@material/mwc-base" "^0.26.1"
+    "@material/ripple" "=14.0.0-canary.53b3cad2f.0"
+    lit "^2.0.0"
+    tslib "^2.0.1"
+
+"@material/mwc-ripple@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@material/mwc-ripple/-/mwc-ripple-0.27.0.tgz#1dff975d41151ed78285013a289a5dbaca769636"
+  integrity sha512-by0O8d8g3Rd96/sUB8hxy6MrDx1QTstqOsA64vqypWd526hMTBGRik08jTNap5sVIyrN9Vq17jb4NJLWQLnNHQ==
+  dependencies:
+    "@material/dom" "=14.0.0-canary.53b3cad2f.0"
+    "@material/mwc-base" "^0.27.0"
     "@material/ripple" "=14.0.0-canary.53b3cad2f.0"
     lit "^2.0.0"
     tslib "^2.0.1"
@@ -5084,12 +5113,7 @@ token-stream@1.0.0:
   resolved "https://registry.npmjs.org/token-stream/-/token-stream-1.0.0.tgz"
   integrity sha1-zCAOqyYT9BZtJ/+a/HylbUnfbrQ=
 
-tslib@^2.0.1, tslib@^2.0.3:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
-  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
-
-tslib@^2.1.0:
+tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.2.0.tgz"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
