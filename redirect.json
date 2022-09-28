@@ -226,6 +226,19 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "brand",
+    "name": "Integrations: Add by brand",
+    "badge": "Add Brand",
+    "description": "start setting up a new integration of a specific brand",
+    "introduced": "2022.10",
+    "params": {
+      "brand": "string"
+    },
+    "example": {
+      "brand": "google"
+    }
+  },
+  {
     "redirect": "config_flow_start",
     "name": "Integrations: Add integration",
     "badge": "Add Integration",
