@@ -228,7 +228,7 @@
   {
     "redirect": "brand",
     "name": "Integrations: Add by brand",
-    "badge": "Add Brand",
+    "badge": "Add Integration",
     "description": "start setting up a new integration of a specific brand",
     "introduced": "2022.10",
     "params": {
