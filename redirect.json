@@ -412,9 +412,9 @@
   },
   {
     "redirect": "system_health",
-    "name": "System Health",
-    "badge": "System Health",
-    "description": "show health information about your system",
+    "name": "System Info",
+    "badge": "System Info",
+    "description": "show information about your system",
     "introduced": "2022.5"
   },
   {
