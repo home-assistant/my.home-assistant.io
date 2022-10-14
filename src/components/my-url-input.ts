@@ -78,7 +78,7 @@ export class MyUrlInputMain extends LitElement {
   }
 
   private _handleSave() {
-    const values = [...this.values || []]
+    let values = [...this.values || []]
 
     for (const inputEl of this.shadowRoot!.querySelectorAll("mwc-textfield")) {
       let value = inputEl.value || "";
@@ -107,15 +107,15 @@ export class MyUrlInputMain extends LitElement {
       values.push(`${urlObj.protocol}//${urlObj.host}`);
     }
 
-    this.values = Array.from(new Set(values)).filter(url => url != "");
+    values = Array.from(new Set(values)).filter(url => url != "");
     
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.values));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
     } catch (err) {
       this._error = "Failed to store your URLs!";
       return;
     }
-    fireEvent(this, "value-changed", { value: this.values });
+    fireEvent(this, "value-changed", { value: values });
   }
 
   static get styles(): CSSResult {
