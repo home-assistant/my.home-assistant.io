@@ -29,29 +29,34 @@ export class MyUrlInputMain extends LitElement {
               @keydown=${this._handleInputKeyDown}
             >
             </mwc-textfield>
-            <mwc-button 
+            ${this.values?.length ? html`<mwc-button 
               .value=${value}
-              .disabled=${!this.values}
-              class="instance-remove"
               @click=${this._handleRemove}>
               ${unsafeSVG(svgDelete)}
-            </mwc-button>
+            </mwc-button>`
+            : html`
+            <mwc-button
+              label="save"
+              @click=${this._handleSave}
+            >
+            </mwc-button>`}
           </div>
         `)}
 
-      <div class="buttons">
-        <mwc-button
+        ${this.values?.length ? html`<div class="buttons">
+      <mwc-button
           .disabled=${!this.values}
           label="+ Additional URL"
           @click=${this._handleAdditional}
         >
         </mwc-button>
         <mwc-button
+          class="right"
           label="save"
           @click=${this._handleSave}
         >
         </mwc-button>
-      </div>
+      </div>`: "" }
     `;
   }
 
@@ -68,7 +73,8 @@ export class MyUrlInputMain extends LitElement {
 
   private _handleRemove(event) {
     const remove = (event.currentTarget as TextField).value
-    this.values = this.values?.filter(value => value !== remove)
+    const filtered = this.values?.filter(value => value !== remove)
+    this.values = filtered?.length ? filtered : undefined
   }
 
   private _handleSave() {
@@ -133,7 +139,7 @@ export class MyUrlInputMain extends LitElement {
         margin-right: 8px;
       }
 
-      .instance-remove {
+      .instance-input mwc-button {
         align-self: center;
       }
 
