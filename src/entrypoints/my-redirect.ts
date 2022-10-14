@@ -3,9 +3,9 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstanceUrls } from "../data/instance_info";
 import { Redirect } from "../const";
-import { svgPencil } from "../components/svg-pencil";
+import { svgPencil } from "../components/svg";
 import { isMobile } from "../data/is_mobile";
 import { validateParam } from "../util/validate";
 
@@ -36,8 +36,8 @@ const createRedirectParams = (): string => {
 
 let changingInstance = false;
 
-const render = (showTroubleshooting: boolean) => {
-  const instanceUrl = getInstanceUrl();
+const render = (showTroubleshooting: boolean, selectedInstance?: string) => {
+  const instanceUrls = getInstanceUrls();
 
   let params;
   try {
@@ -56,11 +56,13 @@ const render = (showTroubleshooting: boolean) => {
     window.redirect.redirect + "/" + params
   )}`;
 
-  if (instanceUrl === null) {
+  if (instanceUrls === null) {
     changingInstance = true;
     document.location.assign(changeUrl);
     return;
   }
+
+  const instanceUrl = selectedInstance || instanceUrls[0]
 
   const redirectUrl =
     window.redirect.redirect === "oauth"
@@ -108,7 +110,12 @@ const render = (showTroubleshooting: boolean) => {
 
   let changeInstanceEl = document.querySelector(".instance-footer")!;
   changeInstanceEl.innerHTML = `
-    <b>Your instance URL:</b> ${instanceUrl}
+    <b>Your instance URL:</b>
+    ${instanceUrls.length === 1 
+      ? instanceUrl
+      : `<select id="instance-selector">
+    ${instanceUrls.map((url) => `<option>${url}</option>`)}
+    </select>`}
     <a href="${changeUrl}">
       ${svgPencil}
     </a>
@@ -135,3 +142,8 @@ window.onpageshow = (event) => {
     render(true);
   }
 };
+
+// Handle instance selected
+document.querySelector("#instance-selector")?.addEventListener("change", (event) => {
+  render(false, (event.target as HTMLSelectElement).value)
+})

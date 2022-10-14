@@ -2,31 +2,35 @@ import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import "@material/mwc-button";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { svgPencil } from "./svg-pencil";
+import { svgPencil } from "./svg";
 
 @customElement("my-instance-info")
 class MyInstanceInfo extends LitElement {
-  @property({ attribute: false }) public instanceUrl!: string | null;
+  @property({ attribute: false }) public instanceUrls!: string[] | null;
 
   createRenderRoot() {
     return this;
   }
 
   protected render(): TemplateResult {
-    if (!this.instanceUrl) {
+    if (!this.instanceUrls?.length) {
       return html``;
     }
     return html`
       <div class="instance-info">
-        <div>
-          <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank">
-            ${this.instanceUrl}
-          </a>
-        </div>
-        <button class="empty" @click=${this._handleEdit}>
-          ${unsafeSVG(svgPencil)}
-        </button>
+          <div class="instance-header">HOME ASSISTANT INSTANCES</div>
+          ${this.instanceUrls.map(url => html`
+          
+          <div class="instance">
+            <a href=${url} rel="noreferrer noopener" target="_blank">
+              ${url}
+            </a>
+
+          <button class="empty" @click=${this._handleEdit}>
+            ${unsafeSVG(svgPencil)}
+          </button>
+          </div>
+          `)}
       </div>
     `;
   }

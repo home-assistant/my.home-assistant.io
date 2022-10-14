@@ -3,13 +3,13 @@ import { html, LitElement, TemplateResult, PropertyValues } from "lit";
 import { customElement, state, query } from "lit/decorators.js";
 import "../components/my-url-input";
 import "../components/my-instance-info";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstanceUrls } from "../data/instance_info";
 import { MyUrlInputMain } from "../components/my-url-input";
 @customElement("my-index")
 class MyIndex extends LitElement {
   @state() private _updatingUrl = false;
 
-  @state() private _instanceUrl!: string | null;
+  @state() private _instanceUrl!: string[] | null;
 
   @state() private _error?: string;
 
@@ -24,7 +24,7 @@ class MyIndex extends LitElement {
 
   public connectedCallback() {
     super.connectedCallback();
-    this._instanceUrl = getInstanceUrl();
+    this._instanceUrl = getInstanceUrls();
     if (!this._updatingUrl && !this._instanceUrl) {
       this._updatingUrl = true;
     }
@@ -54,20 +54,20 @@ class MyIndex extends LitElement {
             : ""}
 
           <my-url-input
-            .value=${this._instanceUrl}
+            .values=${this._instanceUrl}
             @value-changed=${this._handleUrlChanged}
           ></my-url-input>
 
           ${this._error ? html`<div class="error">${this._error}</div>` : ""}
 
-          <p>Note: This URL is only stored in your browser.</p>
+          <p>Note: The URLs is only stored in your browser.</p>
         </div>
       `;
     }
 
     return html`
       <my-instance-info
-        .instanceUrl=${this._instanceUrl}
+        .instanceUrls=${this._instanceUrl}
         @edit=${this._handleEdit}
       ></my-instance-info>
     `;

@@ -1,38 +1,56 @@
 import "@material/mwc-button";
 import "@material/mwc-textfield";
-import { TextField } from "@material/mwc-textfield";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
-import { customElement, state, query, property } from "lit/decorators.js";
-import { DEFAULT_HASS_URL } from "../const";
+import type { TextField } from "@material/mwc-textfield";
+import { customElement, state, property } from "lit/decorators.js";
+import { unsafeSVG } from "lit/directives/unsafe-svg.js";
+import { DEFAULT_HASS_URL, STORAGE_KEY } from "../const";
 import { fireEvent } from "../util/fire_event";
-
-const HASS_URL = "hassUrl";
+import { svgDelete } from "./svg";
 
 @customElement("my-url-input")
 export class MyUrlInputMain extends LitElement {
-  @property() public value?: string;
+  @property() public values?: string[];
 
   @state() private _error?: string | TemplateResult;
 
-  @query("mwc-textfield", true) private _textfield!: TextField;
-
   public focus(): void {
-    this.updateComplete.then(() => this._textfield.focus());
+    this.updateComplete.then(() => this.shadowRoot!.querySelector("mwc-textfield")!.focus());
   }
 
   protected render(): TemplateResult {
     return html`
       ${this._error ? html`<p class="error">${this._error}</p>` : ""}
-      <div>
-        <mwc-textfield
-          label="Home Assistant URL"
-          .value=${this.value || DEFAULT_HASS_URL}
-          @keydown=${this._handleInputKeyDown}
-        ></mwc-textfield>
+      ${(this.values || [DEFAULT_HASS_URL]).map(value => html`
+          <div class="instance-input">
+            <mwc-textfield
+              label="Home Assistant URL"
+              .value=${value}
+              @keydown=${this._handleInputKeyDown}
+            >
+            </mwc-textfield>
+            <mwc-button 
+              .value=${value}
+              .disabled=${!this.values}
+              class="instance-remove"
+              @click=${this._handleRemove}>
+              ${unsafeSVG(svgDelete)}
+            </mwc-button>
+          </div>
+        `)}
+
+      <div class="buttons">
         <mwc-button
-          .label=${this.value ? "Update" : "Save"}
+          .disabled=${!this.values}
+          label="+ Additional URL"
+          @click=${this._handleAdditional}
+        >
+        </mwc-button>
+        <mwc-button
+          label="save"
           @click=${this._handleSave}
-        ></mwc-button>
+        >
+        </mwc-button>
       </div>
     `;
   }
@@ -44,39 +62,54 @@ export class MyUrlInputMain extends LitElement {
     }
   }
 
+  private _handleAdditional() {
+    this.values = [...this.values || [], ""]
+  }
+
+  private _handleRemove(event) {
+    const remove = (event.currentTarget as TextField).value
+    this.values = this.values?.filter(value => value !== remove)
+  }
+
   private _handleSave() {
-    const inputEl = this.shadowRoot!.querySelector("mwc-textfield")!;
-    let value = inputEl.value || "";
-    this._error = undefined;
+    const values = [...this.values || []]
 
-    if (value === "") {
-      value = DEFAULT_HASS_URL;
+    for (const inputEl of this.shadowRoot!.querySelectorAll("mwc-textfield")) {
+      let value = inputEl.value || "";
+      this._error = undefined;
+
+      if (value === "") {
+        value = DEFAULT_HASS_URL;
+      }
+  
+      if (value.indexOf("://") === -1) {
+        inputEl.setCustomValidity(
+          "Please enter your full URL, including the protocol part (https://)."
+        );
+        inputEl.reportValidity();
+        return;
+      }
+  
+      let urlObj: URL;
+      try {
+        urlObj = new URL(value);
+      } catch (err) {
+        inputEl.setCustomValidity("Invalid URL");
+        inputEl.reportValidity();
+        return;
+      }
+      values.push(`${urlObj.protocol}//${urlObj.host}`);
     }
 
-    if (value.indexOf("://") === -1) {
-      this._textfield.setCustomValidity(
-        "Please enter your full URL, including the protocol part (https://)."
-      );
-      this._textfield.reportValidity();
-      return;
-    }
-
-    let urlObj: URL;
+    this.values = Array.from(new Set(values)).filter(url => url != "");
+    
     try {
-      urlObj = new URL(value);
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.values));
     } catch (err) {
-      this._textfield.setCustomValidity("Invalid URL");
-      this._textfield.reportValidity();
+      this._error = "Failed to store your URLs!";
       return;
     }
-    const url = `${urlObj.protocol}//${urlObj.host}`;
-    try {
-      window.localStorage.setItem(HASS_URL, url);
-    } catch (err) {
-      this._error = "Failed to store your URL!";
-      return;
-    }
-    fireEvent(this, "value-changed", { value: url });
+    fireEvent(this, "value-changed", { value: this.values });
   }
 
   static get styles(): CSSResult {
@@ -84,18 +117,29 @@ export class MyUrlInputMain extends LitElement {
       :host {
         display: block;
       }
-      div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
       .error {
         color: #db4437;
         font-weight: bold;
       }
+      .instance-input, .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .buttons {
+        margin-right: 64px;
+      }
       mwc-textfield {
         flex-grow: 1;
         margin-right: 8px;
+      }
+
+      .instance-remove {
+        align-self: center;
+      }
+
+      svg {
+        height: 24px;
+        fill: red;
       }
     `;
   }

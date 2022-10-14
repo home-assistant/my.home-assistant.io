@@ -7,9 +7,8 @@ description: Link to specific pages in your Home Assistant instance.
 <style>
   .instance-info {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 0 16px 16px;
-    align-items: center;
     line-break: anywhere;
   }
   .instance-header {
@@ -17,6 +16,11 @@ description: Link to specific pages in your Home Assistant instance.
     letter-spacing: 0.05em;
     font-size: 12px;
     line-height: 1em;
+  }
+  .instance {
+    display: flex;
+    padding: 8px;
+    justify-content: space-between;
   }
   .error {
     color: #db4437;

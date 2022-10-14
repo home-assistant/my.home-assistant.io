@@ -3,7 +3,7 @@ import { html, LitElement, TemplateResult, PropertyValues } from "lit";
 import { state, query, customElement } from "lit/decorators.js";
 import "../components/my-url-input";
 import "../components/my-instance-info";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstanceUrls } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 import { MyUrlInputMain } from "../components/my-url-input";
 import { isMobile } from "../data/is_mobile";
@@ -12,7 +12,7 @@ const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
-  @state() private _instanceUrl = getInstanceUrl();
+  @state() private _instanceUrl = getInstanceUrls();
 
   @state() private _error?: string;
 
@@ -76,13 +76,13 @@ class MyChangeUrl extends LitElement {
           : ""}
 
         <my-url-input
-          .value=${this._instanceUrl}
+          .values=${this._instanceUrl}
           @value-changed=${this._handleUrlChanged}
         ></my-url-input>
 
         ${this._error ? html`<div class="error">${this._error}</div>` : ""}
 
-        <p>Note: This URL is only stored in your browser.</p>
+        <p>Note: The URLs is only stored in your browser.</p>
       </div>
     `;
   }

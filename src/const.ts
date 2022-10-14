@@ -1,4 +1,5 @@
 export const HASS_URL = "hassUrl";
+export const STORAGE_KEY = "ha-instances"
 export const DEFAULT_HASS_URL = "http://homeassistant.local:8123";
 export const MOBILE_URL = "homeassistant://navigate";
 
