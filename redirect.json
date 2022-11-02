@@ -1,5 +1,25 @@
 [
   {
+    "redirect": "add_zwave_device",
+    "name": "Add Z-Wave Device",
+    "description": "add a Z-Wave device to your instance",
+    "introduced": "2022.11",
+    "params": {
+      "brand": "string?",
+      "domain": "string?"
+    }
+  },
+  {
+    "redirect": "add_zigbee_device",
+    "name": "Add Zigbee Device",
+    "description": "add a Zigbee device to your instance",
+    "introduced": "2022.11",
+    "params": {
+      "brand": "string?",
+      "domain": "string?"
+    }
+  },
+  {
     "redirect": "supervisor_addon",
     "name": "Add-on: Dashboard",
     "badge": "add-on",
