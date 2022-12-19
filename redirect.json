@@ -162,6 +162,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "developer_yaml",
+    "name": "Developer Tools: YAML",
+    "badge": "YAML Dev Tools",
+    "description": "show your YAML developer tools",
+    "introduced": "2022.5"
+  },
+  {
     "redirect": "devices",
     "name": "Devices",
     "description": "show your devices",
