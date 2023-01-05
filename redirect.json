@@ -100,6 +100,13 @@
     }
   },
   {
+    "redirect": "calendar",
+    "name": "Calendar",
+    "badge": "Calendar",
+    "description": "show your calendar",
+    "introduced": "2023.1"
+  },
+  {
     "redirect": "lovelace_resources",
     "name": "Dashboard Resources",
     "badge": "Dashboard Resources",
