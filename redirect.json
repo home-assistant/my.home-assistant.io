@@ -1,5 +1,15 @@
 [
   {
+    "redirect": "add_matter_device",
+    "name": "Add Matter Device",
+    "description": "add a Matter device to your instance",
+    "introduced": "2023.3",
+    "params": {
+      "brand": "string?",
+      "domain": "string?"
+    }
+  },
+  {
     "redirect": "add_zwave_device",
     "name": "Add Z-Wave Device",
     "description": "add a Z-Wave device to your instance",
