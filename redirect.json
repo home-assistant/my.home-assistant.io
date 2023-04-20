@@ -481,6 +481,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "voice_assistants",
+    "name": "Voice Assistants",
+    "badge": "Voice Assistants",
+    "description": "show your voice assistants",
+    "introduced": "2023.5"
+  },
+  {
     "redirect": "config_zwave_js",
     "name": "Z-Wave JS Configuration",
     "badge": "Z-Wave JS",
