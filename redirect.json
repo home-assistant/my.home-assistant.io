@@ -483,7 +483,6 @@
   {
     "redirect": "voice_assistants",
     "name": "Voice Assistants",
-    "badge": "Voice Assistants",
     "description": "show your voice assistants",
     "introduced": "2023.5"
   },
