@@ -263,6 +263,18 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "integration",
+    "name": "Integration",
+    "description": "show an integration",
+    "introduced": "2023.6",
+    "params": {
+      "domain": "string"
+    },
+    "example": {
+      "domain": "hue"
+    }
+  },
+  {
     "redirect": "brand",
     "name": "Integrations: Add by brand",
     "badge": "Add Integration",
