@@ -131,6 +131,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "developer_assist",
+    "name": "Developer Tools: Assist",
+    "badge": "Assist Dev Tools",
+    "description": "show your assist developer tools",
+    "introduced": "2023.8"
+  },
+  {
     "redirect": "developer_call_service",
     "name": "Developer Tools: Call a service",
     "badge": "Call Service",
