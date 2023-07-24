@@ -117,6 +117,13 @@
     "introduced": "2023.1"
   },
   {
+    "redirect": "companion_app",
+    "name": "Companion app",
+    "badge": "Companion app",
+    "description": "open the settings of your companion app",
+    "introduced": "2023.8"
+  },
+  {
     "redirect": "lovelace_resources",
     "name": "Dashboard Resources",
     "badge": "Dashboard Resources",
