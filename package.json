@@ -18,7 +18,7 @@
     "@11ty/eleventy": "^2.0.1",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.2.0",
+    "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-typescript": "^11.1.2",
     "anafanafo": "^2.0.0",
     "gulp": "^4.0.2",
