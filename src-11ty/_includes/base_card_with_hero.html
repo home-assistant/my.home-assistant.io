@@ -4,16 +4,15 @@ layout: base
 
 <style>
   .hero {
-    padding-top: 63%;
-    position: relative;
+    height: 25vh;
+    border-top-right-radius: var(--ha-card-border-radius);
+    border-top-left-radius: var(--ha-card-border-radius);
+    overflow: hidden;
   }
   .hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    border-top-right-radius: var(--ha-card-border-radius, 4px);
-    border-top-left-radius: var(--ha-card-border-radius, 4px);
+    height: 100%;
+    object-fit: cover;
   }
 </style>
 
