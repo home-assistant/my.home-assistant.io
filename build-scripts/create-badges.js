@@ -69,7 +69,7 @@ function myBadge({
 
   message = message.toUpperCase();
 
-  const { metrics, svg } = renderMessagePath(message, { x: 40, y: 48, fontSize: 35, anchor: 'left middle', attributes: { fill: "white" } });
+  const { metrics, svg } = renderMessagePath(message, { x: 40, y: 46.8, fontSize: 33.5, letterSpacing: .02, anchor: 'left middle', attributes: { fill: "white" } });
 
   return renderBadge(
     {
