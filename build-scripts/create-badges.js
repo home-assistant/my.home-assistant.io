@@ -19,14 +19,8 @@ function escapeXml(s) {
   }
 }
 
-function roundUpToOdd(val) {
-  val = Math.round(val);
-  return val % 2 === 0 ? val + 1 : val;
-}
-
-function createAccessibleText({ label, message }) {
-  const labelPrefix = label ? `${label}: ` : "";
-  return labelPrefix + message;
+function createAccessibleText(message) {
+  return message + " My Home Assistant";
 }
 
 function renderAriaAttributes({ accessibleText }) {
@@ -38,7 +32,6 @@ function renderTitle({ accessibleText }) {
 }
 
 function renderBadge({ width, height, accessibleText }, main) {
-
   return `
   <svg 
     xmlns="http://www.w3.org/2000/svg"
@@ -69,15 +62,13 @@ function renderBadge({ width, height, accessibleText }, main) {
 function myBadge({
   message,
 }) {
-  const label = "MY";
-  const color = "#03a9f4";
   const height = 96;
+
+  const accessibleText = createAccessibleText(message);
 
   message = message.toUpperCase();
 
-  const accessibleText = createAccessibleText({ label, message });
-
-  const {metrics, svg} = renderMessagePath(message, {x: 40, y: 48, fontSize: 35, anchor: 'left middle', attributes: { fill:"white" }});
+  const { metrics, svg } = renderMessagePath(message, { x: 40, y: 48, fontSize: 35, anchor: 'left middle', attributes: { fill: "white" } });
 
   return renderBadge(
     {
@@ -93,7 +84,7 @@ function renderMessagePath(message, options) {
   const textToSVG = TextToSVG.loadSync('build-scripts/fonts/Figtree-Bold.otf');
   const svg = textToSVG.getPath(message, options);
   const metrics = textToSVG.getMetrics(message, options);
-  return {metrics, svg};
+  return { metrics, svg };
 }
 
 if (!fs.existsSync(OUTPUT_DIR)) {
