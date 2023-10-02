@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.1.0
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3.8.1
         with:
-          node-version: 16
-      - run: yarn install --frozen-lockfile
+          node-version-file: ".nvmrc"
+          cache: yarn
+      - run: yarn install --immutable
       - run: npm test
