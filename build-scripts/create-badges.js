@@ -40,6 +40,7 @@ function renderBadge({ width, height, accessibleText }, main) {
     height="${height / 2}"
     viewBox="0 0 ${width} ${height}"
     ${renderAriaAttributes({ accessibleText })}
+    style="border-radius:24px"
   >
   ${renderTitle({ accessibleText })}
   <rect width="${width}" height="${height}" rx="48" fill="#18BCF2"/>
