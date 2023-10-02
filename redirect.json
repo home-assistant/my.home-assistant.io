@@ -2,6 +2,7 @@
   {
     "redirect": "add_matter_device",
     "name": "Add Matter Device",
+    "badge": "Add Matter device to",
     "description": "add a Matter device to your instance",
     "introduced": "2023.3",
     "params": {
@@ -12,6 +13,7 @@
   {
     "redirect": "add_zwave_device",
     "name": "Add Z-Wave Device",
+    "badge": "Add Z-Wave device to",
     "description": "add a Z-Wave device to your instance",
     "introduced": "2022.11",
     "params": {
@@ -22,6 +24,7 @@
   {
     "redirect": "add_zigbee_device",
     "name": "Add Zigbee Device",
+    "badge": "Add Zigbee device to",
     "description": "add a Zigbee device to your instance",
     "introduced": "2022.11",
     "params": {
@@ -73,33 +76,35 @@
   {
     "redirect": "areas",
     "name": "Areas",
+    "badge": "Show areas of",
     "description": "show your areas",
     "introduced": "2021.3"
   },
   {
     "redirect": "automations",
+    "badge": "Show automations of",
     "name": "Automations",
     "description": "show your automations",
     "introduced": "2021.3"
   },
   {
     "redirect": "backup",
-    "name": "Backup",
     "badge": "Backup",
+    "name": "Backup",
     "description": "Backup your Home Assistant installation",
     "introduced": "2022.4"
   },
   {
     "redirect": "blueprints",
     "name": "Blueprints: Dashboard",
-    "badge": "Blueprints",
+    "badge": "Show blueprints of",
     "description": "show your blueprints",
     "introduced": "2021.3"
   },
   {
     "redirect": "blueprint_import",
     "name": "Blueprints: Start import",
-    "badge": "Import Blueprint",
+    "badge": "Import blueprint to",
     "description": "show the blueprint import dialog with a specific blueprint pre-filled",
     "introduced": "2021.3",
     "params": {
@@ -112,14 +117,14 @@
   {
     "redirect": "calendar",
     "name": "Calendar",
-    "badge": "Calendar",
+    "badge": "Show calendars of",
     "description": "show your calendar",
     "introduced": "2023.1"
   },
   {
     "redirect": "companion_app",
     "name": "Companion app",
-    "badge": "Companion app",
+    "badge": "Show app settings of",
     "description": "open the settings of your companion app",
     "introduced": "2023.8"
   },
