@@ -153,6 +153,7 @@
     "name": "Dashboard",
     "badge": "Show supervisor dashboard of",
     "description": "show your Supervisor dashboard",
+    "deprecated": true,
     "introduced": "supervisor-2021.02.10"
   },
   {
@@ -471,6 +472,7 @@
     "name": "Supervisor: info",
     "badge": "Show Supervisor info of",
     "description": "show your Supervisor system information",
+    "deprecated": true,
     "introduced": "supervisor-2021.02.12"
   },
   {
@@ -478,6 +480,7 @@
     "name": "Supervisor: logs",
     "badge": "Show Supervisor logs of",
     "description": "show your Supervisor system logs",
+    "deprecated": true,
     "introduced": "supervisor-2021.02.12"
   },
   {
