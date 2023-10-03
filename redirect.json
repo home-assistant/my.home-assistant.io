@@ -13,7 +13,7 @@
   {
     "redirect": "supervisor_add_addon_repository",
     "name": "Add repository",
-    "badge": "Add repository to",
+    "badge": "Add add-on repository to",
     "description": "show the add add-on repository dialog with a specific repository URL pre-filled",
     "introduced": "supervisor-2021.03.4",
     "params": {
@@ -48,7 +48,7 @@
   {
     "redirect": "supervisor_store",
     "name": "Add-on store",
-    "badge": "Open the add-on store of",
+    "badge": "Open add-on store of",
     "description": "show the add-on store",
     "introduced": "supervisor-2021.02.12"
   },
@@ -151,35 +151,35 @@
   {
     "redirect": "supervisor",
     "name": "Dashboard",
-    "badge": "Show dashboard",
+    "badge": "Show supervisor dashboard of",
     "description": "show your Supervisor dashboard",
     "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "lovelace_resources",
     "name": "Dashboard resources",
-    "badge": "Dashboard resources",
+    "badge": "Show dashboard resources of",
     "description": "show your dashboard resources",
     "introduced": "2021.3"
   },
   {
     "redirect": "lovelace_dashboards",
     "name": "Dashboards",
-    "badge": "Show dashboard configs",
+    "badge": "Show dashboard configs of",
     "description": "show your dashboard configs",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_assist",
     "name": "Developer tools: Assist",
-    "badge": "Show Assist dev tools",
+    "badge": "Show Assist dev tools of",
     "description": "show your Assist developer tools",
     "introduced": "2023.8"
   },
   {
     "redirect": "developer_call_service",
     "name": "Developer tools: call service",
-    "badge": "Call service on my",
+    "badge": "Call service on",
     "description": "show your service developer tools with a specific service selected",
     "introduced": "2021.3",
     "params": {
@@ -220,7 +220,7 @@
   {
     "redirect": "developer_template",
     "name": "Developer tools: templates",
-    "badge": "Show template dev tools",
+    "badge": "Show template dev tools of",
     "description": "show your template developer tools",
     "introduced": "2021.3"
   },
@@ -356,21 +356,21 @@
   {
     "redirect": "logbook",
     "name": "Logbook",
-    "badge": "Show logbook",
+    "badge": "Show logbook of",
     "description": "show your logbook panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "logs",
     "name": "Logs",
-    "badge": "Show logs",
+    "badge": "Show logs of",
     "description": "show your Home Assistant logs",
     "introduced": "2021.3"
   },
   {
     "redirect": "media_browser",
     "name": "Media",
-    "badge": "Browse media",
+    "badge": "Browse media on",
     "description": "browse available media",
     "introduced": "2022.3"
   },
@@ -392,7 +392,7 @@
     "redirect": "oauth",
     "deprecated": true,
     "name": "OAuth2 Authorize Callback",
-    "badge": "OAuth2 callback",
+    "badge": "OAuth2 callback to",
     "description": "(replaced in UI)",
     "introduced": "2022.6",
     "params": {
@@ -404,7 +404,7 @@
   {
     "redirect": "people",
     "name": "People",
-    "badge": "List people",
+    "badge": "List people of",
     "description": "show a list of your people",
     "introduced": "2021.3"
   },
@@ -483,7 +483,7 @@
   {
     "redirect": "system_dashboard",
     "name": "System dashboard",
-    "badge": "Show system dashboard ",
+    "badge": "Show system dashboard of",
     "description": "show the system dashboard",
     "introduced": "2022.5"
   },
