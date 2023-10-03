@@ -21,7 +21,7 @@ description: Answers to all your questions about My Home Assistant.
     display: flex;
     justify-content: space-between;
     text-decoration: none;
-    line-height: 48px;
+    line-height: 60px;
     color: black;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23212121"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>');
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@ description: Answers to all your questions about My Home Assistant.
     align-items: center;
   }
 
-  @media all and (min-width: 500px) {
+  @media all and (min-width: 600px) {
     .redirects a .badge {
       display: flex;
     }
@@ -107,14 +107,16 @@ description: Answers to all your questions about My Home Assistant.
 <div class="section-header" id="supported-pages">What pages are supported?</div>
 <div class="redirects">
   {% for redirect in redirects %}
-  <a
-    href="{{ redirect | redirectExamplePath }}"
-    title="Introduced in {{ redirect.introduced | version }}."
-  >
-    {{ redirect.name }}
-    <div class="badge">
-      <img loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
-    </div>
-  </a>
+    {% if redirect.deprecated != true %}
+      <a
+        href="{{ redirect | redirectExamplePath }}"
+        title="Introduced in {{ redirect.introduced | version }}."
+      >
+        {{ redirect.name }}
+        <div class="badge">
+          <img loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
+        </div>
+      </a>
+    {% endif %}
   {% endfor %}
 </div>
