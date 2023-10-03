@@ -254,7 +254,7 @@ ${badgeHTML}</textarea
   }
 
   private _createHTML() {
-    return `<a href="${this._url}" target="_blank"><img src="${
+    return `<a href="${this._url}" target="_blank" rel="noreferrer noopener"><img src="${
       window.location.origin
     }${this._createBadge()}" alt="${this._altText}" /></a>`;
   }
