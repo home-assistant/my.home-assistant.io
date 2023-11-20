@@ -4219,6 +4219,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lit-html@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "lit-html@npm:3.1.0"
+  dependencies:
+    "@types/trusted-types": ^2.0.2
+  checksum: db6c860bd3f66eb0b3d189b56f0c9bb583da76c2fbd16e4cdc15f5f05fdabe4b9ab2f3d1e90e9a20ce0d18698a6cc35a830ab78dd11b57e00e4c4f16a5ee469c
+  languageName: node
+  linkType: hard
+
 "lit@npm:^2.0.0":
   version: 2.8.0
   resolution: "lit@npm:2.8.0"
@@ -4230,14 +4239,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "lit@npm:3.0.2"
+"lit@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "lit@npm:3.1.0"
   dependencies:
     "@lit/reactive-element": ^2.0.0
     lit-element: ^4.0.0
-    lit-html: ^3.0.0
-  checksum: 6a1d3b357660b8f4799faa9a8c2cad6bb78a95b69a6138bd23d8db39c3fb4bc9183ad032c742fe8c6e20e391010982d1498600ba370c00c5138042f5460db991
+    lit-html: ^3.1.0
+  checksum: 4202f41394707d0d83466c3f1b355f21dbe21fe17f042bb3a98108d79483a4bc5515c2e9c93b4a1665bf8fd1e01e94eeab7635fbed387c1a055a94f3689a9338
   languageName: node
   linkType: hard
 
@@ -4748,7 +4757,7 @@ __metadata:
     clipboard-copy: ^4.0.1
     gulp: ^4.0.2
     html-minifier-terser: ^7.2.0
-    lit: ^3.0.2
+    lit: ^3.1.0
     pre-commit: ^1.2.2
     prettier: ^3.1.0
     require-dir: ^1.2.0
