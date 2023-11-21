@@ -37,8 +37,9 @@ function renderBadge({ width, height, accessibleText }, main) {
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 ${width} ${height}"
+    height="40"
     ${renderAriaAttributes({ accessibleText })}
-    style="border-radius:24px;width:auto;height:40px;"
+    style="border-radius:24px;width:auto;"
   >
   ${renderTitle({ accessibleText })}
   <rect width="${width}" height="${height}" rx="${height / 2}" fill="#18BCF2"/>
