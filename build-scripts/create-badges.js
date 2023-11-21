@@ -36,14 +36,12 @@ function renderBadge({ width, height, accessibleText }, main) {
   <svg 
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="${width / 2}"
-    height="${height / 2}"
     viewBox="0 0 ${width} ${height}"
     ${renderAriaAttributes({ accessibleText })}
-    style="border-radius:24px"
+    style="border-radius:24px;width:auto;height:40px;"
   >
   ${renderTitle({ accessibleText })}
-  <rect width="${width}" height="${height}" rx="48" fill="#18BCF2"/>
+  <rect width="${width}" height="${height}" rx="${height / 2}" fill="#18BCF2"/>
   ${main}
   <g style="transform: translate(${width - 497}px, 0);">
       <rect x="344" y="16" width="137" height="64" rx="32" fill="#F2F4F9"/>
