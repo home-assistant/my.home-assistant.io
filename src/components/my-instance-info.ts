@@ -1,5 +1,4 @@
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
-import "@material/mwc-button";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { svgPencil } from "./svg-pencil";

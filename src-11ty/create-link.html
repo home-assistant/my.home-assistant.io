@@ -9,9 +9,12 @@ description: Generate links to any place in Home Assistant.
   .back {
     padding: 8px 16px 0;
   }
-  mwc-select,
-  mwc-textfield {
+  md-filled-select,
+  md-filled-text-field {
     display: block;
+  }
+  md-filled-text-field {
+    margin-top: 8px;
   }
   textarea,
   input {
@@ -32,7 +35,8 @@ description: Generate links to any place in Home Assistant.
     border-color: #04a9f4;
   }
   .success {
-    --mdc-theme-primary: green;
+    --_outline-color: green;
+    --md-sys-color-primary: green;
   }
 </style>
 

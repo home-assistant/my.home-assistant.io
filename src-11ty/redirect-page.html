@@ -20,18 +20,19 @@ permalink: "redirect/{{ redirect.redirect }}/"
   }
   .card-actions {
     padding: 0 8px;
-    height: 37px;
+    height: 60px;
   }
   .card-actions a {
     text-decoration: none;
   }
   .fake-button {
-    padding: 0 8px;
-    line-height: 36px;
+    padding: 0 24px;
+    line-height: 40px;
     color: rgba(0, 0, 0, 0.38);
-    letter-spacing: 0.0892857em;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.38);
+    border-radius: 9999px;
   }
   .instance-footer {
     font-size: 14px;
@@ -106,13 +107,13 @@ permalink: "redirect/{{ redirect.redirect }}/"
 
   {% if redirect.redirect == "oauth" %}
   <div class="card-actions">
-    <div class="fake-button decline-link">DECLINE</div>
-    <div class="fake-button open-link">LINK ACCOUNT</div>
+    <div class="fake-button decline-link">Decline</div>
+    <div class="fake-button open-link">Link account</div>
   </div>
   {% else %}
   <div class="card-actions">
     <div></div>
-    <div class="fake-button open-link">OPEN LINK</div>
+    <div class="fake-button open-link">Open link</div>
   </div>
   {% endif %}
 </div>

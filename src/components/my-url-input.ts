@@ -1,6 +1,6 @@
-import "@material/mwc-button";
-import "@material/mwc-textfield";
-import { TextField } from "@material/mwc-textfield";
+import "@material/web/button/filled-button"
+import "@material/web/textfield/filled-text-field"
+import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
 import { customElement, state, query, property } from "lit/decorators.js";
 import { DEFAULT_HASS_URL } from "../const";
@@ -14,7 +14,7 @@ export class MyUrlInputMain extends LitElement {
 
   @state() private _error?: string | TemplateResult;
 
-  @query("mwc-textfield", true) private _textfield!: TextField;
+  @query("md-filled-text-field", true) private _textfield!: MdFilledTextField;
 
   public focus(): void {
     this.updateComplete.then(() => this._textfield.focus());
@@ -24,15 +24,14 @@ export class MyUrlInputMain extends LitElement {
     return html`
       ${this._error ? html`<p class="error">${this._error}</p>` : ""}
       <div>
-        <mwc-textfield
+        <md-filled-text-field
           label="Home Assistant URL"
           .value=${this.value || DEFAULT_HASS_URL}
           @keydown=${this._handleInputKeyDown}
-        ></mwc-textfield>
-        <mwc-button
-          .label=${this.value ? "Update" : "Save"}
+        ></md-filled-text-field>
+        <md-filled-button
           @click=${this._handleSave}
-        ></mwc-button>
+        >${this.value ? "Update" : "Save"}</md-filled-button>
       </div>
     `;
   }
@@ -45,7 +44,7 @@ export class MyUrlInputMain extends LitElement {
   }
 
   private _handleSave() {
-    const inputEl = this.shadowRoot!.querySelector("mwc-textfield")!;
+    const inputEl = this._textfield!;
     let value = inputEl.value || "";
     this._error = undefined;
 
@@ -93,7 +92,7 @@ export class MyUrlInputMain extends LitElement {
         color: #db4437;
         font-weight: bold;
       }
-      mwc-textfield {
+      md-filled-text-field {
         flex-grow: 1;
         margin-right: 8px;
       }

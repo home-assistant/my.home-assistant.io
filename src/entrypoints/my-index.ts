@@ -1,4 +1,3 @@
-import "@material/mwc-button";
 import { html, LitElement, TemplateResult, PropertyValues } from "lit";
 import { customElement, state, query } from "lit/decorators.js";
 import "../components/my-url-input";
@@ -54,7 +53,7 @@ class MyIndex extends LitElement {
             : ""}
 
           <my-url-input
-            .value=${this._instanceUrl}
+            .value=${this._instanceUrl || ""}
             @value-changed=${this._handleUrlChanged}
           ></my-url-input>
 

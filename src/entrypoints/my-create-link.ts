@@ -1,7 +1,9 @@
-import "@material/mwc-button";
-import "@material/mwc-select";
-import "@material/mwc-textfield";
-import type { TextField } from "@material/mwc-textfield";
+import "@material/web/button/outlined-button"
+import "@material/web/textfield/filled-text-field"
+import "@material/web/select/filled-select"
+import "@material/web/select/select-option"
+import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
+import type { MdOutlinedButton } from "@material/web/button/outlined-button";
 import { repeat } from "lit/directives/repeat.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import copy from "clipboard-copy";
@@ -12,7 +14,6 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import type { Button } from "@material/mwc-button";
 import { ParamType, Redirect } from "../const";
 import { validateParam } from "../util/validate";
 
@@ -56,35 +57,35 @@ class MyCreateLink extends LitElement {
 
     return html`
       <div class="card-content">
-        <mwc-select
+        <md-filled-select
           label="Redirect to"
           required
-          validationMessage="This field is required"
-          naturalMenuWidth
-          @selected=${this._itemSelected}
+          errorText="This field is required"
+          .value=${this._redirect.redirect}
+          @input=${this._itemSelected}
         >
           ${filteredRedirects.map(
             (redirect) =>
-              html`<mwc-list-item
+              html`<md-select-option
                 .selected=${this._redirect?.redirect === redirect.redirect}
                 .value=${redirect.redirect}
-                >${redirect.name}</mwc-list-item
+                ><div slot="headline">${redirect.name}</div></md-select-option
               >`
           )}
-        </mwc-select>
+        </md-filled-select>
 
         ${repeat(
           Object.entries(this._redirect?.params || []),
           ([key, _]) => `${this._redirect.redirect}-${key}`,
-          ([key, type]) => html`<mwc-textfield
+          ([key, type]) => html`<md-filled-text-field
             ?required=${!type.endsWith("?")}
-            .validationMessage=${!type.endsWith("?")
+            .errorText=${!type.endsWith("?")
               ? "This field is required"
               : ""}
             .label=${prettify(key)}
             data-key="${key}"
             @input=${this._paramChanged}
-          ></mwc-textfield>`
+          ></md-filled-text-field>`
         )}
         ${this.isValid
           ? html`
@@ -93,9 +94,9 @@ class MyCreateLink extends LitElement {
                 our <a href="https://www.home-assistant.io/join-chat"
                 target="_blank">Discord</a> chat server.</p>
                 <input value=${this._url} readonly @focus=${this._select} />
-                <mwc-button outlined @click=${this._copyURL}>
+                <md-outlined-button @click=${this._copyURL}>
                   Copy URL
-                </mwc-button>
+                </md-outlined-button>
 
                 <h1>Markdown</h1>
                 <p>A beautiful linked badge in Markdown, for example, when
@@ -107,9 +108,9 @@ class MyCreateLink extends LitElement {
                 <textarea rows="3" readonly @focus=${this._select}>
 ${this._createMarkdown()}</textarea
                 >
-                <mwc-button outlined @click=${this._copyMarkdown}>
+                <md-outlined-button @click=${this._copyMarkdown}>
                   Copy Markdown
-                </mwc-button>
+                </md-outlined-button>
 
                 <h1>HTML</h1>
                 <p>A beautiful badge in HTML format, which can be used on,
@@ -120,9 +121,9 @@ ${this._createMarkdown()}</textarea
                 <textarea rows="3" readonly @focus=${this._select}>
 ${badgeHTML}</textarea
                 >
-                <mwc-button outlined @click=${this._copyHTML}>
+                <md-outlined-button @click=${this._copyHTML}>
                   Copy HTML
-                </mwc-button>
+                </md-outlined-button>
               </a>
             `
           : ""}
@@ -143,8 +144,8 @@ ${badgeHTML}</textarea
       }
       const msg = validateParam(paramType as ParamType, passedInData[key]);
       const inputEl = this.querySelector(
-        `mwc-textfield[data-key=${key}]`
-      ) as TextField;
+        `md-filled-text-field[data-key=${key}]`
+      ) as MdFilledTextField;
 
       inputEl.value = passedInData[key];
 
@@ -172,9 +173,9 @@ ${badgeHTML}</textarea
   }
 
   private _itemSelected(ev) {
-    const newRedirect = filteredRedirects[ev.detail.index];
+    const newRedirect = filteredRedirects.find(rd => rd.redirect === ev.target.value);
 
-    if (newRedirect.redirect === this._redirect.redirect) {
+    if (newRedirect!.redirect === this._redirect.redirect) {
       return;
     }
 
@@ -211,18 +212,18 @@ ${badgeHTML}</textarea
   }
 
   private _copyURL(ev: Event) {
-    this._copy(this._url, ev.currentTarget as Button);
+    this._copy(this._url, ev.currentTarget as MdOutlinedButton);
   }
 
   private _copyHTML(ev: Event) {
-    this._copy(this._createHTML(), ev.currentTarget as Button);
+    this._copy(this._createHTML(), ev.currentTarget as MdOutlinedButton);
   }
 
   private _copyMarkdown(ev: Event) {
-    this._copy(this._createMarkdown(), ev.currentTarget as Button);
+    this._copy(this._createMarkdown(), ev.currentTarget as MdOutlinedButton);
   }
 
-  private async _copy(text: string, button: Button) {
+  private async _copy(text: string, button: MdOutlinedButton) {
     try {
       await copy(text);
       this._copySuccess(button);
@@ -231,7 +232,7 @@ ${badgeHTML}</textarea
     }
   }
 
-  private _copySuccess(element: Button) {
+  private _copySuccess(element: MdOutlinedButton) {
     const prevText = element.innerText;
     element.classList.add("success");
     element.innerText = "Copied!";
