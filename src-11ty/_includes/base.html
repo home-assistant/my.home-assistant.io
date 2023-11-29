@@ -15,7 +15,7 @@ My Home Assistant
 {% comment %}
 <!-- prettier-unignore -->
 {% endcomment %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -58,8 +58,45 @@ My Home Assistant
         margin: 0;
         padding: 0;
         background-color: #fafafa;
-        --mdc-theme-primary: #03a9f4;
-        --mdc-theme-secondary: #03a9f4;
+
+        --md-sys-color-background: #f6f9ff;
+        --md-sys-color-on-background: #171c21;
+        --md-sys-color-surface: #f6f9ff;
+        --md-sys-color-surface-dim: #d6dae1;
+        --md-sys-color-surface-bright: #f6f9ff;
+        --md-sys-color-surface-container-lowest: #ffffff;
+        --md-sys-color-surface-container-low: #f0f4fa;
+        --md-sys-color-surface-container: #eaeef5;
+        --md-sys-color-surface-container-high: #e4e8ef;
+        --md-sys-color-surface-container-highest: #dee3e9;
+        --md-sys-color-on-surface: #171c21;
+        --md-sys-color-surface-variant: #dae4ef;
+        --md-sys-color-on-surface-variant: #3e4851;
+        --md-sys-color-inverse-surface: #2c3136;
+        --md-sys-color-inverse-on-surface: #edf1f8;
+        --md-sys-color-outline: #6e7882;
+        --md-sys-color-outline-variant: #bec8d2;
+        --md-sys-color-shadow: #000000;
+        --md-sys-color-scrim: #000000;
+        --md-sys-color-surface-tint: #006493;
+        --md-sys-color-primary: #03a9f4;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #32b5ff;
+        --md-sys-color-on-primary-container: #002337;
+        --md-sys-color-inverse-primary: #8dcdff;
+        --md-sys-color-secondary: #3b627f;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #bee1ff;
+        --md-sys-color-on-secondary-container: #1e4863;
+        --md-sys-color-tertiary: #8440a3;
+        --md-sys-color-on-tertiary: #ffffff;
+        --md-sys-color-tertiary-container: #d78ef7;
+        --md-sys-color-on-tertiary-container: #380050;
+        --md-sys-color-error: #ba1a1a;
+        --md-sys-color-on-error: #ffffff;
+        --md-sys-color-error-container: #ffdad6;
+        --md-sys-color-on-error-container: #410002;
+
         --primary-text-color: #212121;
         --link-text-color: #0277bd;
         color: var(--primary-text-color);
@@ -105,7 +142,7 @@ My Home Assistant
           var(--paper-card-background-color, white)
         );
         border-radius: var(--ha-card-border-radius);
-        border: 1px solid rgba(0, 0, 0, .12);
+        border: 1px solid rgba(0, 0, 0, 0.12);
         color: var(--primary-text-color);
         display: block;
         transition: all 0.3s ease-out;
@@ -164,7 +201,9 @@ My Home Assistant
       }
       @font-face {
         font-family: "Roboto";
-        src: local("Roboto Regular"), local("Roboto-Regular"),
+        src:
+          local("Roboto Regular"),
+          local("Roboto-Regular"),
           url(/fonts/roboto/Roboto-Regular.woff2) format("woff2");
         font-weight: 400;
         font-style: normal;

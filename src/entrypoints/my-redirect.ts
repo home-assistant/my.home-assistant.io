@@ -1,4 +1,5 @@
-import "@material/mwc-button";
+import "@material/web/button/filled-button"
+import "@material/web/button/outlined-button"
 import {
   createSearchParam,
   extractSearchParamsObject,
@@ -70,20 +71,20 @@ const render = (showTroubleshooting: boolean) => {
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
     <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <mwc-button>${openLink.innerText}</mwc-button>
+      <md-filled-button>${openLink.innerText}</md-filled-button>
     </a>
   `;
 
   if (window.redirect.redirect === "oauth") {
     const params = extractSearchParamsObject();
 
-    let buttonCaption = "DECLINE";
+    let buttonCaption = "Decline";
 
     // User already rejected, hide link button
     if ("error" in params) {
       document.querySelector(".card-header")!.innerHTML =
         "Account linking rejected";
-      buttonCaption = "NOTIFY HOME ASSISTANT OF REJECTION";
+      buttonCaption = "Notify Home Assistant of rejection";
       (document.querySelector(".open-link") as HTMLElement).style.visibility =
         "hidden";
     }
@@ -95,7 +96,7 @@ const render = (showTroubleshooting: boolean) => {
     });
     declineLink.outerHTML = `
         <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
-          <mwc-button>${buttonCaption}</mwc-button>
+          <md-outlined-button>${buttonCaption}</md-outlined-button>
         </a>
       `;
   }
