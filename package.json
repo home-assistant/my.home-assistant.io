@@ -32,7 +32,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@braintree/sanitize-url": "^6.0.4",
+    "@braintree/sanitize-url": "^7.0.0",
     "@material/web": "^1.0.1",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^7.2.0",
