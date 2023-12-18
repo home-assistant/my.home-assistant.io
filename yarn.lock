@@ -278,13 +278,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material/web@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@material/web@npm:1.0.1"
+"@material/web@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@material/web@npm:1.1.1"
   dependencies:
     lit: ^2.7.4 || ^3.0.0
     tslib: ^2.4.0
-  checksum: 2bd89ada418a8ce824bb0e52d51de7335196dec54e5517f00928b8a2ca46e0b29d8e4c463f8c70fdd0a7c8c5e1c73b9d0d1ea812f0f5993ae11b9ed7f784f0cb
+  checksum: 589e3e91cf19f7fcde952881cbdeae8fcdc2b56274ab6d88a4bc556ffcdb7e515564aa1f0a8f55b6dc418c12a53b4687f63184b8bb6a39db106f5aff3f7b1f19
   languageName: node
   linkType: hard
 
@@ -4229,7 +4229,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": ^2.0.1
     "@braintree/sanitize-url": ^7.0.0
-    "@material/web": ^1.0.1
+    "@material/web": ^1.1.1
     "@rollup/plugin-commonjs": ^25.0.7
     "@rollup/plugin-json": ^6.0.1
     "@rollup/plugin-node-resolve": ^15.2.3
