@@ -3747,7 +3747,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^2.7.4 || ^3.0.0, lit@npm:^3.1.0":
+"lit@npm:^2.7.4 || ^3.0.0":
   version: 3.1.0
   resolution: "lit@npm:3.1.0"
   dependencies:
@@ -3755,6 +3755,17 @@ __metadata:
     lit-element: ^4.0.0
     lit-html: ^3.1.0
   checksum: 4202f41394707d0d83466c3f1b355f21dbe21fe17f042bb3a98108d79483a4bc5515c2e9c93b4a1665bf8fd1e01e94eeab7635fbed387c1a055a94f3689a9338
+  languageName: node
+  linkType: hard
+
+"lit@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "lit@npm:3.1.1"
+  dependencies:
+    "@lit/reactive-element": ^2.0.0
+    lit-element: ^4.0.0
+    lit-html: ^3.1.0
+  checksum: 1c145e074f89483b5115a200b6963e75eb180393856bdb2eb5641fb5641e086e41a132f97478c5a1e5a88fc243a11a5306c1dbed64f51853f7833a65e21d4534
   languageName: node
   linkType: hard
 
@@ -4270,7 +4281,7 @@ __metadata:
     clipboard-copy: ^4.0.1
     gulp: ^4.0.2
     html-minifier-terser: ^7.2.0
-    lit: ^3.1.0
+    lit: ^3.1.1
     pre-commit: ^1.2.2
     prettier: ^3.2.2
     require-dir: ^1.2.0
