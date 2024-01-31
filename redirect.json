@@ -366,7 +366,10 @@
     "name": "Logs",
     "badge": "Show logs of",
     "description": "show your Home Assistant logs",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "provider": "string?"
+    }
   },
   {
     "redirect": "media_browser",
