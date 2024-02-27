@@ -5,7 +5,7 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import { getInstanceUrl } from "../data/instance_info";
-import { Redirect } from "../const";
+import { MOBILE_URL, Redirect } from "../const";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
 import { validateParam } from "../util/validate";
@@ -37,6 +37,12 @@ const createRedirectParams = (): string => {
 
 let changingInstance = false;
 
+const getRedirectUrl = (baseUrl: string, params) => {
+  return window.redirect.redirect === "oauth"
+    ? `${baseUrl}/auth/external/callback${params}`
+    : `${baseUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+};
+
 const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
@@ -53,6 +59,12 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
+  if (!isMobile) {
+    //Try opening on the native app
+    const redirectUrlToNativeApp = getRedirectUrl(MOBILE_URL, params);
+    document.location.assign(redirectUrlToNativeApp);
+  }
+
   const changeUrl = `/redirect/_change/?redirect=${encodeURIComponent(
     window.redirect.redirect + "/" + params
   )}`;
@@ -63,10 +75,7 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  const redirectUrl =
-    window.redirect.redirect === "oauth"
-      ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+  const redirectUrl = getRedirectUrl(instanceUrl, params);
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
