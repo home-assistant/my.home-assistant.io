@@ -355,6 +355,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "labels",
+    "name": "Labels",
+    "badge": "Show labels of",
+    "description": "show your labels",
+    "introduced": "2024.4"
+  },
+  {
     "redirect": "logbook",
     "name": "Logbook",
     "badge": "Show logbook of",
