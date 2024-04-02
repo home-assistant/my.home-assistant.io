@@ -87,13 +87,6 @@
     "introduced": "2022.5"
   },
   {
-    "redirect": "areas",
-    "name": "Areas",
-    "badge": "Show areas of",
-    "description": "show your areas",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "automations",
     "badge": "Show automations of",
     "name": "Automations",
@@ -254,6 +247,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "areas",
+    "name": "Floors & areas",
+    "badge": "Show floors and areas of",
+    "description": "show your floors and areas",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "general",
     "name": "General settings",
     "badge": "Show settings of",
@@ -353,6 +353,13 @@
     "badge": "Show integrations of",
     "description": "show your integrations",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "labels",
+    "name": "Labels",
+    "badge": "Show labels of",
+    "description": "show your labels panel",
+    "introduced": "2024.5"
   },
   {
     "redirect": "logbook",
