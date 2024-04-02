@@ -358,7 +358,7 @@
     "redirect": "labels",
     "name": "Labels",
     "badge": "Show labels of",
-    "description": "show your labels panel",
+    "description": "show your labels",
     "introduced": "2024.5"
   },
   {
