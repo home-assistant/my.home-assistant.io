@@ -359,7 +359,7 @@
     "name": "Labels",
     "badge": "Show labels of",
     "description": "show your labels",
-    "introduced": "2024.5"
+    "introduced": "2024.4"
   },
   {
     "redirect": "logbook",
