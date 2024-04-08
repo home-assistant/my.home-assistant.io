@@ -20,7 +20,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^3.2.5",
     "require-dir": "^1.2.0",
