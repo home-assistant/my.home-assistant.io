@@ -151,10 +151,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@braintree/sanitize-url@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@braintree/sanitize-url@npm:7.0.1"
-  checksum: 793a3b01c5e06152b197c73cccee2db99e921b36d944fc0738e732b5da068709da8844eb8e1489ea360c34b00a100c8b9b3065d5e2030ba5252cdd5d2a6a9a28
+"@braintree/sanitize-url@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "@braintree/sanitize-url@npm:7.0.2"
+  checksum: d90baf41220e2c6a53005ab89d01abd2ab007ba341ee77af6f0cc7e30f0fd9c1e8b78b19f7e60ba8c0befe4ecb772dcedb464bd5d768236d7fd8c373d236c169
   languageName: node
   linkType: hard
 
@@ -3282,7 +3282,7 @@ __metadata:
   resolution: "my.home-assistant.io@workspace:."
   dependencies:
     "@11ty/eleventy": ^2.0.1
-    "@braintree/sanitize-url": ^7.0.1
+    "@braintree/sanitize-url": ^7.0.2
     "@material/web": ^1.4.1
     "@rollup/plugin-commonjs": ^25.0.7
     "@rollup/plugin-json": ^6.1.0
