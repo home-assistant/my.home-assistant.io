@@ -25,6 +25,11 @@ permalink: "redirect/{{ redirect.redirect }}/"
   .card-actions a {
     text-decoration: none;
   }
+  .open-card-actions {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+  }
   .fake-button {
     padding: 0 24px;
     line-height: 40px;
@@ -108,12 +113,18 @@ permalink: "redirect/{{ redirect.redirect }}/"
   {% if redirect.redirect == "oauth" %}
   <div class="card-actions">
     <div class="fake-button decline-link">Decline</div>
-    <div class="fake-button open-link">Link account</div>
+    <div class="open-card-actions">
+      <div class="fake-button open-link-app">Open link on app</div>
+      <div class="fake-button open-link">Link account</div>
+    </div>
   </div>
   {% else %}
   <div class="card-actions">
     <div></div>
-    <div class="fake-button open-link">Open link</div>
+    <div class="open-card-actions">
+      <div class="fake-button open-link-native">Open link on app</div>
+      <div class="fake-button open-link">Open link here</div>
+    </div>
   </div>
   {% endif %}
 </div>
