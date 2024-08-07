@@ -164,24 +164,18 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "developer_services",
+    "name": "Developer tools: actions",
+    "badge": "Show action dev tools of",
+    "description": "show your action developer tools",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "developer_assist",
     "name": "Developer tools: Assist",
     "badge": "Show Assist dev tools of",
     "description": "show your Assist developer tools",
     "introduced": "2023.8"
-  },
-  {
-    "redirect": "developer_call_service",
-    "name": "Developer tools: call service",
-    "badge": "Call service on",
-    "description": "show your service developer tools with a specific service selected",
-    "introduced": "2021.3",
-    "params": {
-      "service": "string"
-    },
-    "example": {
-      "service": "homeassistant.turn_on"
-    }
   },
   {
     "redirect": "developer_events",
@@ -191,11 +185,17 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "developer_services",
-    "name": "Developer tools: services",
-    "badge": "Show service dev tools of",
-    "description": "show your service developer tools",
-    "introduced": "2021.3"
+    "redirect": "developer_call_service",
+    "name": "Developer tools: perform action",
+    "badge": "Perform action on",
+    "description": "show your service developer tools with a specific action selected",
+    "introduced": "2021.3",
+    "params": {
+      "service": "string"
+    },
+    "example": {
+      "service": "homeassistant.turn_on"
+    }
   },
   {
     "redirect": "developer_states",
