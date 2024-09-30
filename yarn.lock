@@ -368,9 +368,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-typescript@npm:^11.1.6":
-  version: 11.1.6
-  resolution: "@rollup/plugin-typescript@npm:11.1.6"
+"@rollup/plugin-typescript@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "@rollup/plugin-typescript@npm:12.1.0"
   dependencies:
     "@rollup/pluginutils": ^5.1.0
     resolve: ^1.22.1
@@ -383,7 +383,7 @@ __metadata:
       optional: true
     tslib:
       optional: true
-  checksum: 3f5b981f4d9c9501be1f16396f7b6d4ae584cb1b61e9f0bed66f98245fb77f249caea2b9b5f222f933b46fd9043c1f2664a7445aefa386c1ffbb4f0b80fc6004
+  checksum: fb002f1cf93d780126ef873f907c7f490448bfe3f649c201e8dc944ab56bb2d0664940119ca40ee0051c6db361bae803513b00831a74e9e4459b4ad91f052ad5
   languageName: node
   linkType: hard
 
@@ -3281,7 +3281,7 @@ __metadata:
     "@rollup/plugin-commonjs": ^28.0.0
     "@rollup/plugin-json": ^6.1.0
     "@rollup/plugin-node-resolve": ^15.2.4
-    "@rollup/plugin-typescript": ^11.1.6
+    "@rollup/plugin-typescript": ^12.1.0
     clipboard-copy: ^4.0.1
     gulp: ^5.0.0
     html-minifier-terser: ^7.2.0
