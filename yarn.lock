@@ -2890,12 +2890,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lit-element@npm:^4.1.0":
+  version: 4.1.1
+  resolution: "lit-element@npm:4.1.1"
+  dependencies:
+    "@lit-labs/ssr-dom-shim": ^1.2.0
+    "@lit/reactive-element": ^2.0.4
+    lit-html: ^3.2.0
+  checksum: 74d0f2d6fb784b1e96f27c54d036b6eb49ca9883577db627ce9ca42b242c5a5da3ae7b5c874fe2a0559ee6134726a741ec2166a48bfee90ab91346a237f33e85
+  languageName: node
+  linkType: hard
+
 "lit-html@npm:^3.1.2":
   version: 3.1.3
   resolution: "lit-html@npm:3.1.3"
   dependencies:
     "@types/trusted-types": ^2.0.2
   checksum: b079d785860378ab1b9d6ba4f5a367c30dc64a98da696b9dd8e4c68bd26f6478aa74099e56062358f2f0fc75e9ee949b1e1723abf85cde00c86d27d56d2d3717
+  languageName: node
+  linkType: hard
+
+"lit-html@npm:^3.2.0":
+  version: 3.2.1
+  resolution: "lit-html@npm:3.2.1"
+  dependencies:
+    "@types/trusted-types": ^2.0.2
+  checksum: 1bacd9f8b2acfe44a989c09c21f1aedbe409409196eff8d203c952c7ad034899b16d239551efa76872a3cea21883db62a5309aeefc604a1e3d4a8d36c9719e63
   languageName: node
   linkType: hard
 
@@ -2910,14 +2930,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^3.1.4":
-  version: 3.1.4
-  resolution: "lit@npm:3.1.4"
+"lit@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "lit@npm:3.2.1"
   dependencies:
     "@lit/reactive-element": ^2.0.4
-    lit-element: ^4.0.4
-    lit-html: ^3.1.2
-  checksum: c6ffa5580f902404212dd0fc7b8d7b5f394698348521ca04f3f7c3bb2ce1369976e13c9c55166a8c89a6322f620982460fcff29b19474179d4e502fb9c2736bc
+    lit-element: ^4.1.0
+    lit-html: ^3.2.0
+  checksum: ee22bbc53d5d639258b4a3a3d10f166adf959fd4ddb61db739d0a8328d0094a2232ffebb808fec3a645aeb166b15c03c688f75dde723524bf7b22263e078158f
   languageName: node
   linkType: hard
 
@@ -3345,7 +3365,7 @@ __metadata:
     clipboard-copy: ^4.0.1
     gulp: ^5.0.0
     html-minifier-terser: ^7.2.0
-    lit: ^3.1.4
+    lit: ^3.2.1
     pre-commit: ^1.2.2
     prettier: ^3.3.3
     require-dir: ^1.2.0

@@ -36,7 +36,7 @@
     "@material/web": "^1.5.1",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^7.2.0",
-    "lit": "^3.1.4"
+    "lit": "^3.2.1"
   },
   "packageManager": "yarn@3.6.3"
 }
