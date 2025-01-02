@@ -97,7 +97,21 @@
     "redirect": "backup",
     "badge": "Back up",
     "name": "Backup",
-    "description": "Back up your Home Assistant installation",
+    "description": "Overview of your back up your Home Assistant installation",
+    "introduced": "2022.4"
+  },
+  {
+    "redirect": "backup_config",
+    "badge": "Backup config of",
+    "name": "Backup config",
+    "description": "Configure your the backups of your Home Assistant installation",
+    "introduced": "2022.4"
+  },
+  {
+    "redirect": "backup_list",
+    "badge": "Backups of",
+    "name": "Backups",
+    "description": "List of your Home Assistant backups",
     "introduced": "2022.4"
   },
   {
