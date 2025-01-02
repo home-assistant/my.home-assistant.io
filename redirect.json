@@ -105,14 +105,14 @@
     "badge": "Backup config of",
     "name": "Backup config",
     "description": "configure your backups",
-    "introduced": "2022.4"
+    "introduced": "2025.1"
   },
   {
     "redirect": "backup_list",
     "badge": "Backups of",
     "name": "Backups list",
     "description": "list your Home Assistant backups",
-    "introduced": "2022.4"
+    "introduced": "2025.1"
   },
   {
     "redirect": "blueprints",
