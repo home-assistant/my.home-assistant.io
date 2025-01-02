@@ -70,7 +70,7 @@
     "redirect": "supervisor_ingress",
     "name": "Add-on: ingress URL",
     "badge": "Open Add-on ingress URL of",
-    "description": "Open the ingress URL of an add-on",
+    "description": "open the ingress URL of an add-on",
     "introduced": "supervisor-2021.05.0",
     "params": {
       "addon": "string"
@@ -97,21 +97,21 @@
     "redirect": "backup",
     "badge": "Back up",
     "name": "Backup",
-    "description": "Overview of your back up your Home Assistant installation",
+    "description": "show an overview of your backups",
     "introduced": "2022.4"
   },
   {
     "redirect": "backup_config",
     "badge": "Backup config of",
     "name": "Backup config",
-    "description": "Configure your the backups of your Home Assistant installation",
+    "description": "configure your backups",
     "introduced": "2022.4"
   },
   {
     "redirect": "backup_list",
     "badge": "Backups of",
-    "name": "Backups",
-    "description": "List of your Home Assistant backups",
+    "name": "Backups list",
+    "description": "list your Home Assistant backups",
     "introduced": "2022.4"
   },
   {
