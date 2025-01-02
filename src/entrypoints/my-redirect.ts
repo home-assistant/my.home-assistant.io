@@ -5,7 +5,7 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import { getInstanceUrl } from "../data/instance_info";
-import { Redirect } from "../const";
+import { MOBILE_URL, Redirect } from "../const";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
 import { validateParam } from "../util/validate";
@@ -37,6 +37,12 @@ const createRedirectParams = (): string => {
 
 let changingInstance = false;
 
+const getRedirectUrl = (baseUrl: string, params) => {
+  return window.redirect.redirect === "oauth"
+        ? `${baseUrl}/auth/external/callback${params}`
+        : `${baseUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+}
+
 const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
@@ -57,23 +63,35 @@ const render = (showTroubleshooting: boolean) => {
     window.redirect.redirect + "/" + params
   )}`;
 
-  if (instanceUrl === null) {
-    changingInstance = true;
-    document.location.assign(changeUrl);
-    return;
-  }
-
-  const redirectUrl =
-    window.redirect.redirect === "oauth"
-      ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
-
-  const openLink = document.querySelector(".open-link") as HTMLElement;
-  openLink.outerHTML = `
-    <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <md-filled-button>${openLink.innerText}</md-filled-button>
+  const redirectUrlToNativeApp = getRedirectUrl(MOBILE_URL, params);
+  const openLinkNative = document.querySelector(".open-link-native") as HTMLElement;
+  openLinkNative.outerHTML = `
+    <a href="${redirectUrlToNativeApp}" class='open-link-native' rel="noopener">
+      <md-filled-button>${isMobile ? 'Open link' : openLinkNative.innerText}</md-filled-button>
     </a>
   `;
+  openLinkNative.style.visibility = "visible";
+
+  const redirectUrl = 
+    instanceUrl === null
+      ? changeUrl
+      : getRedirectUrl(instanceUrl, params);
+
+  const openLink = document.querySelector(".open-link") as HTMLElement;
+  if (isMobile) {
+      openLink.style.display = "none";
+  } else {
+    openLink.outerHTML = `
+      <a href="${redirectUrl}" class='open-link' rel="noopener">
+        <md-filled-button>${openLink.innerText}</md-filled-button>
+      </a>
+    `;
+    if (instanceUrl === null) {
+      document.querySelector(".open-link")!.addEventListener("click", () => {
+        changingInstance = true;
+      });
+    }
+  }
 
   if (window.redirect.redirect === "oauth") {
     const params = extractSearchParamsObject();
@@ -86,6 +104,8 @@ const render = (showTroubleshooting: boolean) => {
         "Account linking rejected";
       buttonCaption = "Notify Home Assistant of rejection";
       (document.querySelector(".open-link") as HTMLElement).style.visibility =
+        "hidden";
+      (document.querySelector(".open-link-native") as HTMLElement).style.visibility =
         "hidden";
     }
 
@@ -107,16 +127,18 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  let changeInstanceEl = document.querySelector(".instance-footer")!;
-  changeInstanceEl.innerHTML = `
-    <b>Your instance URL:</b> ${instanceUrl}
-    <a href="${changeUrl}">
-      ${svgPencil}
-    </a>
-  `;
-  changeInstanceEl.querySelector("a")!.addEventListener("click", () => {
-    changingInstance = true;
-  });
+  if (instanceUrl !== null) {
+    let changeInstanceEl = document.querySelector(".instance-footer")!;
+    changeInstanceEl.innerHTML = `
+      <b>Your instance URL:</b> ${instanceUrl}
+      <a href="${changeUrl}">
+        ${svgPencil}
+      </a>
+    `;
+    changeInstanceEl.querySelector("a")!.addEventListener("click", () => {
+      changingInstance = true;
+    });
+  }
 
   // When we were changing the instance, we're not going to mess with troubleshooting.
   if (changingInstance) {
