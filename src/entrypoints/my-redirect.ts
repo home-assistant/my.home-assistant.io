@@ -24,13 +24,16 @@ const createRedirectParams = (): string => {
   }
   const params = {};
   for (const [key, type] of Object.entries(redirectParams)) {
-    if (!userParams[key] && type.endsWith("?")) {
+      
+    const userParam = userParams[key];
+
+    if (!userParam && type.endsWith("?")) {
       continue;
     }
-    if (!userParams[key] || validateParam(type, userParams[key])) {
+    if (!userParam || validateParam(type, userParam)) {
       throw Error("Wrong parameters");
     }
-    params[key] = userParams[key];
+    params[key] = userParam;
   }
   return `?${createSearchParam(params)}`;
 };
