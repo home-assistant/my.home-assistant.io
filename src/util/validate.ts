@@ -10,7 +10,7 @@ const validateUrl = (value: string) => {
   } catch (err) {
     return "Invalid URL.";
   }
-  if (value !== sanitizeUrl(value)) {
+  if ((decodeURI(value) === value ? encodeURI(value) : value) !== sanitizeUrl(value)) {
     return "Invalid URL.";
   }
   return undefined;

@@ -85,6 +85,7 @@ class MyCreateLink extends LitElement {
             .label=${prettify(key)}
             data-key="${key}"
             @input=${this._paramChanged}
+            .type=${type.startsWith("url") ? "url" : "text"}  
           ></md-filled-text-field>`
         )}
         ${this.isValid
@@ -188,7 +189,13 @@ ${badgeHTML}</textarea
     const key = ev.currentTarget.dataset.key;
     let value = ev.target.value;
 
-    const validationMessage = validateParam(this._redirect.params![key], value);
+    const paramType = this._redirect.params![key];
+
+    if (paramType.startsWith("url")) {
+      value = decodeURI(value);
+    }
+
+    const validationMessage = validateParam(paramType, value);
     if (validationMessage) {
       ev.currentTarget.setCustomValidity(validationMessage);
       ev.currentTarget.reportValidity();
