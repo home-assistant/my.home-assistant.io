@@ -1,9 +1,9 @@
-const path = require("path");
-const fs = require("fs");
-const assert = require("assert");
-const redirects = require("../redirect.json");
+import path from "path";
+import fs from "fs";
+import assert from "assert";
+import redirects from "../redirect.json" with { type: "json" };
 
-const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
+const OUTPUT_DIR = path.resolve(import.meta.dirname, "../public/badges");
 
 assert(fs.existsSync(OUTPUT_DIR), `Output dir ${OUTPUT_DIR} doesn't exist`);
 

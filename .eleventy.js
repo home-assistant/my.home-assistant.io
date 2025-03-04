@@ -1,4 +1,4 @@
-const htmlmin = require("html-minifier-terser");
+import { minify } from "html-minifier-terser";
 
 const createSearchParam = (params) => {
   const urlParams = new URLSearchParams();
@@ -8,7 +8,7 @@ const createSearchParam = (params) => {
   return urlParams.toString();
 };
 
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("title", function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   });
@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
   if (process.env.NODE_ENV === "production") {
     eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
       if (outputPath.endsWith(".html")) {
-        let minified = htmlmin.minify(content, {
+        let minified = minify(content, {
           useShortDoctype: true,
           removeComments: true,
           collapseWhitespace: true,

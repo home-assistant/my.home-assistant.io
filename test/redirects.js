@@ -1,5 +1,5 @@
-const { strictEqual } = require("assert");
-const redirects = require("../redirect.json");
+import { strictEqual } from "assert";
+import redirects from "../redirect.json" with { type: "json" };
 
 const sorted = [...redirects].sort((a, b) => {
   const aName = a.name.toLowerCase();

@@ -1,10 +1,10 @@
-const path = require("path");
+import { parse } from 'path';
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
-import manifest from "./build-scripts/rollup-plugins/manifest";
+import manifest from "./build-scripts/rollup-plugins/manifest.js";
 
 const production = process.env.NODE_ENV === "production";
 
@@ -32,7 +32,7 @@ export default [
   "./src/entrypoints/my-create-link.ts",
 ].map((entrypoint) => ({
   input: {
-    [path.parse(entrypoint).name]: entrypoint,
+    [parse(entrypoint).name]: entrypoint,
   },
   output: {
     dir: "dist/js",

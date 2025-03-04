@@ -2,8 +2,11 @@
   "name": "my.home-assistant.io",
   "version": "0.0.1",
   "description": "",
+  "type": "module",
   "main": "src/entrypoint.ts",
   "scripts": {
+    "lint:types": "tsc",
+    "lint": "yarn run lint:types",
     "test": "node test/badges.js && node test/redirects.js",
     "precommit-redirect": "node build-scripts/sort-redirects.js && git add redirect.json",
     "precommit-badges": "node build-scripts/create-badges.js && git add public/badges"
@@ -24,7 +27,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^3.5.3",
     "require-dir": "^1.2.0",
-    "rollup": "^2.79.2",
+    "rollup": "4.34.9",
     "rollup-plugin-terser": "^7.0.2",
     "serve": "^14.2.4",
     "svgo": "^3.3.2",

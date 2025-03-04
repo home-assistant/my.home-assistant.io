@@ -1,1 +1,2 @@
-module.exports = require("../../redirect.json");
+import redirects from "../../redirect.json" with { type: "json" };
+export default redirects;
