@@ -1,7 +1,10 @@
-const path = require("path");
-const fs = require("fs");
-const assert = require("assert");
-const redirects = require("../redirect.json");
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
+import assert from "assert";
+import redirects from "../redirect.json" with { type: "json" };
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
 

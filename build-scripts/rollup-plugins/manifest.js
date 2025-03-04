@@ -1,4 +1,4 @@
-const url = require("url");
+import { resolve } from "url";
 
 const defaultOptions = {
   publicPath: "",
@@ -18,7 +18,7 @@ export default function(userOptions = {}) {
           continue;
         }
         // Add js extension to mimic Webpack manifest.
-        manifest[`${chunk.name}.js`] = url.resolve(
+        manifest[`${chunk.name}.js`] = resolve(
           options.publicPath,
           chunk.fileName
         );

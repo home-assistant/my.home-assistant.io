@@ -1,6 +1,9 @@
-const path = require("path");
-const fs = require("fs");
-const redirects = require("../redirect.json");
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import redirects from "../redirect.json" with { type: "json" };;
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 redirects.sort((a, b) => {
   const aName = a.name.toLowerCase();

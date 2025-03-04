@@ -1,8 +1,11 @@
-const path = require("path");
-const fs = require("fs");
-const redirects = require("../redirect.json");
-const { optimize } = require("svgo");
-const TextToSVG = require('text-to-svg');
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import { optimize } from "svgo";
+import TextToSVG from 'text-to-svg';
+import redirects from "../redirect.json" with { type: "json" };
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
 
