@@ -62,8 +62,8 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  if (!isMobile) {
-    //Try opening on the native app
+  if (!isMobile && navigator.userAgent.includes("Windows")) {
+    // Try opening the native app on Windows
     const redirectUrlToNativeApp = getRedirectUrl(MOBILE_URL, params);
     document.location.assign(redirectUrlToNativeApp);
   }
