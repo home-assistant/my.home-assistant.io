@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const redirects = require("../redirect.json");
+import path from "path";
+import fs from "fs";
+import redirects from "../redirect.json" with { type: "json" };;
 
 redirects.sort((a, b) => {
   const aName = a.name.toLowerCase();
@@ -17,6 +17,6 @@ redirects.sort((a, b) => {
 });
 
 fs.writeFileSync(
-  path.resolve(__dirname, "../redirect.json"),
+  path.resolve(import.meta.dirname, "../redirect.json"),
   JSON.stringify(redirects, undefined, 2)
 );

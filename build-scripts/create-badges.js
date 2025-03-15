@@ -1,10 +1,10 @@
-const path = require("path");
-const fs = require("fs");
-const redirects = require("../redirect.json");
-const { optimize } = require("svgo");
-const TextToSVG = require('text-to-svg');
+import path from "path";
+import fs from "fs";
+import { optimize } from "svgo";
+import TextToSVG from 'text-to-svg';
+import redirects from "../redirect.json" with { type: "json" };
 
-const OUTPUT_DIR = path.resolve(__dirname, "../public/badges");
+const OUTPUT_DIR = path.resolve(import.meta.dirname, "../public/badges");
 
 function escapeXml(s) {
   if (s === undefined || typeof s !== "string") {

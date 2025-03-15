@@ -70,7 +70,7 @@
     "redirect": "supervisor_ingress",
     "name": "Add-on: ingress URL",
     "badge": "Open Add-on ingress URL of",
-    "description": "Open the ingress URL of an add-on",
+    "description": "open the ingress URL of an add-on",
     "introduced": "supervisor-2021.05.0",
     "params": {
       "addon": "string"
@@ -87,13 +87,6 @@
     "introduced": "2022.5"
   },
   {
-    "redirect": "areas",
-    "name": "Areas",
-    "badge": "Show areas of",
-    "description": "show your areas",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "automations",
     "badge": "Show automations of",
     "name": "Automations",
@@ -104,8 +97,22 @@
     "redirect": "backup",
     "badge": "Back up",
     "name": "Backup",
-    "description": "Back up your Home Assistant installation",
+    "description": "show an overview of your backups",
     "introduced": "2022.4"
+  },
+  {
+    "redirect": "backup_config",
+    "badge": "Backup config of",
+    "name": "Backup config",
+    "description": "configure your backups",
+    "introduced": "2025.1"
+  },
+  {
+    "redirect": "backup_list",
+    "badge": "Backups of",
+    "name": "Backups list",
+    "description": "list your Home Assistant backups",
+    "introduced": "2025.1"
   },
   {
     "redirect": "blueprints",
@@ -171,24 +178,18 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "developer_services",
+    "name": "Developer tools: actions",
+    "badge": "Show action dev tools of",
+    "description": "show your action developer tools",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "developer_assist",
     "name": "Developer tools: Assist",
     "badge": "Show Assist dev tools of",
     "description": "show your Assist developer tools",
     "introduced": "2023.8"
-  },
-  {
-    "redirect": "developer_call_service",
-    "name": "Developer tools: call service",
-    "badge": "Call service on",
-    "description": "show your service developer tools with a specific service selected",
-    "introduced": "2021.3",
-    "params": {
-      "service": "string"
-    },
-    "example": {
-      "service": "homeassistant.turn_on"
-    }
   },
   {
     "redirect": "developer_events",
@@ -198,11 +199,17 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "developer_services",
-    "name": "Developer tools: services",
-    "badge": "Show service dev tools of",
-    "description": "show your service developer tools",
-    "introduced": "2021.3"
+    "redirect": "developer_call_service",
+    "name": "Developer tools: perform action",
+    "badge": "Perform action on",
+    "description": "show your service developer tools with a specific action selected",
+    "introduced": "2021.3",
+    "params": {
+      "service": "string"
+    },
+    "example": {
+      "service": "homeassistant.turn_on"
+    }
   },
   {
     "redirect": "developer_states",
@@ -251,6 +258,13 @@
     "name": "Entities",
     "badge": "Show entities of",
     "description": "show your entities",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "areas",
+    "name": "Floors & areas",
+    "badge": "Show floors and areas of",
+    "description": "show your floors and areas",
     "introduced": "2021.3"
   },
   {
@@ -353,6 +367,13 @@
     "badge": "Show integrations of",
     "description": "show your integrations",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "labels",
+    "name": "Labels",
+    "badge": "Show labels of",
+    "description": "show your labels",
+    "introduced": "2024.4"
   },
   {
     "redirect": "logbook",
