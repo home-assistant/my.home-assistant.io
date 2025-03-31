@@ -285,13 +285,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material/web@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@material/web@npm:2.2.0"
+"@material/web@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@material/web@npm:2.3.0"
   dependencies:
-    lit: ^2.7.4 || ^3.0.0
+    lit: ^2.8.0 || ^3.0.0
     tslib: ^2.4.0
-  checksum: 31d3b6b6059337dce131339c83446f0ddf38f384be12ff6023caaa72d555aaf1b255213ddc8699b1500440c8df181621be53071b4fb46c07d28df95a90fcae91
+  checksum: ca830c1b0b7457dea29feaae113ae10a69751054a9e36b4d0c35cde0a633de43cc71e46f3866e4e49fc181101456f8ff9192db9d81db010d5ffd42586b001f91
   languageName: node
   linkType: hard
 
@@ -2969,7 +2969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^2.7.4 || ^3.0.0, lit@npm:^3.2.1":
+"lit@npm:^2.8.0 || ^3.0.0, lit@npm:^3.2.1":
   version: 3.2.1
   resolution: "lit@npm:3.2.1"
   dependencies:
@@ -3357,7 +3357,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": ^3.0.0
     "@braintree/sanitize-url": ^7.1.1
-    "@material/web": ^2.2.0
+    "@material/web": ^2.3.0
     "@rollup/plugin-commonjs": ^28.0.3
     "@rollup/plugin-json": ^6.1.0
     "@rollup/plugin-node-resolve": ^16.0.1
