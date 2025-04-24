@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/entrypoint.ts",
   "scripts": {
+    "format": "npx prettier -w .",
     "lint:types": "tsc",
     "lint": "yarn run lint:types",
     "test": "node test/badges.js && node test/redirects.js",
