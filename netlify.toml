@@ -1,0 +1,4 @@
+[[headers]]
+  for = "/badges/*"
+  [headers.values]
+    cross-origin-resource-policy = "cross-origin"
