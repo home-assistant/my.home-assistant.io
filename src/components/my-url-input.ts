@@ -1,5 +1,5 @@
-import "@material/web/button/filled-button"
-import "@material/web/textfield/filled-text-field"
+import "@material/web/button/filled-button";
+import "@material/web/textfield/filled-text-field";
 import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
 import { customElement, state, query, property } from "lit/decorators.js";
@@ -29,9 +29,9 @@ export class MyUrlInputMain extends LitElement {
           .value=${this.value || DEFAULT_HASS_URL}
           @keydown=${this._handleInputKeyDown}
         ></md-filled-text-field>
-        <md-filled-button
-          @click=${this._handleSave}
-        >${this.value ? "Update" : "Save"}</md-filled-button>
+        <md-filled-button @click=${this._handleSave}
+          >${this.value ? "Update" : "Save"}</md-filled-button
+        >
       </div>
     `;
   }
@@ -54,7 +54,7 @@ export class MyUrlInputMain extends LitElement {
 
     if (value.indexOf("://") === -1) {
       this._textfield.setCustomValidity(
-        "Please enter your full URL, including the protocol part (https://)."
+        "Please enter your full URL, including the protocol part (https://).",
       );
       this._textfield.reportValidity();
       return;

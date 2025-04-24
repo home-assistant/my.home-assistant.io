@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import redirects from "../redirect.json" with { type: "json" };;
+import redirects from "../redirect.json" with { type: "json" };
 
 redirects.sort((a, b) => {
   const aName = a.name.toLowerCase();
@@ -18,5 +18,5 @@ redirects.sort((a, b) => {
 
 fs.writeFileSync(
   path.resolve(import.meta.dirname, "../redirect.json"),
-  JSON.stringify(redirects, undefined, 2)
+  JSON.stringify(redirects, undefined, 2),
 );
