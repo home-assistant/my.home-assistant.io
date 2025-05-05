@@ -136,16 +136,16 @@
   },
   {
     "redirect": "bluetooth_advertisement_monitor",
-    "name": "Bluetooth Advertisement Monitor",
-    "badge": "Show Bluetooth Advertisement Monitor of",
-    "description": "show your Bluetooth Advertisement Monitor",
+    "name": "Bluetooth Advertisements",
+    "badge": "Show Bluetooth Advertisements of",
+    "description": "show your Bluetooth Advertisements",
     "introduced": "2025.0"
   },
   {
     "redirect": "bluetooth_connection_monitor",
-    "name": "Bluetooth Connection Monitor",
-    "badge": "Show Bluetooth Connection Monitor of",
-    "description": "show your Bluetooth Connection Monitor",
+    "name": "Bluetooth Connections",
+    "badge": "Show Bluetooth Connections of",
+    "description": "show your Bluetooth Connections",
     "introduced": "2025.0"
   },
   {
