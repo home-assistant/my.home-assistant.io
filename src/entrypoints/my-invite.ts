@@ -5,19 +5,19 @@ import { extractSearchParamsObject } from "../util/search-params";
 
 const SUPPORTED_PARAMS = ["url"];
 
+// Craft a new URL homeassistant://invite? with supported params appended
+const INVITE_URL = new URL("homeassistant://invite");
+for (const [key, value] of Object.entries(extractSearchParamsObject())) {
+  if (SUPPORTED_PARAMS.includes(key)) {
+    INVITE_URL.searchParams.append(key, value);
+  }
+}
+
 @customElement("my-invite")
 export class MyUrlInputMain extends LitElement {
   protected render(): TemplateResult {
-    // Craft a new URL homeassistant://invite? with supported params appended
-    const url = new URL("homeassistant://invite");
-    for (const [key, value] of Object.entries(extractSearchParamsObject())) {
-      if (SUPPORTED_PARAMS.includes(key)) {
-        url.searchParams.append(key, value);
-      }
-    }
-
     return html`
-      <a href="${url.toString()}">
+      <a href="${INVITE_URL.toString()}">
         <md-filled-button>Accept Invite</md-filled-button>
       </a>
     `;
