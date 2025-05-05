@@ -571,6 +571,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "profile_security",
+    "name": "User security",
+    "badge": "Show user security on",
+    "description": "show your Home Assistant user's security options",
+    "introduced": "2025.5"
+  },
+  {
     "redirect": "users",
     "name": "Users",
     "badge": "Show users of",
