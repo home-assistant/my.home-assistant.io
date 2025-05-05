@@ -1,0 +1,57 @@
+---
+layout: base_card_with_hero
+javascript_source: my-invite.js
+permalink: "invite/"
+description: Invited to join my Home Assistant instance.
+---
+
+<style>
+  .download-badges {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media (max-width: 450px) {
+    .download-badges {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<h1 class="card-header">Welcome to Home Assistant</h1>
+
+<my-change-url>
+  <div class="card-content placeholder">
+    <p>
+      You have been invited to join a Home Assistant instance. To accept the
+      invitation, download the Home Assistant application to continue.
+    </p>
+    <p class="download-badges">
+      <a
+        href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android"
+        ><img
+          class="download-badge"
+          width="200"
+          src="/images/badge-google-play.png"
+          alt="Get it on Google Play"
+      /></a>
+      <a href="https://apps.apple.com/app/home-assistant/id1099568401"
+        ><img
+          class="download-badge"
+          width="175"
+          src="/images/badge-apple-app-store.svg"
+          alt="Download on the App Store"
+      /></a>
+    </p>
+    <p>When the application is installed, click below to accept the invite.</p>
+    <p>
+      <my-invite>Loading...</my-invite>
+    </p>
+    <p>
+      <i
+        >Invitations are currently only supported on the Home Assistant apps.</i
+      >
+    </p>
+  </div>
+</my-change-url>
