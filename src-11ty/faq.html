@@ -106,17 +106,15 @@ description: Answers to all your questions about My Home Assistant.
 
 <div class="section-header" id="supported-pages">What pages are supported?</div>
 <div class="redirects">
-  {% for redirect in redirects %}
-    {% if redirect.deprecated != true %}
-      <a
-        href="{{ redirect | redirectExamplePath }}"
-        title="Introduced in {{ redirect.introduced | version }}."
-      >
-        {{ redirect.name }}
-        <div class="badge">
-          <img loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
-        </div>
-      </a>
-    {% endif %}
-  {% endfor %}
+  {% for redirect in redirects %} {% if redirect.deprecated != true %}
+  <a
+    href="{{ redirect | redirectExamplePath }}"
+    title="Introduced in {{ redirect.introduced | version }}."
+  >
+    {{ redirect.name }}
+    <div class="badge">
+      <img loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
+    </div>
+  </a>
+  {% endif %} {% endfor %}
 </div>

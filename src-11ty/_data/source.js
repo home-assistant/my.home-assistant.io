@@ -7,7 +7,7 @@ const source = {};
 for (const key of Object.keys(manifest)) {
   source[key] = readFileSync(
     join(import.meta.dirname, "../../dist/js/", manifest[key]),
-    "utf-8"
+    "utf-8",
   );
 }
 
