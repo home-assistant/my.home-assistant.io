@@ -1,13 +1,15 @@
 import "@material/web/button/filled-button";
 import { LitElement, TemplateResult, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { extractSearchParamsObject } from "../util/search-params";
 
 const SUPPORTED_PARAMS = ["url"];
 
-// Craft a new URL homeassistant://invite? with supported params appended
 const INVITE_URL = new URL("homeassistant://invite");
-for (const [key, value] of Object.entries(extractSearchParamsObject())) {
+
+// We read params from location.hash instead of location.search, as they
+// won't be sent to the server when the user visits the link.
+const hashParams = new URLSearchParams(location.hash.substring(1));
+for (const [key, value] of hashParams.entries()) {
   if (SUPPORTED_PARAMS.includes(key)) {
     INVITE_URL.searchParams.append(key, value);
   }
