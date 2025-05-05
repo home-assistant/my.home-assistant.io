@@ -583,5 +583,40 @@
     "badge": "Show zones of",
     "description": "show your zones",
     "introduced": "2021.3"
+  },
+  {
+    "redirect": "config_zeroconf",
+    "name": "Zeroconf Browser",
+    "badge": "Show Zeroconf Browser of",
+    "description": "show your Zeroconf Browser",
+    "introduced": "2025.0"
+  },
+  {
+    "redirect": "config_ssdp",
+    "name": "SSDP Browser",
+    "badge": "Show SSDP Browser of",
+    "description": "show your SSDP Browser",
+    "introduced": "2025.0"
+  },
+  {
+    "redirect": "config_dhcp",
+    "name": "DHCP Browser",
+    "badge": "Show DHCP Browser of",
+    "description": "show your DHCP Browser",
+    "introduced": "2025.0"
+  },
+  {
+    "redirect": "bluetooth_advertisement_monitor",
+    "name": "Bluetooth Advertisement Monitor",
+    "badge": "Show Bluetooth Advertisement Monitor of",
+    "description": "show your Bluetooth Advertisement Monitor",
+    "introduced": "2025.0"
+  },
+  {
+    "redirect": "bluetooth_connection_monitor",
+    "name": "Bluetooth Connection Monitor",
+    "badge": "Show Bluetooth Connection Monitor of",
+    "description": "show your Bluetooth Connection Monitor",
+    "introduced": "2025.0"
   }
 ]
