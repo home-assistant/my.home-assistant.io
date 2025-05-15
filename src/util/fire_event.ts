@@ -51,7 +51,7 @@ export const fireEvent = (
     bubbles?: boolean;
     cancelable?: boolean;
     composed?: boolean;
-  }
+  },
 ) => {
   options = options || {};
   // @ts-ignore

@@ -1,4 +1,4 @@
-import { parse } from 'path';
+import { parse } from "path";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";

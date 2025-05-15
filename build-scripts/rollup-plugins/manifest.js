@@ -7,7 +7,7 @@ const defaultOptions = {
 // Reuse the file across each build.
 const manifest = {};
 
-export default function(userOptions = {}) {
+export default function (userOptions = {}) {
   const options = { ...defaultOptions, ...userOptions };
 
   return {
@@ -20,7 +20,7 @@ export default function(userOptions = {}) {
         // Add js extension to mimic Webpack manifest.
         manifest[`${chunk.name}.js`] = resolve(
           options.publicPath,
-          chunk.fileName
+          chunk.fileName,
         );
       }
 
