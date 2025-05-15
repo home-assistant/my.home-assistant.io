@@ -16,11 +16,11 @@ const sorted = [...redirects].sort((a, b) => {
 });
 
 const firstNonEqual = redirects.find(
-  (info, idx) => info.redirect !== sorted[idx].redirect
+  (info, idx) => info.redirect !== sorted[idx].redirect,
 );
 
 strictEqual(
   firstNonEqual,
   undefined,
-  "Redirects need to be sorted by name! Run 'node build-scripts/sort-redirects.js'"
+  "Redirects need to be sorted by name! Run 'node build-scripts/sort-redirects.js'",
 );

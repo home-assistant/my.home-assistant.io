@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { optimize } from "svgo";
-import TextToSVG from 'text-to-svg';
+import TextToSVG from "text-to-svg";
 import redirects from "../redirect.json" with { type: "json" };
 
 const OUTPUT_DIR = path.resolve(import.meta.dirname, "../public/badges");
@@ -59,16 +59,21 @@ function renderBadge({ width, height, accessibleText }, main) {
 </svg>`;
 }
 
-function myBadge({
-  message,
-}) {
+function myBadge({ message }) {
   const height = 96;
 
   const accessibleText = createAccessibleText(message);
 
   message = message.toUpperCase();
 
-  const { metrics, svg } = renderMessagePath(message, { x: 40, y: 46.8, fontSize: 33.5, letterSpacing: .02, anchor: 'left middle', attributes: { fill: "white" } });
+  const { metrics, svg } = renderMessagePath(message, {
+    x: 40,
+    y: 46.8,
+    fontSize: 33.5,
+    letterSpacing: 0.02,
+    anchor: "left middle",
+    attributes: { fill: "white" },
+  });
 
   return renderBadge(
     {
@@ -76,12 +81,12 @@ function myBadge({
       accessibleText,
       height,
     },
-    svg
+    svg,
   );
 }
 
 function renderMessagePath(message, options) {
-  const textToSVG = TextToSVG.loadSync('build-scripts/fonts/Figtree-Bold.otf');
+  const textToSVG = TextToSVG.loadSync("build-scripts/fonts/Figtree-Bold.otf");
   const svg = textToSVG.getPath(message, options);
   const metrics = textToSVG.getMetrics(message, options);
   return { metrics, svg };
@@ -97,12 +102,12 @@ function writeBadge(filename, message) {
   });
   fs.writeFileSync(
     path.resolve(OUTPUT_DIR, `${filename}.svg`),
-    optimize(badge).data
+    optimize(badge).data,
   );
 }
 
 redirects.forEach((redirect) =>
-  writeBadge(redirect.redirect, redirect.badge || redirect.name)
+  writeBadge(redirect.redirect, redirect.badge || redirect.name),
 );
 
 // writeBadge("homeassistant", "Home Assistant");

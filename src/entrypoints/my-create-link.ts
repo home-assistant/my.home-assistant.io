@@ -1,7 +1,7 @@
-import "@material/web/button/outlined-button"
-import "@material/web/textfield/filled-text-field"
-import "@material/web/select/filled-select"
-import "@material/web/select/select-option"
+import "@material/web/button/outlined-button";
+import "@material/web/textfield/filled-text-field";
+import "@material/web/select/filled-select";
+import "@material/web/select/select-option";
 import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
 import type { MdOutlinedButton } from "@material/web/button/outlined-button";
 import { repeat } from "lit/directives/repeat.js";
@@ -28,7 +28,7 @@ const passedInData = extractSearchParamsObject();
 {
   if (passedInData.redirect) {
     initialRedirect = redirects.find(
-      (info) => info.redirect === passedInData.redirect
+      (info) => info.redirect === passedInData.redirect,
     );
   }
   if (!initialRedirect) {
@@ -70,23 +70,22 @@ class MyCreateLink extends LitElement {
                 .selected=${this._redirect?.redirect === redirect.redirect}
                 .value=${redirect.redirect}
                 ><div slot="headline">${redirect.name}</div></md-select-option
-              >`
+              >`,
           )}
         </md-filled-select>
 
         ${repeat(
           Object.entries(this._redirect?.params || []),
           ([key, _]) => `${this._redirect.redirect}-${key}`,
-          ([key, type]) => html`<md-filled-text-field
-            ?required=${!type.endsWith("?")}
-            .errorText=${!type.endsWith("?")
-              ? "This field is required"
-              : ""}
-            .label=${prettify(key)}
-            data-key="${key}"
-            @input=${this._paramChanged}
-            .type=${type.startsWith("url") ? "url" : "text"}  
-          ></md-filled-text-field>`
+          ([key, type]) =>
+            html`<md-filled-text-field
+              ?required=${!type.endsWith("?")}
+              .errorText=${!type.endsWith("?") ? "This field is required" : ""}
+              .label=${prettify(key)}
+              data-key="${key}"
+              @input=${this._paramChanged}
+              .type=${type.startsWith("url") ? "url" : "text"}
+            ></md-filled-text-field>`,
         )}
         ${this.isValid
           ? html`
@@ -138,14 +137,14 @@ ${badgeHTML}</textarea
     const paramValues = {};
 
     for (const [key, paramType] of Object.entries(
-      this._redirect.params || {}
+      this._redirect.params || {},
     )) {
       if (!(key in passedInData) || !passedInData[key]) {
         continue;
       }
       const msg = validateParam(paramType as ParamType, passedInData[key]);
       const inputEl = this.querySelector(
-        `md-filled-text-field[data-key=${key}]`
+        `md-filled-text-field[data-key=${key}]`,
       ) as MdFilledTextField;
 
       inputEl.value = passedInData[key];
@@ -168,13 +167,15 @@ ${badgeHTML}</textarea
       this._redirect &&
       (!this._redirect.params ||
         !Object.entries(this._redirect.params).find(
-          ([key, type]) => !type.endsWith("?") && !this._paramsValues[key]
+          ([key, type]) => !type.endsWith("?") && !this._paramsValues[key],
         ))
     );
   }
 
   private _itemSelected(ev) {
-    const newRedirect = filteredRedirects.find(rd => rd.redirect === ev.target.value);
+    const newRedirect = filteredRedirects.find(
+      (rd) => rd.redirect === ev.target.value,
+    );
 
     if (newRedirect!.redirect === this._redirect.redirect) {
       return;

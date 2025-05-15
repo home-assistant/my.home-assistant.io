@@ -10,7 +10,10 @@ const validateUrl = (value: string) => {
   } catch (err) {
     return "Invalid URL.";
   }
-  if ((decodeURI(value) === value ? encodeURI(value) : value) !== sanitizeUrl(value)) {
+  if (
+    (decodeURI(value) === value ? encodeURI(value) : value) !==
+    sanitizeUrl(value)
+  ) {
     return "Invalid URL.";
   }
   return undefined;
@@ -22,7 +25,7 @@ const validateUrl = (value: string) => {
  */
 export const validateParam = (
   paramType: ParamType,
-  value: string
+  value: string,
 ): string | undefined => {
   if (paramType === "string" || paramType === "string?") {
     return undefined;
