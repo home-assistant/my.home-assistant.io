@@ -215,7 +215,9 @@ ${badgeHTML}</textarea
 
   private get _url() {
     return `https://my.home-assistant.io/redirect/${this._redirect.redirect}/${
-      this._redirect.params ? `?${createSearchParam(this._paramsValues)}` : ""
+      Object.keys(this._paramsValues).length
+        ? `?${createSearchParam(this._paramsValues)}`
+        : ""
     }`;
   }
 
