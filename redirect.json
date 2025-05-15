@@ -4,11 +4,7 @@
     "name": "Add Matter device",
     "badge": "Add Matter device to",
     "description": "add a Matter device to your instance",
-    "introduced": "2023.3",
-    "params": {
-      "brand": "string?",
-      "domain": "string?"
-    }
+    "introduced": "2023.3"
   },
   {
     "redirect": "supervisor_add_addon_repository",
@@ -28,22 +24,14 @@
     "name": "Add Z-Wave device",
     "badge": "Add Z-Wave device to",
     "description": "add a Z-Wave device to your instance",
-    "introduced": "2022.11",
-    "params": {
-      "brand": "string?",
-      "domain": "string?"
-    }
+    "introduced": "2022.11"
   },
   {
     "redirect": "add_zigbee_device",
     "name": "Add Zigbee device",
     "badge": "Add Zigbee device to",
     "description": "add a Zigbee device to your instance",
-    "introduced": "2022.11",
-    "params": {
-      "brand": "string?",
-      "domain": "string?"
-    }
+    "introduced": "2022.11"
   },
   {
     "redirect": "supervisor_store",
