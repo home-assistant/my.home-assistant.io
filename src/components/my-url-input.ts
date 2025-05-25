@@ -1,102 +1,158 @@
 import "@material/web/button/filled-button";
+import "@material/web/button/outlined-button";
+import "@material/web/button/text-button";
 import "@material/web/textfield/filled-text-field";
+import "@material/web/dialog/dialog";
 import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
-import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
+import { html, LitElement, PropertyValues, TemplateResult } from "lit";
 import { customElement, state, query, property } from "lit/decorators.js";
-import { DEFAULT_HASS_URL } from "../const";
+import { DEFAULT_INSTANCE_NAME, DEFAULT_INSTANCE_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
-
-const HASS_URL = "hassUrl";
+import { Instance } from "../data/instance_info";
+import { unsafeSVG } from "lit/directives/unsafe-svg.js";
+import { svgPencil } from "./svg-pencil";
+import { MdDialog } from "@material/web/dialog/dialog";
 
 @customElement("my-url-input")
 export class MyUrlInputMain extends LitElement {
   @property() public value?: string;
+  @property() public instance!: Instance;
+  @property() public instanceIndex!: number;
 
-  @state() private _error?: string | TemplateResult;
+  @state() private _instanceName?: string;
+  @state() private _instanceUrl?: string;
 
-  @query("md-filled-text-field", true) private _textfield!: MdFilledTextField;
+  @query("md-dialog", true) private _dialog!: MdDialog;
 
-  public focus(): void {
-    this.updateComplete.then(() => this._textfield.focus());
+  _handleEditButtonClick() {
+    this._instanceName = this.instance.name;
+    this._instanceUrl = this.instance.url;
+    this._dialog.show();
+  }
+
+  protected firstUpdated(_changedProperties: PropertyValues): void {
+    // If no instance url is set that means this instance is being added so go ahead and show the edit dialog.
+    if (this.instance.url === "") {
+      this._handleEditButtonClick();
+    }
   }
 
   protected render(): TemplateResult {
     return html`
-      ${this._error ? html`<p class="error">${this._error}</p>` : ""}
-      <div>
-        <md-filled-text-field
-          label="Home Assistant URL"
-          .value=${this.value || DEFAULT_HASS_URL}
-          @keydown=${this._handleInputKeyDown}
-        ></md-filled-text-field>
-        <md-filled-button @click=${this._handleSave}
-          >${this.value ? "Update" : "Save"}</md-filled-button
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: start; line-break: anywhere; gap: 4px">
+      <div
+          style="font-weight: 600; letter-spacing: 0.05em; font-size: 12px; text-transform: uppercase"
         >
+          ${this.instance.name || DEFAULT_INSTANCE_NAME}
+        </div>
+        <div
+          style="display: flex; align-items: center; width: 100%; justify-content: space-between;"
+        >
+          <a
+            href="${this.instance.url}"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            ${this.instance.url || DEFAULT_INSTANCE_URL}
+          </a>
+          <button
+            @click=${this._handleEditButtonClick}
+            style="display: inline-flex; background: none; color: inherit; border: none; padding: 0; font: inherit; text-align: left; cursor: pointer;"
+          >
+            ${unsafeSVG(svgPencil)}
+          </button>
+          <md-dialog style="min-width: 400px; max-width: 600px" @close=${this._handleDialogClose}>
+            <div slot="headline" id="foo">
+              ${this.instance.url ? "Edit Instance" : "New Instance"}
+            </div>
+            <form slot="content" id="form" method="dialog">
+              <div
+                style="width: 100%; display: flex; flex-direction: column; align-items: start; line-break: anywhere; gap: 4px"
+              >
+                <md-filled-text-field
+                  id="dialog-instance-name"
+                  label="Instance Name"
+                  .value=${this._instanceName || DEFAULT_INSTANCE_NAME}
+                  style="width: 100%"
+                ></md-filled-text-field>
+                <br/>
+                <md-filled-text-field
+                  id="dialog-instance-url"
+                  label="Instance URL"
+                  .value=${this._instanceUrl || DEFAULT_INSTANCE_URL}
+                  style="width: 100%"
+                ></md-filled-text-field>
+              </div>
+            </form>
+            <div slot="actions">
+              ${this.instance.url !== "" ? html`<md-text-button form="form" value="delete">Delete</md-text-button>` : html``}
+              <div style="flex: 1"></div>
+              <md-text-button form="form" value="cancel">Cancel</md-text-button>
+              <md-text-button value="save" @click=${this._handleSave}>Save</md-text-button>
+            </div>
+          </md-dialog>
+        </div>
       </div>
+    </div>
     `;
   }
 
-  private _handleInputKeyDown(ev: KeyboardEvent) {
-    // Handle pressing enter.
-    if (ev.key === "Enter") {
-      this._handleSave();
+  private _handleDialogClose() {
+    switch (this._dialog.returnValue) {
+      case "save":
+        fireEvent(this, "save", {
+          instanceIndex: this.instanceIndex,
+          instanceName: this._instanceName,
+          instanceUrl: this._instanceUrl,
+        });
+        return;
+      case "delete":
+        fireEvent(this, "delete", { instanceIndex: this.instanceIndex });
+        return;
+      case "cancel":
+        if (!this.instance.url) {
+          // As a special case, if cancelled and url === "" then delete it.
+          // This happens when adding a new instance.
+          fireEvent(this, "delete", { instanceIndex: this.instanceIndex });
+        }
+        return;
+      default:
+        return;
     }
   }
 
   private _handleSave() {
-    const inputEl = this._textfield!;
-    let value = inputEl.value || "";
-    this._error = undefined;
+    const instanceUrlField = this.renderRoot.querySelector(
+      "md-filled-text-field#dialog-instance-url",
+    ) as MdFilledTextField;
 
-    if (value === "") {
-      value = DEFAULT_HASS_URL;
-    }
+    let value = instanceUrlField?.value || "";
 
-    if (value.indexOf("://") === -1) {
-      this._textfield.setCustomValidity(
+    if (value == "" || value.indexOf("://") === -1) {
+      instanceUrlField.setCustomValidity(
         "Please enter your full URL, including the protocol part (https://).",
       );
-      this._textfield.reportValidity();
+      instanceUrlField.reportValidity();
       return;
     }
 
     let urlObj: URL;
     try {
       urlObj = new URL(value);
-    } catch (err) {
-      this._textfield.setCustomValidity("Invalid URL");
-      this._textfield.reportValidity();
+    } catch (err: any) {
+      instanceUrlField.setCustomValidity("Invalid URL: " + err.toString());
+      instanceUrlField.reportValidity();
       return;
     }
-    const url = `${urlObj.protocol}//${urlObj.host}`;
-    try {
-      window.localStorage.setItem(HASS_URL, url);
-    } catch (err) {
-      this._error = "Failed to store your URL!";
-      return;
-    }
-    fireEvent(this, "value-changed", { value: url });
-  }
+    this._instanceName =
+      (
+        this.renderRoot.querySelector(
+          "md-filled-text-field#dialog-instance-name",
+        ) as MdFilledTextField
+      )?.value || DEFAULT_INSTANCE_NAME;
+    this._instanceUrl = `${urlObj.protocol}//${urlObj.host}`;
 
-  static get styles(): CSSResult {
-    return css`
-      :host {
-        display: block;
-      }
-      div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .error {
-        color: #db4437;
-        font-weight: bold;
-      }
-      md-filled-text-field {
-        flex-grow: 1;
-        margin-right: 8px;
-      }
-    `;
+    this._dialog.close("save");
   }
 }
 
