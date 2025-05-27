@@ -137,6 +137,13 @@
     "introduced": "2025.0"
   },
   {
+    "redirect": "bluetooth_visualization",
+    "name": "Bluetooth Visualization",
+    "badge": "Show Bluetooth Visualization of",
+    "description": "show your Bluetooth Visualization",
+    "introduced": "2025.6"
+  },
+  {
     "redirect": "calendar",
     "name": "Calendar",
     "badge": "Show calendars of",
