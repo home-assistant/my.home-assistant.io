@@ -27,6 +27,7 @@ const plugins = (latestBuild) =>
 // Each entrypoint a different build to avoid code reuse across builds
 export default [
   "./src/entrypoints/my-index.ts",
+  "./src/entrypoints/my-invite.ts",
   "./src/entrypoints/my-redirect.ts",
   "./src/entrypoints/my-change-url.ts",
   "./src/entrypoints/my-create-link.ts",
