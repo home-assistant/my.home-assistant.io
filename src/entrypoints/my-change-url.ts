@@ -1,7 +1,7 @@
 import { html, LitElement, TemplateResult, PropertyValues } from "lit";
 import { state, query, customElement } from "lit/decorators.js";
 import "../components/my-url-input";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstances } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 import { MyUrlInputMain } from "../components/my-url-input";
 import { isMobile } from "../data/is_mobile";
@@ -10,7 +10,7 @@ const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
-  @state() private _instanceUrl = getInstanceUrl();
+  @state() private _instances = getInstances();
 
   @state() private _error?: string;
 
@@ -44,7 +44,7 @@ class MyChangeUrl extends LitElement {
   }
 
   protected shouldUpdate() {
-    return this._instanceUrl !== undefined;
+    return this._instances !== undefined;
   }
 
   protected render(): TemplateResult {
@@ -55,7 +55,7 @@ class MyChangeUrl extends LitElement {
     }
 
     return html`
-      ${changeRequestedFromRedirect && !this._instanceUrl
+      ${changeRequestedFromRedirect && !this._instances
         ? html`
             <div class="highlight">
               You are seeing this page because you have been linked to a page in
@@ -66,7 +66,7 @@ class MyChangeUrl extends LitElement {
           `
         : ""}
       <div class="card-content">
-        ${this._instanceUrl
+        ${this._instances
           ? html`<p>
               Configure My Home Assistant by entering the URL of your Home
               Assistant instance.
@@ -74,13 +74,13 @@ class MyChangeUrl extends LitElement {
           : ""}
 
         <my-url-input
-          .value=${this._instanceUrl || ""}
+          .value=${this._instances || []}
           @value-changed=${this._handleUrlChanged}
         ></my-url-input>
 
         ${this._error ? html`<div class="error">${this._error}</div>` : ""}
 
-        <p>Note: This URL is only stored in your browser.</p>
+        <p>Note: The URLs are only stored in your browser.</p>
       </div>
     `;
   }
