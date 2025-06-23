@@ -307,9 +307,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^28.0.5":
-  version: 28.0.5
-  resolution: "@rollup/plugin-commonjs@npm:28.0.5"
+"@rollup/plugin-commonjs@npm:^28.0.6":
+  version: 28.0.6
+  resolution: "@rollup/plugin-commonjs@npm:28.0.6"
   dependencies:
     "@rollup/pluginutils": ^5.0.1
     commondir: ^1.0.1
@@ -323,7 +323,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: effe5ee62f3e670508353372b6ea885eb74955d09e1f3b3297c5f2a36522a48110ac3c10ea9076ed9ef871417c2785336ddac22ae569d666dbd2accb2b837ccb
+  checksum: 613a1f487ffe3835a68e376b9ad0c0dcea39de31e19ea8817188701f715c1b26943d9648169c49c1942b5b1fef6603a59fa6ca5a37ad6213ca8011b1a11fcbc9
   languageName: node
   linkType: hard
 
@@ -3219,7 +3219,7 @@ __metadata:
     "@11ty/eleventy": ^3.1.1
     "@braintree/sanitize-url": ^7.1.1
     "@material/web": ^2.3.0
-    "@rollup/plugin-commonjs": ^28.0.5
+    "@rollup/plugin-commonjs": ^28.0.6
     "@rollup/plugin-json": ^6.1.0
     "@rollup/plugin-node-resolve": ^16.0.1
     "@rollup/plugin-typescript": ^12.1.3
