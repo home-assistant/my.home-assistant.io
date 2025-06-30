@@ -27,7 +27,7 @@
     "@rollup/plugin-typescript": "^12.1.4",
     "gulp": "^5.0.1",
     "pre-commit": "^1.2.2",
-    "prettier": "^3.6.0",
+    "prettier": "^3.6.2",
     "require-dir": "^1.2.0",
     "rollup": "4.44.0",
     "rollup-plugin-terser": "^7.0.2",
