@@ -66,9 +66,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "@11ty/eleventy@npm:3.1.1"
+"@11ty/eleventy@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "@11ty/eleventy@npm:3.1.2"
   dependencies:
     "@11ty/dependency-tree": ^4.0.0
     "@11ty/dependency-tree-esm": ^2.0.0
@@ -77,13 +77,13 @@ __metadata:
     "@11ty/eleventy-utils": ^2.0.7
     "@11ty/lodash-custom": ^4.17.21
     "@11ty/posthtml-urls": ^1.0.1
-    "@11ty/recursive-copy": ^4.0.1
+    "@11ty/recursive-copy": ^4.0.2
     "@sindresorhus/slugify": ^2.2.1
     bcp-47-normalize: ^2.3.0
     chokidar: ^3.6.0
     debug: ^4.4.1
     dependency-graph: ^1.0.0
-    entities: ^6.0.0
+    entities: ^6.0.1
     filesize: ^10.1.6
     gray-matter: ^4.0.3
     iso-639-1: ^3.1.5
@@ -105,7 +105,7 @@ __metadata:
     tinyglobby: ^0.2.14
   bin:
     eleventy: cmd.cjs
-  checksum: ceb7226e3cb02257dd4e70bc6c9f02e38a21621e849404ccf312511c80b5444062cd673f4a041c192a6e92493eb2611ee6c0d18ad1bcf1d0180b4c144a5ba5c1
+  checksum: c623106d933670d09f33b387ae0852d116b1117997866dea03680e68f39ae725aa93c40f3c74467b0e59e22c1e02030e485ba2649165c4d7a387175f1838ad2d
   languageName: node
   linkType: hard
 
@@ -128,15 +128,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/recursive-copy@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@11ty/recursive-copy@npm:4.0.1"
+"@11ty/recursive-copy@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@11ty/recursive-copy@npm:4.0.2"
   dependencies:
     errno: ^1.0.0
     junk: ^3.1.0
     maximatch: ^0.1.0
     slash: ^3.0.0
-  checksum: e89180ba3322f04ea0c02121e670bef5c990e9d397b6edc9a96e8e59e7c198a898395b986740665f23db072f30002c0b0f99c292d5384934191f4587c29329e7
+  checksum: 45fb6dcac179284bec4488a28220b0631378ebbb17ac9860950c41ea7a1b5f94563c9ccc8a68e014f9e9ac2a93001de8017022cbfbd474213700ae78aaedf8a6
   languageName: node
   linkType: hard
 
@@ -1654,10 +1654,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"entities@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "entities@npm:6.0.0"
-  checksum: 4e964b5549b0f1e7a88836527d38181aa7b2f87222ed2424e78309781b17212de684c84094435f53bea69a7e7e2505268fd96772af166adb686d086d64361435
+"entities@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "entities@npm:6.0.1"
+  checksum: 937b952e81aca641660a6a07f70001c6821973dea3ae7f6a5013eadce94620f3ed2e9c745832d503c8811ce6e97704d8a0396159580c0e567d815234de7fdecf
   languageName: node
   linkType: hard
 
@@ -3216,7 +3216,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "my.home-assistant.io@workspace:."
   dependencies:
-    "@11ty/eleventy": ^3.1.1
+    "@11ty/eleventy": ^3.1.2
     "@braintree/sanitize-url": ^7.1.1
     "@material/web": ^2.3.0
     "@rollup/plugin-commonjs": ^28.0.6
