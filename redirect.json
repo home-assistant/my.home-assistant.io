@@ -68,6 +68,13 @@
     }
   },
   {
+    "redirect": "config_ai_task",
+    "name": "AI preferences",
+    "badge": "Show AI preferences of",
+    "description": "show your AI preferences",
+    "introduced": "2025.8"
+  },
+  {
     "redirect": "analytics",
     "name": "Analytics",
     "badge": "Show analytics settings of",
