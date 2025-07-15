@@ -70,20 +70,20 @@
   {
     "redirect": "config_ai_task",
     "name": "AI preferences",
-    "badge": "Show AI preferences of",
+    "badge": "AI preferences of",
     "description": "show your AI preferences",
     "introduced": "2025.8"
   },
   {
     "redirect": "analytics",
     "name": "Analytics",
-    "badge": "Show analytics settings of",
+    "badge": "Analytics settings of",
     "description": "manage your analytics preferences",
     "introduced": "2022.5"
   },
   {
     "redirect": "automations",
-    "badge": "Show automations of",
+    "badge": "Automations of",
     "name": "Automations",
     "description": "show your automations",
     "introduced": "2021.3"
@@ -112,7 +112,7 @@
   {
     "redirect": "blueprints",
     "name": "Blueprints: dashboard",
-    "badge": "Show blueprints of",
+    "badge": "Blueprints of",
     "description": "show your blueprints",
     "introduced": "2021.3"
   },
@@ -132,49 +132,49 @@
   {
     "redirect": "bluetooth_advertisement_monitor",
     "name": "Bluetooth Advertisements",
-    "badge": "Show Bluetooth Advertisements of",
+    "badge": "Bluetooth Advertisements of",
     "description": "show your Bluetooth Advertisements",
     "introduced": "2025.0"
   },
   {
     "redirect": "bluetooth_connection_monitor",
     "name": "Bluetooth Connections",
-    "badge": "Show Bluetooth Connections of",
+    "badge": "Bluetooth Connections of",
     "description": "show your Bluetooth Connections",
     "introduced": "2025.0"
   },
   {
     "redirect": "bluetooth_visualization",
     "name": "Bluetooth Visualization",
-    "badge": "Show Bluetooth Visualization of",
+    "badge": "Bluetooth Visualization of",
     "description": "show your Bluetooth Visualization",
     "introduced": "2025.6"
   },
   {
     "redirect": "calendar",
     "name": "Calendar",
-    "badge": "Show calendars of",
+    "badge": "Calendars of",
     "description": "show your calendar",
     "introduced": "2023.1"
   },
   {
     "redirect": "companion_app",
     "name": "Companion app",
-    "badge": "Show app settings of",
+    "badge": "Companion app settings of",
     "description": "open the settings of your companion app",
     "introduced": "2023.8"
   },
   {
     "redirect": "application_credentials",
     "name": "Credentials",
-    "badge": "Show credentials of",
+    "badge": "Application credentials of",
     "description": "Manage your application credentials",
     "introduced": "2022.6"
   },
   {
     "redirect": "supervisor",
     "name": "Dashboard",
-    "badge": "Show supervisor dashboard of",
+    "badge": "Supervisor dashboard of",
     "description": "show your Supervisor dashboard",
     "deprecated": true,
     "introduced": "supervisor-2021.02.10"
@@ -182,35 +182,35 @@
   {
     "redirect": "lovelace_resources",
     "name": "Dashboard resources",
-    "badge": "Show dashboard resources of",
+    "badge": "Dashboard resources of",
     "description": "show your dashboard resources",
     "introduced": "2021.3"
   },
   {
     "redirect": "lovelace_dashboards",
     "name": "Dashboards",
-    "badge": "Show dashboard configs of",
-    "description": "show your dashboard configs",
+    "badge": "Dashboards of",
+    "description": "show your dashboards",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_services",
     "name": "Developer tools: actions",
-    "badge": "Show action dev tools of",
+    "badge": "Action dev tools of",
     "description": "show your action developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_assist",
     "name": "Developer tools: Assist",
-    "badge": "Show Assist dev tools of",
+    "badge": "Assist dev tools of",
     "description": "show your Assist developer tools",
     "introduced": "2023.8"
   },
   {
     "redirect": "developer_events",
     "name": "Developer tools: events",
-    "badge": "Show event dev tools of",
+    "badge": "Event dev tools of",
     "description": "show your event developer tools",
     "introduced": "2021.3"
   },
@@ -230,70 +230,70 @@
   {
     "redirect": "developer_states",
     "name": "Developer tools: states",
-    "badge": "Show state dev tools of",
+    "badge": "State dev tools of",
     "description": "show your state developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "developer_statistics",
     "name": "Developer tools: statistics",
-    "badge": "Show statistics dev tools of",
+    "badge": "Statistics dev tools of",
     "description": "show your statistics developer tools",
     "introduced": "2021.10"
   },
   {
     "redirect": "developer_template",
     "name": "Developer tools: templates",
-    "badge": "Show template dev tools of",
+    "badge": "Template dev tools of",
     "description": "show your template developer tools",
     "introduced": "2021.3"
   },
   {
     "redirect": "devices",
     "name": "Devices",
-    "badge": "Show devices of",
+    "badge": "Devices of",
     "description": "show your devices",
     "introduced": "2021.3"
   },
   {
     "redirect": "config_dhcp",
     "name": "DHCP Browser",
-    "badge": "Show DHCP Browser of",
+    "badge": "DHCP Browser of",
     "description": "show your DHCP Browser",
     "introduced": "2025.0"
   },
   {
     "redirect": "energy",
     "name": "Energy",
-    "badge": "Show energy panel of",
-    "description": "show your Energy panel",
+    "badge": "Energy dashboard of",
+    "description": "show your Energy dashboard",
     "introduced": "2021.8"
   },
   {
     "redirect": "config_energy",
     "name": "Energy configuration",
-    "badge": "Show energy config of",
-    "description": "show your energy configuration panel",
+    "badge": "Energy config of",
+    "description": "show your energy dashboard configuration",
     "introduced": "2021.8"
   },
   {
     "redirect": "entities",
     "name": "Entities",
-    "badge": "Show entities of",
+    "badge": "Entities of",
     "description": "show your entities",
     "introduced": "2021.3"
   },
   {
     "redirect": "areas",
     "name": "Floors & areas",
-    "badge": "Show floors and areas of",
+    "badge": "Floors and areas of",
     "description": "show your floors and areas",
     "introduced": "2021.3"
   },
   {
     "redirect": "general",
     "name": "General settings",
-    "badge": "Show settings of",
+    "badge": "Settings of",
     "description": "show your general Home Assistant settings",
     "introduced": "2021.3"
   },
@@ -319,28 +319,28 @@
   {
     "redirect": "hardware",
     "name": "Hardware",
-    "badge": "Show hardware of",
+    "badge": "Hardware of",
     "description": "show hardware information",
     "introduced": "2022.5"
   },
   {
     "redirect": "helpers",
     "name": "Helpers",
-    "badge": "Show helpers of",
+    "badge": "Helpers of",
     "description": "show your helper entities",
     "introduced": "2021.3"
   },
   {
     "redirect": "history",
     "name": "History",
-    "badge": "Show history of",
+    "badge": "History of",
     "description": "show your history panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "cloud",
     "name": "Home Assistant Cloud",
-    "badge": "Show Cloud config of",
+    "badge": "Home Assistant Cloud of",
     "description": "show your Home Assistant Cloud configuration",
     "introduced": "2021.3",
     "component": "cloud"
@@ -387,28 +387,28 @@
   {
     "redirect": "integrations",
     "name": "Integrations: dashboard",
-    "badge": "Show integrations of",
+    "badge": "Integrations of",
     "description": "show your integrations",
     "introduced": "2021.3"
   },
   {
     "redirect": "labels",
     "name": "Labels",
-    "badge": "Show labels of",
+    "badge": "Labels of",
     "description": "show your labels",
     "introduced": "2024.4"
   },
   {
     "redirect": "logbook",
     "name": "Logbook",
-    "badge": "Show logbook of",
+    "badge": "Logbook of",
     "description": "show your logbook panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "logs",
     "name": "Logs",
-    "badge": "Show logs of",
+    "badge": "Logs of",
     "description": "show your Home Assistant logs",
     "introduced": "2021.3",
     "params": {
@@ -425,14 +425,14 @@
   {
     "redirect": "config_mqtt",
     "name": "MQTT configuration",
-    "badge": "Show MQTT config of",
+    "badge": "MQTT config of",
     "description": "show your MQTT configuration panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "network",
     "name": "Network",
-    "badge": "Show network config of",
+    "badge": "Network config of",
     "description": "manage your systems network configuration",
     "introduced": "2022.5"
   },
@@ -459,49 +459,49 @@
   {
     "redirect": "repairs",
     "name": "Repairs",
-    "badge": "Show repairs of",
+    "badge": "Repairs of",
     "description": "show your repairs",
     "introduced": "2022.8"
   },
   {
     "redirect": "scenes",
     "name": "Scenes",
-    "badge": "Show scenes of",
+    "badge": "Scenes of",
     "description": "show your scenes",
     "introduced": "2021.3"
   },
   {
     "redirect": "scripts",
     "name": "Scripts",
-    "badge": "Show scripts of",
+    "badge": "Scripts of",
     "description": "show your scripts",
     "introduced": "2021.3"
   },
   {
     "redirect": "server_controls",
     "name": "Server controls",
-    "badge": "Show server controls of",
+    "badge": "Server controls of",
     "description": "show your server controls",
     "introduced": "2021.3"
   },
   {
     "redirect": "config",
     "name": "Settings",
-    "badge": "Show settings of",
+    "badge": "Settings panel of",
     "description": "show your settings menu",
     "introduced": "2021.3"
   },
   {
     "redirect": "config_ssdp",
     "name": "SSDP Browser",
-    "badge": "Show SSDP Browser of",
+    "badge": "SSDP Browser of",
     "description": "show your SSDP Browser",
     "introduced": "2025.0"
   },
   {
     "redirect": "storage",
     "name": "Storage",
-    "badge": "Show storage info of",
+    "badge": "Storage info of",
     "description": "show storage information",
     "introduced": "2022.5"
   },
@@ -509,7 +509,7 @@
     "redirect": "supervisor_snapshots",
     "deprecated": true,
     "name": "Supervisor: backups",
-    "badge": "Show backups of",
+    "badge": "Backups of",
     "description": "Deprecated, use 'supervisor_backups' instead",
     "introduced": "supervisor-2021.02.10"
   },
@@ -517,14 +517,14 @@
     "redirect": "supervisor_backups",
     "name": "Supervisor: backups",
     "deprecated": true,
-    "badge": "Show backups of",
+    "badge": "Backups of",
     "description": "show your Supervisor backups",
     "introduced": "supervisor-2021.08.1"
   },
   {
     "redirect": "supervisor_info",
     "name": "Supervisor: info",
-    "badge": "Show Supervisor info of",
+    "badge": "Supervisor info of",
     "description": "show your Supervisor system information",
     "deprecated": true,
     "introduced": "supervisor-2021.02.12"
@@ -532,7 +532,7 @@
   {
     "redirect": "supervisor_logs",
     "name": "Supervisor: logs",
-    "badge": "Show Supervisor logs of",
+    "badge": "Supervisor logs of",
     "description": "show your Supervisor system logs",
     "deprecated": true,
     "introduced": "supervisor-2021.02.12"
@@ -540,91 +540,91 @@
   {
     "redirect": "system_dashboard",
     "name": "System dashboard",
-    "badge": "Show system dashboard of",
+    "badge": "System dashboard of",
     "description": "show the system dashboard",
     "introduced": "2022.5"
   },
   {
     "redirect": "system_health",
     "name": "System info",
-    "badge": "Show system info of",
+    "badge": "System info of",
     "description": "show information about your system",
     "introduced": "2022.5"
   },
   {
     "redirect": "tags",
     "name": "Tags",
-    "badge": "Show tags of",
+    "badge": "Tags of",
     "description": "show your tags",
     "introduced": "2021.3"
   },
   {
     "redirect": "updates",
     "name": "Updates",
-    "badge": "Manage updates of",
+    "badge": "Updates of",
     "description": "manage your pending updates",
     "introduced": "2022.5"
   },
   {
     "redirect": "profile",
     "name": "User profile",
-    "badge": "Show user profile on",
+    "badge": "User profile on",
     "description": "show your Home Assistant user's profile",
     "introduced": "2021.3"
   },
   {
     "redirect": "profile_security",
     "name": "User security",
-    "badge": "Show user security on",
+    "badge": "User security on",
     "description": "show your Home Assistant user's security options",
     "introduced": "2025.5"
   },
   {
     "redirect": "users",
     "name": "Users",
-    "badge": "Show users of",
+    "badge": "Users of",
     "description": "show your users",
     "introduced": "2021.3"
   },
   {
     "redirect": "info",
     "name": "Version info",
-    "badge": "Show version info of",
+    "badge": "About my",
     "description": "show your Home Assistant version information",
     "introduced": "2021.3"
   },
   {
     "redirect": "voice_assistants",
     "name": "Voice assistants",
-    "badge": "List voice assistants of",
+    "badge": "Voice assistants of",
     "description": "show your voice assistants",
     "introduced": "2023.5"
   },
   {
     "redirect": "config_zwave_js",
     "name": "Z-Wave JS configuration",
-    "badge": "show Z-Wave JS config of",
+    "badge": "Z-Wave JS config of",
     "description": "show your Z-Wave JS configuration panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "config_zeroconf",
     "name": "Zeroconf Browser",
-    "badge": "Show Zeroconf Browser of",
+    "badge": "Zeroconf Browser of",
     "description": "show your Zeroconf Browser",
     "introduced": "2025.0"
   },
   {
     "redirect": "config_zha",
     "name": "ZHA configuration",
-    "badge": "Show Zigbee config of",
+    "badge": "Zigbee config of",
     "description": "show your ZHA configuration panel",
     "introduced": "2021.3"
   },
   {
     "redirect": "zones",
     "name": "Zones",
-    "badge": "Show zones of",
+    "badge": "Zones of",
     "description": "show your zones",
     "introduced": "2021.3"
   }
