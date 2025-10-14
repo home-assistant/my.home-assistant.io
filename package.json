@@ -34,7 +34,7 @@
     "serve": "^14.2.5",
     "svgo": "^4.0.0",
     "text-to-svg": "^3.1.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@braintree/sanitize-url": "^7.1.1",
