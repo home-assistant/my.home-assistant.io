@@ -341,9 +341,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^16.0.2":
-  version: 16.0.2
-  resolution: "@rollup/plugin-node-resolve@npm:16.0.2"
+"@rollup/plugin-node-resolve@npm:^16.0.3":
+  version: 16.0.3
+  resolution: "@rollup/plugin-node-resolve@npm:16.0.3"
   dependencies:
     "@rollup/pluginutils": ^5.0.1
     "@types/resolve": 1.20.2
@@ -355,7 +355,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 2c35cd4d8d0062a4d206160f8904ccc1481534d691259481fdb4860b2a0c9b8de63c558a6f6193edeb362161c9e8e52e09e711222469f7b76080508fdfebca7b
+  checksum: 2e453cf365f1fa5602c94d2344468cb6c4c0b777ade97694bbe14913aa29f65e11d0be6ef840cb3088c746b8f5055623714cd168a5f948dc9cfef896875e616e
   languageName: node
   linkType: hard
 
@@ -3223,7 +3223,7 @@ __metadata:
     "@material/web": ^2.4.0
     "@rollup/plugin-commonjs": ^28.0.8
     "@rollup/plugin-json": ^6.1.0
-    "@rollup/plugin-node-resolve": ^16.0.2
+    "@rollup/plugin-node-resolve": ^16.0.3
     "@rollup/plugin-typescript": ^12.1.4
     clipboard-copy: ^4.0.1
     gulp: ^5.0.1
