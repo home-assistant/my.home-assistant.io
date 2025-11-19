@@ -399,6 +399,21 @@
     "introduced": "2024.4"
   },
   {
+    "redirect": "labs",
+    "name": "Labs",
+    "badge": "Preview features of",
+    "description": "show Home Assistant Labs preview features",
+    "introduced": "2025.12",
+    "params": {
+      "domain": "string?",
+      "preview_feature": "string?"
+    },
+    "example": {
+      "domain": "kitchen_sink",
+      "preview_feature": "special_repair"
+    }
+  },
+  {
     "redirect": "logbook",
     "name": "Logbook",
     "badge": "Logbook of",
