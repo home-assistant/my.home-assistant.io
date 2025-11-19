@@ -405,10 +405,12 @@
     "description": "show Home Assistant Labs preview features",
     "introduced": "2025.12",
     "params": {
-      "feature": "string?"
+      "domain": "string?",
+      "preview_feature": "string?"
     },
     "example": {
-      "feature": "kitchen_sink.special_repair"
+      "domain": "kitchen_sink",
+      "preview_feature": "special_repair"
     }
   },
   {
