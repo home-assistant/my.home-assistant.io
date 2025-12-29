@@ -208,6 +208,13 @@
     "introduced": "2023.8"
   },
   {
+    "redirect": "developer_debug",
+    "name": "Developer tools: debug",
+    "badge": "Debug dev tools of",
+    "description": "show your debug developer tools",
+    "introduced": "2026.1"
+  },
+  {
     "redirect": "developer_events",
     "name": "Developer tools: events",
     "badge": "Event dev tools of",
