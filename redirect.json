@@ -34,6 +34,20 @@
     "introduced": "2022.11"
   },
   {
+    "redirect": "config_ai_task",
+    "name": "AI preferences",
+    "badge": "AI preferences of",
+    "description": "show your AI preferences",
+    "introduced": "2025.8"
+  },
+  {
+    "redirect": "analytics",
+    "name": "Analytics",
+    "badge": "Analytics settings of",
+    "description": "manage your analytics preferences",
+    "introduced": "2022.5"
+  },
+  {
     "redirect": "supervisor_store",
     "name": "App store",
     "badge": "Open app store of",
@@ -66,20 +80,6 @@
     "example": {
       "addon": "core_ssh"
     }
-  },
-  {
-    "redirect": "config_ai_task",
-    "name": "AI preferences",
-    "badge": "AI preferences of",
-    "description": "show your AI preferences",
-    "introduced": "2025.8"
-  },
-  {
-    "redirect": "analytics",
-    "name": "Analytics",
-    "badge": "Analytics settings of",
-    "description": "manage your analytics preferences",
-    "introduced": "2022.5"
   },
   {
     "redirect": "automations",
