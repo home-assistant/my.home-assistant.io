@@ -35,16 +35,16 @@
   },
   {
     "redirect": "supervisor_store",
-    "name": "Add-on store",
-    "badge": "Open add-on store of",
-    "description": "show the add-on store",
+    "name": "App store",
+    "badge": "Open app store of",
+    "description": "show the app store",
     "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_addon",
-    "name": "Add-on: dashboard",
-    "badge": "Show add-on on",
-    "description": "show the dashboard of an add-on",
+    "name": "App: dashboard",
+    "badge": "Show app on",
+    "description": "show the dashboard of an app",
     "introduced": "supervisor-2021.02.10",
     "params": {
       "addon": "string",
@@ -56,9 +56,9 @@
   },
   {
     "redirect": "supervisor_ingress",
-    "name": "Add-on: ingress URL",
-    "badge": "Open Add-on ingress URL of",
-    "description": "open the ingress URL of an add-on",
+    "name": "App: ingress URL",
+    "badge": "Open App ingress URL of",
+    "description": "open the ingress URL of an app",
     "introduced": "supervisor-2021.05.0",
     "params": {
       "addon": "string"
