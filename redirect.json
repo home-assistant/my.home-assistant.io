@@ -9,8 +9,8 @@
   {
     "redirect": "supervisor_add_addon_repository",
     "name": "Add repository",
-    "badge": "Add app repository to",
-    "description": "show the add app repository dialog with a specific repository URL pre-filled",
+    "badge": "Add add-on repository to",
+    "description": "show the add add-on repository dialog with a specific repository URL pre-filled",
     "introduced": "supervisor-2021.03.4",
     "params": {
       "repository_url": "url"
@@ -34,6 +34,40 @@
     "introduced": "2022.11"
   },
   {
+    "redirect": "supervisor_store",
+    "name": "Add-on store",
+    "badge": "Open add-on store of",
+    "description": "show the add-on store",
+    "introduced": "supervisor-2021.02.12"
+  },
+  {
+    "redirect": "supervisor_addon",
+    "name": "Add-on: dashboard",
+    "badge": "Show add-on on",
+    "description": "show the dashboard of an add-on",
+    "introduced": "supervisor-2021.02.10",
+    "params": {
+      "addon": "string",
+      "repository_url": "url?"
+    },
+    "example": {
+      "addon": "core_samba"
+    }
+  },
+  {
+    "redirect": "supervisor_ingress",
+    "name": "Add-on: ingress URL",
+    "badge": "Open Add-on ingress URL of",
+    "description": "open the ingress URL of an add-on",
+    "introduced": "supervisor-2021.05.0",
+    "params": {
+      "addon": "string"
+    },
+    "example": {
+      "addon": "core_ssh"
+    }
+  },
+  {
     "redirect": "config_ai_task",
     "name": "AI preferences",
     "badge": "AI preferences of",
@@ -46,40 +80,6 @@
     "badge": "Analytics settings of",
     "description": "manage your analytics preferences",
     "introduced": "2022.5"
-  },
-  {
-    "redirect": "supervisor_store",
-    "name": "App store",
-    "badge": "Open app store of",
-    "description": "show the app store",
-    "introduced": "supervisor-2021.02.12"
-  },
-  {
-    "redirect": "supervisor_addon",
-    "name": "App: dashboard",
-    "badge": "Show app on",
-    "description": "show the dashboard of an app",
-    "introduced": "supervisor-2021.02.10",
-    "params": {
-      "addon": "string",
-      "repository_url": "url?"
-    },
-    "example": {
-      "addon": "core_samba"
-    }
-  },
-  {
-    "redirect": "supervisor_ingress",
-    "name": "App: ingress URL",
-    "badge": "Open App ingress URL of",
-    "description": "open the ingress URL of an app",
-    "introduced": "supervisor-2021.05.0",
-    "params": {
-      "addon": "string"
-    },
-    "example": {
-      "addon": "core_ssh"
-    }
   },
   {
     "redirect": "automations",
