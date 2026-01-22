@@ -1,5 +1,7 @@
-export const HASS_URL = "hassUrl";
-export const DEFAULT_HASS_URL = "http://homeassistant.local:8123";
+export const HASS_URL = "hassUrl"; // Deprecated.
+export const DEFAULT_INSTANCE_NAME = "home assistant instance";
+export const DEFAULT_INSTANCE_URL = "http://homeassistant.local:8123";
+export const DEFAULT_HASS_URL = DEFAULT_INSTANCE_URL; // Deprecated: use DEFAULT_INSTANCE_URL instead;
 export const MOBILE_URL = "homeassistant://navigate";
 
 export type ParamType = "url" | "string" | "string?" | "url?";
