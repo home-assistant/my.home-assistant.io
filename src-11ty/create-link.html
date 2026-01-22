@@ -38,6 +38,41 @@ description: Generate links to any place in Home Assistant.
     --_outline-color: green;
     --md-sys-color-primary: green;
   }
+  @media (prefers-color-scheme: dark) {
+    .back {
+      /* no visual change needed, but here if you want spacing tweaks later */
+    }
+
+    textarea,
+    input {
+      background-color: #141820;
+      color: var(--primary-text-color, #e6e9ef);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    textarea::placeholder,
+    input::placeholder {
+      color: rgba(230, 233, 239, 0.55);
+    }
+
+    textarea:focus,
+    input:focus {
+      border-color: var(--md-sys-color-primary, #4fc3f7);
+    }
+
+    md-filled-text-field,
+    md-filled-select {
+      --md-sys-color-surface: #141820;
+      --md-sys-color-on-surface: #e6e9ef;
+      --md-sys-color-outline: rgba(255, 255, 255, 0.24);
+      --md-sys-color-primary: #4fc3f7;
+    }
+
+    .success {
+      --_outline-color: #4caf50;
+      --md-sys-color-primary: #4caf50;
+    }
+  }
 </style>
 
 <div class="back">

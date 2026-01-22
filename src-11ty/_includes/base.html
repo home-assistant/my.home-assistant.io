@@ -209,6 +209,94 @@ My Home Assistant
         font-style: normal;
         font-display: swap;
       }
+      @media (prefers-color-scheme: dark) {
+        html {
+          color-scheme: dark;
+        }
+
+        body {
+          background-color: #0f1216;
+
+          /* Material system colors */
+          --md-sys-color-background: #0f1216;
+          --md-sys-color-on-background: #e6e9ef;
+          --md-sys-color-surface: #141820;
+          --md-sys-color-surface-dim: #0b0e13;
+          --md-sys-color-surface-bright: #1c2230;
+          --md-sys-color-surface-container-lowest: #0a0d12;
+          --md-sys-color-surface-container-low: #111520;
+          --md-sys-color-surface-container: #161b26;
+          --md-sys-color-surface-container-high: #1c2230;
+          --md-sys-color-surface-container-highest: #232a3a;
+
+          --md-sys-color-on-surface: #e6e9ef;
+          --md-sys-color-surface-variant: #2a3140;
+          --md-sys-color-on-surface-variant: #c3c7d2;
+
+          --md-sys-color-outline: #7d8496;
+          --md-sys-color-outline-variant: #3a4154;
+
+          --md-sys-color-shadow: #000000;
+          --md-sys-color-scrim: #000000;
+
+          --md-sys-color-primary: #4fc3f7;
+          --md-sys-color-on-primary: #00202f;
+          --md-sys-color-primary-container: #004b6f;
+          --md-sys-color-on-primary-container: #cfe9ff;
+          --md-sys-color-inverse-primary: #03a9f4;
+
+          --md-sys-color-secondary: #9cc7ff;
+          --md-sys-color-on-secondary: #001a2d;
+          --md-sys-color-secondary-container: #2a4a6a;
+          --md-sys-color-on-secondary-container: #d6e8ff;
+
+          --md-sys-color-tertiary: #e0b7ff;
+          --md-sys-color-on-tertiary: #2a003d;
+          --md-sys-color-tertiary-container: #5c2a7a;
+          --md-sys-color-on-tertiary-container: #f3d9ff;
+
+          --md-sys-color-error: #ffb4ab;
+          --md-sys-color-on-error: #690005;
+          --md-sys-color-error-container: #93000a;
+          --md-sys-color-on-error-container: #ffdad6;
+
+          /* App-level tokens */
+          --primary-text-color: #e6e9ef;
+          --secondary-text-color: #aab0c0;
+          --link-text-color: #4fc3f7;
+        }
+
+        a {
+          color: var(--link-text-color);
+        }
+
+        .footer,
+        .footer a {
+          color: var(--secondary-text-color);
+        }
+
+        .ha-card {
+          background: var(
+            --ha-card-background,
+            var(--md-sys-color-surface-container)
+          );
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: var(--primary-text-color);
+        }
+
+        .ha-card .card-actions {
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        h1 {
+          color: var(--primary-text-color);
+        }
+
+        .highlight {
+          background-color: #665c00;
+          color: #fff7cc;
+        }
+      }
     </style>
     <script>
       function check() {
