@@ -40,6 +40,29 @@ description: Answers to all your questions about My Home Assistant.
       display: flex;
     }
   }
+
+  @media (prefers-color-scheme: dark) {
+    .section-header {
+      color: var(--secondary-text-color, #aab0c0);
+    }
+
+    .redirects a {
+      color: var(--primary-text-color, #e6e9ef);
+      background-color: var(--md-sys-color-surface-container, #161b26);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+      /* Light arrow for dark background */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23e6e9ef"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>');
+    }
+
+    .redirects a:hover {
+      background-color: var(--md-sys-color-surface-container-high, #1c2230);
+    }
+
+    .redirects a .badge {
+      color: var(--primary-text-color, #e6e9ef);
+    }
+  }
 </style>
 
 <div class="back">
