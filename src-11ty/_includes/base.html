@@ -224,7 +224,7 @@ My Home Assistant
       supported = check();
       if (!supported) {
         alert(
-          "We are sorry, but this browser is not supported. We advise you to upgrade your browser."
+          "We are sorry, but this browser is not supported. We advise you to upgrade your browser.",
         );
       }
       if (
@@ -245,7 +245,7 @@ My Home Assistant
           });
         };
         window.addEventListener("resize", () =>
-          setViewportProperty(document.documentElement)
+          setViewportProperty(document.documentElement),
         );
         setViewportProperty(document.documentElement);
       }

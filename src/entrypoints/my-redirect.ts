@@ -1,5 +1,5 @@
-import "@material/web/button/filled-button"
-import "@material/web/button/outlined-button"
+import "@material/web/button/filled-button";
+import "@material/web/button/outlined-button";
 import {
   createSearchParam,
   extractSearchParamsObject,
@@ -24,7 +24,6 @@ const createRedirectParams = (): string => {
   }
   const params = {};
   for (const [key, type] of Object.entries(redirectParams)) {
-      
     const userParam = userParams[key];
 
     if (!userParam && type.endsWith("?")) {
@@ -56,7 +55,7 @@ const render = (showTroubleshooting: boolean) => {
     alert("Invalid parameters given.");
     if (!isMobile) {
       document.location.assign(
-        `/create-link?redirect=${window.redirect.redirect}`
+        `/create-link?redirect=${window.redirect.redirect}`,
       );
     }
     return;
@@ -69,7 +68,7 @@ const render = (showTroubleshooting: boolean) => {
   }
 
   const changeUrl = `/redirect/_change/?redirect=${encodeURIComponent(
-    window.redirect.redirect + "/" + params
+    window.redirect.redirect + "/" + params,
   )}`;
 
   if (instanceUrl === null) {

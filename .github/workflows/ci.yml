@@ -1,4 +1,8 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will:
+# - do a clean install of node dependencies
+# - build the source code
+# - run tests across different versions of node
+# - ensure the code is formatted
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: CI
@@ -14,11 +18,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.1.0
+      - uses: actions/checkout@v6.0.2
       - name: Use Node.js
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v6.2.0
         with:
           node-version-file: ".nvmrc"
           cache: yarn
       - run: yarn install --immutable
       - run: npm test
+      - run: npm run format:check
