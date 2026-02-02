@@ -37,7 +37,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@braintree/sanitize-url": "^7.1.1",
+    "@braintree/sanitize-url": "^7.1.2",
     "@material/web": "^2.4.1",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^7.2.0",
