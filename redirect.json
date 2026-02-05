@@ -7,7 +7,7 @@
     "introduced": "2023.3"
   },
   {
-    "redirect": "supervisor_app_repository",
+    "redirect": "supervisor_add_addon_repository",
     "name": "Add repository",
     "badge": "Add app repository to",
     "description": "show the add app repository dialog with a specific repository URL pre-filled",
@@ -55,8 +55,8 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
-    "redirect": "supervisor_app",
-    "name": "App store: dashboard",
+    "redirect": "supervisor_addon",
+    "name": "App: dashboard",
     "badge": "Show app on",
     "description": "show the dashboard of an app",
     "introduced": "supervisor-2021.02.10",
@@ -70,8 +70,8 @@
   },
   {
     "redirect": "supervisor_ingress",
-    "name": "App store: ingress URL",
-    "badge": "Open app store ingress URL of",
+    "name": "App: ingress URL",
+    "badge": "Open app ingress URL of",
     "description": "open the ingress URL of an app",
     "introduced": "supervisor-2021.05.0",
     "params": {
