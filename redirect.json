@@ -438,6 +438,13 @@
     }
   },
   {
+    "redirect": "config_matter",
+    "name": "Matter configuration",
+    "badge": "Matter config of",
+    "description": "show your Matter configuration panel",
+    "introduced": "2026.3"
+  },
+  {
     "redirect": "media_browser",
     "name": "Media",
     "badge": "Browse media on",
