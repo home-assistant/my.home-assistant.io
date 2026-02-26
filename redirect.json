@@ -581,6 +581,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "config_thread",
+    "name": "Thread configuration",
+    "badge": "Thread config of",
+    "description": "show your Thread configuration panel",
+    "introduced": "2026.3"
+  },
+  {
     "redirect": "updates",
     "name": "Updates",
     "badge": "Updates of",
