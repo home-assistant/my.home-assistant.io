@@ -11,7 +11,8 @@
     "lint": "yarn run lint:types",
     "test": "node test/badges.js && node test/redirects.js",
     "precommit-redirect": "node build-scripts/sort-redirects.js && npx prettier -w redirect.json && git add redirect.json",
-    "precommit-badges": "node build-scripts/create-badges.js && git add public/badges"
+    "precommit-badges": "node build-scripts/create-badges.js && git add public/badges",
+    "start": "./script/develop"
   },
   "pre-commit": [
     "precommit-redirect",
