@@ -75,6 +75,45 @@ permalink: "redirect/{{ redirect.redirect }}/"
     height: 24px;
     margin-right: 8px;
   }
+  @media (prefers-color-scheme: dark) {
+    .ha-card {
+      /* keep your accent, but ensure the card itself reads as dark */
+      border-top-color: var(--md-sys-color-primary, #4fc3f7);
+    }
+
+    .fake-button {
+      color: rgba(230, 233, 239, 0.60);
+      border: 1px solid rgba(230, 233, 239, 0.35);
+    }
+
+    .fake-button:hover {
+      color: rgba(230, 233, 239, 0.80);
+      border-color: rgba(230, 233, 239, 0.55);
+    }
+
+    .instance-footer {
+      color: var(--secondary-text-color, #aab0c0);
+    }
+
+    .instance-footer a {
+      color: var(--link-text-color, #4fc3f7);
+    }
+
+    .instance-footer svg {
+      color: currentColor;
+      fill: currentColor;
+    }
+
+    .warning::after {
+      /* keep the same warning hue, just tuned for dark backgrounds */
+      opacity: 0.18;
+      background-color: #ffb020;
+    }
+
+    svg {
+      color: #ffb020;
+    }
+  }
 </style>
 
 <div class="ha-card">
