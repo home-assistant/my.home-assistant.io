@@ -27,6 +27,15 @@ let initialRedirect;
 const passedInData = extractSearchParamsObject();
 {
   if (passedInData.redirect) {
+    if (passedInData.redirect === "supervisor_app") {
+      // Special case for supervisor app as we want to use the old redirect for now, as it is supported by all versions of Home Assistant, while the new one is only supported in 2026.2 and later.
+      // this should be turned around after september 2026, then app will be the default and addon will be the fallback.
+      passedInData.redirect = "supervisor_addon";
+      if (passedInData.app) {
+        passedInData.addon = passedInData.app;
+        delete passedInData.app;
+      }
+    }
     initialRedirect = redirects.find(
       (info) => info.redirect === passedInData.redirect,
     );
