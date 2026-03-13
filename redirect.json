@@ -479,6 +479,13 @@
     }
   },
   {
+    "redirect": "overview",
+    "name": "Overview",
+    "badge": "Overview dashboard of",
+    "description": "show your Overview dashboard",
+    "introduced": "2026.4"
+  },
+  {
     "redirect": "people",
     "name": "People",
     "badge": "List people of",
