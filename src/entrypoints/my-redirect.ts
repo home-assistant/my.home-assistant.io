@@ -65,10 +65,15 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
+  // Compute redirect base path once based on component
+  const redirectBasePath = window.redirect.component === "hacs"
+    ? `/hacs/_my_redirect/${window.redirect.redirect}`
+    : `/_my_redirect/${window.redirect.redirect}`;
+
   const redirectUrl =
     window.redirect.redirect === "oauth"
       ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+      : `${instanceUrl}${redirectBasePath}${params}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
@@ -97,7 +102,7 @@ const render = (showTroubleshooting: boolean) => {
       state: params.state,
     });
     declineLink.outerHTML = `
-        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+        <a href="${instanceUrl}${redirectBasePath}?${declineParams}" class='decline-link' rel="noopener">
           <md-outlined-button>${buttonCaption}</md-outlined-button>
         </a>
       `;
