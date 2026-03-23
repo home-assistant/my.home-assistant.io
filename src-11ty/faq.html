@@ -32,12 +32,11 @@ description: Answers to all your questions about My Home Assistant.
 
   .redirects a .badge {
     display: none;
-    align-items: center;
   }
 
   @media all and (min-width: 600px) {
     .redirects a .badge {
-      display: flex;
+      display: inline-block;
     }
   }
 </style>
@@ -112,9 +111,7 @@ description: Answers to all your questions about My Home Assistant.
     title="Introduced in {{ redirect.introduced | version }}."
   >
     {{ redirect.name }}
-    <div class="badge">
-      <img loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
-    </div>
+    <img class="badge" loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
   </a>
   {% endif %} {% endfor %}
 </div>
