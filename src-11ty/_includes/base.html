@@ -215,31 +215,31 @@ My Home Assistant
         }
 
         body {
-          background-color: #0f1216;
+          background-color: #111111;
 
           /* Material system colors */
-          --md-sys-color-background: #0f1216;
-          --md-sys-color-on-background: #e6e9ef;
-          --md-sys-color-surface: #141820;
-          --md-sys-color-surface-dim: #0b0e13;
-          --md-sys-color-surface-bright: #1c2230;
-          --md-sys-color-surface-container-lowest: #0a0d12;
-          --md-sys-color-surface-container-low: #111520;
-          --md-sys-color-surface-container: #161b26;
-          --md-sys-color-surface-container-high: #1c2230;
-          --md-sys-color-surface-container-highest: #232a3a;
+          --md-sys-color-background: #111111;
+          --md-sys-color-on-background: #e1e1e1;
+          --md-sys-color-surface: #1c1c1c;
+          --md-sys-color-surface-dim: #111111;
+          --md-sys-color-surface-bright: #282828;
+          --md-sys-color-surface-container-lowest: #111111;
+          --md-sys-color-surface-container-low: #1c1c1c;
+          --md-sys-color-surface-container: #282828;
+          --md-sys-color-surface-container-high: #282828;
+          --md-sys-color-surface-container-highest: #282828;
 
-          --md-sys-color-on-surface: #e6e9ef;
-          --md-sys-color-surface-variant: #2a3140;
-          --md-sys-color-on-surface-variant: #c3c7d2;
+          --md-sys-color-on-surface: #e1e1e1;
+          --md-sys-color-surface-variant: #282828;
+          --md-sys-color-on-surface-variant: #9b9b9b;
 
-          --md-sys-color-outline: #7d8496;
-          --md-sys-color-outline-variant: #3a4154;
+          --md-sys-color-outline: rgba(225, 225, 225, 0.12);
+          --md-sys-color-outline-variant: rgba(225, 225, 225, 0.12);
 
           --md-sys-color-shadow: #000000;
           --md-sys-color-scrim: #000000;
 
-          --md-sys-color-primary: #4fc3f7;
+          --md-sys-color-primary: #03a9f4;
           --md-sys-color-on-primary: #00202f;
           --md-sys-color-primary-container: #004b6f;
           --md-sys-color-on-primary-container: #cfe9ff;
@@ -261,9 +261,9 @@ My Home Assistant
           --md-sys-color-on-error-container: #ffdad6;
 
           /* App-level tokens */
-          --primary-text-color: #e6e9ef;
-          --secondary-text-color: #aab0c0;
-          --link-text-color: #4fc3f7;
+          --primary-text-color: #e1e1e1;
+          --secondary-text-color: #9b9b9b;
+          --link-text-color: #03a9f4;
         }
 
         a {
@@ -282,6 +282,10 @@ My Home Assistant
           );
           border: 1px solid rgba(255, 255, 255, 0.12);
           color: var(--primary-text-color);
+        }
+
+        button.empty {
+          fill: var(--primary-text-color);
         }
 
         .ha-card .card-actions {
