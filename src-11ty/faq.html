@@ -22,7 +22,7 @@ description: Answers to all your questions about My Home Assistant.
     justify-content: space-between;
     text-decoration: none;
     line-height: 60px;
-    color: black;
+    color: var(--primary-text-color, #e1e1e1);
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23212121"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>');
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -38,6 +38,29 @@ description: Answers to all your questions about My Home Assistant.
   @media all and (min-width: 600px) {
     .redirects a .badge {
       display: flex;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .section-header {
+      color: var(--secondary-text-color, #9b9b9b);
+    }
+
+    .redirects a {
+      color: var(--primary-text-color, #e1e1e1);
+      background-color: var(--md-sys-color-surface-container, #282828);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+      /* Light arrow for dark background */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23e1e1e1"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>');
+    }
+
+    .redirects a:hover {
+      background-color: var(--md-sys-color-surface-container-high, #282828);
+    }
+
+    .redirects a .badge {
+      color: var(--primary-text-color, #e1e1e1);
     }
   }
 </style>
