@@ -75,6 +75,43 @@ permalink: "redirect/{{ redirect.redirect }}/"
     height: 24px;
     margin-right: 8px;
   }
+  @media (prefers-color-scheme: dark) {
+    .ha-card {
+      border-top-color: var(--md-sys-color-primary, #03a9f4);
+    }
+
+    .fake-button {
+      color: rgba(225, 225, 225, 0.6);
+      border: 1px solid rgba(225, 225, 225, 0.38);
+    }
+
+    .fake-button:hover {
+      color: rgba(225, 225, 225, 0.8);
+      border-color: rgba(225, 225, 225, 0.55);
+    }
+
+    .instance-footer {
+      color: var(--secondary-text-color, #9b9b9b);
+    }
+
+    .instance-footer a {
+      color: var(--link-text-color, #03a9f4);
+    }
+
+    .instance-footer svg {
+      color: currentColor;
+      fill: currentColor;
+    }
+
+    .warning::after {
+      opacity: 0.18;
+      background-color: #ffa600;
+    }
+
+    svg {
+      color: #ffa600;
+    }
+  }
 </style>
 
 <div class="ha-card">
