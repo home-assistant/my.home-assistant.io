@@ -4,7 +4,7 @@ import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstances } from "../data/instance_info";
 import { Redirect } from "../const";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
@@ -40,7 +40,7 @@ const createRedirectParams = (): string => {
 let changingInstance = false;
 
 const render = (showTroubleshooting: boolean) => {
-  const instanceUrl = getInstanceUrl();
+  const instances = getInstances();
 
   let params;
   try {
@@ -59,7 +59,7 @@ const render = (showTroubleshooting: boolean) => {
     window.redirect.redirect + "/" + params,
   )}`;
 
-  if (instanceUrl === null) {
+  if (instances === null) {
     changingInstance = true;
     document.location.assign(changeUrl);
     return;
@@ -67,8 +67,8 @@ const render = (showTroubleshooting: boolean) => {
 
   const redirectUrl =
     window.redirect.redirect === "oauth"
-      ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+      ? `${instances[0]}/auth/external/callback${params}`
+      : `${instances[0]}/_my_redirect/${window.redirect.redirect}${params}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
