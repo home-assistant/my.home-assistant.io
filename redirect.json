@@ -500,6 +500,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "config_radiofrequency",
+    "name": "Radio frequency configuration",
+    "badge": "Radio frequency config of",
+    "description": "show your radio frequency configuration panel",
+    "introduced": "2026.7"
+  },
+  {
     "redirect": "repairs",
     "name": "Repairs",
     "badge": "Repairs of",
