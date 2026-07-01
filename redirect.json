@@ -549,6 +549,7 @@
   {
     "redirect": "developer_services",
     "name": "Tools: actions",
+    "deprecated": true,
     "badge": "Action tools of",
     "description": "show your action tools",
     "introduced": "2021.3"
@@ -563,6 +564,7 @@
   {
     "redirect": "developer_assist",
     "name": "Tools: Assist",
+    "deprecated": true,
     "badge": "Assist tools of",
     "description": "show your Assist tools",
     "introduced": "2023.8"
@@ -577,6 +579,7 @@
   {
     "redirect": "developer_debug",
     "name": "Tools: debug",
+    "deprecated": true,
     "badge": "Debug tools of",
     "description": "show your debug tools",
     "introduced": "2026.1"
@@ -591,6 +594,7 @@
   {
     "redirect": "developer_events",
     "name": "Tools: events",
+    "deprecated": true,
     "badge": "Event tools of",
     "description": "show your event tools",
     "introduced": "2021.3"
@@ -605,6 +609,7 @@
   {
     "redirect": "developer_call_service",
     "name": "Tools: perform action",
+    "deprecated": true,
     "badge": "Perform action on",
     "description": "show your service tools with a specific action selected",
     "introduced": "2021.3",
@@ -631,6 +636,7 @@
   {
     "redirect": "developer_states",
     "name": "Tools: states",
+    "deprecated": true,
     "badge": "State tools of",
     "description": "show your state tools",
     "introduced": "2021.3"
@@ -645,6 +651,7 @@
   {
     "redirect": "developer_statistics",
     "name": "Tools: statistics",
+    "deprecated": true,
     "badge": "Statistics tools of",
     "description": "show your statistics tools",
     "introduced": "2021.10"
@@ -659,6 +666,7 @@
   {
     "redirect": "developer_template",
     "name": "Tools: templates",
+    "deprecated": true,
     "badge": "Template tools of",
     "description": "show your template tools",
     "introduced": "2021.3"
