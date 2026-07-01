@@ -501,9 +501,9 @@
   },
   {
     "redirect": "config_radiofrequency",
-    "name": "Radio Frequency configuration",
-    "badge": "Radio Frequency config of",
-    "description": "show your Radio Frequency configuration panel",
+    "name": "Radio frequency configuration",
+    "badge": "Radio frequency config of",
+    "description": "show your radio frequency configuration panel",
     "introduced": "2026.7"
   },
   {
