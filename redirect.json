@@ -353,6 +353,13 @@
     "component": "cloud"
   },
   {
+    "redirect": "config_infrared",
+    "name": "Infrared configuration",
+    "badge": "Infrared config of",
+    "description": "show your Infrared configuration panel",
+    "introduced": "2026.7"
+  },
+  {
     "redirect": "integration",
     "name": "Integration",
     "badge": "Show integration on",
