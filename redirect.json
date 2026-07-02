@@ -194,68 +194,6 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "developer_services",
-    "name": "Developer tools: actions",
-    "badge": "Action dev tools of",
-    "description": "show your action developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_assist",
-    "name": "Developer tools: Assist",
-    "badge": "Assist dev tools of",
-    "description": "show your Assist developer tools",
-    "introduced": "2023.8"
-  },
-  {
-    "redirect": "developer_debug",
-    "name": "Developer tools: debug",
-    "badge": "Debug dev tools of",
-    "description": "show your debug developer tools",
-    "introduced": "2026.1"
-  },
-  {
-    "redirect": "developer_events",
-    "name": "Developer tools: events",
-    "badge": "Event dev tools of",
-    "description": "show your event developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_call_service",
-    "name": "Developer tools: perform action",
-    "badge": "Perform action on",
-    "description": "show your service developer tools with a specific action selected",
-    "introduced": "2021.3",
-    "params": {
-      "service": "string"
-    },
-    "example": {
-      "service": "homeassistant.turn_on"
-    }
-  },
-  {
-    "redirect": "developer_states",
-    "name": "Developer tools: states",
-    "badge": "State dev tools of",
-    "description": "show your state developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_statistics",
-    "name": "Developer tools: statistics",
-    "badge": "Statistics dev tools of",
-    "description": "show your statistics developer tools",
-    "introduced": "2021.10"
-  },
-  {
-    "redirect": "developer_template",
-    "name": "Developer tools: templates",
-    "badge": "Template dev tools of",
-    "description": "show your template developer tools",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "devices",
     "name": "Devices",
     "badge": "Devices of",
@@ -607,6 +545,68 @@
     "badge": "Thread config of",
     "description": "show your Thread configuration panel",
     "introduced": "2026.3"
+  },
+  {
+    "redirect": "developer_services",
+    "name": "Tools: actions",
+    "badge": "Action tools of",
+    "description": "show your action tools",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "developer_assist",
+    "name": "Tools: Assist",
+    "badge": "Assist tools of",
+    "description": "show your Assist tools",
+    "introduced": "2023.8"
+  },
+  {
+    "redirect": "developer_debug",
+    "name": "Tools: debug",
+    "badge": "Debug tools of",
+    "description": "show your debug tools",
+    "introduced": "2026.1"
+  },
+  {
+    "redirect": "developer_events",
+    "name": "Tools: events",
+    "badge": "Event tools of",
+    "description": "show your event tools",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "developer_call_service",
+    "name": "Tools: perform action",
+    "badge": "Perform action on",
+    "description": "show your action tools with a specific action selected",
+    "introduced": "2021.3",
+    "params": {
+      "service": "string"
+    },
+    "example": {
+      "service": "homeassistant.turn_on"
+    }
+  },
+  {
+    "redirect": "developer_states",
+    "name": "Tools: states",
+    "badge": "State tools of",
+    "description": "show your state tools",
+    "introduced": "2021.3"
+  },
+  {
+    "redirect": "developer_statistics",
+    "name": "Tools: statistics",
+    "badge": "Statistics tools of",
+    "description": "show your statistics tools",
+    "introduced": "2021.10"
+  },
+  {
+    "redirect": "developer_template",
+    "name": "Tools: templates",
+    "badge": "Template tools of",
+    "description": "show your template tools",
+    "introduced": "2021.3"
   },
   {
     "redirect": "updates",
