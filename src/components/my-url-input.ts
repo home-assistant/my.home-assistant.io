@@ -102,6 +102,6 @@ export class MyUrlInputMain extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "my-url-inout": MyUrlInputMain;
+    "my-url-input": MyUrlInputMain;
   }
 }
