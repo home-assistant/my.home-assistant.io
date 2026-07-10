@@ -21,7 +21,7 @@ yarn build
 And then serve it up with:
 
 ```bash
-yard serve dist
+yarn serve dist
 ```
 
 Open http://localhost:3000 to view your production build.

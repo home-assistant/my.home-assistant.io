@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/entrypoint.ts",
   "scripts": {
-    "build": "sh ./script/build",
+    "build": "./script/build",
     "format": "npx prettier -w .",
     "format:check": "npx prettier --list-different .",
     "lint": "yarn lint:types",
