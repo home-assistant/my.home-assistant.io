@@ -6,12 +6,13 @@
   "main": "src/entrypoint.ts",
   "scripts": {
     "build": "./script/build",
-    "format": "npx prettier -w .",
-    "format:check": "npx prettier --list-different .",
+    "develop": "./script/develop",
+    "format": "prettier -w .",
+    "format:check": "prettier --list-different .",
     "lint": "yarn lint:types",
     "lint:types": "tsc",
     "precommit-badges": "node build-scripts/create-badges.js && git add public/badges",
-    "precommit-redirect": "node build-scripts/sort-redirects.js && npx prettier -w redirect.json && git add redirect.json",
+    "precommit-redirect": "node build-scripts/sort-redirects.js && prettier -w redirect.json && git add redirect.json",
     "test": "node test/badges.js && node test/redirects.js"
   },
   "pre-commit": [
