@@ -28,5 +28,5 @@ jobs:
       - run: yarn install --immutable
       - run: yarn run lint
       - run: ./script/build
-      - run: npm test
-      - run: npm run format:check
+      - run: yarn test
+      - run: yarn run format:check
