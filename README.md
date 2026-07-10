@@ -15,7 +15,7 @@ Open http://localhost:3000 to view your changes as you make them.
 Or, perform a production build with:
 
 ```bash
-./script/build
+yarn build
 ```
 
 And then serve it up with:

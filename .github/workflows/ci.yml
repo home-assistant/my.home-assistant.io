@@ -26,7 +26,7 @@ jobs:
           node-version-file: ".nvmrc"
           cache: yarn
       - run: yarn install --immutable
-      - run: yarn run lint
-      - run: ./script/build
+      - run: yarn lint
+      - run: yarn build
       - run: yarn test
-      - run: yarn run format:check
+      - run: yarn format:check
