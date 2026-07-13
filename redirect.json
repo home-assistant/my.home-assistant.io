@@ -137,6 +137,13 @@
     "introduced": "2025.0"
   },
   {
+    "redirect": "config_bluetooth",
+    "name": "Bluetooth configuration",
+    "badge": "Bluetooth config of",
+    "description": "show your Bluetooth configuration panel",
+    "introduced": "2025.2"
+  },
+  {
     "redirect": "bluetooth_connection_monitor",
     "name": "Bluetooth Connections",
     "badge": "Bluetooth Connections of",
