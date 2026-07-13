@@ -3208,7 +3208,7 @@ __metadata:
     html-minifier-terser: ^7.2.0
     lit: ^3.3.3
     pre-commit: ^2.0.0
-    prettier: ^3.8.4
+    prettier: ^3.9.5
     require-dir: ^1.2.0
     rollup: 4.62.2
     rollup-plugin-terser: ^7.0.2
@@ -3630,12 +3630,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.8.4":
-  version: 3.8.4
-  resolution: "prettier@npm:3.8.4"
+"prettier@npm:^3.9.5":
+  version: 3.9.5
+  resolution: "prettier@npm:3.9.5"
   bin:
     prettier: bin/prettier.cjs
-  checksum: ef9e00109d9eac7b4a34b2772fffd6a98d9bfeadb8496014a8bd228530052829690d2d74e9d73e135397fecdca5858a65f6acbdced3dcba2990322b44385aabf
+  checksum: a47508022818548392d02d8d7074c0af4440e1bcb288f912a29bcf82a863925b67a34e5ded63b0c09ede234811d1dc48f49d201633dd740d5e8ee1dd304d16e3
   languageName: node
   linkType: hard
 
