@@ -263,6 +263,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lit-labs/ssr-dom-shim@npm:^1.5.0":
+  version: 1.6.0
+  resolution: "@lit-labs/ssr-dom-shim@npm:1.6.0"
+  checksum: 95f6eca9c462e2750c12f93a6cb40b962d75650169e0f6151b8e44a0f44600fd63fc9be69dc8136992162eb8ad95631cb65996b56cf183d3d11905801f16ac02
+  languageName: node
+  linkType: hard
+
+"@lit/context@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@lit/context@npm:1.1.6"
+  dependencies:
+    "@lit/reactive-element": ^1.6.2 || ^2.1.0
+  checksum: b077ecfdf8be6e16da33ce3ba04fae3c02a8705a1fe44388e8acf63dacf1e7bbfb78e07849209af4b3d97bbe5b2c8728ed12dbba5952dff7ffbc7521f15842e9
+  languageName: node
+  linkType: hard
+
+"@lit/reactive-element@npm:^1.6.2 || ^2.1.0":
+  version: 2.1.2
+  resolution: "@lit/reactive-element@npm:2.1.2"
+  dependencies:
+    "@lit-labs/ssr-dom-shim": ^1.5.0
+  checksum: e0ed931b9cd50ce9521db7da528c00e1a8b912a66ac7b0f43554992e43cc7c20735b34bf99750d86b9256228818835ca2e9bf517653b246c73a6aac92cdd894c
+  languageName: node
+  linkType: hard
+
 "@lit/reactive-element@npm:^2.0.4":
   version: 2.0.4
   resolution: "@lit/reactive-element@npm:2.0.4"
@@ -281,13 +306,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material/web@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@material/web@npm:2.4.1"
+"@material/web@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "@material/web@npm:2.5.0"
   dependencies:
+    "@lit/context": ^1.1.6
     lit: ^2.8.0 || ^3.0.0
     tslib: ^2.4.0
-  checksum: 43928181ec3a96c252760c8135d5f3ead23f2158cbae0dbb793703f79d72abf9675dd12b98f63cbbff7a7d7dbc450259848e45f5b183ee3b297f89e711604fec
+  checksum: 1de6daf4ac791b1e220e6bb8d2d4934e5f0a9e015c194fedd3f1eac67dedc44f0bf203d00d66020c75f3836d0f169cc7dc0fa83adef267373c6912d2517c6feb
   languageName: node
   linkType: hard
 
@@ -3198,7 +3224,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": ^3.1.6
     "@braintree/sanitize-url": ^7.1.2
-    "@material/web": ^2.4.1
+    "@material/web": ^2.5.0
     "@rollup/plugin-commonjs": ^29.0.3
     "@rollup/plugin-json": ^6.1.0
     "@rollup/plugin-node-resolve": ^16.0.3
