@@ -1,31 +1,64 @@
-import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { svgPencil } from "./svg-pencil";
+import { Instance } from "../data/instance_info";
 
 @customElement("my-instance-info")
 class MyInstanceInfo extends LitElement {
-  @property({ attribute: false }) public instanceUrl!: string | null;
+  @property({ attribute: false }) public instances!: Instance[] | null;
 
   createRenderRoot() {
     return this;
   }
 
   protected render(): TemplateResult {
-    if (!this.instanceUrl) {
+    console.log("this.instances", this.instances);
+    if (!this.instances?.length) {
+      console.error("my-instance-info rendered with a empty instance list");
       return html``;
     }
     return html`
-      <div class="instance-info">
-        <div>
-          <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank">
-            ${this.instanceUrl}
+      <div style="padding: 0 16px 16px">
+        <div
+          style="width: 100%; display: flex; flex-direction: column; align-items: start; line-break: anywhere; gap: 12px"
+        >
+          ${this.instances.map(
+            (instance) =>
+              html`<my-url-input
+                .instance=${instance}
+                style="width: 100%"
+              />` /*
+              <div
+                style="width: 100%; display: flex; flex-direction: column; align-items: start; line-break: anywhere; gap: 4px"
+              >
+                <div
+                  style="font-weight: 600; letter-spacing: 0.05em; font-size: 12px; text-transform: capitalize"
+                >
+                  ${instance.name || "HOME ASSISTANT INSTANCE"}
+                </div>
+                <div
+                  style="display: flex; align-items: center; width: 100%; justify-content: space-between;"
+                >
+                  <a
+                    href="${instance.url}"
+                    rel="noreferrer noopener"
+                    target="_blank"
+                  >
+                    ${instance.url}
+                  </a>
+                  <button
+                    @click=${this._handleEdit}
+                    style="display: inline-flex; background: none; color: inherit; border: none; padding: 0; font: inherit; text-align: left; cursor: pointer;"
+                  >
+                    ${unsafeSVG(svgPencil)}
+                  </button>
+                </div>
+              </div>
+            `,*/,
+          )}
+          <a href="#" rel="noreferrer noopener" target="_blank">
+            + Add Instance
           </a>
         </div>
-        <button class="empty" @click=${this._handleEdit}>
-          ${unsafeSVG(svgPencil)}
-        </button>
       </div>
     `;
   }
