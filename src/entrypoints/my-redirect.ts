@@ -65,10 +65,11 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
+  const redirectTarget = window.redirect.target || window.redirect.redirect;
   const redirectUrl =
-    window.redirect.redirect === "oauth"
+    redirectTarget === "oauth"
       ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+      : `${instanceUrl}/_my_redirect/${redirectTarget}${params}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
@@ -97,7 +98,7 @@ const render = (showTroubleshooting: boolean) => {
       state: params.state,
     });
     declineLink.outerHTML = `
-        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+        <a href="${instanceUrl}/_my_redirect/${redirectTarget}?${declineParams}" class='decline-link' rel="noopener">
           <md-outlined-button>${buttonCaption}</md-outlined-button>
         </a>
       `;
