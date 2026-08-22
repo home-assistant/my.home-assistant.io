@@ -43,14 +43,16 @@ class MyIndex extends LitElement {
     if (this._updatingUrl) {
       return html`
         <div class="card-content">
-          ${!this._instanceUrl
-            ? html`
-                <p>
-                  Configure My Home Assistant by entering the URL of your Home
-                  Assistant instance.
-                </p>
-              `
-            : ""}
+          ${
+            !this._instanceUrl
+              ? html`
+                  <p>
+                    Configure My Home Assistant by entering the URL of your Home
+                    Assistant instance.
+                  </p>
+                `
+              : ""
+          }
 
           <my-url-input
             .value=${this._instanceUrl || ""}

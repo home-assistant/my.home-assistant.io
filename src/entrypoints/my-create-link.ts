@@ -96,8 +96,9 @@ class MyCreateLink extends LitElement {
               .type=${type.startsWith("url") ? "url" : "text"}
             ></md-filled-text-field>`,
         )}
-        ${this.isValid
-          ? html`
+        ${
+          this.isValid
+            ? html`
               <h1>Your URL</h1>
                 <p>A URL to share with others, for example, when chatting on
                 our <a href="https://www.home-assistant.io/join-chat"
@@ -135,7 +136,8 @@ ${badgeHTML}</textarea
                 </md-outlined-button>
               </a>
             `
-          : ""}
+            : ""
+        }
       </div>
     `;
   }
