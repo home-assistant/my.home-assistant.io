@@ -55,23 +55,27 @@ class MyChangeUrl extends LitElement {
     }
 
     return html`
-      ${changeRequestedFromRedirect && !this._instanceUrl
-        ? html`
-            <div class="highlight">
-              You are seeing this page because you have been linked to a page in
-              your Home Assistant instance but have not configured My Home
-              Assistant. Enter the URL of your Home Assistant instance to
-              continue.
-            </div>
-          `
-        : ""}
+      ${
+        changeRequestedFromRedirect && !this._instanceUrl
+          ? html`
+              <div class="highlight">
+                You are seeing this page because you have been linked to a page
+                in your Home Assistant instance but have not configured My Home
+                Assistant. Enter the URL of your Home Assistant instance to
+                continue.
+              </div>
+            `
+          : ""
+      }
       <div class="card-content">
-        ${this._instanceUrl
-          ? html`<p>
-              Configure My Home Assistant by entering the URL of your Home
-              Assistant instance.
-            </p>`
-          : ""}
+        ${
+          this._instanceUrl
+            ? html`<p>
+                Configure My Home Assistant by entering the URL of your Home
+                Assistant instance.
+              </p>`
+            : ""
+        }
 
         <my-url-input
           .value=${this._instanceUrl || ""}
