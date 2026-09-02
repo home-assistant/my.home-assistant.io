@@ -38,8 +38,7 @@ text, and `/create-link` resolves them to the new entry. When a param was
 renamed too, `params_rename` maps the old name to the new one. When the old key
 implied a param value, `redirect_params` lists the params the old key redirects
 with: `supervisor_logs` opens `logs` with `provider` set to `supervisor`. Such
-an old key can be the `legacy_redirect` too; it is then only sent for links
-carrying those exact values.
+an old key cannot be the `legacy_redirect`.
 
 ```json
 {
