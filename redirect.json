@@ -195,13 +195,6 @@
     "introduced": "2023.1"
   },
   {
-    "redirect": "climate",
-    "name": "Climate",
-    "badge": "Climate dashboard of",
-    "description": "show your Climate dashboard",
-    "introduced": "2026.10"
-  },
-  {
     "redirect": "companion_app",
     "name": "Companion app",
     "badge": "Companion app settings of",
@@ -410,13 +403,6 @@
     }
   },
   {
-    "redirect": "light",
-    "name": "Light",
-    "badge": "Light dashboard of",
-    "description": "show your Light dashboard",
-    "introduced": "2026.10"
-  },
-  {
     "redirect": "logbook",
     "name": "Logbook",
     "badge": "Logbook of",
@@ -522,13 +508,6 @@
     "badge": "Scripts of",
     "description": "show your scripts",
     "introduced": "2021.3"
-  },
-  {
-    "redirect": "security",
-    "name": "Security",
-    "badge": "Security dashboard of",
-    "description": "show your Security dashboard",
-    "introduced": "2026.10"
   },
   {
     "redirect": "config",
