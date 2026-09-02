@@ -61,7 +61,6 @@ const logs = {
       redirect_params: { provider: "supervisor" },
     },
   },
-  legacy_redirect: "supervisor_logs",
 };
 
 deepStrictEqual(toCanonical(logs, "supervisor_logs", {}), {
@@ -71,14 +70,9 @@ deepStrictEqual(toCanonical(logs, "logs", { provider: "core" }), {
   provider: "core",
 });
 deepStrictEqual(toInstance(logs, { provider: "supervisor" }), {
-  key: "supervisor_logs",
-  params: {},
-});
-deepStrictEqual(toInstance(logs, { provider: "core" }), {
   key: "logs",
-  params: { provider: "core" },
+  params: { provider: "supervisor" },
 });
-deepStrictEqual(toInstance(logs, {}), { key: "logs", params: {} });
 
 const areas = { redirect: "areas", name: "Areas", description: "" };
 
@@ -89,7 +83,14 @@ deepStrictEqual(toInstance(areas, { foo: "bar" }), {
 
 for (const redirect of redirects) {
   for (const [key, legacy] of Object.entries(redirect.legacy || {})) {
-    const params = { ...redirect.example, ...legacy.redirect_params };
+    const params = { ...redirect.example };
+    if (legacy.redirect_params) {
+      deepStrictEqual(toCanonical(redirect, key, params), {
+        ...params,
+        ...legacy.redirect_params,
+      });
+      continue;
+    }
     const instance = toInstance({ ...redirect, legacy_redirect: key }, params);
     strictEqual(instance.key, key);
     deepStrictEqual(

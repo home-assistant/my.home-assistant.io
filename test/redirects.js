@@ -46,6 +46,11 @@ for (const redirect of redirects) {
       Object.keys(legacy).includes(redirect.legacy_redirect),
     `legacy_redirect of ${redirect.redirect} must be one of its legacy keys`,
   );
+  ok(
+    !redirect.legacy_redirect ||
+      !legacy[redirect.legacy_redirect]?.redirect_params,
+    `legacy_redirect of ${redirect.redirect} cannot name a legacy key with redirect_params`,
+  );
 
   const paramNames = Object.keys(redirect.params || {});
   for (const [key, block] of Object.entries(legacy)) {
