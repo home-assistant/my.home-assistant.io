@@ -9,12 +9,13 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import copy from "clipboard-copy";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import redirects from "../../redirect.json";
 import {
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
 import { ParamType, Redirect } from "../const";
+import { toCanonical } from "../data/redirect";
+import { findRedirect, visibleRedirects } from "../data/redirects";
 import { validateParam } from "../util/validate";
 
 const prettify = (key: string) =>
@@ -23,34 +24,24 @@ const prettify = (key: string) =>
 const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-let initialRedirect;
 const passedInData = extractSearchParamsObject();
-{
-  if (passedInData.redirect) {
-    if (passedInData.redirect === "supervisor_app") {
-      // Special case for supervisor app as we want to use the old redirect for now, as it is supported by all versions of Home Assistant, while the new one is only supported in 2026.2 and later.
-      // this should be turned around after september 2026, then app will be the default and addon will be the fallback.
-      passedInData.redirect = "supervisor_addon";
-      if (passedInData.app) {
-        passedInData.addon = passedInData.app;
-        delete passedInData.app;
-      }
-    }
-    initialRedirect = redirects.find(
-      (info) => info.redirect === passedInData.redirect,
-    );
-  }
-  if (!initialRedirect) {
-    // Select first one without params so we show the output
-    initialRedirect = redirects.find((info) => info.params === undefined);
-  }
-}
-
-const filteredRedirects = redirects.filter((redirect) => !redirect.deprecated);
+const requestedRedirect = passedInData.redirect
+  ? findRedirect(passedInData.redirect)
+  : undefined;
+const unknownRedirect =
+  passedInData.redirect && !requestedRedirect
+    ? passedInData.redirect
+    : undefined;
+// Select first one without params so we show the output
+const initialRedirect =
+  requestedRedirect ||
+  (unknownRedirect
+    ? undefined
+    : visibleRedirects.find((info) => info.params === undefined));
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
-  @state() _redirect: Redirect = initialRedirect;
+  @state() _redirect?: Redirect = initialRedirect;
   @state() _paramsValues = {};
 
   protected createRenderRoot() {
@@ -61,19 +52,27 @@ class MyCreateLink extends LitElement {
   }
 
   protected render(): TemplateResult {
-    const badgeHTML = this._createHTML();
+    const badgeHTML = this._redirect ? this._createHTML() : "";
     const badgeTemplate = unsafeHTML(badgeHTML);
 
     return html`
       <div class="card-content">
+        ${
+          unknownRedirect
+            ? html`<p class="error">
+                This website doesn't know the redirect "${unknownRedirect}".
+                Pick one below or report it if it should exist.
+              </p>`
+            : ""
+        }
         <md-filled-select
           label="Redirect to"
           required
           errorText="This field is required"
-          .value=${this._redirect.redirect}
+          .value=${this._redirect?.redirect || ""}
           @input=${this._itemSelected}
         >
-          ${filteredRedirects.map(
+          ${visibleRedirects.map(
             (redirect) =>
               html`<md-select-option
                 .selected=${this._redirect?.redirect === redirect.redirect}
@@ -85,7 +84,7 @@ class MyCreateLink extends LitElement {
 
         ${repeat(
           Object.entries(this._redirect?.params || []),
-          ([key, _]) => `${this._redirect.redirect}-${key}`,
+          ([key, _]) => `${this._redirect!.redirect}-${key}`,
           ([key, type]) =>
             html`<md-filled-text-field
               ?required=${!type.endsWith("?")}
@@ -145,20 +144,29 @@ ${badgeHTML}</textarea
   protected firstUpdated(props) {
     super.firstUpdated(props);
 
+    if (!this._redirect) {
+      return;
+    }
+
     const paramValues = {};
+    const passedInParams = toCanonical(
+      this._redirect,
+      passedInData.redirect || this._redirect.redirect,
+      passedInData,
+    );
 
     for (const [key, paramType] of Object.entries(
       this._redirect.params || {},
     )) {
-      if (!(key in passedInData) || !passedInData[key]) {
+      if (!passedInParams[key]) {
         continue;
       }
-      const msg = validateParam(paramType as ParamType, passedInData[key]);
+      const msg = validateParam(paramType as ParamType, passedInParams[key]);
       const inputEl = this.querySelector(
         `md-filled-text-field[data-key=${key}]`,
       ) as MdFilledTextField;
 
-      inputEl.value = passedInData[key];
+      inputEl.value = passedInParams[key];
 
       if (msg) {
         inputEl.updateComplete.then(() => {
@@ -166,7 +174,7 @@ ${badgeHTML}</textarea
           inputEl.reportValidity();
         });
       } else {
-        paramValues[key] = passedInData[key];
+        paramValues[key] = passedInParams[key];
       }
     }
 
@@ -184,15 +192,14 @@ ${badgeHTML}</textarea
   }
 
   private _itemSelected(ev) {
-    const newRedirect = filteredRedirects.find(
+    const newRedirect = visibleRedirects.find(
       (rd) => rd.redirect === ev.target.value,
     );
 
-    if (newRedirect!.redirect === this._redirect.redirect) {
+    if (!newRedirect || newRedirect.redirect === this._redirect?.redirect) {
       return;
     }
 
-    // @ts-expect-error
     this._redirect = newRedirect;
     this._paramsValues = {};
   }
@@ -201,7 +208,7 @@ ${badgeHTML}</textarea
     const key = ev.currentTarget.dataset.key;
     let value = ev.target.value;
 
-    const paramType = this._redirect.params![key];
+    const paramType = this._redirect!.params![key];
 
     if (paramType.startsWith("url")) {
       value = decodeURI(value);
@@ -225,7 +232,7 @@ ${badgeHTML}</textarea
   }
 
   private get _url() {
-    return `https://my.home-assistant.io/redirect/${this._redirect.redirect}/${
+    return `https://my.home-assistant.io/redirect/${this._redirect!.redirect}/${
       Object.keys(this._paramsValues).length
         ? `?${createSearchParam(this._paramsValues)}`
         : ""
@@ -268,11 +275,11 @@ ${badgeHTML}</textarea
   }
 
   private get _altText() {
-    return `Open your Home Assistant instance and ${this._redirect.description}.`;
+    return `Open your Home Assistant instance and ${this._redirect!.description}.`;
   }
 
   private _createBadge() {
-    return `/badges/${this._redirect.redirect}.svg`;
+    return `/badges/${this._redirect!.redirect}.svg`;
   }
 
   private _createHTML() {

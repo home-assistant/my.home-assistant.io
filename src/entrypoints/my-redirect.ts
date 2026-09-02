@@ -6,23 +6,28 @@ import {
 } from "../util/search-params";
 import { getInstanceUrl } from "../data/instance_info";
 import { Redirect } from "../const";
+import { toCanonical, toInstance } from "../data/redirect";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
 import { validateParam } from "../util/validate";
 
 declare global {
   interface Window {
-    redirect: Redirect;
+    redirect: Redirect & { key: string };
   }
 }
 
-const createRedirectParams = (): string => {
-  const redirectParams = window.redirect.params;
-  const userParams = extractSearchParamsObject();
-  if (!redirectParams) {
-    return "";
-  }
+const createRedirectParams = (): Record<string, string> => {
   const params = {};
+  const redirectParams = window.redirect.params;
+  if (!redirectParams) {
+    return params;
+  }
+  const userParams = toCanonical(
+    window.redirect,
+    window.redirect.key,
+    extractSearchParamsObject(),
+  );
   for (const [key, type] of Object.entries(redirectParams)) {
     const userParam = userParams[key];
 
@@ -34,15 +39,18 @@ const createRedirectParams = (): string => {
     }
     params[key] = userParam;
   }
-  return `?${createSearchParam(params)}`;
+  return params;
 };
+
+const createSearch = (params: Record<string, string>): string =>
+  Object.keys(params).length ? `?${createSearchParam(params)}` : "";
 
 let changingInstance = false;
 
 const render = (showTroubleshooting: boolean) => {
   const instanceUrl = getInstanceUrl();
 
-  let params;
+  let params: Record<string, string>;
   try {
     params = createRedirectParams();
   } catch (err) {
@@ -56,7 +64,7 @@ const render = (showTroubleshooting: boolean) => {
   }
 
   const changeUrl = `/redirect/_change/?redirect=${encodeURIComponent(
-    window.redirect.redirect + "/" + params,
+    window.redirect.redirect + "/" + createSearch(params),
   )}`;
 
   if (instanceUrl === null) {
@@ -65,10 +73,11 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
+  const instance = toInstance(window.redirect, params);
   const redirectUrl =
     window.redirect.redirect === "oauth"
-      ? `${instanceUrl}/auth/external/callback${params}`
-      : `${instanceUrl}/_my_redirect/${window.redirect.redirect}${params}`;
+      ? `${instanceUrl}/auth/external/callback${createSearch(params)}`
+      : `${instanceUrl}/_my_redirect/${instance.key}${createSearch(instance.params)}`;
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
