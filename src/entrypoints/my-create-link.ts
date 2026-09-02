@@ -9,10 +9,7 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import copy from "clipboard-copy";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import {
-  createSearchParam,
-  extractSearchParamsObject,
-} from "../util/search-params";
+import { createSearch, extractSearchParamsObject } from "../util/search-params";
 import { ParamType, Redirect } from "../const";
 import { toCanonical } from "../data/redirect";
 import { findRedirect, visibleRedirects } from "../data/redirects";
@@ -25,19 +22,12 @@ const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
 const passedInData = extractSearchParamsObject();
-const requestedRedirect = passedInData.redirect
-  ? findRedirect(passedInData.redirect)
-  : undefined;
-const unknownRedirect =
-  passedInData.redirect && !requestedRedirect
-    ? passedInData.redirect
-    : undefined;
 // Select first one without params so we show the output
-const initialRedirect =
-  requestedRedirect ||
-  (unknownRedirect
-    ? undefined
-    : visibleRedirects.find((info) => info.params === undefined));
+const initialRedirect = passedInData.redirect
+  ? findRedirect(passedInData.redirect)
+  : visibleRedirects.find((info) => info.params === undefined);
+const unknownRedirect =
+  passedInData.redirect && !initialRedirect ? passedInData.redirect : undefined;
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
@@ -58,10 +48,16 @@ class MyCreateLink extends LitElement {
     return html`
       <div class="card-content">
         ${
-          unknownRedirect
+          unknownRedirect && !this._redirect
             ? html`<p class="error">
-                This website doesn't know the redirect "${unknownRedirect}".
-                Pick one below or report it if it should exist.
+                Unknown redirect "${unknownRedirect}". Pick one below, or
+                <a
+                  href="https://github.com/home-assistant/my.home-assistant.io/issues"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >report a bug</a
+                >
+                if it should exist.
               </p>`
             : ""
         }
@@ -232,11 +228,7 @@ ${badgeHTML}</textarea
   }
 
   private get _url() {
-    return `https://my.home-assistant.io/redirect/${this._redirect!.redirect}/${
-      Object.keys(this._paramsValues).length
-        ? `?${createSearchParam(this._paramsValues)}`
-        : ""
-    }`;
+    return `https://my.home-assistant.io/redirect/${this._redirect!.redirect}/${createSearch(this._paramsValues)}`;
   }
 
   private _copyURL(ev: Event) {

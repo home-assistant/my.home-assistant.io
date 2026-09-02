@@ -1,6 +1,7 @@
 import "@material/web/button/filled-button";
 import "@material/web/button/outlined-button";
 import {
+  createSearch,
   createSearchParam,
   extractSearchParamsObject,
 } from "../util/search-params";
@@ -41,9 +42,6 @@ const createRedirectParams = (): Record<string, string> => {
   }
   return params;
 };
-
-const createSearch = (params: Record<string, string>): string =>
-  Object.keys(params).length ? `?${createSearchParam(params)}` : "";
 
 let changingInstance = false;
 

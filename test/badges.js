@@ -25,10 +25,12 @@ keys.forEach((key) => {
   );
 });
 
-fs.readdirSync(OUTPUT_DIR).forEach((file) => {
-  const key = file.replace(/\.svg$/, "");
-  assert(
-    keys.includes(key) || KNOWN_ORPHANS.includes(key),
-    `Badge ${file} has no redirect. Remove it or list it in KNOWN_ORPHANS.`,
-  );
-});
+fs.readdirSync(OUTPUT_DIR)
+  .filter((file) => file.endsWith(".svg"))
+  .forEach((file) => {
+    const key = file.replace(/\.svg$/, "");
+    assert(
+      keys.includes(key) || KNOWN_ORPHANS.includes(key),
+      `Badge ${file} has no redirect. Remove it or list it in KNOWN_ORPHANS.`,
+    );
+  });

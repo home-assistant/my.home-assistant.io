@@ -1,21 +1,21 @@
 import type { Redirect } from "../const";
 
-export type Params = Record<string, string>;
+type Params = Record<string, string>;
 
 export const instanceKey = (redirect: Redirect): string =>
   redirect.legacy_redirect || redirect.redirect;
 
-const renameParams = (params: Params, names: Params): Params => {
+const renameParams = (params: Params, renames: Params): Params => {
   const result: Params = {};
   for (const [name, value] of Object.entries(params)) {
-    result[names[name] || name] = value;
+    result[renames[name] || name] = value;
   }
   return result;
 };
 
-const invert = (names: Params): Params => {
+const invert = (renames: Params): Params => {
   const result: Params = {};
-  for (const [oldName, newName] of Object.entries(names)) {
+  for (const [oldName, newName] of Object.entries(renames)) {
     result[newName] = oldName;
   }
   return result;

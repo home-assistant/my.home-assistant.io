@@ -694,15 +694,15 @@
   {
     "redirect": "profile_preferences",
     "name": "User appearance",
-    "badge": "Appearance settings on",
+    "badge": "User appearance on",
     "description": "show your Home Assistant user's appearance settings",
     "introduced": "2026.10"
   },
   {
     "redirect": "profile_browser",
     "name": "User browser settings",
-    "badge": "Browser settings on",
-    "description": "show your Home Assistant browser settings",
+    "badge": "User browser settings on",
+    "description": "show your Home Assistant settings for this browser",
     "introduced": "2026.10"
   },
   {

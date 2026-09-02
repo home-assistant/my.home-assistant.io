@@ -1,7 +1,7 @@
-import redirects from "../../redirect.json";
+import redirects from "../../redirect.json" with { type: "json" };
 import type { Redirect } from "../const";
 
-export const allRedirects = redirects as unknown as Redirect[];
+const allRedirects = redirects as Redirect[];
 
 export const visibleRedirects = allRedirects.filter(
   (redirect) => !redirect.deprecated,

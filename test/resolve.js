@@ -1,6 +1,16 @@
 import { deepStrictEqual, strictEqual } from "assert";
 import redirects from "../redirect.json" with { type: "json" };
 import { instanceKey, toCanonical, toInstance } from "../src/data/redirect.ts";
+import { findRedirect, visibleRedirects } from "../src/data/redirects.ts";
+
+strictEqual(findRedirect("supervisor_addon").redirect, "supervisor_app");
+strictEqual(findRedirect("supervisor_app").redirect, "supervisor_app");
+strictEqual(findRedirect("developer_states").redirect, "tools_states");
+strictEqual(findRedirect("nope"), undefined);
+strictEqual(
+  visibleRedirects.find((redirect) => redirect.deprecated),
+  undefined,
+);
 
 const app = {
   redirect: "supervisor_app",
@@ -73,8 +83,4 @@ for (const redirect of redirects) {
       `${key} does not round-trip to ${redirect.redirect}`,
     );
   }
-  strictEqual(
-    instanceKey(redirect),
-    redirect.legacy_redirect || redirect.redirect,
-  );
 }

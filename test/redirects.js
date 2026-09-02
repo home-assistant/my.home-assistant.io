@@ -50,6 +50,12 @@ for (const redirect of redirects) {
   const paramNames = Object.keys(redirect.params || {});
   for (const [key, block] of Object.entries(legacy)) {
     claim(key, `legacy of ${redirect.redirect}`);
+    for (const field of Object.keys(block)) {
+      ok(
+        ["introduced", "params_rename"].includes(field),
+        `Legacy "${key}" of ${redirect.redirect} has an unknown field "${field}"`,
+      );
+    }
     ok(
       VERSION.test(block.introduced || ""),
       `Legacy "${key}" of ${redirect.redirect} needs a valid introduced version`,
