@@ -37,9 +37,9 @@ keep their `/redirect/` page and their badge for good, the badge showing the new
 text, and `/create-link` resolves them to the new entry. When a param was
 renamed too, `params_rename` maps the old name to the new one. When the old key
 implied a param value, `redirect_params` lists the params the old key redirects
-with: `supervisor_logs` opens `logs` with `provider` set to `supervisor`, and an
-instance only receives `supervisor_logs` for a `logs` link whose `provider` is
-`supervisor`.
+with: `supervisor_logs` opens `logs` with `provider` set to `supervisor`. Such
+an old key can be the `legacy_redirect` too; it is then only sent for links
+carrying those exact values.
 
 ```json
 {
