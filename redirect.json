@@ -92,11 +92,17 @@
     "deprecated": true
   },
   {
-    "redirect": "supervisor_addons",
+    "redirect": "supervisor_apps",
     "name": "Apps",
     "badge": "Apps of",
     "description": "show your installed apps",
-    "introduced": "2021.12"
+    "introduced": "2026.10",
+    "legacy": {
+      "supervisor_addons": {
+        "introduced": "2021.12"
+      }
+    },
+    "legacy_redirect": "supervisor_addons"
   },
   {
     "redirect": "automations",
