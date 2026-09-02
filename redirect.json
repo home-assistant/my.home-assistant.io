@@ -99,6 +99,9 @@
     "legacy": {
       "supervisor_addons": {
         "introduced": "2021.12"
+      },
+      "supervisor": {
+        "introduced": "supervisor-2021.02.10"
       }
     },
     "legacy_redirect": "supervisor_addons"
@@ -207,14 +210,6 @@
     "badge": "Application credentials of",
     "description": "Manage your application credentials",
     "introduced": "2022.6"
-  },
-  {
-    "redirect": "supervisor",
-    "name": "Dashboard",
-    "badge": "Supervisor dashboard of",
-    "description": "show your Supervisor dashboard",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "lovelace_resources",
