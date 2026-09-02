@@ -2,9 +2,6 @@ import type { Redirect } from "../const";
 
 type Params = Record<string, string>;
 
-export const instanceKey = (redirect: Redirect): string =>
-  redirect.legacy_redirect || redirect.redirect;
-
 const renameParams = (params: Params, renames: Params): Params => {
   const result: Params = {};
   for (const [name, value] of Object.entries(params)) {
@@ -21,22 +18,45 @@ const invert = (renames: Params): Params => {
   return result;
 };
 
+const matches = (params: Params, values: Params): boolean =>
+  Object.entries(values).every(([name, value]) => params[name] === value);
+
+const omit = (params: Params, values: Params): Params => {
+  const result: Params = {};
+  for (const [name, value] of Object.entries(params)) {
+    if (!(name in values)) {
+      result[name] = value;
+    }
+  }
+  return result;
+};
+
 export const toCanonical = (
   redirect: Redirect,
   key: string,
   params: Params,
-): Params => renameParams(params, redirect.legacy?.[key]?.params_rename || {});
+): Params => {
+  const legacy = redirect.legacy?.[key];
+  return {
+    ...renameParams(params, legacy?.params_rename || {}),
+    ...legacy?.redirect_params,
+  };
+};
 
 export const toInstance = (
   redirect: Redirect,
   params: Params,
 ): { key: string; params: Params } => {
-  const key = instanceKey(redirect);
-  const legacy = redirect.legacy?.[key];
+  const key = redirect.legacy_redirect;
+  const legacy = key ? redirect.legacy?.[key] : undefined;
+  if (!key || !legacy || !matches(params, legacy.redirect_params || {})) {
+    return { key: redirect.redirect, params };
+  }
   return {
     key,
-    params: legacy
-      ? renameParams(params, invert(legacy.params_rename || {}))
-      : params,
+    params: renameParams(
+      omit(params, legacy.redirect_params || {}),
+      invert(legacy.params_rename || {}),
+    ),
   };
 };

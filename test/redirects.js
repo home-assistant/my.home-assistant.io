@@ -52,7 +52,7 @@ for (const redirect of redirects) {
     claim(key, `legacy of ${redirect.redirect}`);
     for (const field of Object.keys(block)) {
       ok(
-        ["introduced", "params_rename"].includes(field),
+        ["introduced", "params_rename", "redirect_params"].includes(field),
         `Legacy "${key}" of ${redirect.redirect} has an unknown field "${field}"`,
       );
     }
@@ -78,6 +78,12 @@ for (const redirect of redirects) {
         `params_rename of "${key}" targets "${newName}" twice`,
       );
       renamed.add(newName);
+    }
+    for (const name of Object.keys(block.redirect_params || {})) {
+      ok(
+        paramNames.includes(name),
+        `redirect_params of "${key}" sets "${name}", which is not a param of ${redirect.redirect}`,
+      );
     }
   }
 }

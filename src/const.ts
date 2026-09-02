@@ -9,6 +9,9 @@ export interface LegacyRedirect {
   params_rename?: {
     [oldName: string]: string;
   };
+  redirect_params?: {
+    [name: string]: string;
+  };
 }
 
 export interface Redirect {

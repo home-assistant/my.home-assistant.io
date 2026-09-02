@@ -1,6 +1,6 @@
 import { deepStrictEqual, strictEqual } from "assert";
 import redirects from "../redirect.json" with { type: "json" };
-import { instanceKey, toCanonical, toInstance } from "../src/data/redirect.ts";
+import { toCanonical, toInstance } from "../src/data/redirect.ts";
 import { findRedirect, visibleRedirects } from "../src/data/redirects.ts";
 
 strictEqual(findRedirect("supervisor_addon").redirect, "supervisor_app");
@@ -45,25 +45,40 @@ deepStrictEqual(
 );
 
 const { legacy_redirect, ...appAfterCleanup } = app;
-strictEqual(instanceKey(appAfterCleanup), "supervisor_app");
 deepStrictEqual(toInstance(appAfterCleanup, { app: "core_samba" }), {
   key: "supervisor_app",
   params: { app: "core_samba" },
 });
 
-const backup = {
-  redirect: "backup",
-  name: "Backup",
-  description: "show an overview of your backups",
+const logs = {
+  redirect: "logs",
+  name: "Logs",
+  description: "show your Home Assistant logs",
+  params: { provider: "string?" },
   legacy: {
-    supervisor_backups: { introduced: "supervisor-2021.08.1" },
-    supervisor_snapshots: { introduced: "supervisor-2021.02.10" },
+    supervisor_logs: {
+      introduced: "supervisor-2021.02.12",
+      redirect_params: { provider: "supervisor" },
+    },
   },
+  legacy_redirect: "supervisor_logs",
 };
 
-strictEqual(instanceKey(backup), "backup");
-deepStrictEqual(toCanonical(backup, "supervisor_snapshots", {}), {});
-deepStrictEqual(toInstance(backup, {}), { key: "backup", params: {} });
+deepStrictEqual(toCanonical(logs, "supervisor_logs", {}), {
+  provider: "supervisor",
+});
+deepStrictEqual(toCanonical(logs, "logs", { provider: "core" }), {
+  provider: "core",
+});
+deepStrictEqual(toInstance(logs, { provider: "supervisor" }), {
+  key: "supervisor_logs",
+  params: {},
+});
+deepStrictEqual(toInstance(logs, { provider: "core" }), {
+  key: "logs",
+  params: { provider: "core" },
+});
+deepStrictEqual(toInstance(logs, {}), { key: "logs", params: {} });
 
 const areas = { redirect: "areas", name: "Areas", description: "" };
 
@@ -73,8 +88,8 @@ deepStrictEqual(toInstance(areas, { foo: "bar" }), {
 });
 
 for (const redirect of redirects) {
-  const params = redirect.example || {};
-  for (const key of Object.keys(redirect.legacy || {})) {
+  for (const [key, legacy] of Object.entries(redirect.legacy || {})) {
+    const params = { ...redirect.example, ...legacy.redirect_params };
     const instance = toInstance({ ...redirect, legacy_redirect: key }, params);
     strictEqual(instance.key, key);
     deepStrictEqual(
