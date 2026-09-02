@@ -55,18 +55,27 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
-    "redirect": "supervisor_addon",
+    "redirect": "supervisor_app",
     "name": "App: dashboard",
     "badge": "Show app on",
     "description": "show the dashboard of an app",
-    "introduced": "supervisor-2021.02.10",
+    "introduced": "2026.2",
     "params": {
-      "addon": "string",
+      "app": "string",
       "repository_url": "url?"
     },
     "example": {
-      "addon": "core_samba"
-    }
+      "app": "core_samba"
+    },
+    "legacy": {
+      "supervisor_addon": {
+        "introduced": "supervisor-2021.02.10",
+        "params_rename": {
+          "addon": "app"
+        }
+      }
+    },
+    "legacy_redirect": "supervisor_addon"
   },
   {
     "redirect": "supervisor_ingress",
@@ -79,7 +88,15 @@
     },
     "example": {
       "addon": "core_ssh"
-    }
+    },
+    "deprecated": true
+  },
+  {
+    "redirect": "supervisor_addons",
+    "name": "Apps",
+    "badge": "Apps of",
+    "description": "show your installed apps",
+    "introduced": "2021.12"
   },
   {
     "redirect": "automations",
@@ -93,7 +110,15 @@
     "badge": "Back up",
     "name": "Backup",
     "description": "show an overview of your backups",
-    "introduced": "2022.4"
+    "introduced": "2022.4",
+    "legacy": {
+      "supervisor_backups": {
+        "introduced": "supervisor-2021.08.1"
+      },
+      "supervisor_snapshots": {
+        "introduced": "supervisor-2021.02.10"
+      }
+    }
   },
   {
     "redirect": "backup_config",
@@ -480,13 +505,6 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "server_controls",
-    "name": "Server controls",
-    "badge": "Server controls of",
-    "description": "show your server controls",
-    "introduced": "2021.3"
-  },
-  {
     "redirect": "config",
     "name": "Settings",
     "badge": "Settings panel of",
@@ -506,30 +524,6 @@
     "badge": "Storage info of",
     "description": "show storage information",
     "introduced": "2022.5"
-  },
-  {
-    "redirect": "supervisor_snapshots",
-    "deprecated": true,
-    "name": "Supervisor: backups",
-    "badge": "Backups of",
-    "description": "Deprecated, use 'supervisor_backups' instead",
-    "introduced": "supervisor-2021.02.10"
-  },
-  {
-    "redirect": "supervisor_backups",
-    "name": "Supervisor: backups",
-    "deprecated": true,
-    "badge": "Backups of",
-    "description": "show your Supervisor backups",
-    "introduced": "supervisor-2021.08.1"
-  },
-  {
-    "redirect": "supervisor_info",
-    "name": "Supervisor: info",
-    "badge": "Supervisor info of",
-    "description": "show your Supervisor system information",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_logs",
@@ -568,66 +562,127 @@
     "introduced": "2026.3"
   },
   {
-    "redirect": "developer_services",
+    "redirect": "tools_actions",
     "name": "Tools: actions",
     "badge": "Action tools of",
     "description": "show your action tools",
-    "introduced": "2021.3"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_services": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "developer_services"
   },
   {
-    "redirect": "developer_assist",
+    "redirect": "tools_assist",
     "name": "Tools: Assist",
     "badge": "Assist tools of",
     "description": "show your Assist tools",
-    "introduced": "2023.8"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_assist": {
+        "introduced": "2023.8"
+      }
+    },
+    "legacy_redirect": "developer_assist"
   },
   {
-    "redirect": "developer_debug",
+    "redirect": "tools_debug",
     "name": "Tools: debug",
     "badge": "Debug tools of",
     "description": "show your debug tools",
-    "introduced": "2026.1"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_debug": {
+        "introduced": "2026.1"
+      }
+    },
+    "legacy_redirect": "developer_debug"
   },
   {
-    "redirect": "developer_events",
+    "redirect": "tools_events",
     "name": "Tools: events",
     "badge": "Event tools of",
     "description": "show your event tools",
-    "introduced": "2021.3"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_events": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "developer_events"
   },
   {
-    "redirect": "developer_call_service",
+    "redirect": "tools_perform_action",
     "name": "Tools: perform action",
     "badge": "Perform action on",
     "description": "show your action tools with a specific action selected",
-    "introduced": "2021.3",
+    "introduced": "2026.8",
     "params": {
       "service": "string"
     },
     "example": {
       "service": "homeassistant.turn_on"
-    }
+    },
+    "legacy": {
+      "developer_call_service": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "developer_call_service"
   },
   {
-    "redirect": "developer_states",
+    "redirect": "tools_states",
     "name": "Tools: states",
     "badge": "State tools of",
     "description": "show your state tools",
-    "introduced": "2021.3"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_states": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "developer_states"
   },
   {
-    "redirect": "developer_statistics",
+    "redirect": "tools_statistics",
     "name": "Tools: statistics",
     "badge": "Statistics tools of",
     "description": "show your statistics tools",
-    "introduced": "2021.10"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_statistics": {
+        "introduced": "2021.10"
+      }
+    },
+    "legacy_redirect": "developer_statistics"
   },
   {
-    "redirect": "developer_template",
+    "redirect": "tools_template",
     "name": "Tools: templates",
     "badge": "Template tools of",
     "description": "show your template tools",
-    "introduced": "2021.3"
+    "introduced": "2026.8",
+    "legacy": {
+      "developer_template": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "developer_template"
+  },
+  {
+    "redirect": "tools_yaml",
+    "name": "Tools: YAML",
+    "badge": "YAML tools of",
+    "description": "show your YAML tools",
+    "introduced": "2026.8",
+    "legacy": {
+      "server_controls": {
+        "introduced": "2021.3"
+      }
+    },
+    "legacy_redirect": "server_controls"
   },
   {
     "redirect": "updates",
@@ -635,6 +690,27 @@
     "badge": "Updates of",
     "description": "manage your pending updates",
     "introduced": "2022.5"
+  },
+  {
+    "redirect": "profile_preferences",
+    "name": "User appearance",
+    "badge": "Appearance settings on",
+    "description": "show your Home Assistant user's appearance settings",
+    "introduced": "2026.10"
+  },
+  {
+    "redirect": "profile_browser",
+    "name": "User browser settings",
+    "badge": "Browser settings on",
+    "description": "show your Home Assistant browser settings",
+    "introduced": "2026.10"
+  },
+  {
+    "redirect": "profile_localization",
+    "name": "User localization",
+    "badge": "User localization on",
+    "description": "show your Home Assistant user's localization settings",
+    "introduced": "2026.10"
   },
   {
     "redirect": "profile",
@@ -662,7 +738,12 @@
     "name": "Version info",
     "badge": "About my",
     "description": "show your Home Assistant version information",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "legacy": {
+      "supervisor_info": {
+        "introduced": "supervisor-2021.02.12"
+      }
+    }
   },
   {
     "redirect": "voice_assistants",
