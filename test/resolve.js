@@ -8,7 +8,7 @@ strictEqual(findRedirect("supervisor_app").redirect, "supervisor_app");
 strictEqual(findRedirect("developer_states").redirect, "tools_states");
 strictEqual(findRedirect("nope"), undefined);
 strictEqual(
-  visibleRedirects.find((redirect) => redirect.deprecated),
+  visibleRedirects.find((redirect) => redirect.hidden),
   undefined,
 );
 

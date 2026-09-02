@@ -16,7 +16,7 @@ export interface LegacyRedirect {
 
 export interface Redirect {
   redirect: string;
-  deprecated?: boolean;
+  hidden?: boolean;
   custom?: boolean;
   name: string;
   badge?: string;

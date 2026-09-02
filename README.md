@@ -63,8 +63,9 @@ Open http://localhost:3000 to view your production build.
 - `example`: param values for the FAQ link.
 - `component`: the integration the page needs, for information.
 - `custom`: shows a warning that the link goes to a custom integration.
-- `deprecated`: hides the entry from the picker and the FAQ. The page and the
-  badge are still built.
+- `hidden`: hides the entry from the picker and the FAQ. The page and the badge
+  are still built. Only `oauth` uses it, the OAuth callback is not meant to be
+  created by users.
 
 Entries are sorted by name and every entry needs a badge. The pre-commit hook
 runs `build-scripts/sort-redirects.js` and `build-scripts/create-badges.js` for

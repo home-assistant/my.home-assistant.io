@@ -4,7 +4,7 @@ import type { Redirect } from "../const";
 const allRedirects = redirects as Redirect[];
 
 export const visibleRedirects = allRedirects.filter(
-  (redirect) => !redirect.deprecated,
+  (redirect) => !redirect.hidden,
 );
 
 export const findRedirect = (key: string): Redirect | undefined =>

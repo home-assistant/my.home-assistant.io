@@ -459,7 +459,7 @@
   },
   {
     "redirect": "oauth",
-    "deprecated": true,
+    "hidden": true,
     "name": "OAuth2 Authorize Callback",
     "badge": "OAuth2 callback to",
     "description": "(replaced in UI)",
