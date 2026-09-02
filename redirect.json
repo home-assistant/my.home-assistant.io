@@ -200,7 +200,7 @@
     "name": "Climate",
     "badge": "Climate dashboard of",
     "description": "show your Climate dashboard",
-    "introduced": "2025.11"
+    "introduced": "2026.10"
   },
   {
     "redirect": "companion_app",
@@ -415,7 +415,7 @@
     "name": "Light",
     "badge": "Light dashboard of",
     "description": "show your Light dashboard",
-    "introduced": "2025.11"
+    "introduced": "2026.10"
   },
   {
     "redirect": "logbook",
@@ -529,7 +529,7 @@
     "name": "Security",
     "badge": "Security dashboard of",
     "description": "show your Security dashboard",
-    "introduced": "2025.11"
+    "introduced": "2026.10"
   },
   {
     "redirect": "config",
