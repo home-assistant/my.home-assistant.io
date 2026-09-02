@@ -412,6 +412,14 @@
     "introduced": "2021.3",
     "params": {
       "provider": "string?"
+    },
+    "legacy": {
+      "supervisor_logs": {
+        "introduced": "supervisor-2021.02.12",
+        "redirect_params": {
+          "provider": "supervisor"
+        }
+      }
     }
   },
   {
@@ -524,14 +532,6 @@
     "badge": "Storage info of",
     "description": "show storage information",
     "introduced": "2022.5"
-  },
-  {
-    "redirect": "supervisor_logs",
-    "name": "Supervisor: logs",
-    "badge": "Supervisor logs of",
-    "description": "show your Supervisor system logs",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "system_dashboard",
