@@ -88,8 +88,7 @@
     },
     "example": {
       "addon": "core_ssh"
-    },
-    "deprecated": true
+    }
   },
   {
     "redirect": "supervisor_apps",
