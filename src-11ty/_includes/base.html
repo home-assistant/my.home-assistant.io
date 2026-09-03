@@ -30,6 +30,12 @@ My Home Assistant
       content="https://my.home-assistant.io{{ page.url }}"
     />
     <meta property="og:type" content="website" />
+    {% if redirect and redirect.key != redirect.redirect %}
+    <link
+      rel="canonical"
+      href="https://my.home-assistant.io/redirect/{{ redirect.redirect }}/"
+    />
+    {% endif %}
     <meta property="og:description" content="{{ description }}" />
     <meta
       property="og:image"

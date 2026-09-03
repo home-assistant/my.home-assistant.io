@@ -106,8 +106,10 @@ function writeBadge(filename, message) {
   );
 }
 
-redirects.forEach((redirect) =>
-  writeBadge(redirect.redirect, redirect.badge || redirect.name),
-);
+redirects.forEach((redirect) => {
+  const message = redirect.badge || redirect.name;
+  writeBadge(redirect.redirect, message);
+  Object.keys(redirect.legacy || {}).forEach((key) => writeBadge(key, message));
+});
 
 // writeBadge("homeassistant", "Home Assistant");
