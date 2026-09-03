@@ -36,6 +36,9 @@ const passedInData = extractSearchParamsObject();
         delete passedInData.app;
       }
     }
+    if (passedInData.redirect === "logbook") {
+      passedInData.redirect = "activity";
+    }
     initialRedirect = redirects.find(
       (info) => info.redirect === passedInData.redirect,
     );
