@@ -1,5 +1,13 @@
 [
   {
+    "redirect": "activity",
+    "target": "logbook",
+    "name": "Activity",
+    "badge": "Activity of",
+    "description": "show your activity panel",
+    "introduced": "2025.10"
+  },
+  {
     "redirect": "add_matter_device",
     "name": "Add Matter device",
     "badge": "Add Matter device to",
@@ -375,8 +383,9 @@
   {
     "redirect": "logbook",
     "name": "Logbook",
-    "badge": "Logbook of",
-    "description": "show your logbook panel",
+    "badge": "Activity of",
+    "description": "show your activity panel",
+    "deprecated": true,
     "introduced": "2021.3"
   },
   {
