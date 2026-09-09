@@ -3,6 +3,6 @@
   "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:22",
   "postCreateCommand": "yarn install",
   "context": "..",
-  "appPort": 5000,
+  "appPort": 3000,
   "extensions": ["esbenp.prettier-vscode"]
 }
