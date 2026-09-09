@@ -6,6 +6,7 @@ const VERSION = /^(supervisor-|core-)?\d{4}\.\d{1,2}(\.\d+)?$/;
 const LEGACY_FIELDS = [
   "redirect",
   "new_redirect",
+  "introduced",
   "params",
   "params_rename",
   "new_redirect_params",
@@ -66,6 +67,10 @@ for (const redirect of redirects) {
 
 for (const legacy of legacies) {
   claim(legacy.redirect, "legacy.json");
+  ok(
+    VERSION.test(legacy.introduced || ""),
+    `Legacy "${legacy.redirect}" needs a valid introduced version`,
+  );
   for (const field of Object.keys(legacy)) {
     ok(
       LEGACY_FIELDS.includes(field),

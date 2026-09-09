@@ -87,7 +87,8 @@ Both files are published on the site, next to each other.
 ```json
 {
   "redirect": "developer_states",
-  "new_redirect": "tools_states"
+  "new_redirect": "tools_states",
+  "introduced": "2021.3"
 }
 ```
 
@@ -116,6 +117,7 @@ still receives `developer_states`, which every version understands, while
 {
   "redirect": "supervisor_addon",
   "new_redirect": "supervisor_app",
+  "introduced": "supervisor-2021.02.10",
   "params": {
     "addon": "string",
     "repository_url": "url?"
@@ -140,6 +142,7 @@ instance receives `supervisor_addon?addon=core_samba`. Params not listed, like
 {
   "redirect": "supervisor_logs",
   "new_redirect": "logs",
+  "introduced": "supervisor-2021.02.12",
   "new_redirect_params": {
     "provider": "supervisor"
   }
@@ -157,6 +160,9 @@ In `legacy.json`, one entry per old key:
 
 - `redirect`: the old key.
 - `new_redirect`: the key of the entry in `redirect.json` it redirects to.
+- `introduced`: the Home Assistant version that first understood the old key.
+  The FAQ shows it while the entry has `legacy_redirect`, since that is the key
+  the instance receives.
 - `params`: the params of the old link, with their old names. Optional: once
   renamed they must be exactly the params of the new entry.
 - `params_rename`: old param name to new param name.
@@ -181,7 +187,8 @@ In `redirect.json`:
 that a key appears once across both files, that every `new_redirect` exists,
 that `legacy_redirect` names an old key that redirects to the entry and has no
 `new_redirect_params`, that `params_rename` and `new_redirect_params` only name
-params of the new entry, and that every key has a badge.
+params of the new entry, that versions are well formed, and that every key has a
+badge.
 
 ### Cleaning up
 

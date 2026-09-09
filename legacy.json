@@ -1,47 +1,58 @@
 [
   {
     "redirect": "developer_assist",
-    "new_redirect": "tools_assist"
+    "new_redirect": "tools_assist",
+    "introduced": "2023.8"
   },
   {
     "redirect": "developer_call_service",
-    "new_redirect": "tools_perform_action"
+    "new_redirect": "tools_perform_action",
+    "introduced": "2021.3"
   },
   {
     "redirect": "developer_debug",
-    "new_redirect": "tools_debug"
+    "new_redirect": "tools_debug",
+    "introduced": "2026.1"
   },
   {
     "redirect": "developer_events",
-    "new_redirect": "tools_events"
+    "new_redirect": "tools_events",
+    "introduced": "2021.3"
   },
   {
     "redirect": "developer_services",
-    "new_redirect": "tools_actions"
+    "new_redirect": "tools_actions",
+    "introduced": "2021.3"
   },
   {
     "redirect": "developer_states",
-    "new_redirect": "tools_states"
+    "new_redirect": "tools_states",
+    "introduced": "2021.3"
   },
   {
     "redirect": "developer_statistics",
-    "new_redirect": "tools_statistics"
+    "new_redirect": "tools_statistics",
+    "introduced": "2021.10"
   },
   {
     "redirect": "developer_template",
-    "new_redirect": "tools_template"
+    "new_redirect": "tools_template",
+    "introduced": "2021.3"
   },
   {
     "redirect": "server_controls",
-    "new_redirect": "tools_yaml"
+    "new_redirect": "tools_yaml",
+    "introduced": "2021.3"
   },
   {
     "redirect": "supervisor",
-    "new_redirect": "supervisor_apps"
+    "new_redirect": "supervisor_apps",
+    "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "supervisor_addon",
     "new_redirect": "supervisor_app",
+    "introduced": "supervisor-2021.02.10",
     "params": {
       "addon": "string",
       "repository_url": "url?"
@@ -52,25 +63,30 @@
   },
   {
     "redirect": "supervisor_addons",
-    "new_redirect": "supervisor_apps"
+    "new_redirect": "supervisor_apps",
+    "introduced": "2021.12"
   },
   {
     "redirect": "supervisor_backups",
-    "new_redirect": "backup"
+    "new_redirect": "backup",
+    "introduced": "supervisor-2021.08.1"
   },
   {
     "redirect": "supervisor_info",
-    "new_redirect": "info"
+    "new_redirect": "info",
+    "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "supervisor_logs",
     "new_redirect": "logs",
+    "introduced": "supervisor-2021.02.12",
     "new_redirect_params": {
       "provider": "supervisor"
     }
   },
   {
     "redirect": "supervisor_snapshots",
-    "new_redirect": "backup"
+    "new_redirect": "backup",
+    "introduced": "supervisor-2021.02.10"
   }
 ]

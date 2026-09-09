@@ -25,6 +25,7 @@ export interface Redirect {
 export interface LegacyRedirect {
   redirect: string;
   new_redirect: string;
+  introduced: string;
   params?: {
     [key: string]: ParamType;
   };

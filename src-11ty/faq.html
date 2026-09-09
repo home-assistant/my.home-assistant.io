@@ -108,7 +108,7 @@ description: Answers to all your questions about My Home Assistant.
   {% for redirect in redirects %} {% if redirect.deprecated != true %}
   <a
     href="{{ redirect | redirectExamplePath }}"
-    title="Introduced in {{ redirect.introduced | version }}."
+    title="Introduced in {{ redirect | instanceIntroduced | version }}."
   >
     {{ redirect.name }}
     <img class="badge" loading="lazy" src="/badges/{{redirect.redirect}}.svg" />
