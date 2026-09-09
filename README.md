@@ -73,23 +73,31 @@ you.
 
 ## Migrating a redirect
 
-When the frontend renames a page or a param, the entry gets the new key and the
-old key moves into its `legacy` object. Everything users see, the picker, the
+When the frontend renames a page or a param, `redirect.json` gets the new key
+and the old key goes to `legacy.json`. Everything users see, the picker, the
 FAQ, the badge text and the generated URL, shows the new key. Old links, old
 badges and `/create-link` calls with the old key keep working.
 
+Both files are published on the site, next to each other.
+
 ### Renaming a key
+
+`legacy.json`:
+
+```json
+{
+  "redirect": "developer_states",
+  "new_redirect": "tools_states"
+}
+```
+
+`redirect.json`:
 
 ```json
 {
   "redirect": "tools_states",
   "name": "Tools: states",
   "introduced": "2026.8",
-  "legacy": {
-    "developer_states": {
-      "introduced": "2021.3"
-    }
-  },
   "legacy_redirect": "developer_states"
 }
 ```
@@ -102,69 +110,64 @@ still receives `developer_states`, which every version understands, while
 
 ### Renaming a param
 
+`legacy.json`:
+
 ```json
 {
-  "redirect": "supervisor_app",
-  "name": "App: dashboard",
-  "introduced": "2026.2",
+  "redirect": "supervisor_addon",
+  "new_redirect": "supervisor_app",
   "params": {
-    "app": "string",
+    "addon": "string",
     "repository_url": "url?"
   },
-  "legacy": {
-    "supervisor_addon": {
-      "introduced": "supervisor-2021.02.10",
-      "params_rename": {
-        "addon": "app"
-      }
-    }
-  },
-  "legacy_redirect": "supervisor_addon"
+  "params_rename": {
+    "addon": "app"
+  }
 }
 ```
 
 `params_rename` maps the old name to the new one.
 `/redirect/supervisor_addon/?addon=core_samba` resolves to `supervisor_app` with
-`app=core_samba`, and the instance receives `supervisor_addon?addon=core_samba`.
-Params not listed, like `repository_url`, keep their name.
+`app=core_samba`, and with `legacy_redirect` set on `supervisor_app` the
+instance receives `supervisor_addon?addon=core_samba`. Params not listed, like
+`repository_url`, keep their name.
 
 ### Merging into another redirect
 
+`legacy.json`:
+
 ```json
 {
-  "redirect": "logs",
-  "name": "Logs",
-  "introduced": "2021.3",
-  "params": {
-    "provider": "string?"
-  },
-  "legacy": {
-    "supervisor_logs": {
-      "introduced": "supervisor-2021.02.12",
-      "redirect_params": {
-        "provider": "supervisor"
-      }
-    }
+  "redirect": "supervisor_logs",
+  "new_redirect": "logs",
+  "new_redirect_params": {
+    "provider": "supervisor"
   }
 }
 ```
 
-`redirect_params` gives the params the old key implied.
+`new_redirect_params` gives the params the old key implied.
 `/redirect/supervisor_logs/` resolves to `logs` with `provider=supervisor`, and
 the instance receives `logs?provider=supervisor`. Such an old key only stands
 for part of the entry, so it cannot be the `legacy_redirect`.
 
 ### The fields
 
-- `legacy`: the old keys of the entry, one block per old key.
-- `introduced`: in a legacy block, the version that first understood the old
-  key.
+In `legacy.json`, one entry per old key:
+
+- `redirect`: the old key.
+- `new_redirect`: the key of the entry in `redirect.json` it redirects to.
+- `params`: the params of the old link, with their old names. Optional: once
+  renamed they must be exactly the params of the new entry.
 - `params_rename`: old param name to new param name.
-- `redirect_params`: params the old key implied.
+- `new_redirect_params`: params the old key implied.
+
+In `redirect.json`:
+
 - `legacy_redirect`: the old key the instance receives while the field is there.
   Set it on rename, remove it when cleaning up.
 
-### What the site does with a legacy key
+### What the site does with an old key
 
 - `/redirect/<old key>/` is built like the page of the new key, with a canonical
   link to it. Old params are renamed before validation.
@@ -173,16 +176,16 @@ for part of the entry, so it cannot be the `legacy_redirect`.
   the params filled in and generates the URL with the new key.
 - The instance receives the `legacy_redirect` key with the params renamed back,
   or the new key when the entry has no `legacy_redirect`.
-- The FAQ shows the version of the key the instance receives.
 
-`npm test` checks that a key appears once across entries and legacy blocks, that
-`legacy_redirect` names a legacy key of the entry without `redirect_params`,
-that `params_rename` and `redirect_params` only name params of the entry, that
-versions are well formed, and that every key has a badge.
+`legacy.json` is sorted by key, the pre-commit hook does it. `npm test` checks
+that a key appears once across both files, that every `new_redirect` exists,
+that `legacy_redirect` names an old key that redirects to the entry and has no
+`new_redirect_params`, that `params_rename` and `new_redirect_params` only name
+params of the new entry, and that every key has a badge.
 
 ### Cleaning up
 
 About six months after the release that introduced the new key, remove
 `legacy_redirect` here and the old key in the frontend. The old key then keeps
-working through this site only. Never remove a legacy block: links and badges
-using its key are embedded in years of posts and documentation.
+working through this site only. Never remove an entry from `legacy.json`: links
+and badges using its key are embedded in years of posts and documentation.

@@ -4,16 +4,6 @@ export const MOBILE_URL = "homeassistant://navigate";
 
 export type ParamType = "url" | "string" | "string?" | "url?";
 
-export interface LegacyRedirect {
-  introduced: string;
-  params_rename?: {
-    [oldName: string]: string;
-  };
-  redirect_params?: {
-    [name: string]: string;
-  };
-}
-
 export interface Redirect {
   redirect: string;
   hidden?: boolean;
@@ -29,8 +19,19 @@ export interface Redirect {
   example?: {
     [key: string]: string;
   };
-  legacy?: {
-    [key: string]: LegacyRedirect;
-  };
   legacy_redirect?: string;
+}
+
+export interface LegacyRedirect {
+  redirect: string;
+  new_redirect: string;
+  params?: {
+    [key: string]: ParamType;
+  };
+  params_rename?: {
+    [oldName: string]: string;
+  };
+  new_redirect_params?: {
+    [name: string]: string;
+  };
 }

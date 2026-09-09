@@ -1,0 +1,76 @@
+[
+  {
+    "redirect": "developer_assist",
+    "new_redirect": "tools_assist"
+  },
+  {
+    "redirect": "developer_call_service",
+    "new_redirect": "tools_perform_action"
+  },
+  {
+    "redirect": "developer_debug",
+    "new_redirect": "tools_debug"
+  },
+  {
+    "redirect": "developer_events",
+    "new_redirect": "tools_events"
+  },
+  {
+    "redirect": "developer_services",
+    "new_redirect": "tools_actions"
+  },
+  {
+    "redirect": "developer_states",
+    "new_redirect": "tools_states"
+  },
+  {
+    "redirect": "developer_statistics",
+    "new_redirect": "tools_statistics"
+  },
+  {
+    "redirect": "developer_template",
+    "new_redirect": "tools_template"
+  },
+  {
+    "redirect": "server_controls",
+    "new_redirect": "tools_yaml"
+  },
+  {
+    "redirect": "supervisor",
+    "new_redirect": "supervisor_apps"
+  },
+  {
+    "redirect": "supervisor_addon",
+    "new_redirect": "supervisor_app",
+    "params": {
+      "addon": "string",
+      "repository_url": "url?"
+    },
+    "params_rename": {
+      "addon": "app"
+    }
+  },
+  {
+    "redirect": "supervisor_addons",
+    "new_redirect": "supervisor_apps"
+  },
+  {
+    "redirect": "supervisor_backups",
+    "new_redirect": "backup"
+  },
+  {
+    "redirect": "supervisor_info",
+    "new_redirect": "info"
+  },
+  {
+    "redirect": "supervisor_logs",
+    "new_redirect": "logs",
+    "new_redirect_params": {
+      "provider": "supervisor"
+    }
+  },
+  {
+    "redirect": "supervisor_snapshots",
+    "new_redirect": "backup"
+  }
+]

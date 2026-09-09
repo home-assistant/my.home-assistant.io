@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import assert from "assert";
 import redirects from "../redirect.json" with { type: "json" };
+import legacies from "../legacy.json" with { type: "json" };
 
 const OUTPUT_DIR = path.resolve(import.meta.dirname, "../public/badges");
 
@@ -13,10 +14,7 @@ const KNOWN_ORPHANS = [
 
 assert(fs.existsSync(OUTPUT_DIR), `Output dir ${OUTPUT_DIR} doesn't exist`);
 
-const keys = redirects.flatMap((redirect) => [
-  redirect.redirect,
-  ...Object.keys(redirect.legacy || {}),
-]);
+const keys = [...redirects, ...legacies].map((entry) => entry.redirect);
 
 keys.forEach((key) => {
   assert(

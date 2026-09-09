@@ -22,9 +22,12 @@ const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
 const passedInData = extractSearchParamsObject();
+const requested = passedInData.redirect
+  ? findRedirect(passedInData.redirect)
+  : undefined;
 // Select first one without params so we show the output
 const initialRedirect = passedInData.redirect
-  ? findRedirect(passedInData.redirect)
+  ? requested?.redirect
   : visibleRedirects.find((info) => info.params === undefined);
 const unknownRedirect =
   passedInData.redirect && !initialRedirect ? passedInData.redirect : undefined;
@@ -145,11 +148,7 @@ ${badgeHTML}</textarea
     }
 
     const paramValues = {};
-    const passedInParams = toCanonical(
-      this._redirect,
-      passedInData.redirect || this._redirect.redirect,
-      passedInData,
-    );
+    const passedInParams = toCanonical(requested?.legacy, passedInData);
 
     for (const [key, paramType] of Object.entries(
       this._redirect.params || {},

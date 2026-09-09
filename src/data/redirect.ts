@@ -1,4 +1,4 @@
-import type { Redirect } from "../const";
+import type { LegacyRedirect, Redirect } from "../const";
 
 type Params = Record<string, string>;
 
@@ -19,28 +19,26 @@ const invert = (renames: Params): Params => {
 };
 
 export const toCanonical = (
-  redirect: Redirect,
-  key: string,
+  legacy: LegacyRedirect | undefined,
   params: Params,
-): Params => {
-  const legacy = redirect.legacy?.[key];
-  return {
-    ...renameParams(params, legacy?.params_rename || {}),
-    ...legacy?.redirect_params,
-  };
-};
+): Params => ({
+  ...renameParams(params, legacy?.params_rename || {}),
+  ...legacy?.new_redirect_params,
+});
 
 export const toInstance = (
   redirect: Redirect,
+  legacies: LegacyRedirect[],
   params: Params,
 ): { key: string; params: Params } => {
-  const key = redirect.legacy_redirect;
-  const legacy = key ? redirect.legacy?.[key] : undefined;
-  if (!key || !legacy) {
+  const legacy = legacies.find(
+    (entry) => entry.redirect === redirect.legacy_redirect,
+  );
+  if (!legacy) {
     return { key: redirect.redirect, params };
   }
   return {
-    key,
+    key: legacy.redirect,
     params: renameParams(params, invert(legacy.params_rename || {})),
   };
 };

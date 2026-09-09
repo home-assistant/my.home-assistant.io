@@ -67,14 +67,6 @@
     "example": {
       "app": "core_samba"
     },
-    "legacy": {
-      "supervisor_addon": {
-        "introduced": "supervisor-2021.02.10",
-        "params_rename": {
-          "addon": "app"
-        }
-      }
-    },
     "legacy_redirect": "supervisor_addon"
   },
   {
@@ -96,14 +88,6 @@
     "badge": "Apps of",
     "description": "show your installed apps",
     "introduced": "2026.10",
-    "legacy": {
-      "supervisor_addons": {
-        "introduced": "2021.12"
-      },
-      "supervisor": {
-        "introduced": "supervisor-2021.02.10"
-      }
-    },
     "legacy_redirect": "supervisor_addons"
   },
   {
@@ -118,15 +102,7 @@
     "badge": "Back up",
     "name": "Backup",
     "description": "show an overview of your backups",
-    "introduced": "2022.4",
-    "legacy": {
-      "supervisor_backups": {
-        "introduced": "supervisor-2021.08.1"
-      },
-      "supervisor_snapshots": {
-        "introduced": "supervisor-2021.02.10"
-      }
-    }
+    "introduced": "2022.4"
   },
   {
     "redirect": "backup_config",
@@ -412,14 +388,6 @@
     "introduced": "2021.3",
     "params": {
       "provider": "string?"
-    },
-    "legacy": {
-      "supervisor_logs": {
-        "introduced": "supervisor-2021.02.12",
-        "redirect_params": {
-          "provider": "supervisor"
-        }
-      }
     }
   },
   {
@@ -567,11 +535,6 @@
     "badge": "Action tools of",
     "description": "show your action tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_services": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "developer_services"
   },
   {
@@ -580,11 +543,6 @@
     "badge": "Assist tools of",
     "description": "show your Assist tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_assist": {
-        "introduced": "2023.8"
-      }
-    },
     "legacy_redirect": "developer_assist"
   },
   {
@@ -593,11 +551,6 @@
     "badge": "Debug tools of",
     "description": "show your debug tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_debug": {
-        "introduced": "2026.1"
-      }
-    },
     "legacy_redirect": "developer_debug"
   },
   {
@@ -606,11 +559,6 @@
     "badge": "Event tools of",
     "description": "show your event tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_events": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "developer_events"
   },
   {
@@ -625,11 +573,6 @@
     "example": {
       "service": "homeassistant.turn_on"
     },
-    "legacy": {
-      "developer_call_service": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "developer_call_service"
   },
   {
@@ -638,11 +581,6 @@
     "badge": "State tools of",
     "description": "show your state tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_states": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "developer_states"
   },
   {
@@ -651,11 +589,6 @@
     "badge": "Statistics tools of",
     "description": "show your statistics tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_statistics": {
-        "introduced": "2021.10"
-      }
-    },
     "legacy_redirect": "developer_statistics"
   },
   {
@@ -664,11 +597,6 @@
     "badge": "Template tools of",
     "description": "show your template tools",
     "introduced": "2026.8",
-    "legacy": {
-      "developer_template": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "developer_template"
   },
   {
@@ -677,11 +605,6 @@
     "badge": "YAML tools of",
     "description": "show your YAML tools",
     "introduced": "2026.8",
-    "legacy": {
-      "server_controls": {
-        "introduced": "2021.3"
-      }
-    },
     "legacy_redirect": "server_controls"
   },
   {
@@ -738,12 +661,7 @@
     "name": "Version info",
     "badge": "About my",
     "description": "show your Home Assistant version information",
-    "introduced": "2021.3",
-    "legacy": {
-      "supervisor_info": {
-        "introduced": "supervisor-2021.02.12"
-      }
-    }
+    "introduced": "2021.3"
   },
   {
     "redirect": "voice_assistants",

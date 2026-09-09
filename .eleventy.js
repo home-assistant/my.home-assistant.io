@@ -23,12 +23,6 @@ export default function (eleventyConfig) {
     }/${redirect.example ? `?${createSearchParam(redirect.example)}` : ""}`;
   });
 
-  eleventyConfig.addLiquidFilter("instanceIntroduced", function (redirect) {
-    return redirect.legacy_redirect
-      ? redirect.legacy[redirect.legacy_redirect].introduced
-      : redirect.introduced;
-  });
-
   eleventyConfig.addLiquidFilter("version", function (value) {
     if (value.startsWith("supervisor-")) {
       return `Home Assistant Supervisor ${value.replace("supervisor-", "")}`;

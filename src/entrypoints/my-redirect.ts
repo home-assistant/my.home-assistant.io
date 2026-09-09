@@ -6,7 +6,7 @@ import {
   extractSearchParamsObject,
 } from "../util/search-params";
 import { getInstanceUrl } from "../data/instance_info";
-import { Redirect } from "../const";
+import { LegacyRedirect, Redirect } from "../const";
 import { toCanonical, toInstance } from "../data/redirect";
 import { svgPencil } from "../components/svg-pencil";
 import { isMobile } from "../data/is_mobile";
@@ -14,7 +14,7 @@ import { validateParam } from "../util/validate";
 
 declare global {
   interface Window {
-    redirect: Redirect & { key: string };
+    redirect: Redirect & { key: string; legacies: LegacyRedirect[] };
   }
 }
 
@@ -25,8 +25,9 @@ const createRedirectParams = (): Record<string, string> => {
     return params;
   }
   const userParams = toCanonical(
-    window.redirect,
-    window.redirect.key,
+    window.redirect.legacies.find(
+      (legacy) => legacy.redirect === window.redirect.key,
+    ),
     extractSearchParamsObject(),
   );
   for (const [key, type] of Object.entries(redirectParams)) {
@@ -71,7 +72,11 @@ const render = (showTroubleshooting: boolean) => {
     return;
   }
 
-  const instance = toInstance(window.redirect, params);
+  const instance = toInstance(
+    window.redirect,
+    window.redirect.legacies,
+    params,
+  );
   const redirectUrl =
     window.redirect.redirect === "oauth"
       ? `${instanceUrl}/auth/external/callback${createSearch(params)}`
