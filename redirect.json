@@ -82,6 +82,13 @@
     }
   },
   {
+    "redirect": "profile_preferences",
+    "name": "Appearance",
+    "badge": "Appearance on",
+    "description": "show your Home Assistant user's appearance settings",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "automations",
     "badge": "Automations of",
     "name": "Automations",
@@ -156,6 +163,13 @@
     "badge": "Bluetooth Visualization of",
     "description": "show your Bluetooth Visualization",
     "introduced": "2025.6"
+  },
+  {
+    "redirect": "profile_browser",
+    "name": "Browser settings",
+    "badge": "Browser settings on",
+    "description": "show your Home Assistant user's browser settings",
+    "introduced": "2026.10"
   },
   {
     "redirect": "calendar",
@@ -371,6 +385,13 @@
       "domain": "kitchen_sink",
       "preview_feature": "special_repair"
     }
+  },
+  {
+    "redirect": "profile_localization",
+    "name": "Localization",
+    "badge": "Localization on",
+    "description": "show your Home Assistant user's localization settings",
+    "introduced": "2026.10"
   },
   {
     "redirect": "logbook",
