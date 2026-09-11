@@ -1,5 +1,7 @@
-// Adapted from home-assistant/frontend src/components/ha-generic-picker.ts.
-// Source revision: 3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af.
+/*
+ * Adapted from Home Assistant frontend:
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-generic-picker.ts
+ */
 import "@home-assistant/webawesome/dist/components/popover/popover.js";
 import type WaPopover from "@home-assistant/webawesome/dist/components/popover/popover.js";
 import {
