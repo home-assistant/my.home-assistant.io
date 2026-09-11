@@ -1,5 +1,10 @@
 [
   {
+    "redirect": "config_ai_task",
+    "new_redirect": "config_ai",
+    "introduced": "2025.8"
+  },
+  {
     "redirect": "developer_assist",
     "new_redirect": "tools_assist",
     "introduced": "2023.8"

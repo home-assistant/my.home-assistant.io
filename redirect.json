@@ -34,11 +34,12 @@
     "introduced": "2022.11"
   },
   {
-    "redirect": "config_ai_task",
-    "name": "AI preferences",
-    "badge": "AI preferences of",
-    "description": "show your AI preferences",
-    "introduced": "2025.8"
+    "redirect": "config_ai",
+    "name": "AI settings",
+    "badge": "AI settings of",
+    "description": "show your AI settings",
+    "introduced": "2026.10",
+    "legacy_redirect": "config_ai_task"
   },
   {
     "redirect": "analytics",
