@@ -1,0 +1,162 @@
+<!--
+  Adapted from home-assistant/frontend src/resources/theme at
+  3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af. Reduced to this site's light theme.
+  SPDX-License-Identifier: Apache-2.0
+-->
+<style>
+  html {
+    --primary-color: #009ac7;
+    --primary-text-color: #141414;
+    --secondary-text-color: #5e5e5e;
+    --disabled-text-color: #bdbdbd;
+    --text-primary-color: #ffffff;
+    --link-text-color: #0277bd;
+    --card-background-color: #ffffff;
+    --primary-background-color: #fafafa;
+    --secondary-background-color: #e5e5e5;
+    --divider-color: rgba(0, 0, 0, 0.12);
+    --error-color: #db4437;
+
+    --ha-space-1: 4px;
+    --ha-space-2: 8px;
+    --ha-space-3: 12px;
+    --ha-space-4: 16px;
+    --ha-space-5: 20px;
+    --ha-space-6: 24px;
+    --ha-space-8: 32px;
+    --ha-space-12: 48px;
+    --ha-border-radius-sm: 4px;
+    --ha-border-radius-md: 8px;
+    --ha-border-radius-lg: 12px;
+    --ha-border-radius-2xl: 20px;
+    --ha-border-radius-pill: 9999px;
+    --ha-border-radius-square: 0;
+
+    --ha-font-family-body: Roboto, Noto, sans-serif;
+    --ha-font-size-xs: 10px;
+    --ha-font-size-s: 12px;
+    --ha-font-size-m: 14px;
+    --ha-font-size-l: 16px;
+    --ha-font-weight-normal: 400;
+    --ha-font-weight-medium: 500;
+    --ha-font-weight-bold: 700;
+    --ha-line-height-condensed: 1.2;
+    --ha-line-height-normal: 1.6;
+
+    --ha-animation-duration-instant: 75ms;
+    --ha-animation-duration-fast: 150ms;
+    --ha-animation-duration-normal: 250ms;
+    --ha-animation-duration-slow: 350ms;
+    --safe-area-inset-top: env(safe-area-inset-top, 0px);
+    --safe-area-inset-right: env(safe-area-inset-right, 0px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
+    --ha-color-text-primary: var(--primary-text-color);
+    --ha-color-text-secondary: var(--secondary-text-color);
+    --ha-color-focus: #989898;
+    --ha-color-neutral-60: #989898;
+    --ha-color-form-background: #f3f3f3;
+    --ha-color-form-background-hover: #e6e6e6;
+    --ha-color-form-background-disabled: #cccccc;
+    --ha-color-border-neutral-quiet: #e6e6e6;
+    --ha-color-border-neutral-normal: #989898;
+    --ha-color-border-neutral-loud: #5e5e5e;
+    --ha-color-border-danger-normal: #fd8f90;
+    --ha-color-fill-primary-loud-resting: var(--primary-color);
+    --ha-color-fill-primary-loud-hover: #006787;
+    --ha-color-fill-primary-loud-active: #009ac7;
+    --ha-color-fill-primary-normal-resting: #dff3fc;
+    --ha-color-fill-primary-quiet-hover: #dff3fc;
+    --ha-color-fill-primary-quiet-resting: #eff9fe;
+    --ha-color-fill-neutral-quiet-hover: #e6e6e6;
+    --ha-color-fill-neutral-normal-resting: #e6e6e6;
+    --ha-color-fill-disabled-normal-resting: #f3f3f3;
+    --ha-color-fill-disabled-loud-resting: #cccccc;
+    --ha-color-on-disabled-loud: #f3f3f3;
+    --ha-color-on-disabled-normal: #b1b1b1;
+    --ha-color-on-disabled-quiet: #cccccc;
+    --ha-color-on-primary-loud: #ffffff;
+    --ha-color-on-primary-normal: #009ac7;
+    --ha-color-on-primary-quiet: #18bcf2;
+    --ha-color-on-neutral-quiet: #7a7a7a;
+    --ha-color-on-neutral-normal: #5e5e5e;
+    --ha-color-on-danger-quiet: #dc3146;
+    --ha-color-fill-danger-loud-resting: #dc3146;
+    --ha-box-shadow-m:
+      0 3px 6px -1px rgba(0, 0, 0, 0.1), 0 8px 16px -2px rgba(0, 0, 0, 0.15);
+    --ha-dialog-scrim-backdrop-filter: brightness(68%);
+
+    --wa-font-family-body: var(--ha-font-family-body);
+    --wa-font-size-s: var(--ha-font-size-s);
+    --wa-font-size-m: var(--ha-font-size-m);
+    --wa-font-size-l: var(--ha-font-size-l);
+    --wa-font-weight-action: var(--ha-font-weight-medium);
+    --wa-font-weight-body: var(--ha-font-weight-normal);
+    --wa-line-height-condensed: var(--ha-line-height-condensed);
+    --wa-space-xs: var(--ha-space-2);
+    --wa-space-m: var(--ha-space-4);
+    --wa-space-l: var(--ha-space-6);
+    --wa-space-xl: var(--ha-space-8);
+    --wa-border-radius-s: var(--ha-border-radius-sm);
+    --wa-border-radius-m: var(--ha-border-radius-md);
+    --wa-border-radius-l: var(--ha-border-radius-lg);
+    --wa-border-radius-pill: var(--ha-border-radius-pill);
+    --wa-transition-normal: var(--ha-animation-duration-fast);
+    --wa-transition-fast: var(--ha-animation-duration-instant);
+    --wa-transition-easing: ease;
+    --wa-focus-ring-style: solid;
+    --wa-focus-ring-width: 2px;
+    --wa-focus-ring-offset: 2px;
+    --wa-focus-ring-color: var(--ha-color-focus);
+    --wa-focus-ring: solid 2px var(--wa-focus-ring-color);
+    --wa-color-focus: var(--ha-color-focus);
+
+    --wa-color-brand-fill-loud: var(--ha-color-fill-primary-loud-resting);
+    --wa-color-brand-fill-normal: var(--ha-color-fill-primary-normal-resting);
+    --wa-color-brand-fill-quiet: var(--ha-color-fill-primary-quiet-hover);
+    --wa-color-brand-border-loud: var(--primary-color);
+    --wa-color-brand-border-normal: #18bcf2;
+    --wa-color-brand-border-quiet: #dff3fc;
+    --wa-color-brand-on-loud: var(--ha-color-on-primary-loud);
+    --wa-color-brand-on-normal: var(--ha-color-on-primary-normal);
+    --wa-color-brand-on-quiet: var(--ha-color-on-primary-quiet);
+    --wa-color-success-fill-loud: #00883c;
+    --wa-color-success-fill-normal: #c2f2c1;
+    --wa-color-success-fill-quiet: #c2f2c1;
+    --wa-color-success-border-loud: #036730;
+    --wa-color-success-border-normal: #5dc36f;
+    --wa-color-success-border-quiet: #c2f2c1;
+    --wa-color-success-on-loud: #ffffff;
+    --wa-color-success-on-normal: #036730;
+    --wa-color-success-on-quiet: #00883c;
+    --wa-color-text-normal: var(--primary-text-color);
+    --wa-color-text-quiet: var(--secondary-text-color);
+    --wa-color-text-link: var(--link-text-color);
+    --wa-color-surface-default: var(--card-background-color);
+    --wa-color-surface-raised: var(--card-background-color);
+    --wa-color-surface-border: var(--ha-color-border-neutral-quiet);
+    --wa-panel-border-radius: var(--ha-border-radius-2xl);
+    --wa-form-control-background-color: var(--card-background-color);
+    --wa-form-control-border-color: var(--ha-color-border-neutral-quiet);
+    --wa-form-control-value-color: var(--primary-text-color);
+    --wa-form-control-placeholder-color: var(--secondary-text-color);
+    --wa-form-control-border-radius: var(--ha-border-radius-lg);
+    --wa-form-control-border-style: solid;
+    --wa-form-control-border-width: 1px;
+    --wa-form-control-height: 40px;
+    --wa-form-control-padding-inline: var(--ha-space-3);
+    --wa-form-control-padding-block: 0.75em;
+    --wa-form-control-value-line-height: var(--ha-line-height-condensed);
+    --wa-form-control-value-font-weight: var(--ha-font-weight-normal);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      --ha-animation-duration-instant: 1ms;
+      --ha-animation-duration-fast: 1ms;
+      --ha-animation-duration-normal: 1ms;
+      --ha-animation-duration-slow: 1ms;
+    }
+  }
+</style>

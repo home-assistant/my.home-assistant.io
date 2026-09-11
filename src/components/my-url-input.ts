@@ -1,6 +1,6 @@
-import "@material/web/button/filled-button";
-import "@material/web/textfield/filled-text-field";
-import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
+import "./ha-button";
+import "./input/ha-input";
+import type { HaInput } from "./input/ha-input";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
 import { customElement, state, query, property } from "lit/decorators.js";
 import { DEFAULT_HASS_URL } from "../const";
@@ -14,7 +14,7 @@ export class MyUrlInputMain extends LitElement {
 
   @state() private _error?: string | TemplateResult;
 
-  @query("md-filled-text-field", true) private _textfield!: MdFilledTextField;
+  @query("ha-input", true) private _textfield!: HaInput;
 
   public focus(): void {
     this.updateComplete.then(() => this._textfield.focus());
@@ -24,16 +24,22 @@ export class MyUrlInputMain extends LitElement {
     return html`
       ${this._error ? html`<p class="error">${this._error}</p>` : ""}
       <div>
-        <md-filled-text-field
+        <ha-input
           label="Home Assistant URL"
+          type="url"
           .value=${this.value || DEFAULT_HASS_URL}
+          @input=${this._handleInput}
           @keydown=${this._handleInputKeyDown}
-        ></md-filled-text-field>
-        <md-filled-button @click=${this._handleSave}
-          >${this.value ? "Update" : "Save"}</md-filled-button
+        ></ha-input>
+        <ha-button appearance="accent" @click=${this._handleSave}
+          >${this.value ? "Update" : "Save"}</ha-button
         >
       </div>
     `;
+  }
+
+  private _handleInput() {
+    this._textfield.setCustomValidity("");
   }
 
   private _handleInputKeyDown(ev: KeyboardEvent) {
@@ -47,6 +53,7 @@ export class MyUrlInputMain extends LitElement {
     const inputEl = this._textfield!;
     let value = inputEl.value || "";
     this._error = undefined;
+    inputEl.setCustomValidity("");
 
     if (value === "") {
       value = DEFAULT_HASS_URL;
@@ -68,6 +75,8 @@ export class MyUrlInputMain extends LitElement {
       this._textfield.reportValidity();
       return;
     }
+
+    inputEl.reportValidity();
     const url = `${urlObj.protocol}//${urlObj.host}`;
     try {
       window.localStorage.setItem(HASS_URL, url);
@@ -92,7 +101,7 @@ export class MyUrlInputMain extends LitElement {
         color: #db4437;
         font-weight: bold;
       }
-      md-filled-text-field {
+      ha-input {
         flex-grow: 1;
         margin-right: 8px;
       }
