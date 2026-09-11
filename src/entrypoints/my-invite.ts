@@ -1,6 +1,6 @@
-import "../components/ha-button";
 import { LitElement, TemplateResult, html } from "lit";
 import { customElement } from "lit/decorators.js";
+import "../components/ha-button";
 
 const SUPPORTED_PARAMS = ["url"];
 
