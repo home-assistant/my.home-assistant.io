@@ -1,4 +1,4 @@
-import "@material/web/button/filled-button";
+import "../components/ha-button";
 import { LitElement, TemplateResult, html } from "lit";
 import { customElement } from "lit/decorators.js";
 
@@ -22,9 +22,9 @@ if (inviteHashParams.size > 0) {
 export class MyUrlInputMain extends LitElement {
   protected render(): TemplateResult {
     return html`
-      <a href="${INVITE_URL.toString()}">
-        <md-filled-button>Accept Invite</md-filled-button>
-      </a>
+      <ha-button appearance="accent" href="${INVITE_URL.toString()}">
+        Accept Invite
+      </ha-button>
     `;
   }
 }
