@@ -1,5 +1,7 @@
-// Adapted from home-assistant/frontend src/common/util/swipe-gesture-recognizer.ts.
-// Source revision: 3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af.
+/*
+ * Adapted from Home Assistant frontend:
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/common/util/swipe-gesture-recognizer.ts
+ */
 export interface SwipeGestureResult {
   velocity: number;
   delta: number;

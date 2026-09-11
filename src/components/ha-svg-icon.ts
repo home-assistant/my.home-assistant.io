@@ -1,7 +1,6 @@
 /*
- * Adapted from home-assistant/frontend src/components/ha-svg-icon.ts at
- * 3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af. Imports adapted for this repository.
- * SPDX-License-Identifier: Apache-2.0
+ * Adapted from Home Assistant frontend:
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-svg-icon.ts
  */
 import { css, LitElement, nothing, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";

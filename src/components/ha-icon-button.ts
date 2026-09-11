@@ -1,5 +1,7 @@
-// Adapted from home-assistant/frontend src/components/ha-icon-button.ts.
-// Source revision: 3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af.
+/*
+ * Adapted from Home Assistant frontend:
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-icon-button.ts
+ */
 import { css, html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "./ha-button";
