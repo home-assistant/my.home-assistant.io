@@ -2,8 +2,8 @@
 import { mdiMenuDown } from "@mdi/js";
 import { css, html, LitElement, nothing, type TemplateResult } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import type { HaComboBoxItem } from "./ha-combo-box-item";
 import "./ha-combo-box-item";
+import type { HaComboBoxItem } from "./ha-combo-box-item";
 import "./ha-svg-icon";
 
 @customElement("ha-picker-field")

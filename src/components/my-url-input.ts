@@ -1,10 +1,10 @@
-import "./ha-button";
-import "./input/ha-input";
-import type { HaInput } from "./input/ha-input";
 import { css, CSSResult, html, LitElement, TemplateResult } from "lit";
 import { customElement, state, query, property } from "lit/decorators.js";
 import { DEFAULT_HASS_URL } from "../const";
 import { fireEvent } from "../util/fire_event";
+import "./ha-button";
+import "./input/ha-input";
+import type { HaInput } from "./input/ha-input";
 
 const HASS_URL = "hassUrl";
 
