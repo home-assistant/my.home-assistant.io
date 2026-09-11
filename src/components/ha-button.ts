@@ -1,7 +1,4 @@
-/*
- * Adapted from Home Assistant frontend:
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-button.ts
- */
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-button.ts
 import Button from "@home-assistant/webawesome/dist/components/button/button.js";
 import { css, type CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";

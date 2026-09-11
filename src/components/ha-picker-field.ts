@@ -1,7 +1,4 @@
-/*
- * Adapted from Home Assistant frontend:
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-picker-field.ts
- */
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-picker-field.ts
 import { mdiMenuDown } from "@mdi/js";
 import { css, html, LitElement, nothing, type TemplateResult } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
