@@ -36,6 +36,7 @@ export class HaBottomSheet extends LitElement {
 
   public disconnectedCallback() {
     super.disconnectedCallback();
+    this._closing = false;
     this._cleanupGesture();
   }
 
@@ -90,6 +91,7 @@ export class HaBottomSheet extends LitElement {
     ev.stopPropagation();
     this.open = false;
     this._closing = false;
+    this._cleanupGesture();
     fireEvent(this, "closed");
   }
 
@@ -165,6 +167,7 @@ export class HaBottomSheet extends LitElement {
         ? result.isDownwardSwipe
         : height > 0 && -result.delta > height * 0.5);
 
+    this._closing = close;
     this._cleanupGesture();
 
     if (close) {
@@ -198,7 +201,12 @@ export class HaBottomSheet extends LitElement {
     this._snapTimer = undefined;
     this._touchId = undefined;
     this._dragging = false;
-    this.style.removeProperty("--sheet-transform");
+
+    // Keep the drag offset until the drawer's hide animation has finished.
+    if (!this._closing) {
+      this.style.removeProperty("--sheet-transform");
+    }
+
     this.style.removeProperty("--sheet-transition");
   }
 
