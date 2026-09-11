@@ -49,11 +49,6 @@ export default function (eleventyConfig) {
           removeComments: true,
           collapseWhitespace: true,
           minifyCSS: true,
-          minifyJS: {
-            safari10: false,
-            ecma: undefined,
-            output: { comments: false },
-          },
         });
         return minified;
       }
