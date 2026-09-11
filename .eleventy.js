@@ -10,6 +10,10 @@ const createSearchParam = (params) => {
 };
 
 export default function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@home-assistant/webawesome/dist/styles": "styles/webawesome",
+  });
+
   eleventyConfig.addLiquidFilter("title", function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   });

@@ -1,5 +1,4 @@
-import "@material/web/button/filled-button";
-import "@material/web/button/outlined-button";
+import "../components/ha-button";
 import {
   createSearch,
   createSearchParam,
@@ -84,9 +83,9 @@ const render = (showTroubleshooting: boolean) => {
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
-    <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <md-filled-button>${openLink.innerText}</md-filled-button>
-    </a>
+    <ha-button appearance="accent" href="${redirectUrl}" class='open-link' rel="noopener">
+      ${openLink.textContent}
+    </ha-button>
   `;
 
   if (window.redirect.redirect === "oauth") {
@@ -109,9 +108,9 @@ const render = (showTroubleshooting: boolean) => {
       state: params.state,
     });
     declineLink.outerHTML = `
-        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
-          <md-outlined-button>${buttonCaption}</md-outlined-button>
-        </a>
+        <ha-button appearance="outlined" href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+          ${buttonCaption}
+        </ha-button>
       `;
   }
 
