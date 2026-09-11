@@ -1,8 +1,8 @@
 /*
- * Adapted from home-assistant/frontend src/components/input/ha-input.ts and
- * wa-input-mixin.ts at 3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af.
- * Simplified for My Home Assistant, with local validation and native clearing.
- * SPDX-License-Identifier: Apache-2.0
+ * Adapted from Home Assistant frontend:
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input.ts
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/wa-input-mixin.ts
+ * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input-search.ts
  */
 import "@home-assistant/webawesome/dist/components/input/input.js";
 import type WaInput from "@home-assistant/webawesome/dist/components/input/input.js";
