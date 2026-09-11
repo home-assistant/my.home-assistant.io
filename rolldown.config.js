@@ -17,6 +17,7 @@ export default defineConfig(
       [parse(entrypoint).name]: entrypoint,
     },
     platform: "browser",
+    tsconfig: "./tsconfig.json",
     transform: {
       target: "es2017",
     },
