@@ -1,3 +1,5 @@
+import { writeFileSync } from "fs";
+import { join } from "path";
 import { resolve } from "url";
 
 const defaultOptions = {
@@ -12,9 +14,9 @@ export default function (userOptions = {}) {
 
   return {
     name: "manifest",
-    generateBundle(outputOptions, bundle) {
+    writeBundle(outputOptions, bundle) {
       for (const chunk of Object.values(bundle)) {
-        if (!chunk.isEntry) {
+        if (chunk.type !== "chunk" || !chunk.isEntry) {
           continue;
         }
         // Add js extension to mimic Webpack manifest.
@@ -24,12 +26,11 @@ export default function (userOptions = {}) {
         );
       }
 
-      this.emitFile({
-        type: "asset",
-        source: JSON.stringify(manifest, undefined, 2),
-        name: "manifest.json",
-        fileName: "manifest.json",
-      });
+      // Write the latest entries together after each parallel build finishes.
+      writeFileSync(
+        join(outputOptions.dir, "manifest.json"),
+        JSON.stringify(manifest, undefined, 2),
+      );
     },
   };
 }
