@@ -1,4 +1,5 @@
 import { minify } from "html-minifier-terser";
+import legacies from "./legacy.json" with { type: "json" };
 
 const createSearchParam = (params) => {
   const urlParams = new URLSearchParams();
@@ -21,6 +22,13 @@ export default function (eleventyConfig) {
     return `/redirect/${
       redirect.redirect
     }/${redirect.example ? `?${createSearchParam(redirect.example)}` : ""}`;
+  });
+
+  eleventyConfig.addLiquidFilter("instanceIntroduced", function (redirect) {
+    const legacy = legacies.find(
+      (entry) => entry.redirect === redirect.legacy_redirect,
+    );
+    return legacy ? legacy.introduced : redirect.introduced;
   });
 
   eleventyConfig.addLiquidFilter("version", function (value) {

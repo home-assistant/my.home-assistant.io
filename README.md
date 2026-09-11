@@ -25,3 +25,174 @@ yard serve dist
 ```
 
 Open http://localhost:3000 to view your production build.
+
+## Redirects
+
+`redirect.json` lists every redirect. One entry looks like this:
+
+```json
+{
+  "redirect": "blueprint_import",
+  "name": "Blueprints: start import",
+  "badge": "Import blueprint to",
+  "description": "show the blueprint import dialog with a specific blueprint pre-filled",
+  "introduced": "2021.3",
+  "params": {
+    "blueprint_url": "url"
+  },
+  "example": {
+    "blueprint_url": "https://github.com/home-assistant/core/blob/master/homeassistant/components/automation/blueprints/motion_light.yaml"
+  }
+}
+```
+
+- `redirect`: the key. It names the page `/redirect/blueprint_import/`, the
+  badge `/badges/blueprint_import.svg`, the
+  `/create-link/?redirect=blueprint_import` preselection, and what the instance
+  receives at `/_my_redirect/blueprint_import`.
+- `name`: shown in the `/create-link` picker and in the FAQ.
+- `badge`: the badge text, followed by "My Home Assistant". Falls back to
+  `name`.
+- `description`: completes "Open your Home Assistant instance and ..." on the
+  redirect page and in the badge alt text.
+- `introduced`: the Home Assistant version that first understood the key, shown
+  in the FAQ. Supervisor-era keys use `supervisor-2021.02.10`.
+- `params`: the query params and their type, `string` or `url`, with `?` for
+  optional ones. Params are validated on the redirect page and in
+  `/create-link`.
+- `example`: param values for the FAQ link.
+- `component`: the integration the page needs, for information.
+- `custom`: shows a warning that the link goes to a custom integration.
+- `hidden`: hides the entry from the picker and the FAQ. The page and the badge
+  are still built. Only `oauth` uses it, the OAuth callback is not meant to be
+  created by users.
+
+Entries are sorted by name and every entry needs a badge. The pre-commit hook
+runs `build-scripts/sort-redirects.js` and `build-scripts/create-badges.js` for
+you.
+
+## Migrating a redirect
+
+When the frontend renames a page or a param, `redirect.json` gets the new key
+and the old key goes to `legacy.json`. Everything users see, the picker, the
+FAQ, the badge text and the generated URL, shows the new key. Old links, old
+badges and `/create-link` calls with the old key keep working.
+
+Both files are published on the site, next to each other.
+
+### Renaming a key
+
+`legacy.json`:
+
+```json
+{
+  "redirect": "developer_states",
+  "new_redirect": "tools_states",
+  "introduced": "2021.3"
+}
+```
+
+`redirect.json`:
+
+```json
+{
+  "redirect": "tools_states",
+  "name": "Tools: states",
+  "introduced": "2026.8",
+  "legacy_redirect": "developer_states"
+}
+```
+
+`/redirect/developer_states/` resolves to `tools_states`, and
+`/create-link/?redirect=developer_states` preselects "Tools: states" and
+generates `/redirect/tools_states/`. Because of `legacy_redirect`, the instance
+still receives `developer_states`, which every version understands, while
+`tools_states` only exists since 2026.8.
+
+### Renaming a param
+
+`legacy.json`:
+
+```json
+{
+  "redirect": "supervisor_addon",
+  "new_redirect": "supervisor_app",
+  "introduced": "supervisor-2021.02.10",
+  "params": {
+    "addon": "string",
+    "repository_url": "url?"
+  },
+  "params_rename": {
+    "addon": "app"
+  }
+}
+```
+
+`params_rename` maps the old name to the new one.
+`/redirect/supervisor_addon/?addon=core_samba` resolves to `supervisor_app` with
+`app=core_samba`, and with `legacy_redirect` set on `supervisor_app` the
+instance receives `supervisor_addon?addon=core_samba`. Params not listed, like
+`repository_url`, keep their name.
+
+### Merging into another redirect
+
+`legacy.json`:
+
+```json
+{
+  "redirect": "supervisor_logs",
+  "new_redirect": "logs",
+  "introduced": "supervisor-2021.02.12",
+  "new_redirect_params": {
+    "provider": "supervisor"
+  }
+}
+```
+
+`new_redirect_params` gives the params the old key implied.
+`/redirect/supervisor_logs/` resolves to `logs` with `provider=supervisor`, and
+the instance receives `logs?provider=supervisor`. Such an old key only stands
+for part of the entry, so it cannot be the `legacy_redirect`.
+
+### The fields
+
+In `legacy.json`, one entry per old key:
+
+- `redirect`: the old key.
+- `new_redirect`: the key of the entry in `redirect.json` it redirects to.
+- `introduced`: the Home Assistant version that first understood the old key.
+  The FAQ shows it while the entry has `legacy_redirect`, since that is the key
+  the instance receives.
+- `params`: the params of the old link, with their old names. Optional: once
+  renamed they must be exactly the params of the new entry.
+- `params_rename`: old param name to new param name.
+- `new_redirect_params`: params the old key implied.
+
+In `redirect.json`:
+
+- `legacy_redirect`: the old key the instance receives while the field is there.
+  Set it on rename, remove it when cleaning up.
+
+### What the site does with an old key
+
+- `/redirect/<old key>/` is built like the page of the new key, with a canonical
+  link to it. Old params are renamed before validation.
+- `/badges/<old key>.svg` is built with the new badge text.
+- `/create-link/?redirect=<old key>&<old params>` preselects the new entry with
+  the params filled in and generates the URL with the new key.
+- The instance receives the `legacy_redirect` key with the params renamed back,
+  or the new key when the entry has no `legacy_redirect`.
+
+`legacy.json` is sorted by key, the pre-commit hook does it. `npm test` checks
+that a key appears once across both files, that every `new_redirect` exists,
+that `legacy_redirect` names an old key that redirects to the entry and has no
+`new_redirect_params`, that `params_rename` and `new_redirect_params` only name
+params of the new entry, that versions are well formed, and that every key has a
+badge.
+
+### Cleaning up
+
+About six months after the release that introduced the new key, remove
+`legacy_redirect` here and the old key in the frontend. The old key then keeps
+working through this site only. Never remove an entry from `legacy.json`: links
+and badges using its key are embedded in years of posts and documentation.

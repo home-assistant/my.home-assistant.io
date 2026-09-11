@@ -6,7 +6,7 @@ export type ParamType = "url" | "string" | "string?" | "url?";
 
 export interface Redirect {
   redirect: string;
-  deprecated?: boolean;
+  hidden?: boolean;
   custom?: boolean;
   name: string;
   badge?: string;
@@ -15,5 +15,24 @@ export interface Redirect {
   component?: string;
   params?: {
     [key: string]: ParamType;
+  };
+  example?: {
+    [key: string]: string;
+  };
+  legacy_redirect?: string;
+}
+
+export interface LegacyRedirect {
+  redirect: string;
+  new_redirect: string;
+  introduced: string;
+  params?: {
+    [key: string]: ParamType;
+  };
+  params_rename?: {
+    [oldName: string]: string;
+  };
+  new_redirect_params?: {
+    [name: string]: string;
   };
 }
