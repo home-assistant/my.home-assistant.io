@@ -1,14 +1,14 @@
 // Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-picker-combo-box.ts
-import Fuse from "fuse.js";
 import { mdiMagnify, mdiMinusBoxOutline } from "@mdi/js";
+import Fuse from "fuse.js";
 import { css, html, LitElement, nothing, type PropertyValues } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { multiTermSortedSearch } from "../util/fuse-multi-term";
 import { HaComboBoxItem } from "./ha-combo-box-item";
-import type { HaInput } from "./input/ha-input";
-import "./input/ha-input";
 import "./ha-svg-icon";
+import "./input/ha-input";
+import type { HaInput } from "./input/ha-input";
 
 export interface PickerComboBoxItem {
   id: string;

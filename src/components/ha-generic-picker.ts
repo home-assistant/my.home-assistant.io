@@ -11,15 +11,15 @@ import {
 } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
-import type { HaBottomSheet } from "./ha-bottom-sheet";
 import "./ha-bottom-sheet";
+import type { HaBottomSheet } from "./ha-bottom-sheet";
+import "./ha-picker-combo-box";
 import type {
   HaPickerComboBox,
   PickerComboBoxItem,
 } from "./ha-picker-combo-box";
-import "./ha-picker-combo-box";
-import type { HaPickerField } from "./ha-picker-field";
 import "./ha-picker-field";
+import type { HaPickerField } from "./ha-picker-field";
 
 export type { PickerComboBoxItem } from "./ha-picker-combo-box";
 

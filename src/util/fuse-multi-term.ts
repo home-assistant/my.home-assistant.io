@@ -1,5 +1,6 @@
 // Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/resources/fuseMultiTerm.ts
-import Fuse, { type FuseIndex, type IFuseOptions } from "fuse.js";
+import type { FuseIndex, IFuseOptions } from "fuse.js";
+import Fuse from "fuse.js";
 
 function searchTerm<T>(
   items: T[],
