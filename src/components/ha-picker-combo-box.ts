@@ -1,7 +1,4 @@
-/*
- * Adapted from Home Assistant frontend:
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-picker-combo-box.ts
- */
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/ha-picker-combo-box.ts
 import Fuse from "fuse.js";
 import { mdiMagnify, mdiMinusBoxOutline } from "@mdi/js";
 import { css, html, LitElement, nothing, type PropertyValues } from "lit";

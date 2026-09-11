@@ -1,9 +1,6 @@
-/*
- * Adapted from Home Assistant frontend:
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input.ts
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/wa-input-mixin.ts
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input-search.ts
- */
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input.ts
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/wa-input-mixin.ts
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/components/input/ha-input-search.ts
 import "@home-assistant/webawesome/dist/components/input/input.js";
 import type WaInput from "@home-assistant/webawesome/dist/components/input/input.js";
 import { mdiClose, mdiMagnify } from "@mdi/js";

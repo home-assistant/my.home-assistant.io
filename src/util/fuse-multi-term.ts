@@ -1,7 +1,4 @@
-/*
- * Adapted from Home Assistant frontend:
- * https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/resources/fuseMultiTerm.ts
- */
+// Adapted from frontend: https://github.com/home-assistant/frontend/blob/3052989e9d4aa4d67b6a07c9edcb6e3cf98a01af/src/resources/fuseMultiTerm.ts
 import Fuse, { type FuseIndex, type IFuseOptions } from "fuse.js";
 
 function searchTerm<T>(
