@@ -399,6 +399,13 @@
     "introduced": "2026.6"
   },
   {
+    "redirect": "map",
+    "name": "Map",
+    "badge": "Map of",
+    "description": "show your map dashboard",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "config_matter",
     "name": "Matter configuration",
     "badge": "Matter config of",
