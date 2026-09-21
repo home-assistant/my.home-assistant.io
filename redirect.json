@@ -504,6 +504,13 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "security",
+    "name": "Security",
+    "badge": "Security of",
+    "description": "show your security dashboard",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "config_serial",
     "name": "Serial configuration",
     "badge": "Serial config of",
