@@ -48,6 +48,7 @@ export class HaBottomSheet extends LitElement {
         .open=${this.open}
         .label=${this.label}
         .lightDismiss=${true}
+        @wa-show=${this._show}
         @wa-after-show=${this._afterShow}
         @wa-hide=${this._hide}
         @wa-after-hide=${this._afterHide}
@@ -59,13 +60,21 @@ export class HaBottomSheet extends LitElement {
     `;
   }
 
-  private _afterShow(ev: Event) {
+  private _show(ev: Event) {
     if (ev.target !== this._drawer) {
       return;
     }
 
     ev.stopPropagation();
     this._drawer?.drawer.setAttribute("aria-label", this.label);
+  }
+
+  private _afterShow(ev: Event) {
+    if (ev.target !== this._drawer) {
+      return;
+    }
+
+    ev.stopPropagation();
 
     if (!this._closing) {
       fireEvent(this, "after-show");
