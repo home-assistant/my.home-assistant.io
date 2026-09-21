@@ -375,6 +375,13 @@
     }
   },
   {
+    "redirect": "lights",
+    "name": "Lights",
+    "badge": "Lights of",
+    "description": "show your lights dashboard",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "logbook",
     "name": "Logbook",
     "badge": "Logbook of",
