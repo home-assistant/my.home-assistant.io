@@ -3,8 +3,10 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+yarn lint:types
+
 rm -rf dist
 cp -r public dist
 cp redirect.json legacy.json dist
-NODE_ENV=production yarn rollup -c
+NODE_ENV=production yarn rolldown -c
 NODE_ENV=production yarn eleventy
