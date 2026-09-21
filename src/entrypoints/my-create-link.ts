@@ -1,14 +1,14 @@
-import "@material/web/button/outlined-button";
-import "@material/web/textfield/filled-text-field";
-import "@material/web/select/filled-select";
-import "@material/web/select/select-option";
-import type { MdFilledTextField } from "@material/web/textfield/filled-text-field";
-import type { MdOutlinedButton } from "@material/web/button/outlined-button";
-import { repeat } from "lit/directives/repeat.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import copy from "clipboard-copy";
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, state } from "lit/decorators.js";
+import { repeat } from "lit/directives/repeat.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import "../components/ha-button";
+import "../components/input/ha-input";
+import "../components/ha-generic-picker";
+import type { HaInput } from "../components/input/ha-input";
+import type { HaButton } from "../components/ha-button";
+import type { PickerComboBoxItem } from "../components/ha-picker-combo-box";
 import { createSearch, extractSearchParamsObject } from "../util/search-params";
 import { ParamType, Redirect } from "../const";
 import { toCanonical } from "../data/redirect";
@@ -31,6 +31,15 @@ const initialRedirect = passedInData.redirect
   : visibleRedirects.find((info) => info.params === undefined);
 const unknownRedirect =
   passedInData.redirect && !initialRedirect ? passedInData.redirect : undefined;
+
+const redirectItems: PickerComboBoxItem[] = visibleRedirects.map(
+  (redirect) => ({
+    id: redirect.redirect,
+    primary: redirect.name,
+  }),
+);
+
+const getRedirectItems = () => redirectItems;
 
 @customElement("my-create-link")
 class MyCreateLink extends LitElement {
@@ -64,35 +73,29 @@ class MyCreateLink extends LitElement {
               </p>`
             : ""
         }
-        <md-filled-select
-          label="Redirect to"
-          required
-          errorText="This field is required"
+        <ha-generic-picker
+          .label=${"Redirect to"}
+          .required=${true}
+          .getItems=${getRedirectItems}
           .value=${this._redirect?.redirect || ""}
-          @input=${this._itemSelected}
-        >
-          ${visibleRedirects.map(
-            (redirect) =>
-              html`<md-select-option
-                .selected=${this._redirect?.redirect === redirect.redirect}
-                .value=${redirect.redirect}
-                ><div slot="headline">${redirect.name}</div></md-select-option
-              >`,
-          )}
-        </md-filled-select>
+          .valueRenderer=${this._renderRedirectValue}
+          @value-changed=${this._itemSelected}
+        ></ha-generic-picker>
 
         ${repeat(
           Object.entries(this._redirect?.params || []),
           ([key, _]) => `${this._redirect!.redirect}-${key}`,
           ([key, type]) =>
-            html`<md-filled-text-field
+            html`<ha-input
               ?required=${!type.endsWith("?")}
-              .errorText=${!type.endsWith("?") ? "This field is required" : ""}
+              .validationMessage=${
+                !type.endsWith("?") ? "This field is required" : ""
+              }
               .label=${prettify(key)}
               data-key="${key}"
               @input=${this._paramChanged}
               .type=${type.startsWith("url") ? "url" : "text"}
-            ></md-filled-text-field>`,
+            ></ha-input>`,
         )}
         ${
           this.isValid
@@ -102,9 +105,9 @@ class MyCreateLink extends LitElement {
                 our <a href="https://www.home-assistant.io/join-chat"
                 target="_blank">Discord</a> chat server.</p>
                 <input value=${this._url} readonly @focus=${this._select} />
-                <md-outlined-button @click=${this._copyURL}>
+                <ha-button appearance="outlined" @click=${this._copyURL}>
                   Copy URL
-                </md-outlined-button>
+                </ha-button>
 
                 <h1>Markdown</h1>
                 <p>A beautiful linked badge in Markdown, for example, when
@@ -116,9 +119,9 @@ class MyCreateLink extends LitElement {
                 <textarea rows="3" readonly @focus=${this._select}>
 ${this._createMarkdown()}</textarea
                 >
-                <md-outlined-button @click=${this._copyMarkdown}>
+                <ha-button appearance="outlined" @click=${this._copyMarkdown}>
                   Copy Markdown
-                </md-outlined-button>
+                </ha-button>
 
                 <h1>HTML</h1>
                 <p>A beautiful badge in HTML format, which can be used on,
@@ -129,9 +132,9 @@ ${this._createMarkdown()}</textarea
                 <textarea rows="3" readonly @focus=${this._select}>
 ${badgeHTML}</textarea
                 >
-                <md-outlined-button @click=${this._copyHTML}>
+                <ha-button appearance="outlined" @click=${this._copyHTML}>
                   Copy HTML
-                </md-outlined-button>
+                </ha-button>
               </a>
             `
             : ""
@@ -157,9 +160,11 @@ ${badgeHTML}</textarea
         continue;
       }
       const msg = validateParam(paramType as ParamType, passedInParams[key]);
-      const inputEl = this.querySelector(
-        `md-filled-text-field[data-key=${key}]`,
-      ) as MdFilledTextField;
+      const inputEl = this.querySelector<HaInput>(`ha-input[data-key=${key}]`);
+
+      if (!inputEl) {
+        continue;
+      }
 
       inputEl.value = passedInParams[key];
 
@@ -169,6 +174,7 @@ ${badgeHTML}</textarea
           inputEl.reportValidity();
         });
       } else {
+        inputEl.setCustomValidity("");
         paramValues[key] = passedInParams[key];
       }
     }
@@ -186,9 +192,12 @@ ${badgeHTML}</textarea
     );
   }
 
-  private _itemSelected(ev) {
+  private _renderRedirectValue = (value: string) =>
+    html`${findRedirect(value)?.redirect.name || value}`;
+
+  private _itemSelected(ev: CustomEvent<{ value: string }>) {
     const newRedirect = visibleRedirects.find(
-      (rd) => rd.redirect === ev.target.value,
+      (rd) => rd.redirect === ev.detail.value,
     );
 
     if (!newRedirect || newRedirect.redirect === this._redirect?.redirect) {
@@ -199,26 +208,41 @@ ${badgeHTML}</textarea
     this._paramsValues = {};
   }
 
-  private _paramChanged(ev) {
-    const key = ev.currentTarget.dataset.key;
-    let value = ev.target.value;
+  private _paramChanged(ev: Event & { currentTarget: HaInput }) {
+    const inputEl = ev.currentTarget;
+    const key = inputEl.dataset.key;
 
-    const paramType = this._redirect!.params![key];
+    if (!key) {
+      return;
+    }
+
+    let value: string | undefined = inputEl.value || "";
+
+    const paramType = this._redirect?.params?.[key];
+
+    if (!paramType) {
+      return;
+    }
+
+    inputEl.setCustomValidity("");
 
     if (paramType.startsWith("url")) {
       value = decodeURI(value);
     }
 
-    const validationMessage = validateParam(paramType, value);
+    const validationMessage =
+      !value && paramType.endsWith("?")
+        ? undefined
+        : validateParam(paramType, value);
+
     if (validationMessage) {
-      ev.currentTarget.setCustomValidity(validationMessage);
-      ev.currentTarget.reportValidity();
+      inputEl.setCustomValidity(validationMessage);
       value = undefined;
     }
 
+    inputEl.reportValidity();
+
     if (value) {
-      ev.currentTarget.setCustomValidity("");
-      ev.currentTarget.reportValidity();
       this._paramsValues = { ...this._paramsValues, [key]: value };
     } else {
       this._paramsValues = { ...this._paramsValues };
@@ -230,19 +254,19 @@ ${badgeHTML}</textarea
     return `https://my.home-assistant.io/redirect/${this._redirect!.redirect}/${createSearch(this._paramsValues)}`;
   }
 
-  private _copyURL(ev: Event) {
-    this._copy(this._url, ev.currentTarget as MdOutlinedButton);
+  private _copyURL(ev: Event & { currentTarget: HaButton }) {
+    this._copy(this._url, ev.currentTarget);
   }
 
-  private _copyHTML(ev: Event) {
-    this._copy(this._createHTML(), ev.currentTarget as MdOutlinedButton);
+  private _copyHTML(ev: Event & { currentTarget: HaButton }) {
+    this._copy(this._createHTML(), ev.currentTarget);
   }
 
-  private _copyMarkdown(ev: Event) {
-    this._copy(this._createMarkdown(), ev.currentTarget as MdOutlinedButton);
+  private _copyMarkdown(ev: Event & { currentTarget: HaButton }) {
+    this._copy(this._createMarkdown(), ev.currentTarget);
   }
 
-  private async _copy(text: string, button: MdOutlinedButton) {
+  private async _copy(text: string, button: HaButton) {
     try {
       await copy(text);
       this._copySuccess(button);
@@ -251,13 +275,14 @@ ${badgeHTML}</textarea
     }
   }
 
-  private _copySuccess(element: MdOutlinedButton) {
-    const prevText = element.innerText;
-    element.classList.add("success");
-    element.innerText = "Copied!";
+  private _copySuccess(element: HaButton) {
+    const prevText = element.textContent;
+    const prevVariant = element.variant;
+    element.variant = "success";
+    element.textContent = "Copied!";
     setTimeout(() => {
-      element.classList.remove("success");
-      element.innerText = prevText;
+      element.variant = prevVariant;
+      element.textContent = prevText;
     }, 1000);
   }
 

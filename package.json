@@ -33,8 +33,10 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^7.1.2",
-    "@material/web": "^2.5.0",
+    "@home-assistant/webawesome": "3.7.0-ha.1",
+    "@mdi/js": "7.4.47",
     "clipboard-copy": "^4.0.1",
+    "fuse.js": "7.5.0",
     "html-minifier-terser": "^7.2.0",
     "lit": "^3.3.3"
   },
