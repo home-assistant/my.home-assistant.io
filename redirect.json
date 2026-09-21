@@ -182,6 +182,13 @@
     "introduced": "2023.8"
   },
   {
+    "redirect": "config_connectivity",
+    "name": "Connectivity",
+    "badge": "Connectivity settings of",
+    "description": "show your connectivity settings",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "application_credentials",
     "name": "Credentials",
     "badge": "Application credentials of",
