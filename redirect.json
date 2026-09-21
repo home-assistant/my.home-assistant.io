@@ -413,6 +413,14 @@
     "introduced": "2022.3"
   },
   {
+    "redirect": "config_modbus",
+    "name": "Modbus configuration",
+    "badge": "Modbus config of",
+    "description": "show your Modbus configuration panel",
+    "introduced": "2026.10",
+    "component": "modbus"
+  },
+  {
     "redirect": "config_mqtt",
     "name": "MQTT configuration",
     "badge": "MQTT config of",
