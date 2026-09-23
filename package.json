@@ -30,7 +30,7 @@
     "pre-commit": "^2.0.0",
     "prettier": "^3.9.6",
     "require-dir": "^1.2.0",
-    "rollup": "4.63.1",
+    "rollup": "4.63.4",
     "serve": "^14.2.6",
     "svgo": "^4.1.0",
     "text-to-svg": "^3.1.5",
