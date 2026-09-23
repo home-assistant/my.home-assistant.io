@@ -2755,7 +2755,7 @@ __metadata:
     html-minifier-terser: ^7.2.0
     lit: ^3.3.3
     pre-commit: ^2.0.0
-    prettier: ^3.9.6
+    prettier: ^3.9.8
     require-dir: ^1.2.0
     rollup: 4.63.4
     serve: ^14.2.6
@@ -3116,12 +3116,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.9.6":
-  version: 3.9.6
-  resolution: "prettier@npm:3.9.6"
+"prettier@npm:^3.9.8":
+  version: 3.9.8
+  resolution: "prettier@npm:3.9.8"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 3fb6a3b6462b05afb825697a3fdcdd9bd1480c11d10d655b7ddbcaf2560beb695caffbe155b5020466005aa06bff74a61ba9c16e602bff849331b62f5db26cdf
+  checksum: b9728106824ec6f36bf34533252b213f417b724b67947f97f77558c1edfa3e626fb813dfef306fca715e34f349f3d397dfd97fc02dcc50a10a06203211d2294f
   languageName: node
   linkType: hard
 
