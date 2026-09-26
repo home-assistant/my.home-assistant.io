@@ -511,6 +511,13 @@
     "introduced": "2026.10"
   },
   {
+    "redirect": "config_serial",
+    "name": "Serial configuration",
+    "badge": "Serial config of",
+    "description": "show your Serial configuration panel",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "config",
     "name": "Settings",
     "badge": "Settings panel of",
