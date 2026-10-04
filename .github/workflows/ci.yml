@@ -15,7 +15,8 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  lint:
+    name: Lint and format
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +28,33 @@ jobs:
           cache: yarn
       - run: yarn install --immutable
       - run: yarn lint
-      - run: yarn build
-      - run: yarn test
+
       - run: yarn format:check
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Use Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: ".nvmrc"
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn test
+
+  build:
+    name: Production build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Use Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: ".nvmrc"
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
