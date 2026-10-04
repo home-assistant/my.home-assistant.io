@@ -3,7 +3,7 @@ import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import manifest from "./build-scripts/rollup-plugins/manifest.js";
 
 const production = process.env.NODE_ENV === "production";

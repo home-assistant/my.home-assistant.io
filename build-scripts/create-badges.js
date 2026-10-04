@@ -3,6 +3,7 @@ import fs from "fs";
 import { optimize } from "svgo";
 import TextToSVG from "text-to-svg";
 import redirects from "../redirect.json" with { type: "json" };
+import legacies from "../legacy.json" with { type: "json" };
 
 const OUTPUT_DIR = path.resolve(import.meta.dirname, "../public/badges");
 
@@ -106,8 +107,16 @@ function writeBadge(filename, message) {
   );
 }
 
+const badgeText = (key) => {
+  const redirect = redirects.find((entry) => entry.redirect === key);
+  return redirect.badge || redirect.name;
+};
+
 redirects.forEach((redirect) =>
-  writeBadge(redirect.redirect, redirect.badge || redirect.name),
+  writeBadge(redirect.redirect, badgeText(redirect.redirect)),
+);
+legacies.forEach((legacy) =>
+  writeBadge(legacy.redirect, badgeText(legacy.new_redirect)),
 );
 
 // writeBadge("homeassistant", "Home Assistant");

@@ -105,10 +105,10 @@ description: Answers to all your questions about My Home Assistant.
 
 <div class="section-header" id="supported-pages">What pages are supported?</div>
 <div class="redirects">
-  {% for redirect in redirects %} {% if redirect.deprecated != true %}
+  {% for redirect in redirects %} {% if redirect.hidden != true %}
   <a
     href="{{ redirect | redirectExamplePath }}"
-    title="Introduced in {{ redirect.introduced | version }}."
+    title="Introduced in {{ redirect | instanceIntroduced | version }}."
   >
     {{ redirect.name }}
     <img class="badge" loading="lazy" src="/badges/{{redirect.redirect}}.svg" />

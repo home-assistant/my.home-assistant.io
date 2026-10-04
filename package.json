@@ -12,8 +12,8 @@
     "lint": "yarn lint:types",
     "lint:types": "tsc",
     "precommit-badges": "node build-scripts/create-badges.js && git add public/badges",
-    "precommit-redirect": "node build-scripts/sort-redirects.js && prettier -w redirect.json && git add redirect.json",
-    "test": "node test/badges.js && node test/redirects.js"
+    "precommit-redirect": "node build-scripts/sort-redirects.js && prettier -w redirect.json legacy.json && git add redirect.json legacy.json",
+    "test": "node test/badges.js && node test/redirects.js && node --experimental-strip-types test/resolve.js"
   },
   "pre-commit": [
     "precommit-redirect",
@@ -26,21 +26,21 @@
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
     "gulp": "^5.0.1",
     "pre-commit": "^2.0.0",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.9",
     "require-dir": "^1.2.0",
-    "rollup": "4.61.1",
-    "rollup-plugin-terser": "^7.0.2",
+    "rollup": "4.63.5",
     "serve": "^14.2.6",
-    "svgo": "^4.0.1",
+    "svgo": "^4.1.0",
     "text-to-svg": "^3.1.5",
     "typescript": "^6.0.3"
   },
   "dependencies": {
     "@braintree/sanitize-url": "^7.1.2",
-    "@material/web": "^2.4.1",
+    "@material/web": "^2.5.0",
     "clipboard-copy": "^4.0.1",
     "html-minifier-terser": "^7.2.0",
     "lit": "^3.3.3"

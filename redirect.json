@@ -34,11 +34,12 @@
     "introduced": "2022.11"
   },
   {
-    "redirect": "config_ai_task",
-    "name": "AI preferences",
-    "badge": "AI preferences of",
-    "description": "show your AI preferences",
-    "introduced": "2025.8"
+    "redirect": "config_ai",
+    "name": "AI settings",
+    "badge": "AI settings of",
+    "description": "show your AI settings",
+    "introduced": "2026.10",
+    "legacy_redirect": "config_ai_task"
   },
   {
     "redirect": "analytics",
@@ -55,18 +56,19 @@
     "introduced": "supervisor-2021.02.12"
   },
   {
-    "redirect": "supervisor_addon",
+    "redirect": "supervisor_app",
     "name": "App: dashboard",
     "badge": "Show app on",
     "description": "show the dashboard of an app",
-    "introduced": "supervisor-2021.02.10",
+    "introduced": "2026.2",
     "params": {
-      "addon": "string",
+      "app": "string",
       "repository_url": "url?"
     },
     "example": {
-      "addon": "core_samba"
-    }
+      "app": "core_samba"
+    },
+    "legacy_redirect": "supervisor_addon"
   },
   {
     "redirect": "supervisor_ingress",
@@ -80,6 +82,14 @@
     "example": {
       "addon": "core_ssh"
     }
+  },
+  {
+    "redirect": "supervisor_apps",
+    "name": "Apps",
+    "badge": "Apps of",
+    "description": "show your installed apps",
+    "introduced": "2026.10",
+    "legacy_redirect": "supervisor_addons"
   },
   {
     "redirect": "automations",
@@ -137,6 +147,13 @@
     "introduced": "2025.0"
   },
   {
+    "redirect": "config_bluetooth",
+    "name": "Bluetooth configuration",
+    "badge": "Bluetooth config of",
+    "description": "show your Bluetooth configuration panel",
+    "introduced": "2025.2"
+  },
+  {
     "redirect": "bluetooth_connection_monitor",
     "name": "Bluetooth Connections",
     "badge": "Bluetooth Connections of",
@@ -158,6 +175,13 @@
     "introduced": "2023.1"
   },
   {
+    "redirect": "climate",
+    "name": "Climate",
+    "badge": "Climate of",
+    "description": "show your climate dashboard",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "companion_app",
     "name": "Companion app",
     "badge": "Companion app settings of",
@@ -165,19 +189,18 @@
     "introduced": "2023.8"
   },
   {
+    "redirect": "config_connectivity",
+    "name": "Connectivity",
+    "badge": "Connectivity settings of",
+    "description": "show your connectivity settings",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "application_credentials",
     "name": "Credentials",
     "badge": "Application credentials of",
     "description": "Manage your application credentials",
     "introduced": "2022.6"
-  },
-  {
-    "redirect": "supervisor",
-    "name": "Dashboard",
-    "badge": "Supervisor dashboard of",
-    "description": "show your Supervisor dashboard",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.10"
   },
   {
     "redirect": "lovelace_resources",
@@ -191,68 +214,6 @@
     "name": "Dashboards",
     "badge": "Dashboards of",
     "description": "show your dashboards",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_services",
-    "name": "Developer tools: actions",
-    "badge": "Action dev tools of",
-    "description": "show your action developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_assist",
-    "name": "Developer tools: Assist",
-    "badge": "Assist dev tools of",
-    "description": "show your Assist developer tools",
-    "introduced": "2023.8"
-  },
-  {
-    "redirect": "developer_debug",
-    "name": "Developer tools: debug",
-    "badge": "Debug dev tools of",
-    "description": "show your debug developer tools",
-    "introduced": "2026.1"
-  },
-  {
-    "redirect": "developer_events",
-    "name": "Developer tools: events",
-    "badge": "Event dev tools of",
-    "description": "show your event developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_call_service",
-    "name": "Developer tools: perform action",
-    "badge": "Perform action on",
-    "description": "show your service developer tools with a specific action selected",
-    "introduced": "2021.3",
-    "params": {
-      "service": "string"
-    },
-    "example": {
-      "service": "homeassistant.turn_on"
-    }
-  },
-  {
-    "redirect": "developer_states",
-    "name": "Developer tools: states",
-    "badge": "State dev tools of",
-    "description": "show your state developer tools",
-    "introduced": "2021.3"
-  },
-  {
-    "redirect": "developer_statistics",
-    "name": "Developer tools: statistics",
-    "badge": "Statistics dev tools of",
-    "description": "show your statistics developer tools",
-    "introduced": "2021.10"
-  },
-  {
-    "redirect": "developer_template",
-    "name": "Developer tools: templates",
-    "badge": "Template dev tools of",
-    "description": "show your template developer tools",
     "introduced": "2021.3"
   },
   {
@@ -428,6 +389,13 @@
     }
   },
   {
+    "redirect": "lights",
+    "name": "Lights",
+    "badge": "Lights of",
+    "description": "show your lights dashboard",
+    "introduced": "2026.10"
+  },
+  {
     "redirect": "logbook",
     "name": "Logbook",
     "badge": "Logbook of",
@@ -466,6 +434,14 @@
     "introduced": "2022.3"
   },
   {
+    "redirect": "config_modbus",
+    "name": "Modbus configuration",
+    "badge": "Modbus config of",
+    "description": "show your Modbus configuration panel",
+    "introduced": "2026.10",
+    "component": "modbus"
+  },
+  {
     "redirect": "config_mqtt",
     "name": "MQTT configuration",
     "badge": "MQTT config of",
@@ -481,7 +457,7 @@
   },
   {
     "redirect": "oauth",
-    "deprecated": true,
+    "hidden": true,
     "name": "OAuth2 Authorize Callback",
     "badge": "OAuth2 callback to",
     "description": "(replaced in UI)",
@@ -535,11 +511,11 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "server_controls",
-    "name": "Server controls",
-    "badge": "Server controls of",
-    "description": "show your server controls",
-    "introduced": "2021.3"
+    "redirect": "security",
+    "name": "Security",
+    "badge": "Security of",
+    "description": "show your security dashboard",
+    "introduced": "2026.10"
   },
   {
     "redirect": "config",
@@ -561,38 +537,6 @@
     "badge": "Storage info of",
     "description": "show storage information",
     "introduced": "2022.5"
-  },
-  {
-    "redirect": "supervisor_snapshots",
-    "deprecated": true,
-    "name": "Supervisor: backups",
-    "badge": "Backups of",
-    "description": "Deprecated, use 'supervisor_backups' instead",
-    "introduced": "supervisor-2021.02.10"
-  },
-  {
-    "redirect": "supervisor_backups",
-    "name": "Supervisor: backups",
-    "deprecated": true,
-    "badge": "Backups of",
-    "description": "show your Supervisor backups",
-    "introduced": "supervisor-2021.08.1"
-  },
-  {
-    "redirect": "supervisor_info",
-    "name": "Supervisor: info",
-    "badge": "Supervisor info of",
-    "description": "show your Supervisor system information",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.12"
-  },
-  {
-    "redirect": "supervisor_logs",
-    "name": "Supervisor: logs",
-    "badge": "Supervisor logs of",
-    "description": "show your Supervisor system logs",
-    "deprecated": true,
-    "introduced": "supervisor-2021.02.12"
   },
   {
     "redirect": "system_dashboard",
@@ -623,11 +567,110 @@
     "introduced": "2026.3"
   },
   {
+    "redirect": "tools_actions",
+    "name": "Tools: actions",
+    "badge": "Action tools of",
+    "description": "show your action tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_services"
+  },
+  {
+    "redirect": "tools_assist",
+    "name": "Tools: Assist",
+    "badge": "Assist tools of",
+    "description": "show your Assist tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_assist"
+  },
+  {
+    "redirect": "tools_debug",
+    "name": "Tools: debug",
+    "badge": "Debug tools of",
+    "description": "show your debug tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_debug"
+  },
+  {
+    "redirect": "tools_events",
+    "name": "Tools: events",
+    "badge": "Event tools of",
+    "description": "show your event tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_events"
+  },
+  {
+    "redirect": "tools_perform_action",
+    "name": "Tools: perform action",
+    "badge": "Perform action on",
+    "description": "show your action tools with a specific action selected",
+    "introduced": "2026.8",
+    "params": {
+      "service": "string"
+    },
+    "example": {
+      "service": "homeassistant.turn_on"
+    },
+    "legacy_redirect": "developer_call_service"
+  },
+  {
+    "redirect": "tools_states",
+    "name": "Tools: states",
+    "badge": "State tools of",
+    "description": "show your state tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_states"
+  },
+  {
+    "redirect": "tools_statistics",
+    "name": "Tools: statistics",
+    "badge": "Statistics tools of",
+    "description": "show your statistics tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_statistics"
+  },
+  {
+    "redirect": "tools_template",
+    "name": "Tools: templates",
+    "badge": "Template tools of",
+    "description": "show your template tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "developer_template"
+  },
+  {
+    "redirect": "tools_yaml",
+    "name": "Tools: YAML",
+    "badge": "YAML tools of",
+    "description": "show your YAML tools",
+    "introduced": "2026.8",
+    "legacy_redirect": "server_controls"
+  },
+  {
     "redirect": "updates",
     "name": "Updates",
     "badge": "Updates of",
     "description": "manage your pending updates",
     "introduced": "2022.5"
+  },
+  {
+    "redirect": "profile_preferences",
+    "name": "User appearance",
+    "badge": "User appearance on",
+    "description": "show your Home Assistant user's appearance settings",
+    "introduced": "2026.10"
+  },
+  {
+    "redirect": "profile_browser",
+    "name": "User browser settings",
+    "badge": "User browser settings on",
+    "description": "show your Home Assistant settings for this browser",
+    "introduced": "2026.10"
+  },
+  {
+    "redirect": "profile_localization",
+    "name": "User localization",
+    "badge": "User localization on",
+    "description": "show your Home Assistant user's localization settings",
+    "introduced": "2026.10"
   },
   {
     "redirect": "profile",

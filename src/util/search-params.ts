@@ -19,3 +19,6 @@ export const createSearchParam = (params: Record<string, string>): string => {
   });
   return urlParams.toString();
 };
+
+export const createSearch = (params: Record<string, string>): string =>
+  Object.keys(params).length ? `?${createSearchParam(params)}` : "";
