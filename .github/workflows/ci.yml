@@ -46,7 +46,7 @@ jobs:
       - run: yarn test
 
   build:
-    name: Production build
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
