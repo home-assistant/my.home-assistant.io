@@ -7,7 +7,7 @@ Powers https://my.home-assistant.io/
 Start a hot-reloading development build server with:
 
 ```bash
-./script/develop
+yarn develop
 ```
 
 Open http://localhost:3000 to view your changes as you make them.
@@ -15,13 +15,13 @@ Open http://localhost:3000 to view your changes as you make them.
 Or, perform a production build with:
 
 ```bash
-./script/build
+yarn build
 ```
 
 And then serve it up with:
 
 ```bash
-yard serve dist
+yarn serve dist
 ```
 
 Open http://localhost:3000 to view your production build.

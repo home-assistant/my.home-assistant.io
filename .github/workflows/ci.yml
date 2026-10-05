@@ -1,9 +1,10 @@
 # This workflow will:
 # - do a clean install of node dependencies
+# - lint the source code
 # - build the source code
-# - run tests across different versions of node
+# - run tests
 # - ensure the code is formatted
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# For more information see: https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs
 
 name: CI
 
@@ -14,7 +15,8 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  lint:
+    name: Lint and format
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +27,34 @@ jobs:
           node-version-file: ".nvmrc"
           cache: yarn
       - run: yarn install --immutable
-      - run: npm test
-      - run: npm run format:check
+      - run: yarn lint
+
+      - run: yarn format:check
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Use Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: ".nvmrc"
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Use Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: ".nvmrc"
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
