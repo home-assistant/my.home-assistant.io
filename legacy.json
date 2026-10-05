@@ -45,6 +45,11 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "logbook",
+    "new_redirect": "activity",
+    "introduced": "2021.3"
+  },
+  {
     "redirect": "server_controls",
     "new_redirect": "tools_yaml",
     "introduced": "2021.3"

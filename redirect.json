@@ -1,5 +1,13 @@
 [
   {
+    "redirect": "activity",
+    "name": "Activity",
+    "badge": "Activity of",
+    "description": "show your activity panel",
+    "introduced": "2025.10",
+    "legacy_redirect": "logbook"
+  },
+  {
     "redirect": "add_matter_device",
     "name": "Add Matter device",
     "badge": "Add Matter device to",
@@ -394,13 +402,6 @@
     "badge": "Lights of",
     "description": "show your lights dashboard",
     "introduced": "2026.10"
-  },
-  {
-    "redirect": "logbook",
-    "name": "Logbook",
-    "badge": "Logbook of",
-    "description": "show your logbook panel",
-    "introduced": "2021.3"
   },
   {
     "redirect": "logs",
