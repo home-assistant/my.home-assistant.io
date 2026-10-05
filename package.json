@@ -9,7 +9,7 @@
     "develop": "./script/develop",
     "format": "prettier -w .",
     "format:check": "prettier --list-different .",
-    "lint": "yarn lint:types",
+    "lint": "pnpm run lint:types",
     "lint:types": "tsc",
     "precommit-badges": "node build-scripts/create-badges.js && git add public/badges",
     "precommit-redirect": "node build-scripts/sort-redirects.js && prettier -w redirect.json legacy.json && git add redirect.json legacy.json",
@@ -40,5 +40,5 @@
     "html-minifier-terser": "^7.2.0",
     "lit": "^3.3.3"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "pnpm@12.8.2"
 }

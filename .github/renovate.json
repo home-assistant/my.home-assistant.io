@@ -3,6 +3,7 @@
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
   "enabledManagers": ["github-actions", "npm", "nvm"],
   "minimumReleaseAge": "3 days",
+  "postUpdateOptions": ["pnpmDedupe"],
   "schedule": ["before 8am on monday"],
   "semanticCommits": "disabled",
   "labels": ["dependencies"],

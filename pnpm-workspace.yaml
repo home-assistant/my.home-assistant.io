@@ -1,0 +1,8 @@
+# Supply-chain protection
+minimumReleaseAge: 4320 # 3 days, in minutes
+trustPolicy: no-downgrade
+
+# Dependency build scripts are denied unless listed here with true
+allowBuilds:
+  # Installs the git pre-commit hook
+  pre-commit: true
