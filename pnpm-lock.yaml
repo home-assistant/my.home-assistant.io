@@ -1584,8 +1584,8 @@ packages:
     resolution: {integrity: sha512-lH3f6kMbwyANB7HuOWRMlLCa2itaCrZJ+SAqqkSZrZKO/cAsk2EOyaKHUtNkVLFyFW9pct22SFesFp3Z7zpA0g==}
     engines: {node: '>= 10.13.0'}
 
-  semver@6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
+  semver@6.3.1:
+    resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
 
   semver@7.8.2:
@@ -3149,7 +3149,7 @@ snapshots:
     dependencies:
       sver: 1.8.4
 
-  semver@6.3.0:
+  semver@6.3.1:
     optional: true
 
   semver@7.8.2: {}
@@ -3282,7 +3282,7 @@ snapshots:
 
   sver@1.8.4:
     optionalDependencies:
-      semver: 6.3.0
+      semver: 6.3.1
 
   svgo@4.1.0:
     dependencies:
