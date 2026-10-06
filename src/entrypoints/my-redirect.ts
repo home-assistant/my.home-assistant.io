@@ -1,4 +1,3 @@
-import "../components/ha-button";
 import {
   createSearch,
   createSearchParam,
@@ -83,9 +82,9 @@ const render = (showTroubleshooting: boolean) => {
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
-    <ha-button appearance="accent" href="${redirectUrl}" class='open-link' rel="noopener">
+    <a href="${redirectUrl}" class="ha-button accent open-link" rel="noopener">
       ${openLink.textContent}
-    </ha-button>
+    </a>
   `;
 
   if (window.redirect.redirect === "oauth") {
@@ -108,9 +107,9 @@ const render = (showTroubleshooting: boolean) => {
       state: params.state,
     });
     declineLink.outerHTML = `
-        <ha-button appearance="outlined" href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
+        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class="ha-button outlined decline-link" rel="noopener">
           ${buttonCaption}
-        </ha-button>
+        </a>
       `;
   }
 

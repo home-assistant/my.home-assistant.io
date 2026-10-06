@@ -94,6 +94,67 @@ My Home Assistant
         color: var(--link-text-color);
       }
 
+      .ha-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        box-sizing: border-box;
+        height: 40px;
+        padding: 0 var(--ha-space-4);
+        border: 1px solid transparent;
+        border-radius: var(--ha-border-radius-pill);
+        font-family: inherit;
+        font-size: var(--ha-font-size-m);
+        font-weight: var(--ha-font-weight-medium);
+        line-height: 1;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color var(--ha-animation-duration-fast) ease-out;
+      }
+      .ha-button:active {
+        transform: scale(0.9875);
+      }
+      .ha-button:focus-visible {
+        outline: var(--wa-focus-ring);
+        outline-offset: var(--wa-focus-ring-offset);
+      }
+      .ha-button.accent {
+        background-color: var(--wa-color-brand-fill-loud);
+        color: var(--wa-color-brand-on-loud);
+      }
+      .ha-button.outlined {
+        background-color: transparent;
+        border-color: var(--wa-color-brand-border-loud);
+        color: var(--wa-color-brand-on-quiet);
+      }
+      @media (hover: hover) {
+        .ha-button.accent:hover {
+          background-color: var(--ha-color-fill-primary-loud-hover);
+        }
+        .ha-button.outlined:hover {
+          background-color: var(--wa-color-brand-fill-quiet);
+        }
+      }
+      .ha-button.accent:active {
+        background-color: var(--ha-color-fill-primary-loud-active);
+      }
+      .ha-button.outlined:active {
+        background-color: color-mix(
+          in oklab,
+          var(--wa-color-brand-fill-quiet),
+          var(--wa-color-mix-active)
+        );
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ha-button:active {
+          transform: none;
+        }
+      }
+
       .footer {
         text-align: center;
         font-size: 14px;
