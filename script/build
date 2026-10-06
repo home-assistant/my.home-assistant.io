@@ -5,10 +5,10 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-yarn lint:types
+pnpm run lint:types
 
 rm -rf dist
 cp -r public dist
 cp redirect.json legacy.json dist
-NODE_ENV=production yarn rolldown -c
-NODE_ENV=production yarn eleventy
+NODE_ENV=production pnpm exec rolldown -c
+NODE_ENV=production pnpm exec eleventy

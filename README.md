@@ -7,7 +7,7 @@ Powers https://my.home-assistant.io/
 Start a hot-reloading development build server with:
 
 ```bash
-yarn develop
+pnpm develop
 ```
 
 Open http://localhost:3000 to view your changes as you make them.
@@ -15,13 +15,13 @@ Open http://localhost:3000 to view your changes as you make them.
 Or, perform a production build with:
 
 ```bash
-yarn build
+pnpm build
 ```
 
 And then serve it up with:
 
 ```bash
-yarn serve dist
+pnpm exec serve dist
 ```
 
 Open http://localhost:3000 to view your production build.
@@ -183,7 +183,7 @@ In `redirect.json`:
 - The instance receives the `legacy_redirect` key with the params renamed back,
   or the new key when the entry has no `legacy_redirect`.
 
-`legacy.json` is sorted by key, the pre-commit hook does it. `npm test` checks
+`legacy.json` is sorted by key, the pre-commit hook does it. `pnpm test` checks
 that a key appears once across both files, that every `new_redirect` exists,
 that `legacy_redirect` names an old key that redirects to the entry and has no
 `new_redirect_params`, that `params_rename` and `new_redirect_params` only name
