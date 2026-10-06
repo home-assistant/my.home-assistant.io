@@ -227,7 +227,12 @@ ${badgeHTML}</textarea
     inputEl.setCustomValidity("");
 
     if (paramType.startsWith("url")) {
-      value = decodeURI(value);
+      try {
+        value = decodeURI(value);
+      } catch (err) {
+        // Malformed escape sequence (e.g. a lone "%"); keep the value as
+        // typed and let validateParam judge it.
+      }
     }
 
     const validationMessage =
