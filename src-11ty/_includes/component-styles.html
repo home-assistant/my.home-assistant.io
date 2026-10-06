@@ -145,6 +145,61 @@
     --wa-form-control-padding-block: 0.75em;
     --wa-form-control-value-line-height: var(--ha-line-height-condensed);
     --wa-form-control-value-font-weight: var(--ha-font-weight-normal);
+
+    color-scheme: light;
+    color: var(--wa-color-text-normal);
+    font-family: var(--wa-font-family-body);
+    --wa-font-size-xs: round(calc(var(--wa-font-size-s) / 1.125), 1px);
+    --wa-font-size-xl: round(calc(var(--wa-font-size-l) * 1.125 * 1.125), 1px);
+    --wa-font-size-smaller: round(calc(1em / 1.125), 1px);
+    --wa-font-weight-heading: 600;
+    --wa-line-height-normal: 1.6;
+    --wa-space-2xs: 0.25rem;
+    --wa-shadow-l: 0 0.5rem 0.5rem -0.25rem
+      color-mix(in oklab, #101219 12%, transparent);
+    --wa-color-overlay-modal: color-mix(in oklab, #101219 50%, transparent);
+    --wa-color-mix-hover: oklch(from currentColor calc(1 - l) c h) 10%;
+    --wa-color-mix-active: var(--wa-color-surface-default) 10%;
+    --wa-color-neutral-fill-loud: #2f323f;
+    --wa-color-neutral-fill-normal: #e4e5e9;
+    --wa-color-neutral-fill-quiet: #f1f2f3;
+    --wa-color-neutral-border-loud: #9194a2;
+    --wa-color-neutral-border-normal: #c7c9d0;
+    --wa-color-neutral-border-quiet: #e4e5e9;
+    --wa-color-neutral-on-loud: #ffffff;
+    --wa-color-neutral-on-normal: #424554;
+    --wa-color-neutral-on-quiet: #545868;
+    --wa-button-transform-hover: none;
+    --wa-button-transform-active: scale(0.9875);
+    --wa-panel-border-style: solid;
+    --wa-panel-border-width: 1px;
+    --wa-tooltip-arrow-size: 0.375rem;
+    --wa-form-control-label-color: var(--wa-color-text-normal);
+    --wa-form-control-label-font-weight: var(--ha-font-weight-medium);
+    --wa-form-control-label-line-height: var(--wa-line-height-condensed);
+    --wa-form-control-hint-color: var(--wa-color-text-quiet);
+    --wa-form-control-hint-font-weight: var(--wa-font-weight-body);
+    --wa-form-control-hint-line-height: var(--wa-line-height-normal);
+    --wa-form-control-required-content: "*";
+    --wa-form-control-required-content-color: inherit;
+    --wa-form-control-required-content-offset: 0.1em;
+  }
+
+  @supports (scrollbar-gutter: stable) {
+    .wa-scroll-lock {
+      scrollbar-gutter: var(--wa-scroll-lock-gutter) !important;
+    }
+
+    .wa-scroll-lock body {
+      overflow: hidden !important;
+    }
+  }
+
+  @supports not (scrollbar-gutter: stable) {
+    .wa-scroll-lock body {
+      padding-right: var(--wa-scroll-lock-size) !important;
+      overflow: hidden !important;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
