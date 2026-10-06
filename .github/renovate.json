@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
-  "enabledManagers": ["github-actions", "npm", "nvm"],
+  "enabledManagers": ["devcontainer", "github-actions", "npm", "nvm"],
   "minimumReleaseAge": "3 days",
   "postUpdateOptions": ["pnpmDedupe"],
   "schedule": ["before 8am on monday"],
@@ -22,6 +22,15 @@
       "description": "Label GitHub Actions updates like Dependabot did",
       "matchManagers": ["github-actions"],
       "addLabels": ["github_actions"]
+    },
+    {
+      "description": "Move the devcontainer image and .nvmrc to a new Node version together",
+      "matchDepNames": [
+        "node",
+        "mcr.microsoft.com/devcontainers/typescript-node"
+      ],
+      "groupName": "Node.js",
+      "groupSlug": "nodejs"
     },
     {
       "description": "All non-major devDependency updates in one weekly PR. rollup alone came in as 17 separate PRs this year, prettier as 10.",
