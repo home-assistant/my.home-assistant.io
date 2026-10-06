@@ -16,7 +16,7 @@ const validateUrl = (value: string) => {
   // (surrounding whitespace, control characters, backslashes): the raw value
   // is what gets forwarded, so it must not differ from the URL that was
   // validated.
-  if (value !== value.trim() || /[\t\n\r\\]/.test(value)) {
+  if (value !== value.trim() || /[\u0000-\u001F\u007F\\]/.test(value)) {
     return "Invalid URL.";
   }
   // sanitize-url returns "about:blank" for URLs it considers unsafe
