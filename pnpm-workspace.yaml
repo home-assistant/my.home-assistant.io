@@ -1,0 +1,11 @@
+# Supply-chain protection
+minimumReleaseAge: 4320 # 3 days, in minutes
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Backport published after provenance-signed 7.x releases
+  - semver@6.3.1
+
+# Dependency build scripts are denied unless listed here with true
+allowBuilds:
+  # Installs the git pre-commit hook
+  pre-commit: true

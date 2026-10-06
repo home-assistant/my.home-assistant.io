@@ -1,10 +1,14 @@
+#!/bin/sh
+
 # Stop on errors
 set -e
 
 cd "$(dirname "$0")/.."
 
+pnpm run lint:types
+
 rm -rf dist
 cp -r public dist
 cp redirect.json legacy.json dist
-NODE_ENV=production yarn rollup -c
-NODE_ENV=production yarn eleventy
+NODE_ENV=production pnpm exec rolldown -c
+NODE_ENV=production pnpm exec eleventy

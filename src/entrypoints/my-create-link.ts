@@ -252,6 +252,12 @@ ${badgeHTML}</textarea
   }
 
   private _copySuccess(element: MdOutlinedButton) {
+    // Ignore repeat clicks while the "Copied!" feedback is still showing,
+    // otherwise the transient label is captured as prevText and restored,
+    // leaving the button permanently stuck on "Copied!".
+    if (element.classList.contains("success")) {
+      return;
+    }
     const prevText = element.innerText;
     element.classList.add("success");
     element.innerText = "Copied!";

@@ -5,14 +5,7 @@ manifest.json
 build
 .vscode/settings.json
 
-# yarn
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
+# Node
 /node_modules/
-yarn-error.log
 npm-debug.log
+.pnpm-store/
