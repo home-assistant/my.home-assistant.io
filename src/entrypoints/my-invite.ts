@@ -1,7 +1,3 @@
-import "@material/web/button/filled-button";
-import { LitElement, TemplateResult, html } from "lit";
-import { customElement } from "lit/decorators.js";
-
 const SUPPORTED_PARAMS = ["url"];
 
 const INVITE_URL = new URL("homeassistant://invite");
@@ -18,19 +14,10 @@ if (inviteHashParams.size > 0) {
   INVITE_URL.hash = inviteHashParams.toString();
 }
 
-@customElement("my-invite")
-export class MyUrlInputMain extends LitElement {
-  protected render(): TemplateResult {
-    return html`
-      <a href="${INVITE_URL.toString()}">
-        <md-filled-button>Accept Invite</md-filled-button>
-      </a>
-    `;
-  }
-}
+const inviteLink = document.querySelector(".invite-link");
 
-declare global {
-  interface HTMLElementTagNameMap {
-    "my-invite": MyUrlInputMain;
-  }
+if (inviteLink) {
+  inviteLink.outerHTML = `
+    <a href="${INVITE_URL.toString()}" class="ha-button accent">Accept Invite</a>
+  `;
 }

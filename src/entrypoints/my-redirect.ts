@@ -1,5 +1,3 @@
-import "@material/web/button/filled-button";
-import "@material/web/button/outlined-button";
 import {
   createSearch,
   createSearchParam,
@@ -84,8 +82,8 @@ const render = (showTroubleshooting: boolean) => {
 
   const openLink = document.querySelector(".open-link") as HTMLElement;
   openLink.outerHTML = `
-    <a href="${redirectUrl}" class='open-link' rel="noopener">
-      <md-filled-button>${openLink.innerText}</md-filled-button>
+    <a href="${redirectUrl}" class="ha-button accent open-link" rel="noopener">
+      ${openLink.textContent}
     </a>
   `;
 
@@ -109,8 +107,8 @@ const render = (showTroubleshooting: boolean) => {
       state: params.state,
     });
     declineLink.outerHTML = `
-        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class='decline-link' rel="noopener">
-          <md-outlined-button>${buttonCaption}</md-outlined-button>
+        <a href="${instanceUrl}/_my_redirect/${window.redirect.redirect}?${declineParams}" class="ha-button outlined decline-link" rel="noopener">
+          ${buttonCaption}
         </a>
       `;
   }
