@@ -443,7 +443,7 @@
     "redirect": "marketplace_repositories",
     "component": "marketplace",
     "name": "Marketplace: custom repositories",
-    "badge": "Custom repositories of",
+    "badge": "Marketplace custom repositories of",
     "description": "show the custom repositories you added to the Marketplace",
     "introduced": "2026.11"
   },
