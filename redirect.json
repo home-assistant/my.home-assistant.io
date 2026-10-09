@@ -421,6 +421,78 @@
     "introduced": "2026.6"
   },
   {
+    "redirect": "marketplace_browse",
+    "component": "marketplace",
+    "name": "Marketplace: browse",
+    "badge": "Browse the Marketplace of",
+    "description": "browse the Marketplace",
+    "introduced": "2026.11",
+    "params": {
+      "search": "string?",
+      "type": "string?",
+      "status": "string?",
+      "source": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "search": "mushroom"
+    }
+  },
+  {
+    "redirect": "marketplace_repositories",
+    "component": "marketplace",
+    "name": "Marketplace: custom repositories",
+    "badge": "Marketplace custom repositories of",
+    "description": "show the custom repositories you added to the Marketplace",
+    "introduced": "2026.11"
+  },
+  {
+    "redirect": "marketplace_discover",
+    "component": "marketplace",
+    "name": "Marketplace: discover",
+    "badge": "Discover in the Marketplace of",
+    "description": "discover popular and recently updated Marketplace repositories",
+    "introduced": "2026.11"
+  },
+  {
+    "redirect": "marketplace_installed",
+    "component": "marketplace",
+    "name": "Marketplace: installed",
+    "badge": "Installed from the Marketplace on",
+    "description": "show what you installed from the Marketplace",
+    "introduced": "2026.11",
+    "params": {
+      "search": "string?",
+      "type": "string?",
+      "status": "string?",
+      "source": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "status": "pending-upgrade"
+    }
+  },
+  {
+    "redirect": "marketplace_repository",
+    "component": "marketplace",
+    "name": "Marketplace: repository",
+    "badge": "Open Marketplace repository on",
+    "description": "open a repository in the Marketplace",
+    "introduced": "2026.11",
+    "params": {
+      "owner": "string",
+      "repository": "string",
+      "category": "string?"
+    },
+    "example": {
+      "owner": "hacs",
+      "repository": "integration",
+      "category": "integration"
+    }
+  },
+  {
     "redirect": "config_matter",
     "name": "Matter configuration",
     "badge": "Matter config of",
