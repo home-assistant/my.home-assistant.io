@@ -16,7 +16,7 @@ import { findRedirect, visibleRedirects } from "../data/redirects";
 import { validateParam } from "../util/validate";
 
 const prettify = (key: string) =>
-  capitalizeFirst(key.replace("_", " ").replace("url", "URL"));
+  capitalizeFirst(key.replace(/_/g, " ").replace("url", "URL"));
 
 const capitalizeFirst = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
@@ -100,43 +100,52 @@ class MyCreateLink extends LitElement {
         ${
           this.isValid
             ? html`
-              <h1>Your URL</h1>
-                <p>A URL to share with others, for example, when chatting on
-                our <a href="https://www.home-assistant.io/join-chat"
-                target="_blank">Discord</a> chat server.</p>
+                <h1>Your URL</h1>
+                <p>
+                  A URL to share with others, for example, when chatting on our
+                  <a
+                    href="https://www.home-assistant.io/join-chat"
+                    target="_blank"
+                    >Discord</a
+                  >
+                  chat server.
+                </p>
                 <input value=${this._url} readonly @focus=${this._select} />
                 <ha-button appearance="outlined" @click=${this._copyURL}>
                   Copy URL
                 </ha-button>
 
                 <h1>Markdown</h1>
-                <p>A beautiful linked badge in Markdown, for example, when
-                posting on our <a href="https://community.home-assistant.io"
-                target="_blank">Community Forum</a>.</p>
+                <p>
+                  A beautiful linked badge in Markdown, for example, when
+                  posting on our
+                  <a href="https://community.home-assistant.io" target="_blank"
+                    >Community Forum</a
+                  >.
+                </p>
 
                 ${badgeTemplate}
 
                 <textarea rows="3" readonly @focus=${this._select}>
-${this._createMarkdown()}</textarea
-                >
+${this._createMarkdown()}</textarea>
                 <ha-button appearance="outlined" @click=${this._copyMarkdown}>
                   Copy Markdown
                 </ha-button>
 
                 <h1>HTML</h1>
-                <p>A beautiful badge in HTML format, which can be used on,
-                for example, your website or blog.</p>
+                <p>
+                  A beautiful badge in HTML format, which can be used on, for
+                  example, your website or blog.
+                </p>
 
                 ${badgeTemplate}
 
                 <textarea rows="3" readonly @focus=${this._select}>
-${badgeHTML}</textarea
-                >
+${badgeHTML}</textarea>
                 <ha-button appearance="outlined" @click=${this._copyHTML}>
                   Copy HTML
                 </ha-button>
-              </a>
-            `
+              `
             : ""
         }
       </div>
