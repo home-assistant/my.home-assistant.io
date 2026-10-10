@@ -26,7 +26,7 @@ class MyChangeUrl extends LitElement {
   public connectedCallback() {
     super.connectedCallback();
     if (isMobile && changeRequestedFromRedirect) {
-      const parts = decodeURIComponent(changeRequestedFromRedirect).split("?");
+      const parts = changeRequestedFromRedirect.split("?");
       const params = new URLSearchParams(parts[1]);
       params.append("mobile", "1");
       const url = `/redirect/${parts[0]}/?${params.toString()}`;
@@ -99,14 +99,11 @@ class MyChangeUrl extends LitElement {
 
     this._error = undefined;
 
-    if (changeRequestedFromRedirect) {
-      window.location.assign(
-        `/redirect/${decodeURIComponent(changeRequestedFromRedirect)}`,
-      );
-    } else {
-      // Shouldn't happen, but keep it as fallback
-      history.back();
-    }
+    window.location.assign(
+      changeRequestedFromRedirect
+        ? `/redirect/${changeRequestedFromRedirect}`
+        : "/",
+    );
   }
 }
 
