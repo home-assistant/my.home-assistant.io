@@ -10,7 +10,7 @@ for (const [key, value] of hashParams.entries()) {
     inviteHashParams.append(key, value);
   }
 }
-if (inviteHashParams.size > 0) {
+if (inviteHashParams.toString()) {
   INVITE_URL.hash = inviteHashParams.toString();
 }
 
