@@ -80,6 +80,7 @@
   },
   {
     "redirect": "supervisor_ingress",
+    "hidden": true,
     "name": "App: ingress URL",
     "badge": "Open app ingress URL of",
     "description": "open the ingress URL of an app",
