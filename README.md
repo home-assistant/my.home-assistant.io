@@ -64,8 +64,9 @@ Open http://localhost:3000 to view your production build.
 - `component`: the integration the page needs, for information.
 - `custom`: shows a warning that the link goes to a custom integration.
 - `hidden`: hides the entry from the picker and the FAQ. The page and the badge
-  are still built. Only `oauth` uses it, the OAuth callback is not meant to be
-  created by users.
+  are still built, so old links keep working. `oauth` uses it because users do
+  not create OAuth callback links. `supervisor_ingress` uses it because current
+  Home Assistant versions no longer handle it.
 
 Entries are sorted by name and every entry needs a badge. The pre-commit hook
 runs `build-scripts/sort-redirects.js` and `build-scripts/create-badges.js` for
