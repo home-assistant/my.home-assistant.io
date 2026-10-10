@@ -76,6 +76,12 @@ export class MyUrlInputMain extends LitElement {
       return;
     }
 
+    if (!["http:", "https:"].includes(urlObj.protocol)) {
+      this._textfield.setCustomValidity("Invalid URL");
+      this._textfield.reportValidity();
+      return;
+    }
+
     inputEl.reportValidity();
     const url = `${urlObj.protocol}//${urlObj.host}`;
     try {
