@@ -51,12 +51,18 @@ const render = (showTroubleshooting: boolean) => {
   try {
     params = createRedirectParams();
   } catch (err) {
-    alert("Invalid parameters given.");
-    if (!isMobile) {
-      document.location.assign(
-        `/create-link?redirect=${window.redirect.redirect}`,
-      );
+    // The app and hidden redirects cannot use the create link page.
+    if (isMobile || window.redirect.hidden) {
+      document.querySelector(".card-content")!.textContent =
+        "This link has invalid parameters.";
+      (document.querySelector(".card-actions") as HTMLElement).style.display =
+        "none";
+      return;
     }
+    alert("Invalid parameters given.");
+    document.location.assign(
+      `/create-link/?redirect=${window.redirect.redirect}`,
+    );
     return;
   }
 
