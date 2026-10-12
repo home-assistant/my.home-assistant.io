@@ -42,5 +42,5 @@
     "html-minifier-terser": "^7.2.0",
     "lit": "^3.3.3"
   },
-  "packageManager": "pnpm@12.8.2"
+  "packageManager": "pnpm@12.11.0"
 }
