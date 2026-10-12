@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "^7.1.2",
-    "@home-assistant/webawesome": "3.7.0-ha.1",
+    "@home-assistant/webawesome": "3.7.0",
     "@mdi/js": "7.4.47",
     "clipboard-copy": "^4.0.1",
     "fuse.js": "7.5.0",
