@@ -230,7 +230,23 @@
     "name": "Devices",
     "badge": "Devices of",
     "description": "show your devices",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "status": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "domain": "string?",
+      "label": "string?",
+      "config_entry": "string?",
+      "sub_entry": "string?"
+    },
+    "example": {
+      "domain": "hue"
+    }
   },
   {
     "redirect": "config_dhcp",
