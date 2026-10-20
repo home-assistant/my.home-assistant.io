@@ -434,7 +434,8 @@
       "status": "string?",
       "source": "string?",
       "sort": "string?",
-      "direction": "string?"
+      "direction": "string?",
+      "group": "string?"
     },
     "example": {
       "search": "mushroom"
@@ -469,7 +470,8 @@
       "status": "string?",
       "source": "string?",
       "sort": "string?",
-      "direction": "string?"
+      "direction": "string?",
+      "group": "string?"
     },
     "example": {
       "status": "pending-upgrade"
