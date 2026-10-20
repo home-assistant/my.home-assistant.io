@@ -305,7 +305,22 @@
     "name": "Helpers",
     "badge": "Helpers of",
     "description": "show your helper entities",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "device": "string?",
+      "label": "string?",
+      "category": "string?",
+      "assistants": "string?"
+    },
+    "example": {
+      "group": "type"
+    }
   },
   {
     "redirect": "history",
