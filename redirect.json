@@ -772,7 +772,16 @@
     "name": "Users",
     "badge": "Users of",
     "description": "show your users",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "group"
+    }
   },
   {
     "redirect": "info",
