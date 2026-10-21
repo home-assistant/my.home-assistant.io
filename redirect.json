@@ -380,7 +380,16 @@
     "name": "Labels",
     "badge": "Labels of",
     "description": "show your labels",
-    "introduced": "2024.4"
+    "introduced": "2024.4",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "sort": "created_at",
+      "direction": "desc"
+    }
   },
   {
     "redirect": "labs",
