@@ -209,7 +209,15 @@
     "name": "Credentials",
     "badge": "Application credentials of",
     "description": "Manage your application credentials",
-    "introduced": "2022.6"
+    "introduced": "2022.6",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "sort": "integration"
+    }
   },
   {
     "redirect": "lovelace_resources",
