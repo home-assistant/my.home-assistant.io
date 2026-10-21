@@ -126,7 +126,18 @@
     "badge": "Backups of",
     "name": "Backups list",
     "description": "list your Home Assistant backups",
-    "introduced": "2025.1"
+    "introduced": "2025.1",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "type": "string?",
+      "location": "string?"
+    },
+    "example": {
+      "type": "manual"
+    }
   },
   {
     "redirect": "blueprints",
