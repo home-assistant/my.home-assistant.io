@@ -237,7 +237,16 @@
     "name": "DHCP Browser",
     "badge": "DHCP Browser of",
     "description": "show your DHCP Browser",
-    "introduced": "2025.0"
+    "introduced": "2025.0",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "sort": "hostname"
+    }
   },
   {
     "redirect": "energy",
@@ -610,7 +619,16 @@
     "name": "SSDP Browser",
     "badge": "SSDP Browser of",
     "description": "show your SSDP Browser",
-    "introduced": "2025.0"
+    "introduced": "2025.0",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "location"
+    }
   },
   {
     "redirect": "storage",
@@ -800,7 +818,16 @@
     "name": "Zeroconf Browser",
     "badge": "Zeroconf Browser of",
     "description": "show your Zeroconf Browser",
-    "introduced": "2025.0"
+    "introduced": "2025.0",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "type"
+    }
   },
   {
     "redirect": "config_zha",
