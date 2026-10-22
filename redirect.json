@@ -105,7 +105,24 @@
     "badge": "Automations of",
     "name": "Automations",
     "description": "show your automations",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "device": "string?",
+      "entity": "string?",
+      "label": "string?",
+      "category": "string?",
+      "assistants": "string?",
+      "blueprint": "string?"
+    },
+    "example": {
+      "group": "state"
+    }
   },
   {
     "redirect": "backup",
