@@ -413,6 +413,7 @@
     "params": {
       "provider": "string?",
       "search": "string?",
+      "integration": "string?",
       "raw": "string?"
     },
     "example": {
