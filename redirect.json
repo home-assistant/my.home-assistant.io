@@ -216,14 +216,31 @@
     "name": "Dashboard resources",
     "badge": "Dashboard resources of",
     "description": "show your dashboard resources",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "sort": "type"
+    }
   },
   {
     "redirect": "lovelace_dashboards",
     "name": "Dashboards",
     "badge": "Dashboards of",
     "description": "show your dashboards",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "type"
+    }
   },
   {
     "redirect": "devices",
