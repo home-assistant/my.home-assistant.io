@@ -510,6 +510,32 @@
     }
   },
   {
+    "redirect": "config_lorawan",
+    "component": "lorawan",
+    "name": "LoRaWAN configuration",
+    "badge": "LoRaWAN config of",
+    "description": "show your LoRaWAN configuration panel",
+    "introduced": "2026.11"
+  },
+  {
+    "redirect": "lorawan_devices",
+    "component": "lorawan",
+    "name": "LoRaWAN devices",
+    "badge": "LoRaWAN devices of",
+    "description": "show your LoRaWAN devices",
+    "introduced": "2026.11",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "connection": "string?"
+    },
+    "example": {
+      "group": "connection"
+    }
+  },
+  {
     "redirect": "maintenance",
     "name": "Maintenance",
     "badge": "Maintenance dashboard of",
