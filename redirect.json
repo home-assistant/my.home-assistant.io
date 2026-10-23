@@ -258,7 +258,26 @@
     "name": "Entities",
     "badge": "Entities of",
     "description": "show your entities",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "status": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "device": "string?",
+      "domain": "string?",
+      "entity_domain": "string?",
+      "label": "string?",
+      "assistants": "string?",
+      "config_entry": "string?",
+      "sub_entry": "string?"
+    },
+    "example": {
+      "domain": "hue"
+    }
   },
   {
     "redirect": "areas",
