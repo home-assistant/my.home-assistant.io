@@ -336,7 +336,8 @@
     "description": "show an integration",
     "introduced": "2023.6",
     "params": {
-      "domain": "string"
+      "domain": "string",
+      "search": "string?"
     },
     "example": {
       "domain": "hue"
@@ -373,7 +374,14 @@
     "name": "Integrations: dashboard",
     "badge": "Integrations of",
     "description": "show your integrations",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "status": "string?"
+    },
+    "example": {
+      "search": "hue"
+    }
   },
   {
     "redirect": "labels",
