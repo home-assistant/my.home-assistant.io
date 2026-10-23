@@ -690,7 +690,16 @@
     "name": "Tags",
     "badge": "Tags of",
     "description": "show your tags",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?"
+    },
+    "example": {
+      "sort": "last_scanned",
+      "direction": "desc"
+    }
   },
   {
     "redirect": "config_thread",
