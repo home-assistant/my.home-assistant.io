@@ -943,6 +943,15 @@
     "badge": "Statistics tools of",
     "description": "show your statistics tools",
     "introduced": "2026.8",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "issue"
+    },
     "legacy_redirect": "developer_statistics"
   },
   {
