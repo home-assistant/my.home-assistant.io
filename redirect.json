@@ -190,7 +190,17 @@
     "name": "Bluetooth Advertisements",
     "badge": "Bluetooth Advertisements of",
     "description": "show your Bluetooth Advertisements",
-    "introduced": "2025.0"
+    "introduced": "2025.0",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "sort": "rssi",
+      "direction": "desc"
+    }
   },
   {
     "redirect": "config_bluetooth",
@@ -204,7 +214,16 @@
     "name": "Bluetooth Connections",
     "badge": "Bluetooth Connections of",
     "description": "show your Bluetooth Connections",
-    "introduced": "2025.0"
+    "introduced": "2025.0",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "sort": "name"
+    }
   },
   {
     "redirect": "bluetooth_visualization",
