@@ -506,7 +506,13 @@
     "description": "show your Home Assistant logs",
     "introduced": "2021.3",
     "params": {
-      "provider": "string?"
+      "provider": "string?",
+      "search": "string?",
+      "integration": "string?",
+      "raw": "string?"
+    },
+    "example": {
+      "search": "zha"
     }
   },
   {
