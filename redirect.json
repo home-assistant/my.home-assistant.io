@@ -144,7 +144,16 @@
     "name": "Blueprints: dashboard",
     "badge": "Blueprints of",
     "description": "show your blueprints",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?"
+    },
+    "example": {
+      "group": "type"
+    }
   },
   {
     "redirect": "blueprint_import",
