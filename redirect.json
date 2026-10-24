@@ -730,7 +730,24 @@
     "name": "Scenes",
     "badge": "Scenes of",
     "description": "show your scenes",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "device": "string?",
+      "entity": "string?",
+      "label": "string?",
+      "category": "string?",
+      "assistants": "string?"
+    },
+    "example": {
+      "sort": "last_activated",
+      "direction": "desc"
+    }
   },
   {
     "redirect": "scripts",
