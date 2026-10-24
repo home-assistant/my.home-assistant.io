@@ -737,7 +737,25 @@
     "name": "Scripts",
     "badge": "Scripts of",
     "description": "show your scripts",
-    "introduced": "2021.3"
+    "introduced": "2021.3",
+    "params": {
+      "search": "string?",
+      "sort": "string?",
+      "direction": "string?",
+      "group": "string?",
+      "floor": "string?",
+      "area": "string?",
+      "device": "string?",
+      "entity": "string?",
+      "label": "string?",
+      "category": "string?",
+      "assistants": "string?",
+      "blueprint": "string?"
+    },
+    "example": {
+      "sort": "last_triggered",
+      "direction": "desc"
+    }
   },
   {
     "redirect": "security",
