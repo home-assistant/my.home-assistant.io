@@ -45,6 +45,11 @@
     "introduced": "2021.3"
   },
   {
+    "redirect": "hacs_repository",
+    "new_redirect": "marketplace_repository",
+    "introduced": "2022.8"
+  },
+  {
     "redirect": "logbook",
     "new_redirect": "activity",
     "introduced": "2021.3"
