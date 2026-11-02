@@ -552,6 +552,7 @@
       "provider": "string?",
       "search": "string?",
       "integration": "string?",
+      "level": "string?",
       "raw": "string?"
     },
     "example": {
