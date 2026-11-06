@@ -876,6 +876,13 @@
     "introduced": "2026.3"
   },
   {
+    "redirect": "tools_action_history",
+    "name": "Tools: action history",
+    "badge": "Action history of",
+    "description": "show your action history",
+    "introduced": "2026.12"
+  },
+  {
     "redirect": "tools_actions",
     "name": "Tools: actions",
     "badge": "Action tools of",
