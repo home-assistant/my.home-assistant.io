@@ -12,6 +12,7 @@ export default defineConfig(
     "./src/entrypoints/my-redirect.ts",
     "./src/entrypoints/my-change-url.ts",
     "./src/entrypoints/my-create-link.ts",
+    "./src/entrypoints/my-app.ts",
   ].map((entrypoint) => ({
     input: {
       [parse(entrypoint).name]: entrypoint,
