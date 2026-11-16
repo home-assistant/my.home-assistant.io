@@ -437,12 +437,13 @@
     "introduced": "2021.3"
   },
   {
-    "redirect": "cloud",
-    "name": "Home Assistant Cloud",
-    "badge": "Home Assistant Cloud of",
-    "description": "show your Home Assistant Cloud configuration",
-    "introduced": "2021.3",
-    "component": "cloud"
+    "redirect": "link",
+    "name": "Home Assistant Link",
+    "badge": "Home Assistant Link of",
+    "description": "show your Home Assistant Link configuration",
+    "introduced": "2026.12",
+    "component": "cloud",
+    "legacy_redirect": "cloud"
   },
   {
     "redirect": "config_infrared",
