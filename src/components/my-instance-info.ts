@@ -1,29 +1,47 @@
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
-import { html, LitElement, TemplateResult } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { svgPencil } from "./svg-pencil";
 
 @customElement("my-instance-info")
 class MyInstanceInfo extends LitElement {
-  @property({ attribute: false }) public instanceUrl!: string | null;
+  @property({ attribute: false }) public instanceUrls: string[] = [];
 
   createRenderRoot() {
     return this;
   }
 
-  protected render(): TemplateResult {
-    if (!this.instanceUrl) {
-      return html``;
+  protected render() {
+    if (!this.instanceUrls.length) {
+      return nothing;
     }
+    const multiple = this.instanceUrls.length > 1;
+    const editLabel = multiple ? "Edit instances" : "Edit instance";
     return html`
-      <div class="instance-info">
+      <div class=${multiple ? "instance-info multiple" : "instance-info"}>
         <div>
-          <div class="instance-header">HOME ASSISTANT INSTANCE</div>
-          <a href=${this.instanceUrl} rel="noreferrer noopener" target="_blank">
-            ${this.instanceUrl}
-          </a>
+          <div class="instance-header">
+            ${multiple ? "HOME ASSISTANT INSTANCES" : "HOME ASSISTANT INSTANCE"}
+          </div>
+          ${this.instanceUrls.map(
+            (url) => html`
+              <a
+                class="instance-url"
+                href=${url}
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                ${url}
+              </a>
+            `,
+          )}
         </div>
-        <button class="empty" @click=${this._handleEdit}>
+        <button
+          class="empty"
+          aria-label=${editLabel}
+          title=${editLabel}
+          @click=${this._handleEdit}
+        >
           ${unsafeSVG(svgPencil)}
         </button>
       </div>

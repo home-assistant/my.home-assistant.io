@@ -1,7 +1,7 @@
 import { html, LitElement, TemplateResult, PropertyValues } from "lit";
 import { state, query, customElement } from "lit/decorators.js";
 import "../components/my-url-input";
-import { getInstanceUrl } from "../data/instance_info";
+import { getInstanceUrls } from "../data/instance_info";
 import { extractSearchParamsObject } from "../util/search-params";
 import { MyUrlInputMain } from "../components/my-url-input";
 import { isMobile } from "../data/is_mobile";
@@ -10,7 +10,7 @@ const changeRequestedFromRedirect = extractSearchParamsObject().redirect;
 
 @customElement("my-change-url")
 class MyChangeUrl extends LitElement {
-  @state() private _instanceUrl = getInstanceUrl();
+  @state() private _instanceUrls = getInstanceUrls();
 
   @state() private _error?: string;
 
@@ -43,10 +43,6 @@ class MyChangeUrl extends LitElement {
     this.updateComplete.then(() => this._urlInput?.focus());
   }
 
-  protected shouldUpdate() {
-    return this._instanceUrl !== undefined;
-  }
-
   protected render(): TemplateResult {
     if (isMobile && !changeRequestedFromRedirect) {
       return html`<div class="card-content error">
@@ -56,7 +52,7 @@ class MyChangeUrl extends LitElement {
 
     return html`
       ${
-        changeRequestedFromRedirect && !this._instanceUrl
+        changeRequestedFromRedirect && !this._instanceUrls.length
           ? html`
               <div class="highlight">
                 You are seeing this page because you have been linked to a page
@@ -69,7 +65,7 @@ class MyChangeUrl extends LitElement {
       }
       <div class="card-content">
         ${
-          this._instanceUrl
+          this._instanceUrls.length
             ? html`<p>
                 Configure My Home Assistant by entering the URL of your Home
                 Assistant instance.
@@ -78,21 +74,19 @@ class MyChangeUrl extends LitElement {
         }
 
         <my-url-input
-          .value=${this._instanceUrl || ""}
+          .value=${this._instanceUrls}
           @value-changed=${this._handleUrlChanged}
         ></my-url-input>
 
         ${this._error ? html`<div class="error">${this._error}</div>` : ""}
-
-        <p>Note: This URL is only stored in your browser.</p>
       </div>
     `;
   }
 
   private _handleUrlChanged(ev: CustomEvent) {
-    const instanceUrl = ev.detail.value;
+    const instanceUrls: string[] = ev.detail.value;
 
-    if (!instanceUrl) {
+    if (!instanceUrls.length) {
       this._error = "You need to configure a URL to use My Home Assistant.";
       return;
     }
