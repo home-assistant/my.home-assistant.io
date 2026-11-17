@@ -152,7 +152,10 @@ const render = (showTroubleshooting: boolean) => {
 
   instanceList.hidden = !multiple;
   // With multiple instances only the OAuth decline button is left in here.
-  cardActions.style.display = multiple && (!isOauth || rejected) ? "none" : "";
+  const listOnly = multiple && (!isOauth || rejected);
+  cardActions.style.display = listOnly ? "none" : "";
+  // The last row then follows the rounded corners of the card.
+  instanceList.classList.toggle("card-end", listOnly);
 
   if (!multiple) {
     const instanceUrl = instanceUrls[0];
