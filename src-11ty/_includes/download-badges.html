@@ -1,0 +1,30 @@
+<style>
+  .download-badges {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media (max-width: 450px) {
+    .download-badges {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<p class="download-badges">
+  <a href="{{ app_stores.google_play }}"
+    ><img
+      class="download-badge"
+      width="200"
+      src="/images/badge-google-play.png"
+      alt="Get it on Google Play"
+  /></a>
+  <a href="{{ app_stores.app_store }}"
+    ><img
+      class="download-badge"
+      width="175"
+      src="/images/badge-apple-app-store.svg"
+      alt="Download on the App Store"
+  /></a>
+</p>

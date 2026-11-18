@@ -1,0 +1,30 @@
+---
+layout: base_card_with_hero
+javascript_source: my-app.js
+permalink: "app/"
+title: Get the app
+description: Get the Home Assistant app for your phone.
+---
+
+<style>
+  .other-downloads {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+  }
+  .other-downloads a {
+    color: inherit;
+  }
+</style>
+
+<h1 class="card-header">Get the Home Assistant app</h1>
+
+<div class="card-content">
+  <p>Use Home Assistant on your phone or tablet with the Home Assistant app.</p>
+  {% include "download-badges.html" %}
+  <p class="other-downloads">
+    No Google Play? See the
+    <a href="https://companion.home-assistant.io/download/"
+      >other download options</a
+    >.
+  </p>
+</div>
