@@ -51,6 +51,51 @@ permalink: "redirect/{{ redirect.key }}/"
   .highlight {
     display: none;
   }
+  .instance-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--divider-color);
+  }
+  .instance-list li + li {
+    border-top: 1px solid var(--divider-color);
+  }
+  .instance-list[hidden] {
+    display: none;
+  }
+  .instance-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ha-space-4);
+    box-sizing: border-box;
+    min-height: 48px;
+    padding: var(--ha-space-3) var(--ha-space-4);
+    color: var(--primary-text-color);
+    text-decoration: none;
+    line-break: anywhere;
+  }
+  .instance-list.card-end li:last-child a {
+    border-bottom-left-radius: var(--ha-card-border-radius);
+    border-bottom-right-radius: var(--ha-card-border-radius);
+  }
+  .instance-list a:focus-visible {
+    outline: var(--wa-focus-ring);
+    outline-offset: -2px;
+  }
+  @media (hover: hover) {
+    .instance-list a:hover {
+      background-color: var(--ha-color-fill-neutral-quiet-hover);
+    }
+  }
+  .instance-list svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    color: var(--secondary-text-color);
+    fill: currentColor;
+  }
 
   .warning {
     position: relative;
@@ -107,6 +152,8 @@ permalink: "redirect/{{ redirect.key }}/"
     link didn't work, make sure your instance URL below is correct and check
     <a href="/faq#404">our troubleshooting steps</a>.
   </div>
+
+  <ul class="instance-list" aria-label="Your instances" hidden></ul>
 
   {% if redirect.redirect == "oauth" %}
   <div class="card-actions">
